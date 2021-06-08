@@ -1,0 +1,7 @@
+envyaml==1.6.201229
+hvac==0.10.14
+PyAthena==2.0.0
+pyarrow==4.0.1
+pandas==1.1.5
+seaborn==0.11.1
+plotly==4.14.3
