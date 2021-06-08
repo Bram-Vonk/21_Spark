@@ -1,5 +1,12 @@
+import os
 import hvac
 from hvac.exceptions import VaultError
+from src.utils.parser import parse_args, parse_config
+
+def get_secrets(connection):
+    config = parse_config(os.path.abspath(os.path.join(os.getcwd(), "../src/settings.yml")))
+    path = os.path.join(config["vault"]["stack"], config["environment"], config["vault"][connection])
+    return get_vault_secret(**config["vault"], path=path)
 
 
 def get_vault_secret(url, token, path, mount_point, **kwargs):  # pragma: no cover
