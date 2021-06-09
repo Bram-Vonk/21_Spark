@@ -15,9 +15,14 @@ vault:
 #  value: value
 #  datetime: timestamp
 snowflake:
-  database: DB_DATASCIENCE_P
-  schema: DATASCIENCE_0_VIEWS
-  table: BDM_DALI_METINGEN
+  data:
+    database: DB_CDWH_P
+    schema: CDWH_4_BDM
+    table: BDM_DALI_METINGEN
+  meta_box:
+    database: DB_CDWH_P
+    schema: CDWH_5_INF_MEETDATA_E
+    table: DIM_DALI_BOX_VW
 #  boxid: BOXID
 #  channelid: CHANNELID
 #  value: WAARDE
