@@ -4,4 +4,26 @@ vault:
   token: $VAULT_TOKEN
   mount_point: $VAULT_MOUNT_POINT|stacks
   stack: $VAULT_PATH_STACK|401-datascience
-  path_end: $VAULT_PATH_END|applications/powerbi/default
+  athena: $ATHENA|applications/powerbi/default
+  snowflake: $SNOWFLAKE|applications/snowflake
+#athena:
+#  database: AwsDataCatalog
+#  schema: "enxp401-src-dali"
+#  table: enxp401_src_dali_readings
+#  boxid: boxid
+#  channelid: channelid
+#  value: value
+#  datetime: timestamp
+snowflake:
+  data:
+    database: DB_CDWH_P
+    schema: CDWH_4_BDM
+    table: BDM_DALI_METINGEN
+  meta_box:
+    database: DB_CDWH_P
+    schema: CDWH_5_INF_MEETDATA_E
+    table: DIM_DALI_BOX_VW
+#  boxid: BOXID
+#  channelid: CHANNELID
+#  value: WAARDE
+#  datetime: DATUMTIJD

@@ -1,7 +1,9 @@
 envyaml==1.6.201229
 hvac==0.10.14
-PyAthena==2.0.0
-pyarrow==4.0.1
+# PyAthena==2.0.0
+snowflake-connector-python==2.4.4
+pyarrow==3.0.0
 pandas==1.1.5
 seaborn==0.11.1
 plotly==4.14.3
+altair==4.1.0
