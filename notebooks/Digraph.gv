@@ -1,0 +1,27 @@
+digraph {
+	sigma [label="sigma
+~
+HalfCauchy"]
+	m [label="m
+~
+Normal"]
+	k [label="k
+~
+Normal"]
+	subgraph cluster4 {
+		delta [label="delta
+~
+Laplace"]
+		label=4 labeljust=r labelloc=b style=rounded
+	}
+	subgraph cluster141 {
+		obs [label="obs
+~
+Normal" style=filled]
+		label=141 labeljust=r labelloc=b style=rounded
+	}
+	k -> obs
+	sigma -> obs
+	m -> obs
+	delta -> obs
+}
