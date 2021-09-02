@@ -9,6 +9,7 @@ __pycache__
 .local
 .npm
 .pytest_cache
+.gv
 
 .env
 
