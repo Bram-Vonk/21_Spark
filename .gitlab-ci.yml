@@ -1,0 +1,166 @@
+image: enexis-docker-401-local.jfrog.io/dataplatform_cicd:latest
+
+stages:
+  - lint
+#  - test
+  - build
+  - release
+  - deploy
+  - destroy
+
+variables:
+  APP_NAME: spark
+  APP_NUMBER: APP9999
+
+python-lint:
+  tags:
+    - elastic
+  stage: lint
+  image: python:3.8.7-slim-buster
+  script:
+    - pip install flake8==3.8.4 black==20.8b1 isort==5.7.0 mypy==0.902 flake8-docstrings==1.6.0 types-Flask types-pytz
+    - chmod +x ./scripts/lint
+    - ./scripts/lint
+
+#python-unittest:
+#  tags:
+#    - eks-elastic
+#  stage: test
+#  image: python:3.8.6-slim-buster
+#  services: []
+#  before_script: []
+#  script:
+#    - pip install docker==5.0.0
+#    - pip install -r requirements.txt
+#    - pip install --extra-index-url $PIP_EXTRA_STACK_INDEX_URL enx-aws-utilities==1.1.0 reprocessing_timeseries==0.0.1
+#    - pip install pytest>=6.2.1 coverage>=5.3.1 pytest-mock>=3.5.1 pytest-lazy-fixture>=0.6.3 moto>=2.2.1
+#    - chmod +x ./scripts/test
+#    - ./scripts/test
+#  only:
+#    - master
+
+.build and release:
+  stage: release
+  script: /_CI/bin/run.sh release_docker_image
+  variables:
+    DOCKER_EXTRA_TAGS: latest
+  tags:
+    - eks-elastic
+
+.deploy:
+  stage: deploy
+  script:
+    - /_CI/bin/run.sh deploy_secrets
+    - /_CI/bin/run.sh deploy_cdk
+  tags:
+    - eks-elastic
+  variables:
+    APP_TYPE: ecs_app
+    SECRETS_DEFAULT_FROM_TYPE: vault
+
+build and release:
+  extends: .build and release
+  only:
+    - master
+
+deploy test:
+  extends: .deploy
+  environment:
+    name: test
+  variables:
+    ENVIRONMENT: test
+    SECRETS_CONFIG_FILE: deploy/test/ecs_app__loadforecast.yml
+  when: manual
+  only:
+    - master
+
+#deploy acceptance:
+#  extends: .deploy
+#  environment:
+#    name: acc
+#  variables:
+#    ENVIRONMENT: acceptance
+#    SECRETS_CONFIG_FILE: deploy/acceptance/ecs_app__loadforecast.yml
+#  when: manual
+#  only:
+#    - master
+#
+#deploy production:
+#  extends: .deploy
+#  environment:
+#    name: prod
+#  variables:
+#    ENVIRONMENT: production
+#    SECRETS_CONFIG_FILE: deploy/production/ecs_app__loadforecast.yml
+#  when: manual
+#  only:
+#    - master
+#
+#build and release docs:
+#  stage: release-docs
+#  extends: .build and release
+#  variables:
+#    APP_NAME: loadforecast-docs
+#    APP_TYPE: ecs_app
+#    DOCKERFILE_NAME: 'Dockerfile.docs'
+#    DOCKER_EXTRA_TAGS: latest
+#  only:
+#    - master
+#
+#build and release dash:
+#  stage: release-dash
+#  extends: .build and release
+#  variables:
+#    APP_NAME: loadforecast-dash
+#    APP_TYPE: ecs_app
+#    DOCKERFILE_NAME: 'Dockerfile.dash'
+#    DOCKER_EXTRA_TAGS: latest
+#  only:
+#    - master
+#
+#deploy test dash:
+#  stage: deploy-dash
+#  extends: .deploy
+#  variables:
+#    APP_NAME: loadforecast-dash
+#    ENVIRONMENT: test
+#    SECRETS_CONFIG_FILE: deploy/test/ecs_app__loadforecast-dash.yml
+#  when: manual
+#  only:
+#    - master
+#
+#deploy prod dash:
+#  stage: deploy-dash
+#  extends: .deploy
+#  variables:
+#    APP_NAME: loadforecast-dash
+#    ENVIRONMENT: production
+#    SECRETS_CONFIG_FILE: deploy/production/ecs_app__loadforecast-dash.yml
+#  when: manual
+#  only:
+#    - master
+#
+#deploy test docs:
+#  stage: deploy-docs
+#  extends: .deploy
+#  variables:
+#    APP_NAME: loadforecast-docs
+#    ENVIRONMENT: test
+#    SECRETS_CONFIG_FILE: deploy/test/ecs_app__loadforecast-docs.yml
+#  when: manual
+#  only:
+#    - master
+#
+#destroy:
+#  stage: destroy
+#  script:
+#    - /_CI/bin/run.sh destroy_cdk
+#  variables:
+#    APP_TYPE: ecs_app
+#    ENVIRONMENT: test
+#    APP_NAME: loadforecast-dash
+#  tags:
+#    - elastic
+#  when: manual
+#  only:
+#    - update-viz
