@@ -2,7 +2,7 @@
 
 set -xe
 
-black --check src test
-isort --check src test
-flake8 src test
-mypy --install-types
+black --check src
+isort --check src
+flake8 src
+#mypy --install-types

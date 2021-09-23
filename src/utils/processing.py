@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def downcast(s, try_numeric=True, category=False):
     """
     Downcasts a series to the lowest possible memory type
@@ -37,7 +38,8 @@ def map_labels(series, kind="categorical", labels=None, backwards=False, **arg):
     series: pd.Series
         Series to map on.
     kind: str
-        Indicator for kind of data in series. With kind of {"categorical", "ordinal"}  the mapping is applied, otherwise not.
+        Indicator for kind of data in series. With kind of {"categorical", "ordinal"}  the mapping is applied,
+        otherwise not.
     labels: dict
         Defines with the mapping {key_0: value_0, etc.}.
     arg:
