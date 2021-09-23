@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  update_extremes:
+    build:
+      dockerfile: Dockerfile.preprocessing
+      context: .
+    env_file:
+      - ./.env
+    volumes:
+      - "./src:/home/src"
+    entrypoint: python -m src.data.update_extremes

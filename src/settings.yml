@@ -6,14 +6,6 @@ vault:
   stack: $VAULT_PATH_STACK|401-datascience
   athena: $ATHENA|applications/powerbi/default
   snowflake: $SNOWFLAKE|applications/snowflake
-#athena:
-#  database: AwsDataCatalog
-#  schema: "enxp401-src-dali"
-#  table: enxp401_src_dali_readings
-#  boxid: boxid
-#  channelid: channelid
-#  value: value
-#  datetime: timestamp
 snowflake:
   DALI_data:
     database: DB_CDWH_P
@@ -27,7 +19,3 @@ snowflake:
     database: DB_DATASCIENCE_P
     schema: DATASCIENCE_1_ETL
     table: DS_SPARK_DALI_WEEK_EXTREMES
-#  boxid: BOXID
-#  channelid: CHANNELID
-#  value: WAARDE
-#  datetime: DATUMTIJD
