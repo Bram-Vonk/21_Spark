@@ -1,5 +1,7 @@
-import pandas as pd
 import datetime as dt
+
+import pandas as pd
+
 
 def format_limits(df_meta, df_data=None):
     limit = df_meta["vermogen_nominaal"].squeeze()
@@ -7,20 +9,14 @@ def format_limits(df_meta, df_data=None):
     if df_data is None:
         return pd.DataFrame({"limit": ["lower", "upper"], "value": [-limit, limit]})
     else:
-        timestamps = [df_data["date"].min(), df_data["date"].max()]
-
-        return pd.DataFrame(
-            {
-                "date": timestamps,
-                "lower": [-limit] * len(timestamps),
-                "upper": [limit] * len(timestamps),
-            }
-        ).melt(id_vars=["date"], value_vars=["lower", "upper"], var_name=["limit"])
+        df_plot = df_data.sort_values(["date"]).iloc[[1, -1]][["date"]]
+        df_plot["lower"] = -limit
+        df_plot["upper"] = limit
+        return df_plot.melt(id_vars=["date"], value_vars=["lower", "upper"], var_name=["limit"])
 
 
 def format_history(df_data):
     df_plot = df_data.copy()
-    df_plot["date"] = df_plot.apply(lambda df: dt.datetime.fromisocalendar(df["year"], df["week"], 1), axis=1)
     value_vars = ["min", "max"]
     df_plot = df_plot.melt(
         var_name="history",
@@ -29,3 +25,10 @@ def format_history(df_data):
         value_vars=value_vars,
     )
     return df_plot
+
+
+def split_last(df_data, period=dt.timedelta(weeks=26)):
+    split = df_data["date"].max() - period
+    df_train = df_data[df_data["date"] < split]
+    df_test = df_data[df_data["date"] >= split]
+    return df_train, df_test

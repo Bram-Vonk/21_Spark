@@ -37,8 +37,9 @@ def plot_limits(df_limits):
                 .mark_line(strokeDash=[5, 5])
                 .encode(
                 x=alt.X("date:T", title="date"),
-                y=alt.Y("value:Q", title=""),
+                y=alt.Y("value:Q", title="power [kW]"),
                 color=alt.Color("transformer:N", scale=alt.Scale(range=["red"])),
+                detail=("limit:N"),
             )
                 .properties(width=800)
         ).interactive()
@@ -47,9 +48,9 @@ def plot_limits(df_limits):
             alt.Chart(df_limits)
                 .mark_rule(strokeDash=[5, 5])
                 .encode(
-                y=alt.Y("value:Q", title=""),
+                y=alt.Y("value:Q", title="power [kW]"),
                 color=alt.Color(
-                    "transformer:N", title="", scale=alt.Scale(range=["red"])
+                    "transformer:N", scale=alt.Scale(range=["red"])
                 ),
             )
                 .properties(width=800)
