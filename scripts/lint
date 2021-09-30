@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -xe
+
+black --check src
+isort --check src
+flake8 src
+#mypy --install-types
