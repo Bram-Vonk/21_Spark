@@ -7,6 +7,18 @@ from src.utils.parser import parse_config
 
 
 def get_secrets(connection):
+    """
+    Get secrets from Vault.
+
+    Parameters
+    ----------
+    connection: str
+        The application/connection to get secrets for.
+
+    Returns
+    -------
+        requested secrets
+    """
     config = parse_config(
         os.path.abspath(os.path.join(os.path.dirname(__file__), "../settings.yml"))
     )

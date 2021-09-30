@@ -3,16 +3,22 @@ import pandas as pd
 
 def downcast(s, try_numeric=True, category=False):
     """
-    Downcasts a series to the lowest possible memory type
+    Downcast  a series to the lowest possible memory type.
+
     Parameters
     ----------
-    s
-    try_numeric
-    category
+    s : pd.Series
+        Series to downcast.
+    try_numeric: bool
+        If True it will try to read strings as numeric values.
+    category: bool
+        If True (string) objects will be cast as a category.
+
     Returns
     -------
-    """
+        Downcasted series.
 
+    """
     if try_numeric:
         if s.dtype.kind != "M":
             s = pd.to_numeric(s, errors="ignore")
@@ -32,7 +38,8 @@ def downcast(s, try_numeric=True, category=False):
 
 def map_labels(series, kind="categorical", labels=None, backwards=False, **arg):
     """
-    Maps a Series values by the labels given.
+    Map a Series values by the labels given.
+
     Parameters
     ----------
     series: pd.Series
@@ -44,12 +51,12 @@ def map_labels(series, kind="categorical", labels=None, backwards=False, **arg):
         Defines with the mapping {key_0: value_0, etc.}.
     arg:
         Additional arguments.
+
     Returns
     -------
     pd.Series
         Series with mapped values.
     """
-
     if kind in ["categorical", "ordinal"]:
         if isinstance(labels, dict):
             if backwards:

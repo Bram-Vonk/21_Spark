@@ -5,6 +5,13 @@ import sys
 
 
 def init_logging():
+    """
+    Initialize logger.
+
+    Returns
+    -------
+        logger object
+    """
     logger = logging.getLogger("SPARK")
     logger.setLevel(logging.DEBUG)
     # fh = logging.FileHandler('my_log_info.log')
