@@ -1,0 +1,7 @@
+FROM python:3.8-slim
+
+WORKDIR /home
+ADD src /home/src
+
+ADD requirements_preprocessing.txt /home
+RUN pip install -r requirements_preprocessing.txt
