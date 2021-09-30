@@ -27,8 +27,31 @@ def format_history(df_data):
     return df_plot
 
 
+def format_forecast(df):
+    return df
+
+
 def split_last(df_data, period=dt.timedelta(weeks=26)):
     split = df_data["date"].max() - period
     df_train = df_data[df_data["date"] < split]
     df_test = df_data[df_data["date"] >= split]
     return df_train, df_test
+
+
+def dummy_forecast(df):
+    extremes = ["max", "min"]
+    df = df.melt(
+        id_vars=df.columns.difference(extremes),
+        value_vars=extremes,
+        var_name="extreme",
+    )
+    df["forecast"] = "Q10-Q90"
+    df["upper"] = df["value"]+50
+    df["lower"] = df["value"]-50
+
+    df_median = df.copy()
+    df_median["forecast"] = "median"
+    df_median["upper"] = df_median["value"]
+    df_median["lower"] = df_median["value"]
+    df_forecast = pd.concat([df, df_median])
+    return df_forecast

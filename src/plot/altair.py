@@ -1,4 +1,5 @@
 import altair as alt
+from src.plot.formatting import format_limits, format_history, format_forecast
 
 alt.data_transformers.disable_max_rows()
 
@@ -55,3 +56,36 @@ def plot_limits(df_limits):
             )
                 .properties(width=800)
         ).interactive()
+
+
+def plot_forecast(df_forecast):
+
+    return alt.Chart(df_forecast).mark_area(line=True).encode(
+        x=alt.X("date:T"),
+        y=alt.Y("lower:Q", stack=None, title=""),
+        y2=alt.Y2("upper:Q", title=""),
+        opacity=alt.Opacity("forecast:N", scale=alt.Scale(domain=["Q10-Q90", "median"], range=[.3, 1])),
+        detail="extreme:N"
+    ).interactive()
+
+
+def plot_total(df_data=None, df_meta=None, df_forecast=None):
+    plots = []
+
+    if df_forecast is not None:
+        forecast_plot = plot_forecast(format_forecast(df_forecast))
+        plots.append(forecast_plot)
+
+    if df_data is not None:
+        history_plot = plot_history(format_history(df_data))
+        plots.append(history_plot)
+
+    if df_meta is not None:
+        limits_plot = plot_limits(format_limits(df_meta=df_meta, df_data=None))
+        plots.append(limits_plot)
+
+    return (
+        alt.layer(*plots)
+        .resolve_scale(color="independent", shape="independent")
+        .interactive()
+    )
