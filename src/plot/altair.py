@@ -1,3 +1,5 @@
+import re
+import colour
 import altair as alt
 
 from src.plot.formatting import format_forecast, format_history, format_limits
@@ -81,6 +83,13 @@ def plot_limits(df):
         ).interactive()
 
 
+def lightness_scale(factor, limits=["#bedef4", "#1f77b4"]):
+    h0 = colour.hex2hsl(limits[0])
+    h1 = colour.hex2hsl(limits[1])
+    color = [(1-factor)*v0 + factor*v1 for v0,v1 in zip(h0, h1)]
+    return colour.hsl2hex(color)
+
+
 def plot_forecast(df):
     """
     Plot the load forecast transformer.
@@ -94,6 +103,16 @@ def plot_forecast(df):
     -------
         Altair chart
     """
+
+    ranges = list(df["forecast"].unique())
+    ranges.sort(key=lambda item: (len(item), item))
+    if "median" in ranges:
+        ranges.remove("median")
+        ranges.append("median")
+    ranges = ranges[::-1]
+    parsed = [re.match("^Q(\d{1,2})-", s) for s in ranges]
+    factors = [1 if res is None else (2 * int(res.groups()[0]) / 100) for res in parsed]
+    colors = [lightness_scale(f) for f in factors]
     return (
         alt.Chart(df)
         .mark_area(line=True)
@@ -101,9 +120,9 @@ def plot_forecast(df):
             x=alt.X("date:T"),
             y=alt.Y("lower:Q", stack=None, title=""),
             y2=alt.Y2("upper:Q", title=""),
-            opacity=alt.Opacity(
+            color=alt.Color(
                 "forecast:N",
-                scale=alt.Scale(domain=["Q10-Q90", "median"], range=[0.3, 1]),
+                scale=alt.Scale(domain=ranges, range=colors),
             ),
             detail="extreme:N",
         )
