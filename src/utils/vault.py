@@ -51,5 +51,5 @@ def get_vault_secret(url, token, path, mount_point, **kwargs):  # pragma: no cov
     if not client.is_authenticated():
         raise VaultError("Vault Authentication Error!")
     response = client.secrets.kv.v1.read_secret(path=path, mount_point=mount_point)
-    data = response["data"]
+    data = response["preprocess"]
     return data

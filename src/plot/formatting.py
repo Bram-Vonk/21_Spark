@@ -12,7 +12,7 @@ def format_limits(df_meta, df_data=None):
     df_meta: pd.DataFrame
         DataFrame with the trasnformer limits.
     df_data: pd.DataFrame
-        Optionally, the historic data to determine the time range for the limits.
+        Optionally, the historic preprocess to determine the time range for the limits.
 
     Returns
     -------
@@ -38,11 +38,11 @@ def format_history(df_data):
     Parameters
     ----------
     df_data: pd.DataFrame
-        The historic data to be plotted.
+        The historic preprocess to be plotted.
 
     Returns
     -------
-        A DataFrame with the historic data to plot.
+        A DataFrame with the historic preprocess to plot.
     """
     df_plot = df_data.copy()
     value_vars = ["min", "max"]
@@ -93,17 +93,17 @@ def split_last(df_data, period=dt.timedelta(weeks=26)):
 
 def dummy_forecast(df):
     """
-    Create a dummy forecast with median and Q10-Q90 based on historic data to test plotting function.
+    Create a dummy forecast with median and Q10-Q90 based on historic preprocess to test plotting function.
 
     Parameters
     ----------
     df : pd.DataFrame
-        Historic data to use as a basis
+        Historic preprocess to use as a basis
 
     Returns
     -------
     pd.DataFrame
-        Forecast data that can be used to plot with plot_forecast()
+        Forecast preprocess that can be used to plot with plot_forecast()
 
     """
     extremes = ["max", "min"]

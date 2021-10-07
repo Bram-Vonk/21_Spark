@@ -118,7 +118,7 @@ def plot_total(df_data=None, df_meta=None, df_forecast=None):
     Parameters
     ----------
     df_data : pd.DataFrame
-        DataFrame with the historic data
+        DataFrame with the historic preprocess
     df_meta : pd.DataFrame
         DataFrame with the metadata
     df_forecast : pd.DataFrame

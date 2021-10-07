@@ -9,4 +9,4 @@ services:
       - ./.env
     volumes:
       - "./src:/home/src"
-    entrypoint: python -m src.data.update_extremes
+    entrypoint: python -m src.preprocess.update_extremes

@@ -46,7 +46,7 @@ def map_labels(series, kind="categorical", labels=None, backwards=False, **arg):
     series: pd.Series
         Series to map on.
     kind: str
-        Indicator for kind of data in series. With kind of {"categorical", "ordinal"}  the mapping is applied,
+        Indicator for kind of preprocess in series. With kind of {"categorical", "ordinal"}  the mapping is applied,
         otherwise not.
     labels: dict
         Defines with the mapping {key_0: value_0, etc.}.
@@ -92,7 +92,7 @@ class MinMaxScaler:
         Parameters
         ----------
         X : np.array
-            data to fit on
+            preprocess to fit on
         y : None
             solely for consistency
 
@@ -107,17 +107,17 @@ class MinMaxScaler:
 
     def transform(self, X):
         """
-        Scales data according to fitted parameters.
+        Scales preprocess according to fitted parameters.
 
         Parameters
         ----------
         X : np.array
-            data to scale
+            preprocess to scale
 
         Returns
         -------
         np.array
-            scaled data
+            scaled preprocess
 
         """
         X_01 = (X - self.min) / (self.max - self.min)
@@ -130,14 +130,14 @@ class MinMaxScaler:
         Parameters
         ----------
         X : np.array
-            data to scale
+            preprocess to scale
         y : None
             solely for consistency
 
         Returns
         -------
         np.array
-            scaled data
+            scaled preprocess
 
         """
         return self.fit(X).transform(X)
@@ -149,14 +149,14 @@ class MinMaxScaler:
         Parameters
         ----------
         X : np.array
-            data to scale
+            preprocess to scale
         y : None
             solely for consistency
 
         Returns
         -------
         np.array
-            scaled data
+            scaled preprocess
 
         """
         X_xx = (X - self.lower) / (self.upper - self.lower)
