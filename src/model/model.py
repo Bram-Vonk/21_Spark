@@ -120,7 +120,7 @@ def drift_model(t, n=4):
         PYMC3 variable
 
     """
-    x = polynomial(t, n=4)
+    x = polynomial(t, n=n)
     β = pm.Normal("β_drift", mu=0, sd=0.5, shape=n + 1)
 
     return pm.Deterministic("drift", det_dot(x, β))

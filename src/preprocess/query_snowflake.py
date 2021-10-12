@@ -8,7 +8,7 @@ from snowflake.sqlalchemy import URL
 from sqlalchemy import create_engine
 
 from src.utils.parser import parse_config
-from src.utils.preprocessing import downcast
+from src.utils.preprocess import downcast
 from src.utils.vault import get_secrets
 
 logger = logging.getLogger('SPARK')

@@ -1,4 +1,5 @@
 import logging
+import datetime as dt
 
 from src.preprocess.query_snowflake import read_meta, read_week_extremes
 
@@ -126,4 +127,37 @@ def load_data(boxid):
         go = not too_short(df_data, threshold=min_rows)
 
     if go:
-        return df_data, df_meta
+        return format_data(df_data), df_meta
+
+
+def format_data(df):
+    df = df.reset_index(drop=True)
+    value_vars = ["max", "min"]
+    df = df.melt(
+        id_vars=df.columns.difference(value_vars),
+        value_vars=value_vars,
+        var_name="extreme",
+        value_name="value",
+    ).assign(period="history", model_var="observed")
+    return df
+
+
+def split_last(df_data, period=dt.timedelta(weeks=26)):
+    """
+    Split the historic dataset into a train and test set a certain period from the end.
+
+    Parameters
+    ----------
+    df_data: pd.DataFrame
+        Dataset to split.
+    period: datetime
+        Period from the end to split from
+    Returns
+    -------
+        df_train, df_test
+
+    """
+    split = df_data["date"].max() - period
+    df_train = df_data[df_data["date"] < split]
+    df_test = df_data[df_data["date"] >= split]
+    return df_train, df_test

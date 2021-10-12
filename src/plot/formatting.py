@@ -21,7 +21,7 @@ def format_limits(df_meta, df_data=None):
     limit = df_meta["vermogen_nominaal"].squeeze()
 
     if df_data is None:
-        return pd.DataFrame({"limit": ["lower", "upper"], "value": [-limit, limit]})
+        return pd.DataFrame({"extreme": ["min", "max"], "value": [-limit, limit]})
     else:
         df_plot = df_data.sort_values(["date"]).iloc[[1, -1]][["date"]]
         df_plot["lower"] = -limit
@@ -68,27 +68,6 @@ def format_forecast(df_forecast):
         pass through input
     """
     return df_forecast
-
-
-def split_last(df_data, period=dt.timedelta(weeks=26)):
-    """
-    Split the historic dataset into a train and test set a certain period from the end.
-
-    Parameters
-    ----------
-    df_data: pd.DataFrame
-        Dataset to split.
-    period: datetime
-        Period from the end to split from
-    Returns
-    -------
-        df_train, df_test
-
-    """
-    split = df_data["date"].max() - period
-    df_train = df_data[df_data["date"] < split]
-    df_test = df_data[df_data["date"] >= split]
-    return df_train, df_test
 
 
 def dummy_forecast(df):
