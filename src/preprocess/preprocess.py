@@ -1,9 +1,12 @@
-import logging
 import datetime as dt
+import logging
 
-from src.preprocess.query_snowflake import read_meta, read_week_extremes
+import numpy as np
+import pandas as pd
 
-logger = logging.getLogger('SPARK')
+from src.utils.snowflake import read_meta, read_week_extremes
+
+logger = logging.getLogger("SPARK")
 
 
 def too_short(df_data, threshold=52):
@@ -24,7 +27,9 @@ def too_short(df_data, threshold=52):
     """
     logger.info(f"checking number of preprocess points (<={threshold})")
     if len(df_data) <= threshold:
-        logger.info(f"number of preprocess points ({len(df_data)}) under threshold ({threshold})")
+        logger.info(
+            f"number of preprocess points ({len(df_data)}) under threshold ({threshold})"
+        )
         return True
     else:
         return False
@@ -79,7 +84,7 @@ def remove_leading_idling(df_data, capacity, threshold=0.01):
     logger.info(f"removing leading low values (<{threshold})")
     df_data = df_data.sort_values(["year", "week"])
     df_mask = df_data[["max", "min"]].abs().max(axis=1) > capacity * threshold
-    df_mask[df_mask.argmax():] = True
+    df_mask[df_mask.argmax() :] = True
     return df_data.loc[df_mask]
 
 
@@ -161,3 +166,34 @@ def split_last(df_data, period=dt.timedelta(weeks=26)):
     df_train = df_data[df_data["date"] < split]
     df_test = df_data[df_data["date"] >= split]
     return df_train, df_test
+
+
+def extrapolate_timestamps(df, horizon=dt.timedelta(weeks=26)):
+    """
+    Extrapolate the data with timestamps for the future.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        data to extrapolate.
+    horizon : dt.timedelta
+        the amount of time to extrapolate further.
+
+    Returns
+    -------
+    pd.DataFrame
+        Only the extrapolated/added part.
+
+    """
+    t_start = df["date"].max() + dt.timedelta(weeks=1)
+    t_end = t_start + horizon + dt.timedelta(weeks=1)
+    t_extra = np.arange(t_start, t_end, dt.timedelta(weeks=1))
+    df_extra = pd.DataFrame(data=t_extra, columns=["date"]).assign(
+        boxid=df["boxid"].iloc[0],
+        l=df["l"].iloc[0],
+        extreme=df["extreme"].iloc[0],
+        period="future",
+    )
+    df_extra[["year", "week"]] = df_extra["date"].dt.isocalendar().iloc[:, :-1]
+
+    return df_extra

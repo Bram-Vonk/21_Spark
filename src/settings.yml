@@ -19,3 +19,14 @@ snowflake:
     database: DB_DATASCIENCE_P
     schema: DATASCIENCE_1_ETL
     table: DS_SPARK_DALI_WEEK_EXTREMES
+  DALI_forecasts:
+    database: DB_DATASCIENCE_P
+    schema: DATASCIENCE_2_PUBLISH
+    table: DS_SPARK_DALI_WEEK_FORECASTS
+model:
+  n_fourier: 5
+  n_polynomial: 2
+  fc_horizon: 26
+  quantiles: [1, 5, 50, 95, 99]
+  tune: 1000
+  draws: 1000

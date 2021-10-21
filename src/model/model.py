@@ -1,5 +1,9 @@
+import logging
+
 import numpy as np
 import pymc3 as pm
+
+logger = logging.getLogger("SPARK")
 
 
 def det_dot(a, b):
@@ -124,3 +128,38 @@ def drift_model(t, n=4):
     β = pm.Normal("β_drift", mu=0, sd=0.5, shape=n + 1)
 
     return pm.Deterministic("drift", det_dot(x, β))
+
+
+def create_model(t, y, p_fourier, n_fourier=5, n_polynomial=2):
+    """
+    Create a PYMC3 GAM model with a trend/drift and a seasonal/yearly component.
+
+    Parameters
+    ----------
+    t : timestamps
+        input series of scaled timestamps
+    y : float
+        observed values
+    p_fourier: float
+        scaled period of the timestamps to take for the fourier component (a year)
+    n_fourier : int
+        order of the fourier component
+    n_polynomial: inbt
+        order of the polynomial component
+
+    Returns
+    -------
+    PYMC3 model context
+    """
+
+    logger.info(f"creating PYMC3 model")
+    logger.info(f"polynomial order = {n_polynomial} for drift/trend")
+    logger.info(f"fourier order = {n_fourier} for seasonality")
+    with pm.Model() as m:
+        drift = drift_model(t, n=n_polynomial)
+        yearly = seasonality_model(t, p=p_fourier, n=n_fourier)
+
+        σ_ε = pm.Uniform("σ_ε", lower=0, upper=1)
+        Σ = pm.Normal("Σ", mu=drift + yearly, sd=σ_ε, observed=y)
+
+    return m
