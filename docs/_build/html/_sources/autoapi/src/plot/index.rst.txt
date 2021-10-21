@@ -1,0 +1,16 @@
+:mod:`src.plot`
+===============
+
+.. py:module:: src.plot
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   altair/index.rst
+   format/index.rst
+
+

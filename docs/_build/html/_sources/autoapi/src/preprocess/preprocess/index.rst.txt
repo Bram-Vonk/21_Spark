@@ -1,0 +1,226 @@
+:mod:`src.preprocess.preprocess`
+================================
+
+.. py:module:: src.preprocess.preprocess
+
+
+Module Contents
+---------------
+
+.. data:: logger
+   
+
+   
+
+.. function:: too_short(df_data, threshold=52)
+
+   Check if number of entries is long enough.
+
+
+   :Parameters:
+
+       **df_data: pd.DataFrame**
+           Data to check.
+
+       **threshold: int**
+           Minimum lenght.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           True if preprocess is long enough.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: too_small(df_data, capacity, threshold=0.25)
+
+   Check if values of preprocess is greater than threshold x capacity of transformer.
+
+
+   :Parameters:
+
+       **df_data: pd.DataFrame**
+           Data to check.
+
+       **capacity: int**
+           Capacity of the transformer.
+
+       **threshold: int**
+           Fraction of the capacity that should be reached.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           True if preprocess exists that is greater than threshold x capacity.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: remove_leading_idling(df_data, capacity, threshold=0.01)
+
+   Remove preprocess that was generated when DALI box was active but electrical connection was not.
+
+
+   :Parameters:
+
+       **df_data** : :obj:`ps.DataFrame`
+           Data to be cleaned.
+
+       **capacity: int**
+           Capacity of the transformer.
+
+       **threshold: int**
+           Fraction of the capacity that should be reached.
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           DataFrame without the idling preprocess points.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: load_data(boxid)
+
+   Load preprocess and metadata for boxid and do preprocessing.
+
+
+   :Parameters:
+
+       **boxid: str**
+           ID of DALI box.
+
+   :Returns:
+
+       :data:`python:None` | (:obj:`df_data`, :obj:`df_meta`)
+           If checks are OK, return DataFrames with historic and meta preprocess.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: format_data(df)
+
+
+.. function:: split_last(df_data, period=dt.timedelta(weeks=26))
+
+   Split the historic dataset into a train and test set a certain period from the end.
+
+
+   :Parameters:
+
+       **df_data: pd.DataFrame**
+           Dataset to split.
+
+       **period: datetime**
+           Period from the end to split from
+
+       **Returns**
+           ..
+
+       **-------**
+           df_train, df_test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: extrapolate_timestamps(df, horizon=dt.timedelta(weeks=26))
+
+   Extrapolate the data with timestamps for the future.
+
+
+   :Parameters:
+
+       **df** : :obj:`pd.DataFrame`
+           data to extrapolate.
+
+       **horizon** : :obj:`dt.timedelta`
+           the amount of time to extrapolate further.
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           Only the extrapolated/added part.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

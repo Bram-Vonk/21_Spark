@@ -1,0 +1,204 @@
+:mod:`src.plot.altair`
+======================
+
+.. py:module:: src.plot.altair
+
+
+Module Contents
+---------------
+
+.. function:: plot_estimate(df, legend=True)
+
+   Plot the load forecast transformer.
+
+
+   :Parameters:
+
+       **df** : :obj:`pd.DataFrame`
+           DataFrame with the columns date, lower, upper, forecast(Q10-Q190, median), extreme
+
+   :Returns:
+
+       :obj:`Altair` :obj:`chart`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: plot_observed(df)
+
+   Plot the historic/observed load of a transformer.
+
+
+   :Parameters:
+
+       **df** : :obj:`pd.DataFrame`
+           DataFrame with like:
+
+   :Returns:
+
+       :obj:`Altair` :obj:`chart`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: plot_limits(df)
+
+   Plot the capacity limits of a transformer as a ruler of as a line if metadata changes over time.
+
+
+   :Parameters:
+
+       **df** : :obj:`pd.DataFrame`
+           DataFrame with the limits to be plotted
+
+   :Returns:
+
+       :obj:`Altair` :obj:`chart`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: lightness_scale(factor, limits=['#bedef4', '#1f77b4'])
+
+
+.. function:: plot_base(df_data=None, df_meta=None)
+
+   Plot one or more of the following: history, forecast, transformer limits.
+
+
+   :Parameters:
+
+       **df_data** : :obj:`pd.DataFrame`
+           DataFrame with the timeseries
+
+       **df_meta** : :obj:`pd.DataFrame`
+           DataFrame with the metadata
+
+   :Returns:
+
+       :obj:`Altair` :obj:`layer` :obj:`chart`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: plot_decompose(df)
+
+   Plot decomposition of PYMC3 GAM model components by model variable.
+
+
+   :Parameters:
+
+       **df** : :obj:`pd.DataFrame`
+           data of estimates in long format
+
+   :Returns:
+
+       :obj:`alt.Chart`
+           Altair plot
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: plot_all(df_data, df_meta=None)
+
+   Plot estimates, observed and limits
+
+
+   :Parameters:
+
+       **df_data** : :obj:`pd.DataFrame`
+           DataFrame with the timeseries
+
+       **df_meta** : :obj:`pd.DataFrame`
+           DataFrame with the metadata
+
+   :Returns:
+
+       :obj:`Altair` :obj:`layer` :obj:`chart`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

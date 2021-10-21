@@ -1,0 +1,308 @@
+:mod:`src.utils.snowflake`
+==========================
+
+.. py:module:: src.utils.snowflake
+
+
+Module Contents
+---------------
+
+.. data:: logger
+   
+
+   
+
+.. data:: config
+   
+
+   
+
+.. data:: channel_like
+   :annotation: = register://electricity/0/activepower/%?avg=15
+
+   
+
+.. data:: column_details
+   :annotation: = 
+(BOXID VARCHAR(50), L VARCHAR(5),
+YEAR NUMBER(4), WEEK NUMBER(2),
+PROCESSED_ON TIMESTAMP_TZ,
+MAX DOUBLE, MIN DOUBLE)
+
+
+   
+
+.. function:: format_connection(name)
+
+   Get (connection) details in the right format for different tables.
+
+
+   :Parameters:
+
+       **name** : :obj:`name` :obj:`of` :obj:`the` :obj:`different` :obj:`sources`
+           ..
+
+   :Returns:
+
+       :obj:`Connection`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: read_meta(boxid=None)
+
+   Read meta preprocess of DALI box.
+
+
+   :Parameters:
+
+       **boxid** : :class:`python:list`
+           ID of DALI box to read. None results in all available preprocess of DALI boxes that have nominal power specified.
+
+   :Returns:
+
+       :obj:`pd.DataFrame` :obj:`with` metadata.
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: make_week_extremes_query(boxid=None, last_processed=dt.datetime(2001, 1, 1))
+
+   Build the query to request week extremes.
+
+
+   :Parameters:
+
+       **boxid** : :class:`python:list`
+           If not None: select specific boxes.
+
+       **last_processed: datetime**
+           Date to determine week extremes from. Cuts are always made on the last monday.
+
+   :Returns:
+
+       :class:`python:str`
+           Query string.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: create_table_query(query)
+
+   Make query to create or replace table and insert preprocess of select query.
+
+
+   :Parameters:
+
+       **query** : :class:`python:str`
+           Select query to be used.
+
+   :Returns:
+
+       :class:`python:str`
+           New query
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: insert_table_query(query)
+
+   Make query to insert preprocess of select query in an existing table.
+
+
+   :Parameters:
+
+       **query** : :class:`python:str`
+           Select query to be used.
+
+   :Returns:
+
+       :class:`python:str`
+           New query
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: create_week_extremes()
+
+   Execute query to create whole new table of week extremes asynchroniously.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: get_last_processed_time()
+
+   Retrieve last time table update has been done.
+
+
+
+   :Returns:
+
+       :obj:`datetime`
+           Last processing time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: update_week_extremes()
+
+   Update week extremes from last processing time upt o last monday.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: read_week_extremes(boxid=None, L=None)
+
+   Read week extremes for a DALI box and phase.
+
+
+   :Parameters:
+
+       **boxid: list**
+           If not None: A list with DALI box IDs to read.
+
+       **L: str**
+           The phases to retrieve (sumli, L1, L2, L3)
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           Week extremes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: clear_forecasts()
+
+
+.. function:: write_forecasts(df)
+
+
+.. function:: read_forecasts(boxid=None)
+
+

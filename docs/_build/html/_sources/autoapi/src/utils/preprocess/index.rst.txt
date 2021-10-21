@@ -1,0 +1,274 @@
+:mod:`src.utils.preprocess`
+===========================
+
+.. py:module:: src.utils.preprocess
+
+
+Module Contents
+---------------
+
+.. function:: downcast(s, try_numeric=True, category=False)
+
+   Downcast  a series to the lowest possible memory type.
+
+
+   :Parameters:
+
+       **s** : :obj:`pd.Series`
+           Series to downcast.
+
+       **try_numeric: bool**
+           If True it will try to read strings as numeric values.
+
+       **category: bool**
+           If True (string) objects will be cast as a category.
+
+   :Returns:
+
+       :obj:`Downcasted` series.
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: map_labels(series, kind='categorical', labels=None, backwards=False, **arg)
+
+   Map a Series values by the labels given.
+
+
+   :Parameters:
+
+       **series: pd.Series**
+           Series to map on.
+
+       **kind: str**
+           Indicator for kind of preprocess in series. With kind of {"categorical", "ordinal"}  the mapping is applied,
+           otherwise not.
+
+       **labels: dict**
+           Defines with the mapping {key_0: value_0, etc.}.
+
+       **arg:**
+           Additional arguments.
+
+   :Returns:
+
+       :obj:`pd.Series`
+           Series with mapped values.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. py:class:: MinMaxScaler(upper=1, lower=-1)
+
+   MinMax Scaler like in sklearn, prevents total library import/dependency.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   Initialize scaler with upper and lower boundary.
+
+
+   :Parameters:
+
+       **upper** : :class:`python:float`
+           upper boundary to scale to
+
+       **lower** : :class:`python:float`
+           lower boundary to scale to
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+   .. method:: fit(self, X, y=None)
+
+
+      Get fit parameters.
+
+
+      :Parameters:
+
+          **X** : :obj:`np.array`
+              preprocess to fit on
+
+          **y** : :data:`python:None`
+              solely for consistency
+
+      :Returns:
+
+          :obj:`self`
+              instance with self.min, self.max defined.
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. method:: transform(self, X)
+
+
+      Scales preprocess according to fitted parameters.
+
+
+      :Parameters:
+
+          **X** : :obj:`np.array`
+              preprocess to scale
+
+      :Returns:
+
+          :obj:`np.array`
+              scaled preprocess
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. method:: fit_transform(self, X, y=None)
+
+
+      Execute consecutively self.fit and self.transform.
+
+
+      :Parameters:
+
+          **X** : :obj:`np.array`
+              preprocess to scale
+
+          **y** : :data:`python:None`
+              solely for consistency
+
+      :Returns:
+
+          :obj:`np.array`
+              scaled preprocess
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+   .. method:: inverse_transform(self, X, y=None)
+
+
+      Scale back to original domain.
+
+
+      :Parameters:
+
+          **X** : :obj:`np.array`
+              preprocess to scale
+
+          **y** : :data:`python:None`
+              solely for consistency
+
+      :Returns:
+
+          :obj:`np.array`
+              scaled preprocess
+
+
+
+
+
+
+
+
+
+
+
+
+
+      ..
+          !! processed by numpydoc !!
+
+
+

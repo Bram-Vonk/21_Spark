@@ -1,0 +1,55 @@
+:mod:`src.utils.parser`
+=======================
+
+.. py:module:: src.utils.parser
+
+
+Module Contents
+---------------
+
+.. function:: parse_config(abs_path) -> EnvYAML
+
+   Parse the configuration in EnvYAML format.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: parse_args() -> dict
+
+   Parse the command-line arguments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

@@ -1,0 +1,36 @@
+:mod:`src.utils.logger`
+=======================
+
+.. py:module:: src.utils.logger
+
+
+Module Contents
+---------------
+
+.. function:: init_logging()
+
+   Initialize logger.
+
+
+
+   :Returns:
+
+       :obj:`logger` :obj:`object`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

@@ -1,0 +1,112 @@
+:mod:`src.forecast.forecast`
+============================
+
+.. py:module:: src.forecast.forecast
+
+
+Module Contents
+---------------
+
+.. data:: logger
+   
+
+   
+
+.. data:: config
+   
+
+   
+
+.. function:: determine_estimates(df_observed)
+
+   Determine model parameters and forecast for a extreme (max or min).
+
+
+   :Parameters:
+
+       **df_observed** : :obj:`pd.DataFrame`
+           observed values of DALI data
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           estimates for extreme
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: determine_estimates_minmax(df_observed)
+
+   Determine model parameters and forecast for a extreme (max or min).
+
+
+   :Parameters:
+
+       **df_observed** : :obj:`pd.DataFrame`
+           observed values of DALI data
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           estimates for min and max
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: forecast(boxid=None)
+
+   Forecast for one or more DALI boxes.
+
+
+   :Parameters:
+
+       **boxid** : :class:`python:list`
+           string or list with boxids to forecast for.
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           DataFrame with observations and forecast on long format
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

@@ -1,0 +1,16 @@
+:mod:`src.preprocess`
+=====================
+
+.. py:module:: src.preprocess
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   preprocess/index.rst
+   update_extremes/index.rst
+
+

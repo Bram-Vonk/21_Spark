@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>src.utils.snowflake &#8212; `Spark project` 0.0.1 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for src.utils.snowflake</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pytz</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">snowflake.connector</span>
+<span class="kn">from</span> <span class="nn">snowflake.sqlalchemy</span> <span class="kn">import</span> <span class="n">URL</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+<span class="kn">from</span> <span class="nn">src.utils.parser</span> <span class="kn">import</span> <span class="n">parse_config</span>
+<span class="kn">from</span> <span class="nn">src.utils.preprocess</span> <span class="kn">import</span> <span class="n">downcast</span>
+<span class="kn">from</span> <span class="nn">src.utils.vault</span> <span class="kn">import</span> <span class="n">get_secrets</span>
+
+<div class="viewcode-block" id="logger"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.logger">[docs]</a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;SPARK&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="config"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.config">[docs]</a><span class="n">config</span> <span class="o">=</span> <span class="n">parse_config</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;../settings.yml&quot;</span><span class="p">))</span></div>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<div class="viewcode-block" id="channel_like"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.channel_like">[docs]</a><span class="n">channel_like</span> <span class="o">=</span> <span class="s2">&quot;register://electricity/0/activepower/%?avg=15&quot;</span></div>
+<div class="viewcode-block" id="column_details"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.column_details">[docs]</a><span class="n">column_details</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span></div>
+<span class="s2">(BOXID VARCHAR(50), L VARCHAR(5),</span>
+<span class="s2">YEAR NUMBER(4), WEEK NUMBER(2),</span>
+<span class="s2">PROCESSED_ON TIMESTAMP_TZ,</span>
+<span class="s2">MAX DOUBLE, MIN DOUBLE)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="format_connection"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.format_connection">[docs]</a><span class="k">def</span> <span class="nf">format_connection</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get (connection) details in the right format for different tables.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : name of the different sources</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Connection</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">get_secrets</span><span class="p">(</span><span class="s2">&quot;snowflake&quot;</span><span class="p">)</span>
+    <span class="n">con_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;snowflake&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">con_config</span></div>
+
+
+<div class="viewcode-block" id="read_meta"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.read_meta">[docs]</a><span class="k">def</span> <span class="nf">read_meta</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read meta preprocess of DALI box.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    boxid : list</span>
+<span class="sd">        ID of DALI box to read. None results in all available preprocess of DALI boxes that have nominal power specified.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame with metadata.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;reading meta preprocess&quot;</span><span class="p">)</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_meta&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">boxid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;for all boxids&quot;</span><span class="p">)</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;for boxids: </span><span class="si">{</span><span class="n">boxid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">boxid</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
+            <span class="n">boxid</span> <span class="o">=</span> <span class="p">[</span><span class="n">boxid</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">boxid</span><span class="p">])</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;AND t.BOXID IN (</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT</span>
+<span class="s2">           t.BOXID,</span>
+<span class="s2">           t.TRAFO_FUNCTIEPLAATS_ID,</span>
+<span class="s2">           t.VERMOGEN_NOMINAAL,</span>
+<span class="s2">           t.TRAPSTAND_INGESTELD,</span>
+<span class="s2">           t.STATIONSNUMMER,</span>
+<span class="s2">           t.TRAFO_FUNCTIEPLAATS_ID,</span>
+<span class="s2">           t.STATIONSNAAM,</span>
+<span class="s2">           t.STATIONSFUNCTIE,</span>
+<span class="s2">           t.REGIO_NETAUTOMATISERING,</span>
+<span class="s2">           t.VESTIGING,</span>
+<span class="s2">           t.PLAATS,</span>
+<span class="s2">           t.STRAAT,</span>
+<span class="s2">           t.HUISNUMMER,</span>
+<span class="s2">           t.POSTCODE,</span>
+<span class="s2">           t.GEMEENTE,</span>
+<span class="s2">           t.LAT,</span>
+<span class="s2">           t.&quot;LONG&quot;,</span>
+<span class="s2">           t.STATION_BEDRIJFSSTATUS,</span>
+<span class="s2">           t.BOX_BEDRIJFSSTATUS,</span>
+<span class="s2">           t.IN_BEDRIJFSNAME_DATUMTIJD,</span>
+<span class="s2">           t.LAATSTE_PROVISIONINGSSTATUS</span>
+<span class="s2">    FROM </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"> t</span>
+<span class="s2">    WHERE  t.STATION_BEDRIJFSSTATUS ILIKE &#39;in bedrijf&#39;</span>
+<span class="s2">          AND t.BOX_BEDRIJFSSTATUS ILIKE &#39;in bedrijf&#39;</span>
+<span class="s2">          AND t.VERMOGEN_NOMINAAL IS NOT NULL</span>
+<span class="s2">          </span><span class="si">{</span><span class="n">box_selector</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">URL</span><span class="p">(</span><span class="o">**</span><span class="n">con_config</span><span class="p">))</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">df_query</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_query</span></div>
+
+
+<div class="viewcode-block" id="make_week_extremes_query"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.make_week_extremes_query">[docs]</a><span class="k">def</span> <span class="nf">make_week_extremes_query</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_processed</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build the query to request week extremes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    boxid : list</span>
+<span class="sd">        If not None: select specific boxes.</span>
+<span class="sd">    last_processed: datetime</span>
+<span class="sd">        Date to determine week extremes from. Cuts are always made on the last monday.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Query string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_data&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">boxid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">boxid</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
+            <span class="n">boxid</span> <span class="o">=</span> <span class="p">[</span><span class="n">boxid</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">boxid</span><span class="p">])</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;AND t.BOXID IN (</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        t.BOXID AS BOXID,</span>
+<span class="s2">        REGEXP_SUBSTR(t.CHANNELID, &#39;(sumli|l[1,2,3])&#39;) AS CHANNELID,</span>
+<span class="s2">        YEAROFWEEKISO(t.DATUMTIJD) AS YEAR,</span>
+<span class="s2">        WEEKISO(t.DATUMTIJD) AS WEEK,</span>
+<span class="s2">        CURRENT_TIMESTAMP AS PROCESSED_ON,</span>
+<span class="s2">        MAX(t.WAARDE) AS MAX_VALUE,</span>
+<span class="s2">        MIN(t.WAARDE) AS MIN_VALUE</span>
+<span class="s2">    FROM </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"> t</span>
+<span class="s2">        WHERE t.CHANNELID LIKE &#39;</span><span class="si">{</span><span class="n">channel_like</span><span class="si">}</span><span class="s2">&#39;</span>
+<span class="s2">         AND t.DATUMTIJD &gt;= DATEADD(DAY, -DAYOFWEEKISO(DATE(&#39;</span><span class="si">{</span><span class="n">last_processed</span><span class="si">}</span><span class="s2">&#39;)), DATE(&#39;</span><span class="si">{</span><span class="n">last_processed</span><span class="si">}</span><span class="s2">&#39;))</span>
+<span class="s2">         AND t.DATUMTIJD &lt; DATEADD(DAY, -DAYOFWEEKISO(CURRENT_DATE), CURRENT_DATE)</span>
+<span class="s2">         </span><span class="si">{</span><span class="n">box_selector</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">    GROUP BY t.BOXID, t.CHANNELID, YEAROFWEEKISO(t.DATUMTIJD), WEEKISO(t.DATUMTIJD)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">query</span></div>
+
+
+<div class="viewcode-block" id="create_table_query"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.create_table_query">[docs]</a><span class="k">def</span> <span class="nf">create_table_query</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make query to create or replace table and insert preprocess of select query.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    query : str</span>
+<span class="sd">        Select query to be used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        New query</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_extremes&quot;</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    CREATE OR REPLACE TABLE</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">        </span><span class="si">{</span><span class="n">column_details</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">        CLUSTER BY (BOXID, L)</span>
+<span class="s2">        COPY GRANTS</span>
+<span class="s2">        AS (</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">query</span></div>
+
+
+<div class="viewcode-block" id="insert_table_query"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.insert_table_query">[docs]</a><span class="k">def</span> <span class="nf">insert_table_query</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make query to insert preprocess of select query in an existing table.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    query : str</span>
+<span class="sd">        Select query to be used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        New query</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_extremes&quot;</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    INSERT INTO</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">        (</span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">query</span></div>
+
+
+<div class="viewcode-block" id="create_week_extremes"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.create_week_extremes">[docs]</a><span class="k">def</span> <span class="nf">create_week_extremes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Execute query to create whole new table of week extremes asynchroniously.&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;creating new extremes table of total history&quot;</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">create_table_query</span><span class="p">(</span><span class="n">make_week_extremes_query</span><span class="p">())</span>
+
+    <span class="k">with</span> <span class="n">snowflake</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">get_secrets</span><span class="p">(</span><span class="s2">&quot;snowflake&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span><span class="o">.</span><span class="n">execute_async</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_last_processed_time"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.get_last_processed_time">[docs]</a><span class="k">def</span> <span class="nf">get_last_processed_time</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve last time table update has been done.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    datetime</span>
+<span class="sd">        Last processing time.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;retrieving last update on extremes table&quot;</span><span class="p">)</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_extremes&quot;</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT MAX(t.PROCESSED_ON)</span>
+<span class="s2">        FROM </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"> t</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">snowflake</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">get_secrets</span><span class="p">(</span><span class="s2">&quot;snowflake&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">last_processed</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;last update on extremes table: </span><span class="si">{</span><span class="n">last_processed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">last_processed</span></div>
+
+
+<div class="viewcode-block" id="update_week_extremes"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.update_week_extremes">[docs]</a><span class="k">def</span> <span class="nf">update_week_extremes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Update week extremes from last processing time upt o last monday.&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;updateing extremes table&quot;</span><span class="p">)</span>
+
+    <span class="n">last_processed</span> <span class="o">=</span> <span class="n">get_last_processed_time</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">last_processed</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="o">==</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;extremes table is up to date&quot;</span><span class="p">)</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;updating from </span><span class="si">{</span><span class="n">last_processed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">insert_table_query</span><span class="p">(</span>
+            <span class="n">make_week_extremes_query</span><span class="p">(</span><span class="n">last_processed</span><span class="o">=</span><span class="n">last_processed</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">snowflake</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">get_secrets</span><span class="p">(</span><span class="s2">&quot;snowflake&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+            <span class="c1"># con.cursor().execute_async(query)</span>
+            <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="read_week_extremes"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.read_week_extremes">[docs]</a><span class="k">def</span> <span class="nf">read_week_extremes</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read week extremes for a DALI box and phase.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    boxid: list</span>
+<span class="sd">        If not None: A list with DALI box IDs to read.</span>
+<span class="sd">    L: str</span>
+<span class="sd">        The phases to retrieve (sumli, L1, L2, L3)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Week extremes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;reading extremes table&quot;</span><span class="p">)</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_extremes&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">boxid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;for all boxids&quot;</span><span class="p">)</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;for boxids: </span><span class="si">{</span><span class="n">boxid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">boxid</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
+            <span class="n">boxid</span> <span class="o">=</span> <span class="p">[</span><span class="n">boxid</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">boxid</span><span class="p">])</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;AND t.BOXID IN (</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="k">if</span> <span class="n">L</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;for all phases&quot;</span><span class="p">)</span>
+        <span class="n">phase_selector</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;for phases: </span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">L</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">L</span><span class="p">])</span>
+        <span class="n">phase_selector</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;AND t.L IN (</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        t.*</span>
+<span class="s2">    FROM </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"> t</span>
+<span class="s2">        WHERE TRUE </span><span class="si">{</span><span class="n">box_selector</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">phase_selector</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">URL</span><span class="p">(</span><span class="o">**</span><span class="n">con_config</span><span class="p">))</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">df_query</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
+
+    <span class="n">df_query</span> <span class="o">=</span> <span class="n">df_query</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">downcast</span><span class="p">,</span> <span class="n">try_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">df_query</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_query</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisocalendar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_query</span></div>
+
+
+<div class="viewcode-block" id="clear_forecasts"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.clear_forecasts">[docs]</a><span class="k">def</span> <span class="nf">clear_forecasts</span><span class="p">():</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_forecasts&quot;</span><span class="p">)</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    CREATE OR REPLACE TABLE </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">        (</span>
+<span class="s2">            BOXID        VARCHAR(50),</span>
+<span class="s2">            DATE         TIMESTAMPNTZ,</span>
+<span class="s2">            L            VARCHAR(5),</span>
+<span class="s2">            PROCESSED_ON TIMESTAMPNTZ,</span>
+<span class="s2">            WEEK         NUMBER(2),</span>
+<span class="s2">            YEAR         NUMBER(4),</span>
+<span class="s2">            EXTREME      VARCHAR(3),</span>
+<span class="s2">            VALUE        DOUBLE,</span>
+<span class="s2">            PERIOD       VARCHAR(10),</span>
+<span class="s2">            MODEL_VAR    VARCHAR(10),</span>
+<span class="s2">            BAND         VARCHAR(10),</span>
+<span class="s2">            BOUNDARY     VARCHAR(10),</span>
+<span class="s2">            IS_VALID     BOOLEAN</span>
+<span class="s2">        )</span>
+<span class="s2">        CLUSTER BY (BOXID, L)</span>
+<span class="s2">        COPY GRANTS;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">snowflake</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">get_secrets</span><span class="p">(</span><span class="s2">&quot;snowflake&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write_forecasts"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.write_forecasts">[docs]</a><span class="k">def</span> <span class="nf">write_forecasts</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;processed_on&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;is_valid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_forecasts&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">URL</span><span class="p">(</span><span class="o">**</span><span class="n">con_config</span><span class="p">))</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">],</span>
+            <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span>
+            <span class="n">schema</span><span class="o">=</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">],</span>
+            <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span>
+            <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span></div>
+        <span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_forecasts"><a class="viewcode-back" href="../../../autoapi/src/utils/snowflake/index.html#src.utils.snowflake.read_forecasts">[docs]</a><span class="k">def</span> <span class="nf">read_forecasts</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">con_config</span> <span class="o">=</span> <span class="n">format_connection</span><span class="p">(</span><span class="s2">&quot;DALI_forecasts&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">boxid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;for all boxids&quot;</span><span class="p">)</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;for boxids: </span><span class="si">{</span><span class="n">boxid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">boxid</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
+            <span class="n">boxid</span> <span class="o">=</span> <span class="p">[</span><span class="n">boxid</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">boxid</span><span class="p">])</span>
+        <span class="n">box_selector</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;AND t.BOXID IN (</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        t.*</span>
+<span class="s2">    FROM </span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;schema&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">con_config</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"> t</span>
+<span class="s2">        WHERE IS_VALID  </span><span class="si">{</span><span class="n">box_selector</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">URL</span><span class="p">(</span><span class="o">**</span><span class="n">con_config</span><span class="p">))</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">df_query</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_query</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="../../../_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright Bram Vonk 2021.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>src.utils.preprocess &#8212; `Spark project` 0.0.1 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for src.utils.preprocess</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="downcast"><a class="viewcode-back" href="../../../autoapi/src/utils/preprocess/index.html#src.utils.preprocess.downcast">[docs]</a><span class="k">def</span> <span class="nf">downcast</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">try_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Downcast  a series to the lowest possible memory type.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    s : pd.Series</span>
+<span class="sd">        Series to downcast.</span>
+<span class="sd">    try_numeric: bool</span>
+<span class="sd">        If True it will try to read strings as numeric values.</span>
+<span class="sd">    category: bool</span>
+<span class="sd">        If True (string) objects will be cast as a category.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Downcasted series.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">try_numeric</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">!=</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">category</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;f&quot;</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;i&quot;</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">&quot;signed&quot;</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">&quot;unsigned&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">s</span></div>
+
+
+<div class="viewcode-block" id="map_labels"><a class="viewcode-back" href="../../../autoapi/src/utils/preprocess/index.html#src.utils.preprocess.map_labels">[docs]</a><span class="k">def</span> <span class="nf">map_labels</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">arg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Map a Series values by the labels given.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series: pd.Series</span>
+<span class="sd">        Series to map on.</span>
+<span class="sd">    kind: str</span>
+<span class="sd">        Indicator for kind of preprocess in series. With kind of {&quot;categorical&quot;, &quot;ordinal&quot;}  the mapping is applied,</span>
+<span class="sd">        otherwise not.</span>
+<span class="sd">    labels: dict</span>
+<span class="sd">        Defines with the mapping {key_0: value_0, etc.}.</span>
+<span class="sd">    arg:</span>
+<span class="sd">        Additional arguments.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.Series</span>
+<span class="sd">        Series with mapped values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span> <span class="s2">&quot;ordinal&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">backwards</span><span class="p">:</span>
+                <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">labels</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">series</span></div>
+
+
+<div class="viewcode-block" id="MinMaxScaler"><a class="viewcode-back" href="../../../autoapi/src/utils/preprocess/index.html#src.utils.preprocess.MinMaxScaler">[docs]</a><span class="k">class</span> <span class="nc">MinMaxScaler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;MinMax Scaler like in sklearn, prevents total library import/dependency.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lower</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize scaler with upper and lower boundary.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        upper : float</span>
+<span class="sd">            upper boundary to scale to</span>
+<span class="sd">        lower : float</span>
+<span class="sd">            lower boundary to scale to</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upper</span> <span class="o">=</span> <span class="n">upper</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lower</span> <span class="o">=</span> <span class="n">lower</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="MinMaxScaler.fit"><a class="viewcode-back" href="../../../autoapi/src/utils/preprocess/index.html#src.utils.preprocess.MinMaxScaler.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get fit parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">            preprocess to fit on</span>
+<span class="sd">        y : None</span>
+<span class="sd">            solely for consistency</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+<span class="sd">            instance with self.min, self.max defined.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="MinMaxScaler.transform"><a class="viewcode-back" href="../../../autoapi/src/utils/preprocess/index.html#src.utils.preprocess.MinMaxScaler.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scales preprocess according to fitted parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">            preprocess to scale</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.array</span>
+<span class="sd">            scaled preprocess</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X_01</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_01</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">upper</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span></div>
+
+<div class="viewcode-block" id="MinMaxScaler.fit_transform"><a class="viewcode-back" href="../../../autoapi/src/utils/preprocess/index.html#src.utils.preprocess.MinMaxScaler.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute consecutively self.fit and self.transform.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">            preprocess to scale</span>
+<span class="sd">        y : None</span>
+<span class="sd">            solely for consistency</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.array</span>
+<span class="sd">            scaled preprocess</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MinMaxScaler.inverse_transform"><a class="viewcode-back" href="../../../autoapi/src/utils/preprocess/index.html#src.utils.preprocess.MinMaxScaler.inverse_transform">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scale back to original domain.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : np.array</span>
+<span class="sd">            preprocess to scale</span>
+<span class="sd">        y : None</span>
+<span class="sd">            solely for consistency</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.array</span>
+<span class="sd">            scaled preprocess</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X_xx</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">upper</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_xx</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span></div></div>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="../../../_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright Bram Vonk 2021.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
