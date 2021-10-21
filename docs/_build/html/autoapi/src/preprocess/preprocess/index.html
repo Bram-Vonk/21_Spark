@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>src.preprocess.preprocess &#8212; `Spark project` 0.0.1 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="src.preprocess.update_extremes" href="../update_extremes/index.html" />
+    <link rel="prev" title="src.preprocess" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../../index.html">API Reference</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+        
+          
+              <li class="active">
+                  <a href="../../index.html">src</a>
+              </li>
+          
+        
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#module-contents" class="nav-link">Module Contents</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#src.preprocess.preprocess.logger" class="nav-link">logger</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="module-src.preprocess.preprocess">
+<span id="src-preprocess-preprocess"></span><h1><a class="reference internal" href="#module-src.preprocess.preprocess" title="src.preprocess.preprocess"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.preprocess.preprocess</span></code></a><a class="headerlink" href="#module-src.preprocess.preprocess" title="Permalink to this headline">¶</a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="py data">
+<dt id="src.preprocess.preprocess.logger">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">logger</code><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess.preprocess.too_short">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">too_short</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_data</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">52</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#too_short"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.too_short" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if number of entries is long enough.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data: pd.DataFrame</strong></dt><dd><p>Data to check.</p>
+</dd>
+<dt><strong>threshold: int</strong></dt><dd><p>Minimum lenght.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a></dt><dd><p>True if preprocess is long enough.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess.preprocess.too_small">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">too_small</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_data</span></em>, <em class="sig-param"><span class="n">capacity</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">0.25</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#too_small"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.too_small" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if values of preprocess is greater than threshold x capacity of transformer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data: pd.DataFrame</strong></dt><dd><p>Data to check.</p>
+</dd>
+<dt><strong>capacity: int</strong></dt><dd><p>Capacity of the transformer.</p>
+</dd>
+<dt><strong>threshold: int</strong></dt><dd><p>Fraction of the capacity that should be reached.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.10)"><span class="xref std std-ref">bool</span></a></dt><dd><p>True if preprocess exists that is greater than threshold x capacity.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess.preprocess.remove_leading_idling">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">remove_leading_idling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_data</span></em>, <em class="sig-param"><span class="n">capacity</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#remove_leading_idling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.remove_leading_idling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove preprocess that was generated when DALI box was active but electrical connection was not.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>df_data</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ps.DataFrame</span></code></span></dt><dd><p>Data to be cleaned.</p>
+</dd>
+<dt><strong>capacity: int</strong></dt><dd><p>Capacity of the transformer.</p>
+</dd>
+<dt><strong>threshold: int</strong></dt><dd><p>Fraction of the capacity that should be reached.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.DataFrame</span></code></dt><dd><p>DataFrame without the idling preprocess points.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess.preprocess.load_data">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">boxid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load preprocess and metadata for boxid and do preprocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>boxid: str</strong></dt><dd><p>ID of DALI box.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a> | (<code class="xref py py-obj docutils literal notranslate"><span class="pre">df_data</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">df_meta</span></code>)</dt><dd><p>If checks are OK, return DataFrames with historic and meta preprocess.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess.preprocess.format_data">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">format_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#format_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.format_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess.preprocess.split_last">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">split_last</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_data</span></em>, <em class="sig-param"><span class="n">period</span><span class="o">=</span><span class="default_value">dt.timedelta(weeks=26)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#split_last"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.split_last" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split the historic dataset into a train and test set a certain period from the end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data: pd.DataFrame</strong></dt><dd><p>Dataset to split.</p>
+</dd>
+<dt><strong>period: datetime</strong></dt><dd><p>Period from the end to split from</p>
+</dd>
+<dt><strong>Returns</strong></dt><dd></dd>
+<dt><strong>——-</strong></dt><dd><p>df_train, df_test</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess.preprocess.extrapolate_timestamps">
+<code class="sig-prename descclassname">src.preprocess.preprocess.</code><code class="sig-name descname">extrapolate_timestamps</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">horizon</span><span class="o">=</span><span class="default_value">dt.timedelta(weeks=26)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/preprocess/preprocess.html#extrapolate_timestamps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess.preprocess.extrapolate_timestamps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extrapolate the data with timestamps for the future.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>df</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.DataFrame</span></code></span></dt><dd><p>data to extrapolate.</p>
+</dd>
+<dt><strong>horizon</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt.timedelta</span></code></span></dt><dd><p>the amount of time to extrapolate further.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.DataFrame</span></code></dt><dd><p>Only the extrapolated/added part.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.preprocess</span></code></a>
+    <a class='right-next' id="next-link" href="../update_extremes/index.html" title="next page"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.preprocess.update_extremes</span></code></a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="../../../../_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright Bram Vonk 2021.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

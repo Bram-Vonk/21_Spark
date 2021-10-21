@@ -1,0 +1,49 @@
+:mod:`src`
+==========
+
+.. py:module:: src
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   forecast/index.rst
+   model/index.rst
+   plot/index.rst
+   preprocess/index.rst
+   utils/index.rst
+
+
+Package Contents
+----------------
+
+.. function:: init_logging()
+
+   Initialize logger.
+
+
+
+   :Returns:
+
+       :obj:`logger` :obj:`object`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

@@ -1,0 +1,88 @@
+:mod:`src.model.format`
+=======================
+
+.. py:module:: src.model.format
+
+
+Module Contents
+---------------
+
+.. data:: logger
+   
+
+   
+
+.. function:: make_quantile_bands(df_base, samples, quantiles=(5, 15, 50, 85, 95))
+
+   Translate samples to bands with edges defined by the given quantiles and merge them to a base dataFrame
+
+
+   :Parameters:
+
+       **df_base** : :obj:`pd.DataFrame`
+           base DataFrame with timestamps/length in accordance of the samples shape
+
+       **samples** : :obj:`np.array`
+           the posterior predictive samples
+
+       **quantiles: list**
+           an iterable with the edges of the bands (0,1), ordered increasingly.
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           long format version with the quantile bands of the samples
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: format_model_estimates(df_base, pp, quantiles=(5, 15, 50, 85, 95))
+
+   Format the samples into quantile bands for every model variable.
+
+
+   :Parameters:
+
+       **df_base** : :obj:`pd.DataFrame`
+           base DataFrame with timestamps/length in accordance of the samples shape
+
+       **pp** : :class:`python:dict`
+           per model variable (key) the posterior predictive samples
+
+       **quantiles: list**
+           an iterable with the edges of the bands (0,1), ordered increasingly.
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           long format version with the quantile bands of the samples for every model variable
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

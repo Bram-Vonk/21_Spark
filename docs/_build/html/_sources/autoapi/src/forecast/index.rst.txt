@@ -1,0 +1,15 @@
+:mod:`src.forecast`
+===================
+
+.. py:module:: src.forecast
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   forecast/index.rst
+
+

@@ -1,0 +1,243 @@
+:mod:`src.model.model`
+======================
+
+.. py:module:: src.model.model
+
+
+Module Contents
+---------------
+
+.. data:: logger
+   
+
+   
+
+.. function:: det_dot(a, b)
+
+   Dot product for Theano.
+
+   The theano dot product and NUTS sampler don't work with large matrices.
+   source: https://www.ritchievink.com/blog/2018/10/09/ ...
+   build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
+
+   :Parameters:
+
+       **a** : :obj:`np.array`
+           ..
+
+       **b** : :obj:`tt.vector`
+           ..
+
+   :Returns:
+
+       :obj:`np.array`
+           dot product of the two.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: fourier_series(t, p=52.1775, n=5)
+
+   Calculate fourier representation of t for a period and order.
+
+   Based on source: https://www.ritchievink.com/blog/2018/10/09/ ...
+   build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
+
+   :Parameters:
+
+       **t** : :obj:`range`
+           range to be used as input variable
+
+       **p** : :class:`python:float`
+           period to use for the fourier orders
+
+       **n** : :class:`python:int`
+           order of fourier series
+
+   :Returns:
+
+       :obj:`np.array`
+           matrix fourier representation of t
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: seasonality_model(t, p=52.1775, n=5, seasonality_prior_scale=10)
+
+   Create seasonality model with fourier series.
+
+   Based on source: https://www.ritchievink.com/blog/2018/10/09/ ...
+   build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
+
+   :Parameters:
+
+       **t** : :obj:`range`
+           range to be used as input variable
+
+       **p** : :class:`python:float`
+           period to use for the fourier orders
+
+       **n** : :class:`python:int`
+           order of fourier series
+
+       **seasonality_prior_scale: float**
+           ..
+
+   :Returns:
+
+       :obj:`pm.var`
+           PYMC3 variable
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: polynomial(t, n=4)
+
+   Calculate polynomial representation of t for an order.
+
+
+   :Parameters:
+
+       **t** : :obj:`range`
+           range to be used as input variable
+
+       **n** : :class:`python:int`
+           order of polynomial
+
+   :Returns:
+
+       :obj:`np.array`
+           matrix polynomial representation of t
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: drift_model(t, n=4)
+
+   Polynomal drift/trend function for additive model.
+
+
+   :Parameters:
+
+       **t** : :obj:`range`
+           range to be used as input variable
+
+       **n** : :class:`python:int`
+           order of polynomal.
+
+   :Returns:
+
+       :obj:`pm.var`
+           PYMC3 variable
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: create_model(t, y, p_fourier, n_fourier=5, n_polynomial=2)
+
+   Create a PYMC3 GAM model with a trend/drift and a seasonal/yearly component.
+
+
+   :Parameters:
+
+       **t** : :obj:`timestamps`
+           input series of scaled timestamps
+
+       **y** : :class:`python:float`
+           observed values
+
+       **p_fourier: float**
+           scaled period of the timestamps to take for the fourier component (a year)
+
+       **n_fourier** : :class:`python:int`
+           order of the fourier component
+
+       **n_polynomial: inbt**
+           order of the polynomial component
+
+   :Returns:
+
+       :obj:`PYMC3` :obj:`model` :obj:`context`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

@@ -1,0 +1,80 @@
+:mod:`src.utils.vault`
+======================
+
+.. py:module:: src.utils.vault
+
+
+Module Contents
+---------------
+
+.. function:: get_secrets(connection)
+
+   Get secrets from Vault.
+
+
+   :Parameters:
+
+       **connection: str**
+           The application/connection to get secrets for.
+
+   :Returns:
+
+       :obj:`requested` :obj:`secrets`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: get_vault_secret(url, token, path, mount_point, **kwargs)
+
+   Get vault secrets to certain path in a dictionary.
+
+
+   :Parameters:
+
+       **url** : :class:`python:str`
+           Base URL of Vault server
+
+       **token** : :class:`python:str`
+           Token to get access to Vault
+
+       **path** : :class:`python:str`
+           Relative path to location of secret
+
+       **mount_point** : :class:`python:str`
+           Mount point of address
+
+   :Returns:
+
+       :class:`python:dict`
+           Dictionary with keys and value of a secret
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

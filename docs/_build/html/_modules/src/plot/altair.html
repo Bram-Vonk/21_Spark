@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>src.plot.altair &#8212; `Spark project` 0.0.1 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for src.plot.altair</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">colour</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">src.plot.format</span> <span class="kn">import</span> <span class="n">format_forecast</span><span class="p">,</span> <span class="n">format_history</span><span class="p">,</span> <span class="n">format_limits</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">data_transformers</span><span class="o">.</span><span class="n">disable_max_rows</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="plot_estimate"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.plot_estimate">[docs]</a><span class="k">def</span> <span class="nf">plot_estimate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the load forecast transformer.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        DataFrame with the columns date, lower, upper, forecast(Q10-Q190, median), extreme</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Altair chart</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">legend</span><span class="p">:</span>
+        <span class="n">legend</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">legend</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># to solve: using longformat for y and y2, till then reformat boundaries</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span>
+            <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s2">&quot;boundary&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">]),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;boundary&quot;</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># get ranges and coloring correct</span>
+    <span class="n">ranges</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;band&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
+    <span class="n">ranges</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">),</span> <span class="n">item</span><span class="p">))</span>
+    <span class="k">if</span> <span class="s2">&quot;median&quot;</span> <span class="ow">in</span> <span class="n">ranges</span><span class="p">:</span>
+        <span class="n">ranges</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
+        <span class="n">ranges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
+    <span class="n">ranges</span> <span class="o">=</span> <span class="n">ranges</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">parsed</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;^Q(\d{1,2})-&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ranges</span><span class="p">]</span>
+    <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">parsed</span><span class="p">]</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">lightness_scale</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">mark_area</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;date:T&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">),</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;lower:Q&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power [kW]&quot;</span><span class="p">),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y2</span><span class="p">(</span><span class="s2">&quot;upper:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span>
+                <span class="s2">&quot;band:N&quot;</span><span class="p">,</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;estimate&quot;</span><span class="p">,</span>
+                <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="n">ranges</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">colors</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">legend</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;extreme:N&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span></div>
+        <span class="c1"># .interactive()</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="plot_observed"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.plot_observed">[docs]</a><span class="k">def</span> <span class="nf">plot_observed</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the historic/observed load of a transformer.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        DataFrame with like:</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Altair chart</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">alt_history</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;model_var == &#39;observed&#39;&quot;</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">mark_point</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;date:T&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">),</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;value:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power [kW]&quot;</span><span class="p">),</span>
+            <span class="n">shape</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Shape</span><span class="p">(</span>
+                <span class="s2">&quot;extreme:N&quot;</span><span class="p">,</span>
+                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;history&quot;</span><span class="p">,</span>
+                <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span>
+                    <span class="n">domain</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">],</span>
+                    <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;triangle-up&quot;</span><span class="p">,</span> <span class="s2">&quot;triangle-down&quot;</span><span class="p">],</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">&quot;value:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">),</span>
+                <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">&quot;extreme:N&quot;</span><span class="p">),</span>
+                <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">&quot;year:Q&quot;</span><span class="p">),</span>
+                <span class="n">alt</span><span class="o">.</span><span class="n">Tooltip</span><span class="p">(</span><span class="s2">&quot;week:Q&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+        <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">alt_history</span></div>
+
+
+<div class="viewcode-block" id="plot_limits"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.plot_limits">[docs]</a><span class="k">def</span> <span class="nf">plot_limits</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the capacity limits of a transformer as a ruler of as a line if metadata changes over time.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        DataFrame with the limits to be plotted</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Altair chart</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;transformer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;capacity&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;date&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">mark_line</span><span class="p">(</span><span class="n">strokeDash</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;date:T&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">),</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;value:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power [kW]&quot;</span><span class="p">),</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;transformer:N&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">])),</span>
+                <span class="n">detail</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;limit:N&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+        <span class="p">)</span>  <span class="c1"># .interactive()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">mark_rule</span><span class="p">(</span><span class="n">strokeDash</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;value:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power [kW]&quot;</span><span class="p">),</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s2">&quot;transformer:N&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">])),</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span></div>
+        <span class="p">)</span>  <span class="c1"># .interactive()</span>
+
+
+<div class="viewcode-block" id="lightness_scale"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.lightness_scale">[docs]</a><span class="k">def</span> <span class="nf">lightness_scale</span><span class="p">(</span><span class="n">factor</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#bedef4&quot;</span><span class="p">,</span> <span class="s2">&quot;#1f77b4&quot;</span><span class="p">]):</span>
+    <span class="n">h0</span> <span class="o">=</span> <span class="n">colour</span><span class="o">.</span><span class="n">hex2hsl</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">h1</span> <span class="o">=</span> <span class="n">colour</span><span class="o">.</span><span class="n">hex2hsl</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">v0</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">v1</span> <span class="k">for</span> <span class="n">v0</span><span class="p">,</span> <span class="n">v1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">h1</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">colour</span><span class="o">.</span><span class="n">hsl2hex</span><span class="p">(</span><span class="n">color</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_base"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.plot_base">[docs]</a><span class="k">def</span> <span class="nf">plot_base</span><span class="p">(</span><span class="n">df_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">df_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot one or more of the following: history, forecast, transformer limits.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_data : pd.DataFrame</span>
+<span class="sd">        DataFrame with the timeseries</span>
+<span class="sd">    df_meta : pd.DataFrame</span>
+<span class="sd">        DataFrame with the metadata</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Altair layer chart</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plots</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">df_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df_estimates</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;model_var!=&#39;observed&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span>
+            <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;model_var&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_estimates</span><span class="p">):</span>
+            <span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot_estimate</span><span class="p">(</span><span class="n">df_estimates</span><span class="p">))</span>
+
+        <span class="n">df_observed</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;model_var==&#39;observed&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_observed</span><span class="p">):</span>
+            <span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot_observed</span><span class="p">(</span><span class="n">df_observed</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">df_meta</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">limits_plot</span> <span class="o">=</span> <span class="n">plot_limits</span><span class="p">(</span><span class="n">format_limits</span><span class="p">(</span><span class="n">df_meta</span><span class="o">=</span><span class="n">df_meta</span><span class="p">,</span> <span class="n">df_data</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+        <span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">limits_plot</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">layer</span><span class="p">(</span><span class="o">*</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_scale</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;independent&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="s2">&quot;independent&quot;</span><span class="p">)</span></div>
+        <span class="c1"># .interactive()</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="plot_decompose"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.plot_decompose">[docs]</a><span class="k">def</span> <span class="nf">plot_decompose</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot decomposition of PYMC3 GAM model components by model variable.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        data of estimates in long format</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    alt.Chart</span>
+<span class="sd">        Altair plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plot_vars</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Σ&quot;</span><span class="p">,</span> <span class="s2">&quot;drift&quot;</span><span class="p">,</span> <span class="s2">&quot;yearly&quot;</span><span class="p">]:</span>
+        <span class="n">plot_var</span> <span class="o">=</span> <span class="n">plot_estimate</span><span class="p">(</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model_var==&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">plot_vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot_var</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">alt</span><span class="o">.</span><span class="n">vconcat</span><span class="p">(</span><span class="o">*</span><span class="n">plot_vars</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_all"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.plot_all">[docs]</a><span class="k">def</span> <span class="nf">plot_all</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot estimates, observed and limits</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_data : pd.DataFrame</span>
+<span class="sd">        DataFrame with the timeseries</span>
+<span class="sd">    df_meta : pd.DataFrame</span>
+<span class="sd">        DataFrame with the metadata</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Altair layer chart</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">plot_base</span><span class="p">(</span>
+        <span class="n">df_data</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+            <span class="s2">&quot;model_var==&#39;observed&#39; | (model_var==&#39;Σ&#39; &amp; period==&#39;future&#39;)&quot;</span>
+        <span class="p">),</span>
+        <span class="n">df_meta</span><span class="o">=</span><span class="n">df_meta</span><span class="p">,</span></div>
+    <span class="p">)</span>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="../../../_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright Bram Vonk 2021.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

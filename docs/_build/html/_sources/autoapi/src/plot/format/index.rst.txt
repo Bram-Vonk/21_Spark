@@ -1,0 +1,136 @@
+:mod:`src.plot.format`
+======================
+
+.. py:module:: src.plot.format
+
+
+Module Contents
+---------------
+
+.. function:: format_limits(df_meta, df_data=None)
+
+   Format the transformer limits for plotting.
+
+
+   :Parameters:
+
+       **df_meta: pd.DataFrame**
+           DataFrame with the trasnformer limits.
+
+       **df_data: pd.DataFrame**
+           Optionally, the historic preprocess to determine the time range for the limits.
+
+   :Returns:
+
+       :obj:`A` :obj:`DataFrame` :obj:`with` :obj:`the` :obj:`limits` :obj:`to` plot.
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: format_history(df_data)
+
+   Format the historic for plotting.
+
+
+   :Parameters:
+
+       **df_data: pd.DataFrame**
+           The historic preprocess to be plotted.
+
+   :Returns:
+
+       :obj:`A` :obj:`DataFrame` :obj:`with` :obj:`the` :obj:`historic` :obj:`preprocess` :obj:`to` plot.
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: format_forecast(df_forecast)
+
+   Format the forecasted load.
+
+
+   :Parameters:
+
+       **df: pd.DataFrame**
+           ..
+
+   :Returns:
+
+       :obj:`pass` :obj:`through` :obj:`input`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. function:: dummy_forecast(df)
+
+   Create a dummy forecast with median and Q10-Q90 based on historic preprocess to test plotting function.
+
+
+   :Parameters:
+
+       **df** : :obj:`pd.DataFrame`
+           Historic preprocess to use as a basis
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           Forecast preprocess that can be used to plot with plot_forecast()
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

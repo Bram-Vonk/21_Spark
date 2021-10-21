@@ -1,0 +1,16 @@
+:mod:`src.model`
+================
+
+.. py:module:: src.model
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   format/index.rst
+   model/index.rst
+
+
