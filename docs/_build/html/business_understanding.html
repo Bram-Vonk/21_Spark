@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Business Understanding &#8212; `Spark project` 0.0.1 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="autoapi/index.html" />
+    <link rel="prev" title="General" href="general.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="general.html">General</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="">Business Understanding</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="autoapi/index.html">API Reference</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#business-objectives" class="nav-link">Business Objectives</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#situation-assessment" class="nav-link">Situation Assessment</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#a-changing-environment" class="nav-link">A changing environment</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#impact-on-grid-management" class="nav-link">Impact on grid management</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#opportunity-for-data-science" class="nav-link">Opportunity for data science</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#data-mining-goals" class="nav-link">Data Mining Goals</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#primary-objective" class="nav-link">Primary objective</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#general-description-based-on-an-example-case" class="nav-link">General description based on an example case</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#business-value-diagram" class="nav-link">Business Value Diagram</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#requirements-from-users" class="nav-link">Requirements from Users</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#project-plan" class="nav-link">Project Plan</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="business-understanding">
+<h1>Business Understanding<a class="headerlink" href="#business-understanding" title="Permalink to this headline">¶</a></h1>
+<section id="business-objectives">
+<h2>Business Objectives<a class="headerlink" href="#business-objectives" title="Permalink to this headline">¶</a></h2>
+<p>Enexis is a regulated DNO with a monopoly position regarding the distribution of electricity and gas.
+The company wants to keep the delivery of electricity and gas:</p>
+<ul class="simple">
+<li><p>reliable</p></li>
+<li><p>affordable</p></li>
+<li><p>sustainable</p></li>
+</ul>
+<p>This is realised by doing effective and efficient grid investments according to the Risk and Opportunity Based Asset Management method <a class="reference external" href="https://www.enexis.nl/over-ons/-/media/documenten/diversen/ip/enexis-netbeheer-ip-g-2020-2030-publicatie.pdf?modified=20200514053144">[ROBAM]</a>.</p>
+</section>
+<section id="situation-assessment">
+<h2>Situation Assessment<a class="headerlink" href="#situation-assessment" title="Permalink to this headline">¶</a></h2>
+<section id="a-changing-environment">
+<h3>A changing environment<a class="headerlink" href="#a-changing-environment" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Power is delivered via grid components as cables and transformers (for electricity) to residential and industrial connections of our customers.</div>
+<div class="line">These grid components have to have the needed capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.</div>
+<div class="line">For decennia this monitoring was done by mainly looking to historical yearly extremes.</div>
+</div>
+<p>However, the increasing growth rate of power demand and supply driven by emerging technologies and electrification of transportation and heating, require a more frequent and pro-active electricity grid management.</p>
+<a class="reference internal image-reference" href="_images/pv_cbs.png"><img alt="_images/pv_cbs.png" class="align-center" src="_images/pv_cbs.png" style="width: 400px;" /></a>
+<p>Solar power (PV) in The Netherlands (source: <a class="reference external" href="https://www.cbs.nl/nl-nl/nieuws/2020/10/productie-groene-elektriciteit-in-stroomversnelling">CBS</a>).</p>
+<a class="reference internal image-reference" href="_images/ev_rvo.png"><img alt="_images/ev_rvo.png" class="align-center" src="_images/ev_rvo.png" style="width: 400px;" /></a>
+<p>Battery (B), Fuel Cell (FC) and Plugg-in Hybride (PH) Electric Vehicles (EV) in The Netherlands (source: <a class="reference external" href="https://www.rvo.nl/sites/default/files/2021/03/ElektrischRijdenop-de-weg-voertuigenenlaadpunten-jaaroverzicht2020.pdf">RVO</a>).</p>
+<a class="reference internal image-reference" href="_images/hp_cbs.png"><img alt="_images/hp_cbs.png" class="align-center" src="_images/hp_cbs.png" style="width: 400px;" /></a>
+<p>Installed power of heat pumps (HP) in The Netherlands (source: <a class="reference external" href="https://opendata.cbs.nl/statline/#/CBS/nl/dataset/82380NED/line?dl=55480">CBS</a>).</p>
+</section>
+<section id="impact-on-grid-management">
+<h3>Impact on grid management<a class="headerlink" href="#impact-on-grid-management" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">The more volatile and more rapidly increasing power flows require that Grid Planners more often monitor if the minimum and maximum power is still withing the transformer’s capacity. Otherwise, this will cause unsafe operating situations and it can lead to power outages.</div>
+<div class="line">Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years. This in a environment were they are expected to make sure that Enexis is an enabler of the energy transition.</div>
+</div>
+</section>
+<section id="opportunity-for-data-science">
+<h3>Opportunity for data science<a class="headerlink" href="#opportunity-for-data-science" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Since a few years Enexis started to deploy so called Distribution Automation Light Boxes. With these measurement apparatus it is possible to monitor our distribution transformers near real time.</div>
+<div class="line">At the moment of writing 11k distribution transformers (of the total population of 35k) are equipped with these apparatus which are measuring 15 minute average voltages, currents and powers of each transformer.</div>
+<div class="line">This data (together with transformer metadata) enables to automatically detect or even foresee earlier overloading of transformers. It gives grid planners the opportunity to timely mitigate upcoming issues.</div>
+</div>
+</section>
+</section>
+<section id="data-mining-goals">
+<h2>Data Mining Goals<a class="headerlink" href="#data-mining-goals" title="Permalink to this headline">¶</a></h2>
+<section id="primary-objective">
+<h3>Primary objective<a class="headerlink" href="#primary-objective" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">More volatile power flows require a monitoring tool that forecasts transformer overloading.</div>
+<div class="line">The goal is to timely identify future overloading of transformers.</div>
+</div>
+</section>
+<section id="general-description-based-on-an-example-case">
+<h3>General description based on an example case<a class="headerlink" href="#general-description-based-on-an-example-case" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">The project should result in a tool that is able to predict in autumn that a transformer will be overloaded in spring due to EV with a prediction interval.</div>
+<div class="line">The tool enables better planning of grid strengthening which prevents overloading of transformers (safety and reliability), foreseeing future work (costs) and enabling the energy transition better (sustainability).</div>
+</div>
+</section>
+<section id="business-value-diagram">
+<h3>Business Value Diagram<a class="headerlink" href="#business-value-diagram" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">Business value is created by the forecast model by enabling the preferred path for grid investments on the business value part (upper half) of the Business Flow Down Diagram below.</div>
+<div class="line">This path is possible by providing grid planners with a probability that a transformer will overload in the foreseeable future.</div>
+<div class="line">The model (lower half) will use historic DALI timeseries data to forecast transformer loading. By comparing this forecast with capacity of the transformer possible overloading can be foreseen.</div>
+</div>
+<a class="reference internal image-reference" href="_images/value_flow_down.png"><img alt="_images/value_flow_down.png" class="align-center" src="_images/value_flow_down.png" style="width: 800px;" /></a>
+<p>Business Flow Down Diagram for the project.</p>
+</section>
+<section id="requirements-from-users">
+<h3>Requirements from Users<a class="headerlink" href="#requirements-from-users" title="Permalink to this headline">¶</a></h3>
+<p>The developed product is only valuable if it is use dby the end users, who are the Grid Planners.
+Therefore the following additional requirements are important:</p>
+<ul class="simple">
+<li><p>Grid Planners don’t want another tool to log into/install..</p></li>
+<li><p>The presentation of results of the tool has to be quick (no long waiting times).</p></li>
+<li><p>The tool has to be scalable up to 35k transformers.</p></li>
+<li><p>The tool should be reliable (working itself and forecast should be accurate).</p></li>
+<li><p>Prediction intervals should be available to show the confidence of the forecast.</p></li>
+<li><p>Results should also be available for other tools (e.g. dashboarding via Power BI integration with the under construction project described at 7)</p></li>
+<li><p>There should be a way to sort transformers/forecasts based on their urgency.</p></li>
+<li><p>The measurement/forecast data should be exportable for other planning tools (such as Vision)</p></li>
+<li><p>It would be preferred if forecasts could also be made on transformers that have limited history of data with knowledge of the general population.</p></li>
+<li><p>Forecast horizon should be 6-12 months.</p></li>
+<li><p>The model used can be explained clearly.</p></li>
+</ul>
+</section>
+</section>
+<section id="project-plan">
+<h2>Project Plan<a class="headerlink" href="#project-plan" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="general.html" title="previous page">General</a>
+    <a class='right-next' id="next-link" href="autoapi/index.html" title="next page">API Reference</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright Bram Vonk 2021.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

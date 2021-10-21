@@ -5,18 +5,21 @@ Spark documentation
     :width: 400px
     :align: center
 
-.. note:: This project is a generic setup to make
-             an operational forecast for any given location and station up
-             to 1000+ forecast signals every 15 minutes.
+.. note:: | This project is an Enexis case on forecasting load demand for distributon transformers.
+          | The results should support grid planners with timely grid reinforcements and replacements.
+          | The case is used as a graduation project for the Professional Education program of the Jheronimus Academy of Data Science
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   intro
-   train.ipynb
-   predict_evaluate.ipynb
-   copa_model.ipynb
+   general
+   business_understanding
+   data_Understanding
+   data_preparation
+   modeling
+   evaluation
    deployment
-   manual
+   Example_notebook.ipynb
    autoapi/index
