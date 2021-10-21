@@ -30,6 +30,7 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    # 'sphinxcontrib.fulltoc',
     'sphinx.ext.autodoc',  # Core library for html generation from docstrings
     'sphinx.ext.doctest',
     'sphinx.ext.coverage',
@@ -86,6 +87,8 @@ html_theme = "pydata_sphinx_theme"
 # html_static_path = ['_static']
 
 htmlhelp_basename = 'spark-doc'
+
+# html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }
 
 # html_logo = '_static/img/dst.jpg'
 # html_favion = '_static/img/dst.jpg'
