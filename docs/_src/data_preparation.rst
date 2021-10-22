@@ -95,6 +95,8 @@ The amount of rows is condensed from 89,052,020,404 to 3,457,856 records.
 Data Integration
 ----------
 
+Since no additional data sources are used, no joins or merges are required.
+
 Data Formatting
 ----------
 
