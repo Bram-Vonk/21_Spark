@@ -16,10 +16,10 @@ Spark documentation
 
    general
    business_understanding
-   data_Understanding
+   data_understanding
    data_preparation
    modeling
    evaluation
    deployment
-   Example_notebook.ipynb
+   example_notebook.ipynb
    autoapi/index

@@ -1,0 +1,29 @@
+Data Preparation
+========
+
+The data preparation step focuses on converting raw measurement data with a frequency of 15 minutes into weekly extremes and preparing these extremes to be usable input for the forecasting model.
+
+Initially the whole history is aggregated and stored in a Snowflake database. After that updates are done every month / week.
+
+.. image:: _static/img/process_data_preparation.png
+    :width: 300px
+    :align: center
+
+The data preparation step resulting in weekly aggregated data.
+
+Data Selection
+----------
+
+Dat selected from tables described in :ref:`Data Understanding`
+
+Data Cleaning
+----------
+
+Data Construction
+----------
+
+Data Integration
+----------
+
+Data Formatting
+----------
