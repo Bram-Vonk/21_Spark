@@ -77,25 +77,156 @@ Business Value Diagram
 
 Business Flow Down Diagram for the project.
 
-Requirements from Users
+Requirements from users
 ~~~~~~~~~~~~~~
 The developed product is only valuable if it is use dby the end users, who are the Grid Planners.
-Therefore the following additional requirements are important:
+Therefore the following additional requirements and wishes are important:
 
 * Grid Planners don’t want another tool to log into/install..
-* The presentation of results of the tool has to be quick (no long waiting times).
-* The tool has to be scalable up to 35k transformers.
-* The tool should be reliable (working itself and forecast should be accurate).
-* Prediction intervals should be available to show the confidence of the forecast.
-* Results should also be available for other tools (e.g. dashboarding via Power BI integration with the under construction project described at 7)
-* There should be a way to sort transformers/forecasts based on their urgency.
-* The measurement/forecast data should be exportable for other planning tools (such as Vision)
-* It would be preferred if forecasts could also be made on transformers that have limited history of data with knowledge of the general population.
-* Forecast horizon should be 6-12 months.
-* The model used can be explained clearly.
+* The presentation of results has to be quick (no long waiting times).
+* Results have to scalable up to 35k transformers.
+* The tool should be reliable (stable interface and accurate forecasts).
+* The model should be explainable.
+* The uncertainty of predictions should be available.
+* Results should be available for further use (e.g. importable for load flow tools).
+* The results should be sorted based on their urgency.
+* Forecast can also be made with limited transformer data.
+* Forecast horizon should be six months.
 
+Success criteria
+~~~~~~~~~~
+The project is a success if there is a tool that is being used by the Grid Planners that accurately forecasts overloading of transformers.
+
+Usage of the tool can be measured by tracking users of the tool and by performing interview with the end users after deployment.
+Accuracy is assessed by comparing forecasts with measurements.
+
+On more detail the project is a success if:
+
+* The model forecasts prediction intervals.
+* The working of the model can be explained clearly.
+* The prediction intervals ranges are acceptable to the Grid Planners.
+* The model can use prior information of the rest of the population if historic measurements are missing.
+* The computational burden is acceptable.
 
 
 Project Plan
 ----------
+
+Organisation
+~~~~~~~~~~~~
+
+The involved stakeholders are:
+
+* Grid Planners: The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.
+* Data Engineers:  To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.
+* Management: The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.
+* Academic supervision: Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one-on-one meeting to discuss progress and issues.
+* Academic support: PdEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
+
+.. image:: _static/img/stakeholders.png
+    :width: 600px
+    :align: center
+
+The Stakeholders with meeting frequencies (heartbeat / ad hoc).
+
+Resources
+~~~~~~~~~~~~~~~
+
+The project will take place in June, July, September, October and November 2021.
+
+* Personnel
+    * Project lead / developer: Available 2 days per week.
+    * Grid Planners: Available 2 hours per week.
+    * Data engineers: Available 2 hours per week in October - November.
+    * Supervision / support: Both available for a few hours every 3 weeks.
+* Data
+    * Data
+
+Requirements
+~~~~~~~~~~~~~
+
+The tool should be implemented in such way that it is:
+
+* Maintainable: The code has to have docstrings and unit tests.
+* Scalable: The tool has to be able to process 35k transformers.
+* Deployable: The tool has to be able to go in production according to the Enexis standards (Test-Acceptance-Production).
+
+Assumptions
+~~~~~~~~~~~~~
+
+* DALI data is available without huge quality issues during the project
+* Weekly extremes on transformer data is an acceptable aggregation level for capacity planning.
+* Data Engineering has capacity for several hours a week for support between September and December.
+* The computational burden for probabilistic models is no problem regarding the computational power available.
+
+Risks and Contingencies
+~~~~~~~~~~~~~
+
+* Lead / developer has just become a father (is technically up to September on parental leave) and bought a house that has to be renovated. This could result in lower availability for this project.
+    * Mitigation: None.
+* Grid Planners are immensely occupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.
+    * Mitigation: Be clear and direct regarding expectations and communications and limit the effort and time for this project for Grid Planners without giving in on quality/input.
+* Data Engineers are also loaded with work and might not have time/resources available.
+    * Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half
+* There is no use of sensitive data in this project regarding privacy (GDPR) or security. DALI data is allowed to be used. Credentials are not embedded in code and access to data sources is restricted by design.
+
+Costs and Benefits
+~~~~~~~~~~~~
+
+* Data collection: Data is available in an existing database. Only querying is needed, no active additional data collection.
+* Implementation: Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.
+
+
+Implementation concept
+~~~~~~~~~~~~
+
+The stool is split into three steps to tackle the amount of data available, but still make the results manageable:
+
+* Preprocessing: To condense 15 minute load averages into weekly extremes (minimum and maximum).
+* Forecasting: To fit a model on the aggregated data and create forecasts.
+* Dashboarding: To display (forecast) results to the end user.
+
+In between steps results are stored in a Snowflake database.
+
+.. image:: _static/img/process_steps.png
+    :width: 800px
+    :align: center
+
+The proposed steps for implementation of the tool.
+
+
+Planned milestones
+~~~~~~~~~~~
+.. list-table:: Scheduled project milestones for 2021.
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - week
+     - CRISP-DM step
+     - detail
+   * - 26
+     - Business Understanding
+     -
+   * - 29
+     - Data understanding
+     - Go / No Go
+   * - --
+     - --
+     - Summer break
+   * - 36
+     - Data Preparation
+     -
+   * - 39
+     - Modeling
+     -
+   * - 42
+     - Evaluation
+     - Go / No Go
+   * - 45
+     - Deployment
+     -
+
+
+
+
 

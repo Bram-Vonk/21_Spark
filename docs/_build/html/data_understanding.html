@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Business Understanding &#8212; `Spark project` 0.0.1 documentation</title>
+    <title>Data Understanding &#8212; `Spark project` 0.0.1 documentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
@@ -20,6 +20,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Preparation" href="data_preparation.html" />
+    <link rel="prev" title="Business Understanding" href="business_understanding.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
   </head>
@@ -43,6 +45,18 @@
         
         <li class="nav-item ">
             <a class="nav-link" href="business_understanding.html">Business Understanding</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="">Data Understanding</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="data_preparation.html">Data Preparation</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="modeling.html">Modeling</a>
         </li>
         
         <li class="nav-item ">
@@ -87,6 +101,14 @@
       
       
       
+        
+      
+      
+      
+      
+      
+      
+      
       
     </ul>
 
@@ -105,23 +127,39 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#business-objectives" class="nav-link">Business Objectives</a>
+            <a href="#initial-data-collection" class="nav-link">Initial Data Collection</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#measurement-data-source" class="nav-link">Measurement data source</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#meta-data-source" class="nav-link">Meta data source</a>
+        </li>
+    
+            </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#situation-assessment" class="nav-link">Situation Assessment</a>
+            <a href="#data-description" class="nav-link">Data Description</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#measurement-data-details" class="nav-link">Measurement data details</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#id1" class="nav-link">Measurement data details</a>
+        </li>
+    
+            </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#data-mining-goals" class="nav-link">Data Mining Goals</a>
+            <a href="#data-exploration" class="nav-link">Data Exploration</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#project-plan" class="nav-link">Project Plan</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#id1" class="nav-link">Business Understanding</a>
+            <a href="#data-quality" class="nav-link">Data Quality</a>
         </li>
     
     </ul>
@@ -137,44 +175,171 @@
               
               <div>
                 
-  <section id="business-understanding">
-<h1>Business Understanding<a class="headerlink" href="#business-understanding" title="Permalink to this headline">¶</a></h1>
-<section id="business-objectives">
-<h2>Business Objectives<a class="headerlink" href="#business-objectives" title="Permalink to this headline">¶</a></h2>
+  <section id="data-understanding">
+<h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Permalink to this headline">¶</a></h1>
+<section id="initial-data-collection">
+<h2>Initial Data Collection<a class="headerlink" href="#initial-data-collection" title="Permalink to this headline">¶</a></h2>
+<p>The goal is to forecast accurately maximum and minimum loading of transformers.
+There is 15 minute average data available of 11k transformers. The maximum and minimum loading is not needed on this detailed level.
+According to the Grid Planners, weekly or monthly extreme details are more than enough.</p>
+<p>For this first model to forecast transfer loading no external variables will be used as input for the model.
+Only historic data will be used (with metadata to extract de capacity of the transformer).</p>
+<p>Data is available in Snowflake. in a Jupyter Notebook pandas with a SQLAlchemy engine is used for the data collection from Snowflake.
+Credentials are available via Vault in the Enexis domain.</p>
+<section id="measurement-data-source">
+<h3>Measurement data source<a class="headerlink" href="#measurement-data-source" title="Permalink to this headline">¶</a></h3>
+<p>In a Snowflake database the following data is available:</p>
+<table class="colwidths-given table" id="id2">
+<caption><span class="caption-text">Snowflake data source details.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Database</p></td>
+<td><p>DB_CDWH_P</p></td>
+</tr>
+<tr class="row-even"><td><p>Schema</p></td>
+<td><p>CDWH_4_BDM</p></td>
+</tr>
+<tr class="row-odd"><td><p>Table</p></td>
+<td><p>BDM_DALI_METINGEN</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="situation-assessment">
-<h2>Situation Assessment<a class="headerlink" href="#situation-assessment" title="Permalink to this headline">¶</a></h2>
+<section id="meta-data-source">
+<h3>Meta data source<a class="headerlink" href="#meta-data-source" title="Permalink to this headline">¶</a></h3>
+<p>In a Snowflake database the following metadata is available:</p>
+<table class="colwidths-given table" id="id3">
+<caption><span class="caption-text">Snowflake data source details.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Database</p></td>
+<td><p>DB_CDWH_P</p></td>
+</tr>
+<tr class="row-even"><td><p>Schema</p></td>
+<td><p>CDWH_5_INF_MEETDATA_E View: DIM_DALI_BOX_VW</p></td>
+</tr>
+<tr class="row-odd"><td><p>Table</p></td>
+<td><p>DIM_DALI_BOX_VW</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="data-mining-goals">
-<h2>Data Mining Goals<a class="headerlink" href="#data-mining-goals" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="project-plan">
-<h2>Project Plan<a class="headerlink" href="#project-plan" title="Permalink to this headline">¶</a></h2>
-<p>Within the current society we are used to and dependent on a reliable and affordably energy supply. Also, we see an increase of:</p>
-<ul class="simple">
-<li><p>Electric energy production on the customer side, for instance, by installing Photo Voltaic (PV) panels, leading to a bi-directional electricity flow.</p></li>
-<li><p>Number of users of electrical vehicles (EVs) leading to more than double the electricity consumption.</p></li>
-<li><p>Sustainable production plants leading to a larger share of volatile and less predictable electricity production from the supplier side.</p></li>
-</ul>
-<p>Preventing capacity problems in the electricity grid is one of the main challenges of Dutch Network operators.
-The business needs predictions of electricity demand to select potential congestion areas.
-In these areas flexible load is offered for managing congestions.</p>
-<p>Another challenge is to make forecasts widely available. Especially in case the business needs tons of forecasts.</p>
-<p>Therefore, we worked on:</p>
-<ul class="simple">
-<li><p>Extracting and transforming time series data from sensors.</p></li>
-<li><p>Combining this with weather forecasts.</p></li>
-<li><p>Engineering of time based features.</p></li>
-<li><p>Forecasting the electricity load.</p></li>
-<li><p>Monitoring training experiments and model performances</p></li>
-<li><p>Deploying scripts to a scalable production environment</p></li>
-</ul>
-<p>The end result are <em>Forecasts as a Service</em> in production that generates predictions on a 15-min interval for 1000+ forecast signals.
-These predictions are used by decision makers to offer flexible load and to prevent potential congestions.</p>
-<a class="reference internal image-reference" href="_static/img/FaaS.png"><img alt="_static/img/FaaS.png" class="align-center" src="_static/img/FaaS.png" style="width: 800px;" /></a>
+<section id="data-description">
+<h2>Data Description<a class="headerlink" href="#data-description" title="Permalink to this headline">¶</a></h2>
+<section id="measurement-data-details">
+<h3>Measurement data details<a class="headerlink" href="#measurement-data-details" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">The measurements are available since Q2 2018. Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured</div>
+<div class="line">Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.</div>
+</div>
+<div class="line-block">
+<div class="line">For this project we focus first on the active power on a transformer om the medium voltage connection side. The power is available for all three power phases as well as the sum of them.</div>
+<div class="line">Below are the fields of interest given that are queried from the aforementioned table.</div>
+</div>
+<table class="colwidths-given table" id="id4">
+<caption><span class="caption-text">DALI table fields of interest.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field o.i.</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BOXID</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>ESD.000240-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>CHANNELID</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>register://electricity/0/activepower/sumli?avg=15</p></td>
+</tr>
+<tr class="row-even"><td><p>WAARDE</p></td>
+<td><p>DOUBLE</p></td>
+<td><p>-3.408062</p></td>
+</tr>
+<tr class="row-odd"><td><p>DATUMTIJD</p></td>
+<td><p>TIMESTAMPTZ</p></td>
+<td><p>2021-05-12 07:45:00.000000000</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="id1">
-<h2>Business Understanding<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h3>Measurement data details<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">In the metadata table there are 15,058 records present.</div>
+<div class="line">Only 10.092 boxids are operational and have a nominal power correctly registered.</div>
+</div>
+<table class="colwidths-given table" id="id5">
+<caption><span class="caption-text">Metadata table fields of interest.</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field o.i.</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BOXID</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>ESD.000240-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>BOX_BEDRIJFSSTATUS</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>in bedrijf</p></td>
+</tr>
+<tr class="row-even"><td><p>IN_BEDRIJFSNAME_DATUMTIJD</p></td>
+<td><p>TIMESTAMPTZ</p></td>
+<td><p>2021-05-12 07:45:00.000000000</p></td>
+</tr>
+<tr class="row-odd"><td><p>VESTIGING</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>Breda</p></td>
+</tr>
+<tr class="row-even"><td><p>VERMOGEN_NOMINAAL</p></td>
+<td><p>NUMBER</p></td>
+<td><p>400</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="data-exploration">
+<h2>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">¶</a></h2>
+<p>The measurement data is up-to-date, but has missing values in two moments in time (both in 2021). This issue was discovered and is addressed.
+For the project it won’t be a huge issue, since the data is aggregated to weekly extremes.
+This will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
+In both cases (outlier and missing data) the model can handle this.</p>
+<p>For timeseries modelling it is advised to have at least two periods (years in this case) of measurement data.
+As the figure below shows, this might be a problem eventually. One of the challenges is therefore to explore if prior knowledge of the population can overcome this issue.</p>
+<p>In the figure below the completeness of the data over time is given for the transformers in the area of Breda.
+On the vertical axis the transformers are shown ordered by the time they got operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.</p>
+<a class="reference internal image-reference" href="_images/dq_completeness.jpeg"><img alt="_images/dq_completeness.jpeg" class="align-center" src="_images/dq_completeness.jpeg" style="width: 800px;" /></a>
+<p>Completeness for DALI data in the service area of Breda.</p>
+</section>
+<section id="data-quality">
+<h2>Data Quality<a class="headerlink" href="#data-quality" title="Permalink to this headline">¶</a></h2>
+<p>Beside the missing data described above, the data quality (of the 15 minute power averages) seems like expected.
+The reason is probably that the 15 minute averaging already smooths out the extreme (short circuit) values and measurement errors. Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
+Taking not only the extremes, but also the second highest/lowest value per week for robustness did not make a lot of difference (probably also due to the aforementioned smoothing).</p>
+<a class="reference internal image-reference" href="_images/dq_outlier.png"><img alt="_images/dq_outlier.png" class="align-center" src="_images/dq_outlier.png" style="width: 800px;" /></a>
+<p>Example of weekly extremes with an outlier for the maximum in July 2020.</p>
 </section>
 </section>
 
@@ -184,6 +349,8 @@ These predictions are used by decision makers to offer flexible load and to prev
               
               <div class='prev-next-bottom'>
                 
+    <a class='left-prev' id="prev-link" href="business_understanding.html" title="previous page">Business Understanding</a>
+    <a class='right-next' id="next-link" href="data_preparation.html" title="next page">Data Preparation</a>
 
               </div>
               

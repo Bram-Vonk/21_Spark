@@ -35,6 +35,7 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.coverage',
     "sphinx.ext.intersphinx",
+    "sphinx.ext.autosectionlabel",
     "numpydoc",  # handle NumPy documentation formatted docstrings
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
