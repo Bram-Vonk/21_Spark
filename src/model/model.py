@@ -57,7 +57,7 @@ def fourier_series(t, p=52.1775, n=5):
     return x
 
 
-def seasonality_model(t, p=52.1775, n=5, seasonality_prior_scale=10):
+def seasonality_model(t, p=52.1775, n=5, seasonality_prior_scale=1):
     """
     Create seasonality model with fourier series.
 
@@ -161,5 +161,8 @@ def create_model(t, y, p_fourier, n_fourier=5, n_polynomial=2):
 
         σ_ε = pm.Uniform("σ_ε", lower=0, upper=1)
         Σ = pm.Normal("Σ", mu=drift + yearly, sd=σ_ε, observed=y)
+
+        display(pm.model_to_graphviz(m))
+        display(m)
 
     return m

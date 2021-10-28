@@ -88,7 +88,7 @@ Module Contents
        !! processed by numpydoc !!
 
 
-.. function:: seasonality_model(t, p=52.1775, n=5, seasonality_prior_scale=10)
+.. function:: seasonality_model(t, p=52.1775, n=5, seasonality_prior_scale=1)
 
    Create seasonality model with fourier series.
 

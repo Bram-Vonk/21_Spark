@@ -18,6 +18,8 @@
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="src.plot" href="../../plot/index.html" />
@@ -215,7 +217,7 @@ build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-a
 
 <dl class="py function">
 <dt id="src.model.model.seasonality_model">
-<code class="sig-prename descclassname">src.model.model.</code><code class="sig-name descname">seasonality_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">52.1775</span></em>, <em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">seasonality_prior_scale</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/model/model.html#seasonality_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.model.seasonality_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.model.model.</code><code class="sig-name descname">seasonality_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">p</span><span class="o">=</span><span class="default_value">52.1775</span></em>, <em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">seasonality_prior_scale</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/model/model.html#seasonality_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.model.seasonality_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create seasonality model with fourier series.</p>
 <p>Based on source: <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/">https://www.ritchievink.com/blog/2018/10/09/</a> …
 build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/</p>

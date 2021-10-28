@@ -18,6 +18,8 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API Reference" href="autoapi/index.html" />
@@ -127,7 +129,65 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#initial-data-collection" class="nav-link">Initial Data Collection</a>
+            <a href="#modeling-technique" class="nav-link">Modeling Technique</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#input-features" class="nav-link">Input Features</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#fit-predict-process" class="nav-link">Fit-Predict Process</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#model-environment" class="nav-link">Model Environment</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#generalized-additive-model-concept" class="nav-link">Generalized Additive Model Concept</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#test-design" class="nav-link">Test Design</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#model" class="nav-link">Model</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#generalized-additive-model" class="nav-link">Generalized Additive Model</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#drift-component" class="nav-link">Drift Component</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#yearly-component" class="nav-link">Yearly Component</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#enabling-forecasts" class="nav-link">Enabling Forecasts</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#total-model" class="nav-link">Total model Σ</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#formatting-results" class="nav-link">Formatting Results</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#model-assessment" class="nav-link">Model Assessment</a>
         </li>
     
     </ul>
@@ -145,8 +205,167 @@
                 
   <section id="modeling">
 <h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h1>
-<section id="initial-data-collection">
-<h2>Initial Data Collection<a class="headerlink" href="#initial-data-collection" title="Permalink to this headline">¶</a></h2>
+<section id="modeling-technique">
+<h2>Modeling Technique<a class="headerlink" href="#modeling-technique" title="Permalink to this headline">¶</a></h2>
+<p>The Grid Planners are looking to data driven forecast with a uncertainty indication as mentioned before.
+This is visualized as a concept in the figure below.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/autumn_spring_load.png"><img alt="_images/autumn_spring_load.png" class="align-center" src="_images/autumn_spring_load.png" style="width: 400px;" /></a>
+</div></blockquote>
+<p>A possible output of the model visualized.</p>
+<section id="input-features">
+<h3>Input Features<a class="headerlink" href="#input-features" title="Permalink to this headline">¶</a></h3>
+<p>The Grid Planners want to have a result dat is based on real observed data.
+Or, to make it more explicit: Data that has been measured and not data from possible scenarios with a wide range of uncertainty.</p>
+<p>Another suggestion was made to use (historic) weather data as an exogenous feature / input for the model.
+However, this is not data we have available with a reasonable confidence for the forecast horizon (in the future).
+And seasonality can also be captured from the observed data itself for different timeseries models.</p>
+<p>Therefore, the model only uses historic DALI measurement data.</p>
+</section>
+<section id="fit-predict-process">
+<h3>Fit-Predict Process<a class="headerlink" href="#fit-predict-process" title="Permalink to this headline">¶</a></h3>
+<p>A model will be fitted / tuned for every DALI measurement extremes since every transformer has it’s own unique signal (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.determine_estimates" title="src.forecast.forecast.determine_estimates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.determine_estimates()</span></code></a>).</p>
+<p>A model is trained on observed data, a forecast is made and stored and finally the trained model is discarded (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.forecast" title="src.forecast.forecast.forecast"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.forecast()</span></code></a>).</p>
+<a class="reference internal image-reference" href="_images/process_modeling.png"><img alt="_images/process_modeling.png" class="align-center" src="_images/process_modeling.png" style="height: 250px;" /></a>
+<p>The weekly extremes are loaded for tuning the model. The model forecasts are afterwards stored in a Snowflake database.</p>
+<p>The next time a forecast is required, new data is available and a new model will be fitted and used for forecasting.</p>
+</section>
+<section id="model-environment">
+<h3>Model Environment<a class="headerlink" href="#model-environment" title="Permalink to this headline">¶</a></h3>
+<p>A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.</p>
+<p>From the main probabilistic toolboxes (STAN, EDWARD2, Pyro, TensorFlow2 Probability) <a class="reference external" href="https://docs.pymc.io/en/stable/">PyMC3</a> was used for it’s extensive documentation.
+A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.</p>
+</section>
+<section id="generalized-additive-model-concept">
+<h3>Generalized Additive Model Concept<a class="headerlink" href="#generalized-additive-model-concept" title="Permalink to this headline">¶</a></h3>
+<p>To address the explainability of the model, a similar approach as <a class="reference external" href="https://facebook.github.io/prophet/">Facebook Prophet</a> is used.
+The model is a Generalized Additive Model <a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_additive_model">(GAM)</a> that consists of a trend / drift and seasonality component (and an error component).
+The translation to PyMC3 of <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/">Richie Vink</a> was used as a basis.</p>
+<p>The GAM approach makes it easy to decompose the different components of the timeseries and show the Grid Planners the effect of the drift and seasons separately.</p>
+</section>
+</section>
+<section id="test-design">
+<h2>Test Design<a class="headerlink" href="#test-design" title="Permalink to this headline">¶</a></h2>
+<p>To evaluate the model the observed data is split into a train and test set based in the forecast horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.split_last" title="src.preprocess.preprocess.split_last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.split_last()</span></code></a>).
+After splitting the train set is tested again for not being too short (at least two years: <a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.too_short" title="src.preprocess.preprocess.too_short"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.too_short()</span></code></a>).</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/train_test.png"><img alt="_images/train_test.png" class="align-center" src="_images/train_test.png" style="width: 600px;" /></a>
+</div></blockquote>
+<p>The split of measurement data into train and test data.</p>
+<p>The test set is only used to validate forecasting results.
+The train set is used to train / fit / tune the model.</p>
+</section>
+<section id="model">
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
+<section id="generalized-additive-model">
+<h3>Generalized Additive Model<a class="headerlink" href="#generalized-additive-model" title="Permalink to this headline">¶</a></h3>
+<p>The GAM model used is (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.create_model" title="src.model.model.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.create_model()</span></code></a>):</p>
+<div class="math notranslate nohighlight">
+\[σ_ε \sim Uniform(lower=0, upper=1)\]</div>
+<div class="math notranslate nohighlight">
+\[Σ\:|\:drift, yearly, σ_ε = Normal(μ=drift + yearly, sd=σ_ε)\]</div>
+<p>The additive naming is explicit in this notation.</p>
+<p>The error component has a has a bandwidth of <span class="math notranslate nohighlight">\(σ_ε\)</span>.</p>
+<section id="drift-component">
+<h4>Drift Component<a class="headerlink" href="#drift-component" title="Permalink to this headline">¶</a></h4>
+<p>According to the Grid Planners a increasing growth is more and more common due to the energy transition.
+Therefore, a stable drift model (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.drift_model" title="src.model.model.drift_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.drift_model()</span></code></a>) is used that can mimic that.
+An exponential function resulted in divergence during the model tuning, but a second order taylor series makes the model convergent and stable.</p>
+<p>The drift component model with a taylor series with the order of <span class="math notranslate nohighlight">\(n\)</span> is described as:</p>
+<div class="math notranslate nohighlight">
+\[X_{drift}(t) = [t^0, ...,  t^n]\]</div>
+<div class="math notranslate nohighlight">
+\[β_{drift} \sim Normal(μ=0, sd=0.5)\]</div>
+<div class="math notranslate nohighlight">
+\[drift\:|\:β_{drift} = X_{drift}(t)\:β_{drift}\]</div>
+<p>For modelling a drift that has the described growth, a polynomial with order <span class="math notranslate nohighlight">\(n=2\)</span> is used.</p>
+</section>
+<section id="yearly-component">
+<h4>Yearly Component<a class="headerlink" href="#yearly-component" title="Permalink to this headline">¶</a></h4>
+<p>Since the data has been aggregated into weekly extremes, the only seasonality to model is the yearly pattern.
+The yearly seasonality is modeled with <span class="math notranslate nohighlight">\(n\)</span> order fourier series (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.seasonality_model" title="src.model.model.seasonality_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.seasonality_model()</span></code></a>).
+This based on the work of <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/">Richie Vink</a>.</p>
+<p>The yearly seasonality model is described as:</p>
+<div class="math notranslate nohighlight">
+\[X_{yearly}(t) = [cos(\frac{2 \pi 1 t}{T}), ..., sin(\frac{2 \pi n t}{T})]\]</div>
+<div class="math notranslate nohighlight">
+\[β_{yearly} \sim Normal(μ=0, sd=1)\]</div>
+<div class="math notranslate nohighlight">
+\[drift\:|\:β_{yearly} = X_{yearly}(t)\:β_{yearly}\]</div>
+<p>Here the <span class="math notranslate nohighlight">\(T\)</span> is the period of the seasonality in unit of time of the data.
+The is unit of time in case is a week for the data and a year in weeks is <span class="math notranslate nohighlight">\(T=52.1775\)</span>.
+The order taken for the fourier series is <span class="math notranslate nohighlight">\(n=5\)</span>.</p>
+</section>
+<section id="enabling-forecasts">
+<h4>Enabling Forecasts<a class="headerlink" href="#enabling-forecasts" title="Permalink to this headline">¶</a></h4>
+<p>The model parameters (<span class="math notranslate nohighlight">\(β\)</span>)’s can now be tuned to produce the model is most likely to produce the observed (measurement) data.</p>
+<p>To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.
+The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.extrapolate_timestamps" title="src.preprocess.preprocess.extrapolate_timestamps"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.extrapolate_timestamps()</span></code></a>).</p>
+<p>The matching observations (measurements) can be intentionally filled with NaN’s. in the model PyMC3 will name them <span class="math notranslate nohighlight">\(Σ_missing\)</span>.
+(This characteristic makes the model also robust against missing data).</p>
+<p>By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.determine_estimates" title="src.forecast.forecast.determine_estimates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.determine_estimates()</span></code></a>).</p>
+</section>
+<section id="total-model">
+<h4>Total model Σ<a class="headerlink" href="#total-model" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/graph_model.png"><img alt="_images/graph_model.png" class="align-center" src="_images/graph_model.png" style="width: 600px;" /></a>
+</div></blockquote>
+<p>The total model visualized.</p>
+<p>Two separate GAM models <span class="math notranslate nohighlight">\(Σ\)</span> (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.create_model" title="src.model.model.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.create_model()</span></code></a>) are used for the weekly minimum and maximum.</p>
+<p>The visual above shows the total GAM model with a polynomial drift order <span class="math notranslate nohighlight">\(n=2\)</span> (the bias of order 0 explains <span class="math notranslate nohighlight">\(N+1=3\)</span>) and a fourier order of <span class="math notranslate nohighlight">\(n=5\)</span> (the sine and cosine parts explain <span class="math notranslate nohighlight">\(N*2=10\)</span>).</p>
+<p>The number of observations (weeks of measurements for this case) was 121 and the forecasting horizon was just more than six months (27 weeks).</p>
+</section>
+<section id="formatting-results">
+<h4>Formatting Results<a class="headerlink" href="#formatting-results" title="Permalink to this headline">¶</a></h4>
+<p>From the model posterior predictive samples are drawn for all timestamps (also measurement timestamps, 1000 samples per timestamp).</p>
+<p>From the posterior samples, the quantile bands are determined (<code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.format.make_quantile_bands()</span></code>).
+This reduces the data storage.</p>
+<p>The upper and lower limits of the quantile bands are then stored in the same format as the input (<code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.format.format_model_estimates()</span></code>).
+The input of the model and the output are then concatenated together. This eases the visualization later.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/data_stored.png"><img alt="_images/data_stored.png" class="align-center" src="_images/data_stored.png" style="width: 800px;" /></a>
+</div></blockquote>
+<p>The concatenated input and result.</p>
+</section>
+</section>
+</section>
+<section id="model-assessment">
+<h2>Model Assessment<a class="headerlink" href="#model-assessment" title="Permalink to this headline">¶</a></h2>
+<p>The following model findings are most salient:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>The model converges during tuning and gives feasible results.</dt><dd><ul>
+<li><p>Exponential drift function tuning will not converge.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The computational burden on a CPU to tune and forecast both extremes is 1:24.</dt><dd><ul>
+<li><p>CPU: 2 GHz Quad-Core Intel Core i5</p></li>
+<li><p>RAM: 16 GB</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>The splitting of observations into train and test set works.</p></li>
+<li><p>The extrapolation with the forecasting horizon works.</p></li>
+<li><dl class="simple">
+<dt>An pure additive model may not be sufficient.</dt><dd><ul>
+<li><p>Growth also increases the yearly component.</p></li>
+<li><p>A pure multiplicative diverges.</p></li>
+<li><p>A hybrid model (addition of a small fraction of a multiplicative model) might be an option.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>A visualization of the results is shown in the figure below which shows most of the aforementioned points:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/additive_model.png"><img alt="_images/additive_model.png" class="align-center" src="_images/additive_model.png" style="width: 800px;" /></a>
+</div></blockquote>
+<p>An visualization of the measurements (history) and forecast (estimates).
+Measurements from the train and test set are plotted.</p>
 </section>
 </section>
 
