@@ -17,6 +17,8 @@
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -191,7 +193,7 @@
     <span class="k">return</span> <span class="n">x</span></div>
 
 
-<div class="viewcode-block" id="seasonality_model"><a class="viewcode-back" href="../../../autoapi/src/model/model/index.html#src.model.model.seasonality_model">[docs]</a><span class="k">def</span> <span class="nf">seasonality_model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">52.1775</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seasonality_prior_scale</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="seasonality_model"><a class="viewcode-back" href="../../../autoapi/src/model/model/index.html#src.model.model.seasonality_model">[docs]</a><span class="k">def</span> <span class="nf">seasonality_model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">52.1775</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seasonality_prior_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create seasonality model with fourier series.</span>
 
@@ -295,6 +297,9 @@
 
         <span class="n">σ_ε</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s2">&quot;σ_ε&quot;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">Σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;Σ&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">drift</span> <span class="o">+</span> <span class="n">yearly</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="n">σ_ε</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="n">display</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">model_to_graphviz</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">m</span></div>
 </pre></div>

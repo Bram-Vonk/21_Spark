@@ -18,6 +18,8 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Modeling" href="modeling.html" />
@@ -163,33 +165,32 @@
 <h1>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h1>
 <p>The data preparation step focuses on converting raw measurement data with a frequency of 15 minutes into weekly extremes and preparing these extremes to be usable input for the forecasting model.</p>
 <p>Initially the whole history is aggregated and stored in a Snowflake database. After that updates are done every month / week.</p>
-<a class="reference internal image-reference" href="_images/process_data_preparation.png"><img alt="_images/process_data_preparation.png" class="align-center" src="_images/process_data_preparation.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/process_data_preparation.png"><img alt="_images/process_data_preparation.png" class="align-center" src="_images/process_data_preparation.png" style="height: 250px;" /></a>
 <p>The data preparation step resulting in weekly aggregated data.</p>
 <section id="data-selection">
 <h2>Data Selection<a class="headerlink" href="#data-selection" title="Permalink to this headline">¶</a></h2>
-<p>Columns described in <a class="reference internal" href="data_understanding.html#data-understanding"><span class="std std-ref">Data Understanding</span></a> are selected from the measurement and metadata tables.</p>
-<p>From the measurement data only data is selected from DALI boxes that have nominal power registered in the metadata table and that are in operation. Both data and metadata are needed to indicate future overloading and add value to Grid Planners.</p>
+<p>Columns described in <span class="xref std std-ref">Data Understanding</span> are selected from the measurement () and metadata tables.</p>
+<p>From the measurement data only data is selected from DALI boxes that have nominal power registered in the metadata table and that are in operation (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.read_meta" title="src.utils.snowflake.read_meta"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.read_meta()</span></code></a>). Both data and metadata are needed to indicate future overloading and add value to Grid Planners.</p>
 <p>As mentioned only the active power (P) on medium voltage side is used initially. Apparent power (S) is preferred (for a more fair comparison with the nominal power), but since this is 15 minute average data, this is hard to reconstruct.</p>
-<p>In this step the separate power phases are selected and processed as well as the sum of the phases.</p>
+<p>In this step the separate power phases are selected and processed as well as the sum of the phases (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.make_week_extremes_query" title="src.utils.snowflake.make_week_extremes_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.make_week_extremes_query()</span></code></a>).</p>
 <p>Only the 15 minute average channels are selected for preprocessing.</p>
 </section>
 <section id="data-cleaning">
 <h2>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">¶</a></h2>
-<p>No data cleaning is performed on the raw data before aggregation.</p>
-<p>After aggregating to weekly extremes data is checked and cleaned on the following before being used by a model for forecasting:</p>
+<p>No data cleaning is performed on the raw data before aggregation, but data is checked and cleaned on the following after reading it in (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.load_data" title="src.preprocess.preprocess.load_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.load_data()</span></code></a>) and before being used by a model for forecasting:</p>
 <ul class="simple">
-<li><p>Data of extremes (minimum or maximum) having the value of zero in the beginning of the series are removed. This is for example the case if a DALI box is in operation, but its transformer is not.</p></li>
-<li><p>Only data is used that has a history of more than two years. This will ensure in this stage that the seasonality (sub)model has enough data to tune on.</p></li>
-<li><p>Only data is used of transformers that have a measurement in their history with an absolute value higher than half the transformer capacity.</p></li>
+<li><p>Data of extremes (minimum or maximum) having the value of zero in the beginning of the series are removed (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.remove_leading_idling" title="src.preprocess.preprocess.remove_leading_idling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.remove_leading_idling()</span></code></a>). This is for example the case if a DALI box is in operation, but its transformer is not.</p></li>
+<li><p>Only data is used that has a history of more than two years (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.too_short" title="src.preprocess.preprocess.too_short"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.too_short()</span></code></a>). This will ensure in this stage that the seasonality (sub)model has enough data to tune on.</p></li>
+<li><p>Only data is used of transformers that have a measurement in their history with an absolute value higher than half the transformer capacity (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.too_small" title="src.preprocess.preprocess.too_small"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.too_small()</span></code></a>).</p></li>
 </ul>
 <p>Duplicate data (can only be created by updating the extreme table) is not an issue for the model and will not be eliminated.</p>
 <p>Missing data is neither a problem for the model and is also not imputed.</p>
 </section>
 <section id="data-construction">
 <h2>Data Construction<a class="headerlink" href="#data-construction" title="Permalink to this headline">¶</a></h2>
-<p>From the raw 15 minute data the weekly minimum and maximum are determined. This is done per channel and boxid.
+<p>From the raw 15 minute data the weekly minimum and maximum are determined. This is done per channel and boxid (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.make_week_extremes_query" title="src.utils.snowflake.make_week_extremes_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.make_week_extremes_query()</span></code></a>).
 The week definition used is the ISO-week since this is always a full week.</p>
-<p>A SQL query aggregates and writes the result asynchronously on the Snowflake database:</p>
+<p>A SQL query aggregates and writes the result asynchronously on the Snowflake database. This can be done in batch for all historic measurements (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.create_week_extremes" title="src.utils.snowflake.create_week_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.create_week_extremes()</span></code></a>), but the created table can also be updated per week (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.update_week_extremes" title="src.utils.snowflake.update_week_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.update_week_extremes()</span></code></a>).</p>
 <table class="colwidths-given table" id="id1">
 <caption><span class="caption-text">Snowflake table details for weekly extremes data.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -262,10 +263,10 @@ The amount of rows is condensed from 89,052,020,404 to 3,457,856 records.</p>
 <section id="data-formatting">
 <h2>Data Formatting<a class="headerlink" href="#data-formatting" title="Permalink to this headline">¶</a></h2>
 <p>The model does not demand an order (e.g. by year and week) of the data.
-For the modelling stage the data is queried from the table in <a class="reference internal" href="#data-construction"><span class="std std-ref">Data Construction</span></a></p>
+For the modelling stage the data is queried from the table in <a class="reference internal" href="#data-construction">Data Construction</a></p>
 <p>Consecutively, a date column is constructed from the ISO year and week format with day==1.</p>
 <p>The extra columns period and model_var are assigned and filled with the values “history”, “observed” respectively for measurement data.
-This is in preparation for long formatting and concatenating forecast results in a later stage.</p>
+This is in preparation for long formatting and concatenating forecast results in a later stage (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.format_data" title="src.preprocess.preprocess.format_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.format_data()</span></code></a>).</p>
 <p>An example of the loaded extreme data is shown below</p>
 <a class="reference internal image-reference" href="_images/loaded_extremes.png"><img alt="_images/loaded_extremes.png" class="align-center" src="_images/loaded_extremes.png" style="width: 800px;" /></a>
 <p>The format of the loaded extremes data.</p>

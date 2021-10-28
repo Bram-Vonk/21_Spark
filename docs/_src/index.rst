@@ -19,7 +19,7 @@ Spark documentation
    data_understanding
    data_preparation
    modeling
-   evaluation
+   evaluathion
    deployment
    example_notebook.ipynb
    autoapi/index

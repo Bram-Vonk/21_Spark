@@ -6,7 +6,7 @@ The data preparation step focuses on converting raw measurement data with a freq
 Initially the whole history is aggregated and stored in a Snowflake database. After that updates are done every month / week.
 
 .. image:: _static/img/process_data_preparation.png
-    :width: 300px
+    :height: 250px
     :align: center
 
 The data preparation step resulting in weekly aggregated data.
@@ -14,26 +14,24 @@ The data preparation step resulting in weekly aggregated data.
 Data Selection
 ----------
 
-Columns described in :ref:`Data Understanding` are selected from the measurement and metadata tables.
+Columns described in :ref:`Data Understanding` are selected from the measurement () and metadata tables.
 
-From the measurement data only data is selected from DALI boxes that have nominal power registered in the metadata table and that are in operation. Both data and metadata are needed to indicate future overloading and add value to Grid Planners.
+From the measurement data only data is selected from DALI boxes that have nominal power registered in the metadata table and that are in operation (:meth:`src.utils.snowflake.read_meta`). Both data and metadata are needed to indicate future overloading and add value to Grid Planners.
 
 As mentioned only the active power (P) on medium voltage side is used initially. Apparent power (S) is preferred (for a more fair comparison with the nominal power), but since this is 15 minute average data, this is hard to reconstruct.
 
-In this step the separate power phases are selected and processed as well as the sum of the phases.
+In this step the separate power phases are selected and processed as well as the sum of the phases (:meth:`src.utils.snowflake.make_week_extremes_query`).
 
 Only the 15 minute average channels are selected for preprocessing.
 
 Data Cleaning
 ----------
 
-No data cleaning is performed on the raw data before aggregation.
+No data cleaning is performed on the raw data before aggregation, but data is checked and cleaned on the following after reading it in (:meth:`src.preprocess.preprocess.load_data`) and before being used by a model for forecasting:
 
-After aggregating to weekly extremes data is checked and cleaned on the following before being used by a model for forecasting:
-
-* Data of extremes (minimum or maximum) having the value of zero in the beginning of the series are removed. This is for example the case if a DALI box is in operation, but its transformer is not.
-* Only data is used that has a history of more than two years. This will ensure in this stage that the seasonality (sub)model has enough data to tune on.
-* Only data is used of transformers that have a measurement in their history with an absolute value higher than half the transformer capacity.
+* Data of extremes (minimum or maximum) having the value of zero in the beginning of the series are removed (:meth:`src.preprocess.preprocess.remove_leading_idling`). This is for example the case if a DALI box is in operation, but its transformer is not.
+* Only data is used that has a history of more than two years (:meth:`src.preprocess.preprocess.too_short`). This will ensure in this stage that the seasonality (sub)model has enough data to tune on.
+* Only data is used of transformers that have a measurement in their history with an absolute value higher than half the transformer capacity (:meth:`src.preprocess.preprocess.too_small`).
 
 Duplicate data (can only be created by updating the extreme table) is not an issue for the model and will not be eliminated.
 
@@ -42,10 +40,10 @@ Missing data is neither a problem for the model and is also not imputed.
 Data Construction
 ----------
 
-From the raw 15 minute data the weekly minimum and maximum are determined. This is done per channel and boxid.
+From the raw 15 minute data the weekly minimum and maximum are determined. This is done per channel and boxid (:meth:`src.utils.snowflake.make_week_extremes_query`).
 The week definition used is the ISO-week since this is always a full week.
 
-A SQL query aggregates and writes the result asynchronously on the Snowflake database:
+A SQL query aggregates and writes the result asynchronously on the Snowflake database. This can be done in batch for all historic measurements (:meth:`src.utils.snowflake.create_week_extremes`), but the created table can also be updated per week (:meth:`src.utils.snowflake.update_week_extremes`).
 
 .. list-table:: Snowflake table details for weekly extremes data.
    :widths: 25 25
@@ -101,12 +99,12 @@ Data Formatting
 ----------
 
 The model does not demand an order (e.g. by year and week) of the data.
-For the modelling stage the data is queried from the table in :ref:`Data Construction`
+For the modelling stage the data is queried from the table in `Data Construction`_
 
 Consecutively, a date column is constructed from the ISO year and week format with day==1.
 
 The extra columns period and model_var are assigned and filled with the values "history", "observed" respectively for measurement data.
-This is in preparation for long formatting and concatenating forecast results in a later stage.
+This is in preparation for long formatting and concatenating forecast results in a later stage (:meth:`src.preprocess.preprocess.format_data`).
 
 An example of the loaded extreme data is shown below
 

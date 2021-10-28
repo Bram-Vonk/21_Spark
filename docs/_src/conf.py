@@ -44,6 +44,8 @@ extensions = [
     'autoapi.extension',
 ]
 
+autosectionlabel_prefix_document = True
+
 autoapi_dirs = ['../../src']
 
 # autoapi_ignore = ['*/]
