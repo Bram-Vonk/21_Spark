@@ -1,6 +1,7 @@
 version: "3.9"
 
 services:
+
   update_extremes:
     build:
       dockerfile: Dockerfile.preprocessing
@@ -10,3 +11,13 @@ services:
     volumes:
       - "./src:/home/src"
     entrypoint: python -m src.preprocess.update_extremes
+
+  make_forecasts:
+    build:
+      dockerfile: Dockerfile.forecast
+      context: .
+    env_file:
+      - ./.env
+    volumes:
+      - "./src:/home/src"
+    entrypoint: python -m src.forecast.make_forecasts
