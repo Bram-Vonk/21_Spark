@@ -1,6 +1,7 @@
 # 21_Spark
 
 Personal JADS project of Bram Vonk called Spark that covers medium-term load forecasting on DALI data.
+
 See the [documentation](https://bram-vonk.github.io/21_Spark) for more details.
 
 ![](docs/_src/_static/img/process_steps.png)
