@@ -162,7 +162,7 @@ def create_model(t, y, p_fourier, n_fourier=5, n_polynomial=2):
         σ_ε = pm.Uniform("σ_ε", lower=0, upper=1)
         Σ = pm.Normal("Σ", mu=drift + yearly, sd=σ_ε, observed=y)
 
-        display(pm.model_to_graphviz(m))
-        display(m)
+        # display(pm.model_to_graphviz(m))
+        # display(m)
 
     return m

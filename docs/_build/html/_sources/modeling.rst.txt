@@ -151,7 +151,7 @@ Two separate GAM models :math:`Σ` (:meth:`src.model.model.create_model`) are us
 
 The visual above shows the total GAM model with a polynomial drift order :math:`n=2` (the bias of order 0 explains :math:`N+1=3`) and a fourier order of :math:`n=5` (the sine and cosine parts explain :math:`N*2=10`).
 
-The number of observations (weeks of measurements for this case) was 121 and the forecasting horizon was just more than six months (27 weeks).
+The number of observations (weeks of measurements for this case) is 121 and the forecasting horizon is just more than six months (27 weeks).
 
 Formatting Results
 ^^^^^^^^^^^^^^^
@@ -179,10 +179,11 @@ The following model findings are most salient:
 * The computational burden on a CPU to tune and forecast both extremes is 1:24.
     * CPU: 2 GHz Quad-Core Intel Core i5
     * RAM: 16 GB
+* The model is fairly insensitive to outliers and missing data.
 * The splitting of observations into train and test set works.
 * The extrapolation with the forecasting horizon works.
 * An pure additive model may not be sufficient.
-    * Growth also increases the yearly component.
+    * Growth also increases the yearly component (see visualization below).
     * A pure multiplicative diverges.
     * A hybrid model (addition of a small fraction of a multiplicative model) might be an option.
 
@@ -194,4 +195,15 @@ A visualization of the results is shown in the figure below which shows most of 
 An visualization of the measurements (history) and forecast (estimates).
 Measurements from the train and test set are plotted.
 
+Improvement suggestions
+~~~~~~~~~~~~~~~~~~~
 
+The following ideas could result in a better model:
+
+* A hybrid additive-multiplicative model for dealing with the growing seasonality
+* Adding a extra component to detect temporarily bypass switching of loads of other transformers.
+    * This could be implemented by estimating parameters of a `rectangular function <https://en.wikipedia.org/wiki/Rectangular_function>`__.
+* Making more recent observations more relevant for slowly changing loading patterns
+    * Possibilities are to mimic weights with `pm.Potential <https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689>`__ or `pm<distribution>(tau=weights) <https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11>`__.
+* Use the population seasonality as a `prior <https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/>`__ in case of a short history of observations.
+* Use by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.

@@ -138,7 +138,10 @@ def forecast(boxid=None):
     for box in boxid:
         result = load_data(boxid=box)
         if result is not None:
+            logger.info(f"Forecasting boxid: {box}")
             df_data, df_meta = result
             df_estimates = determine_estimates_minmax(df_data)
             df_total = pd.concat([df_total, df_data, df_estimates], axis=0)
+        else:
+            logger.info(f"Can not forecast boxid: {box}")
     return df_total
