@@ -52,7 +52,7 @@ def plot_estimate(df, legend=True):
         alt.Chart(df)
         .mark_area(line=True)
         .encode(
-            x=alt.X("date:T", title="data"),
+            x=alt.X("date:T", title="date"),
             y=alt.Y("lower:Q", stack=None, title="power [kW]"),
             y2=alt.Y2("upper:Q", title=""),
             color=alt.Color(
