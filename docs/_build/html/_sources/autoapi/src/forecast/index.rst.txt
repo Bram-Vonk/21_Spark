@@ -11,5 +11,6 @@ Submodules
    :maxdepth: 1
 
    forecast/index.rst
+   make_forecasts/index.rst
 
 

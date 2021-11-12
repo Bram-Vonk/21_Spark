@@ -18,6 +18,8 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Data Preparation" href="data_preparation.html" />
@@ -57,6 +59,10 @@
         
         <li class="nav-item ">
             <a class="nav-link" href="modeling.html">Modeling</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="evaluation.html">Evaluation</a>
         </li>
         
         <li class="nav-item ">
@@ -102,6 +108,8 @@
       
       
         
+      
+      
       
       
       
@@ -280,44 +288,8 @@ Credentials are available via Vault in the Enexis domain.</p>
 <h3>Measurement data details<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="line-block">
 <div class="line">In the metadata table there are 15,058 records present.</div>
-<div class="line">Only 10.092 boxids are operational and have a nominal power correctly registered.</div>
+<div class="line">Only 9,920 boxids are operational and have a nominal power correctly registered.</div>
 </div>
-<table class="colwidths-given table" id="id5">
-<caption><span class="caption-text">Metadata table fields of interest.</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Field o.i.</p></th>
-<th class="head"><p>Type</p></th>
-<th class="head"><p>Example</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>BOXID</p></td>
-<td><p>VARCHAR</p></td>
-<td><p>ESD.000240-2</p></td>
-</tr>
-<tr class="row-odd"><td><p>BOX_BEDRIJFSSTATUS</p></td>
-<td><p>VARCHAR</p></td>
-<td><p>in bedrijf</p></td>
-</tr>
-<tr class="row-even"><td><p>IN_BEDRIJFSNAME_DATUMTIJD</p></td>
-<td><p>TIMESTAMPTZ</p></td>
-<td><p>2021-05-12 07:45:00.000000000</p></td>
-</tr>
-<tr class="row-odd"><td><p>VESTIGING</p></td>
-<td><p>VARCHAR</p></td>
-<td><p>Breda</p></td>
-</tr>
-<tr class="row-even"><td><p>VERMOGEN_NOMINAAL</p></td>
-<td><p>NUMBER</p></td>
-<td><p>400</p></td>
-</tr>
-</tbody>
-</table>
 </section>
 </section>
 <section id="data-exploration">

@@ -280,9 +280,12 @@
     <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">boxid</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="n">box</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forecasting boxid: </span><span class="si">{</span><span class="n">box</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">df_data</span><span class="p">,</span> <span class="n">df_meta</span> <span class="o">=</span> <span class="n">result</span>
             <span class="n">df_estimates</span> <span class="o">=</span> <span class="n">determine_estimates_minmax</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
             <span class="n">df_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_total</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_estimates</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can not forecast boxid: </span><span class="si">{</span><span class="n">box</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df_total</span></div>
 </pre></div>
 

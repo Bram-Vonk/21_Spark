@@ -454,9 +454,14 @@
         <span class="n">df_query</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
 
     <span class="n">df_query</span> <span class="o">=</span> <span class="n">df_query</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">downcast</span><span class="p">,</span> <span class="n">try_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">df_query</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_query</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-        <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisocalendar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_query</span><span class="p">):</span>
+        <span class="n">df_query</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_query</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisocalendar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df_query</span> <span class="o">=</span> <span class="n">df_query</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
 
     <span class="k">return</span> <span class="n">df_query</span></div>
 

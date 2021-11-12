@@ -1,0 +1,45 @@
+:mod:`src.forecast.make_forecasts`
+==================================
+
+.. py:module:: src.forecast.make_forecasts
+
+
+Module Contents
+---------------
+
+.. data:: logger
+   
+
+   
+
+.. function:: make_forecasts(clear=False)
+
+   Make forecasts for all boxes.
+
+
+   :Parameters:
+
+       **clear: bool**
+           Clear the Snowflake table
+
+   :Returns:
+
+       :data:`python:None`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+

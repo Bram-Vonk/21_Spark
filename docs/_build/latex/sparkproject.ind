@@ -1,0 +1,186 @@
+\begin{sphinxtheindex}
+\let\lettergroup\sphinxstyleindexlettergroup
+\let\lettergroupDefault\sphinxstyleindexlettergroupDefault
+\let\spxpagem\sphinxstyleindexpagemain
+\let\spxentry\sphinxstyleindexentry
+\let\spxextra\sphinxstyleindexextra
+
+
+  \lettergroup{C}
+  \item \spxentry{channel\_like}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+  \item \spxentry{clear\_forecasts()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+  \item \spxentry{column\_details}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+  \item \spxentry{config}\spxextra{in module src.forecast.forecast}, \hyperpage{33}
+  \item \spxentry{config}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+  \item \spxentry{create\_model()}\spxextra{in module src.model.model}, \hyperpage{36}
+  \item \spxentry{create\_table\_query()}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+  \item \spxentry{create\_week\_extremes()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+
+  \indexspace
+
+  \lettergroup{D}
+  \item \spxentry{det\_dot()}\spxextra{in module src.model.model}, \hyperpage{35}
+  \item \spxentry{determine\_estimates()}\spxextra{in module src.forecast.forecast}, \hyperpage{33}
+  \item \spxentry{determine\_estimates\_minmax()}\spxextra{in module src.forecast.forecast}, \hyperpage{33}
+  \item \spxentry{downcast()}\spxextra{in module src.utils.preprocess}, \hyperpage{40}
+  \item \spxentry{drift\_model()}\spxextra{in module src.model.model}, \hyperpage{36}
+  \item \spxentry{dummy\_forecast()}\spxextra{in module src.plot.format}, \hyperpage{38}
+
+  \indexspace
+
+  \lettergroup{E}
+  \item \spxentry{extrapolate\_timestamps()}\spxextra{in module src.preprocess.preprocess}, \hyperpage{39}
+
+  \indexspace
+
+  \lettergroup{F}
+  \item \spxentry{fit()}\spxextra{src.utils.preprocess.MinMaxScaler method}, \hyperpage{41}
+  \item \spxentry{fit\_transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}, \hyperpage{41}
+  \item \spxentry{forecast()}\spxextra{in module src.forecast.forecast}, \hyperpage{33}
+  \item \spxentry{format\_connection()}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+  \item \spxentry{format\_data()}\spxextra{in module src.preprocess.preprocess}, \hyperpage{39}
+  \item \spxentry{format\_forecast()}\spxextra{in module src.plot.format}, \hyperpage{38}
+  \item \spxentry{format\_history()}\spxextra{in module src.plot.format}, \hyperpage{38}
+  \item \spxentry{format\_limits()}\spxextra{in module src.plot.format}, \hyperpage{38}
+  \item \spxentry{format\_model\_estimates()}\spxextra{in module src.model.format}, \hyperpage{34}
+  \item \spxentry{fourier\_series()}\spxextra{in module src.model.model}, \hyperpage{35}
+
+  \indexspace
+
+  \lettergroup{G}
+  \item \spxentry{get\_last\_processed\_time()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+  \item \spxentry{get\_secrets()}\spxextra{in module src.utils.vault}, \hyperpage{43}
+  \item \spxentry{get\_vault\_secret()}\spxextra{in module src.utils.vault}, \hyperpage{44}
+
+  \indexspace
+
+  \lettergroup{I}
+  \item \spxentry{init\_logging()}\spxextra{in module src}, \hyperpage{44}
+  \item \spxentry{init\_logging()}\spxextra{in module src.utils.logger}, \hyperpage{40}
+  \item \spxentry{insert\_table\_query()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+  \item \spxentry{inverse\_transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}, \hyperpage{41}
+
+  \indexspace
+
+  \lettergroup{L}
+  \item \spxentry{lightness\_scale()}\spxextra{in module src.plot.altair}, \hyperpage{37}
+  \item \spxentry{load\_data()}\spxextra{in module src.preprocess.preprocess}, \hyperpage{39}
+  \item \spxentry{logger}\spxextra{in module src.forecast.forecast}, \hyperpage{33}
+  \item \spxentry{logger}\spxextra{in module src.forecast.make\_forecasts}, \hyperpage{34}
+  \item \spxentry{logger}\spxextra{in module src.model.format}, \hyperpage{34}
+  \item \spxentry{logger}\spxextra{in module src.model.model}, \hyperpage{35}
+  \item \spxentry{logger}\spxextra{in module src.preprocess.preprocess}, \hyperpage{38}
+  \item \spxentry{logger}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+
+  \indexspace
+
+  \lettergroup{M}
+  \item \spxentry{make\_forecasts()}\spxextra{in module src.forecast.make\_forecasts}, \hyperpage{34}
+  \item \spxentry{make\_quantile\_bands()}\spxextra{in module src.model.format}, \hyperpage{34}
+  \item \spxentry{make\_week\_extremes\_query()}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+  \item \spxentry{map\_labels()}\spxextra{in module src.utils.preprocess}, \hyperpage{41}
+  \item \spxentry{MinMaxScaler}\spxextra{class in src.utils.preprocess}, \hyperpage{41}
+  \item \spxentry{module}
+    \subitem \spxentry{src}, \hyperpage{33}
+    \subitem \spxentry{src.forecast}, \hyperpage{33}
+    \subitem \spxentry{src.forecast.forecast}, \hyperpage{33}
+    \subitem \spxentry{src.forecast.make\_forecasts}, \hyperpage{34}
+    \subitem \spxentry{src.model}, \hyperpage{34}
+    \subitem \spxentry{src.model.format}, \hyperpage{34}
+    \subitem \spxentry{src.model.model}, \hyperpage{35}
+    \subitem \spxentry{src.plot}, \hyperpage{36}
+    \subitem \spxentry{src.plot.altair}, \hyperpage{36}
+    \subitem \spxentry{src.plot.format}, \hyperpage{38}
+    \subitem \spxentry{src.preprocess}, \hyperpage{38}
+    \subitem \spxentry{src.preprocess.preprocess}, \hyperpage{38}
+    \subitem \spxentry{src.preprocess.update\_extremes}, \hyperpage{40}
+    \subitem \spxentry{src.utils}, \hyperpage{40}
+    \subitem \spxentry{src.utils.logger}, \hyperpage{40}
+    \subitem \spxentry{src.utils.parser}, \hyperpage{40}
+    \subitem \spxentry{src.utils.preprocess}, \hyperpage{40}
+    \subitem \spxentry{src.utils.snowflake}, \hyperpage{42}
+    \subitem \spxentry{src.utils.vault}, \hyperpage{43}
+
+  \indexspace
+
+  \lettergroup{P}
+  \item \spxentry{parse\_args()}\spxextra{in module src.utils.parser}, \hyperpage{40}
+  \item \spxentry{parse\_config()}\spxextra{in module src.utils.parser}, \hyperpage{40}
+  \item \spxentry{plot\_all()}\spxextra{in module src.plot.altair}, \hyperpage{37}
+  \item \spxentry{plot\_base()}\spxextra{in module src.plot.altair}, \hyperpage{37}
+  \item \spxentry{plot\_decompose()}\spxextra{in module src.plot.altair}, \hyperpage{37}
+  \item \spxentry{plot\_estimate()}\spxextra{in module src.plot.altair}, \hyperpage{36}
+  \item \spxentry{plot\_limits()}\spxextra{in module src.plot.altair}, \hyperpage{37}
+  \item \spxentry{plot\_observed()}\spxextra{in module src.plot.altair}, \hyperpage{36}
+  \item \spxentry{polynomial()}\spxextra{in module src.model.model}, \hyperpage{35}
+
+  \indexspace
+
+  \lettergroup{R}
+  \item \spxentry{read\_forecasts()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+  \item \spxentry{read\_meta()}\spxextra{in module src.utils.snowflake}, \hyperpage{42}
+  \item \spxentry{read\_week\_extremes()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+  \item \spxentry{remove\_leading\_idling()}\spxextra{in module src.preprocess.preprocess}, \hyperpage{39}
+
+  \indexspace
+
+  \lettergroup{S}
+  \item \spxentry{seasonality\_model()}\spxextra{in module src.model.model}, \hyperpage{35}
+  \item \spxentry{split\_last()}\spxextra{in module src.preprocess.preprocess}, \hyperpage{39}
+  \item \spxentry{src}
+    \subitem \spxentry{module}, \hyperpage{33}
+  \item \spxentry{src.forecast}
+    \subitem \spxentry{module}, \hyperpage{33}
+  \item \spxentry{src.forecast.forecast}
+    \subitem \spxentry{module}, \hyperpage{33}
+  \item \spxentry{src.forecast.make\_forecasts}
+    \subitem \spxentry{module}, \hyperpage{34}
+  \item \spxentry{src.model}
+    \subitem \spxentry{module}, \hyperpage{34}
+  \item \spxentry{src.model.format}
+    \subitem \spxentry{module}, \hyperpage{34}
+  \item \spxentry{src.model.model}
+    \subitem \spxentry{module}, \hyperpage{35}
+  \item \spxentry{src.plot}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{src.plot.altair}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{src.plot.format}
+    \subitem \spxentry{module}, \hyperpage{38}
+  \item \spxentry{src.preprocess}
+    \subitem \spxentry{module}, \hyperpage{38}
+  \item \spxentry{src.preprocess.preprocess}
+    \subitem \spxentry{module}, \hyperpage{38}
+  \item \spxentry{src.preprocess.update\_extremes}
+    \subitem \spxentry{module}, \hyperpage{40}
+  \item \spxentry{src.utils}
+    \subitem \spxentry{module}, \hyperpage{40}
+  \item \spxentry{src.utils.logger}
+    \subitem \spxentry{module}, \hyperpage{40}
+  \item \spxentry{src.utils.parser}
+    \subitem \spxentry{module}, \hyperpage{40}
+  \item \spxentry{src.utils.preprocess}
+    \subitem \spxentry{module}, \hyperpage{40}
+  \item \spxentry{src.utils.snowflake}
+    \subitem \spxentry{module}, \hyperpage{42}
+  \item \spxentry{src.utils.vault}
+    \subitem \spxentry{module}, \hyperpage{43}
+
+  \indexspace
+
+  \lettergroup{T}
+  \item \spxentry{too\_short()}\spxextra{in module src.preprocess.preprocess}, \hyperpage{38}
+  \item \spxentry{too\_small()}\spxextra{in module src.preprocess.preprocess}, \hyperpage{39}
+  \item \spxentry{transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}, \hyperpage{41}
+
+  \indexspace
+
+  \lettergroup{U}
+  \item \spxentry{update\_week\_extremes()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+
+  \indexspace
+
+  \lettergroup{W}
+  \item \spxentry{write\_forecasts()}\spxextra{in module src.utils.snowflake}, \hyperpage{43}
+
+\end{sphinxtheindex}

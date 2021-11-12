@@ -62,6 +62,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="evaluation.html">Evaluation</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="autoapi/index.html">API Reference</a>
         </li>
         
@@ -112,6 +116,8 @@
       
       
       
+      
+      
     </ul>
 
 </nav>
@@ -146,6 +152,10 @@
     
         <li class="nav-item toc-entry toc-h2">
             <a href="#data-formatting" class="nav-link">Data Formatting</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#data-updating-process" class="nav-link">Data Updating Process</a>
         </li>
     
     </ul>
@@ -270,6 +280,14 @@ This is in preparation for long formatting and concatenating forecast results in
 <p>An example of the loaded extreme data is shown below</p>
 <a class="reference internal image-reference" href="_images/loaded_extremes.png"><img alt="_images/loaded_extremes.png" class="align-center" src="_images/loaded_extremes.png" style="width: 800px;" /></a>
 <p>The format of the loaded extremes data.</p>
+</section>
+<section id="data-updating-process">
+<h2>Data Updating Process<a class="headerlink" href="#data-updating-process" title="Permalink to this headline">¶</a></h2>
+<p>The weekly extremes can be updated every week (or longer).</p>
+<p>By running <a class="reference internal" href="autoapi/src/preprocess/update_extremes/index.html#module-src.preprocess.update_extremes" title="src.preprocess.update_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.update_extremes()</span></code></a> the function <a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.update_week_extremes" title="src.utils.snowflake.update_week_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.update_week_extremes()</span></code></a> is called.
+This will will trigger the following steps which update the weekly extremes Snowflake table:</p>
+<a class="reference internal image-reference" href="_images/preprocessing_details.png"><img alt="_images/preprocessing_details.png" class="align-center" src="_images/preprocessing_details.png" style="width: 400px;" /></a>
+<p>The detailed process to create and assess load forecasts.</p>
 </section>
 </section>
 

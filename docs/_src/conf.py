@@ -110,3 +110,17 @@ intersphinx_mapping = {
     # "scikit-learn": ('https://scikit-learn.org/stable/', None),
     # "plotly": ("https://plot.ly/python-api-reference/", None),
 }
+
+
+latex_engine = 'lualatex'
+
+# \\usepackage{polyglossia}\n\\setmainlanguage{<language>}
+
+# latex_elements = {
+#     'fontenc': r'\usepackage[T2A, T1]{fontenc}',
+#
+#     'preamble': r'''
+# \usepackage{newunicodechar}
+# \newunicodechar{Є}{{\fontencoding{T2A}\fontfamily{cmr}\selectfont\IeC {\CYRIE }}}
+# '''
+# }
