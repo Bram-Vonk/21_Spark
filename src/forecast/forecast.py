@@ -144,6 +144,7 @@ def forecast(boxid=None):
             df_data, df_meta = result
             df_estimates = determine_estimates_minmax(df_data)
             df_total = pd.concat([df_total, df_data, df_estimates], axis=0)
+            df_total["processed_on"] = dt.datetime.now()
             df_forecast_meta = asses_forecasts(df_total=df_total, df_meta=df_meta)
         else:
             logger.info(f"Can not forecast boxid: {box}")

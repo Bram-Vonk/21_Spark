@@ -300,9 +300,24 @@ MAX DOUBLE, MIN DOUBLE)
 .. function:: clear_forecasts()
 
 
+.. function:: clear_forecast_meta()
+
+
 .. function:: write_forecasts(df)
 
 
+.. function:: write_forecast_meta(df)
+
+
 .. function:: read_forecasts(boxid=None)
+
+
+.. function:: read_forecast_meta()
+
+
+.. function:: get_forecasted_boxids()
+
+
+.. function:: clear_forecasts()
 
 

@@ -10,6 +10,7 @@ Submodules
    :titlesonly:
    :maxdepth: 1
 
+   assess/index.rst
    forecast/index.rst
    make_forecasts/index.rst
 

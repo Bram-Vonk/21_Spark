@@ -142,7 +142,7 @@
   <h1>Source code for src.forecast.make_forecasts</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">src.utils.snowflake</span> <span class="kn">import</span> <span class="n">read_meta</span><span class="p">,</span> <span class="n">clear_forecasts</span><span class="p">,</span> <span class="n">write_forecasts</span>
+<span class="kn">from</span> <span class="nn">src.utils.snowflake</span> <span class="kn">import</span> <span class="n">read_meta</span><span class="p">,</span> <span class="n">clear_forecasts</span><span class="p">,</span> <span class="n">write_forecasts</span><span class="p">,</span> <span class="n">write_forecast_meta</span><span class="p">,</span> <span class="n">get_forecasted_boxids</span>
 <span class="kn">from</span> <span class="nn">src.forecast.forecast</span> <span class="kn">import</span> <span class="n">forecast</span>
 
 <div class="viewcode-block" id="logger"><a class="viewcode-back" href="../../../autoapi/src/forecast/make_forecasts/index.html#src.forecast.make_forecasts.logger">[docs]</a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;SPARK&quot;</span><span class="p">)</span></div>
@@ -168,15 +168,17 @@
     <span class="c1"># boxids = [&#39;HLD.301001-1&#39;, &#39;MRS.HEKST-1&#39;, &#39;DVT.141032-1&#39;, &#39;LSM.270004-1&#39;,</span>
     <span class="c1">#           &#39;133.938-1&#39;, &#39;ESD.000047-1&#39;, &#39;DVT.141236-1&#39;, &#39;WRT.CELSW-1&#39;,</span>
     <span class="c1">#           &#39;121.544-1&#39;, &#39;DVT.141063-1&#39;]</span>
-    <span class="n">boxids</span> <span class="o">=</span> <span class="n">read_meta</span><span class="p">()[</span><span class="s2">&quot;boxid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="n">boxids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">read_meta</span><span class="p">()[</span><span class="s2">&quot;boxid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">boxids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">boxids</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">get_forecasted_boxids</span><span class="p">()[</span><span class="s2">&quot;boxid&quot;</span><span class="p">]))</span>
 
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">boxid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">boxids</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">boxid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">boxids</span><span class="p">)):</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forecasting boxid # </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">boxids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="n">df_total</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="n">boxid</span><span class="p">)</span>
+        <span class="n">df_total</span><span class="p">,</span> <span class="n">df_forecast_meta</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="n">boxid</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_total</span><span class="p">):</span>
-            <span class="n">write_forecasts</span><span class="p">(</span><span class="n">df_total</span><span class="p">)</span></div>
+            <span class="n">write_forecasts</span><span class="p">(</span><span class="n">df_total</span><span class="p">)</span>
+            <span class="n">write_forecast_meta</span><span class="p">(</span><span class="n">df_forecast_meta</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
