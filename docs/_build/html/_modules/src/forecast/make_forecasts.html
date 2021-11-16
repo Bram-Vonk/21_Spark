@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>src.forecast.make_forecasts &#8212; `Spark project` 0.0.1 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../general.html">General</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../business_understanding.html">Business Understanding</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../data_understanding.html">Data Understanding</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../data_preparation.html">Data Preparation</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../modeling.html">Modeling</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../evaluation.html">Evaluation</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for src.forecast.make_forecasts</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">src.utils.snowflake</span> <span class="kn">import</span> <span class="n">read_meta</span><span class="p">,</span> <span class="n">clear_forecasts</span><span class="p">,</span> <span class="n">write_forecasts</span><span class="p">,</span> <span class="n">write_forecast_meta</span><span class="p">,</span> <span class="n">get_forecasted_boxids</span>
+<span class="kn">from</span> <span class="nn">src.forecast.forecast</span> <span class="kn">import</span> <span class="n">forecast</span>
+
+<div class="viewcode-block" id="logger"><a class="viewcode-back" href="../../../autoapi/src/forecast/make_forecasts/index.html#src.forecast.make_forecasts.logger">[docs]</a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;SPARK&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="make_forecasts"><a class="viewcode-back" href="../../../autoapi/src/forecast/make_forecasts/index.html#src.forecast.make_forecasts.make_forecasts">[docs]</a><span class="k">def</span> <span class="nf">make_forecasts</span><span class="p">(</span><span class="n">clear</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make forecasts for all boxes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    clear: bool</span>
+<span class="sd">        Clear the Snowflake table</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">clear</span><span class="p">:</span>
+        <span class="n">clear_forecasts</span><span class="p">()</span>
+
+    <span class="c1"># boxids = [&#39;HLD.301001-1&#39;, &#39;MRS.HEKST-1&#39;, &#39;DVT.141032-1&#39;, &#39;LSM.270004-1&#39;,</span>
+    <span class="c1">#           &#39;133.938-1&#39;, &#39;ESD.000047-1&#39;, &#39;DVT.141236-1&#39;, &#39;WRT.CELSW-1&#39;,</span>
+    <span class="c1">#           &#39;121.544-1&#39;, &#39;DVT.141063-1&#39;]</span>
+    <span class="n">boxids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">read_meta</span><span class="p">()[</span><span class="s2">&quot;boxid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">boxids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">boxids</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">get_forecasted_boxids</span><span class="p">()[</span><span class="s2">&quot;boxid&quot;</span><span class="p">]))</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">boxid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">boxids</span><span class="p">)):</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forecasting boxid # </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">boxids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">df_total</span><span class="p">,</span> <span class="n">df_forecast_meta</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="n">boxid</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_total</span><span class="p">):</span>
+            <span class="n">write_forecasts</span><span class="p">(</span><span class="n">df_total</span><span class="p">)</span>
+            <span class="n">write_forecast_meta</span><span class="p">(</span><span class="n">df_forecast_meta</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">make_forecasts</span><span class="p">()</span>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="../../../_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright Bram Vonk 2021.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

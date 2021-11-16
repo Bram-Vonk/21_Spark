@@ -1,0 +1,17 @@
+:mod:`src.forecast.assess`
+==========================
+
+.. py:module:: src.forecast.assess
+
+
+Module Contents
+---------------
+
+.. data:: logger
+   
+
+   
+
+.. function:: asses_forecasts(df_total, df_meta)
+
+

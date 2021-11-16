@@ -23,6 +23,10 @@ snowflake:
     database: DB_DATASCIENCE_P
     schema: DATASCIENCE_2_PUBLISH
     table: DS_SPARK_DALI_WEEK_FORECASTS
+  DALI_forecast_meta:
+    database: DB_DATASCIENCE_P
+    schema: DATASCIENCE_2_PUBLISH
+    table: DS_SPARK_DALI_BOX_DETAILS
 model:
   n_fourier: 5
   n_polynomial: 2

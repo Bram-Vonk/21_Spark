@@ -89,10 +89,10 @@ Measurement data details
 ~~~~~~~~~~~~~
 
 | In the metadata table there are 15,058 records present.
-| Only 10.092 boxids are operational and have a nominal power correctly registered.
+| Only 9,920 boxids are operational and have a nominal power correctly registered.
 
 .. list-table:: Metadata table fields of interest.
-   :widths: 25 25 50
+   :widths: 25 25 50pi
    :header-rows: 1
 
    * - Field o.i.

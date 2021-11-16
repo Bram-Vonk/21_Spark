@@ -312,9 +312,14 @@ def read_week_extremes(boxid=None, L=None):
         df_query = pd.read_sql(sql=query, con=con)
 
     df_query = df_query.apply(downcast, try_numeric=True, category=False)
-    df_query["date"] = df_query.apply(
-        lambda df: dt.datetime.fromisocalendar(df["year"], df["week"], 1), axis=1
-    )
+
+    if len(df_query):
+        df_query["date"] = df_query.apply(
+            lambda df: dt.datetime.fromisocalendar(df["year"], df["week"], 1), axis=1
+        )
+    else:
+        df_query = df_query.assign(date=None)
+
 
     return df_query
 
@@ -347,11 +352,49 @@ def clear_forecasts():
         con.cursor().execute(query)
 
 
+def clear_forecast_meta():
+    con_config = format_connection("DALI_forecast_meta")
+
+    query = f"""
+    CREATE OR REPLACE TABLE {con_config["database"]}.{con_config["schema"]}.{con_config["table"]}
+        (
+            BOXID               VARCHAR(50),
+            STATIONSNUMMER      VARCHAR(50),
+            REGIO               VARCHAR(50),
+            VESTIGING           VARCHAR(50),
+            L                   VARCHAR(5),
+            PROCESSED_ON        TIMESTAMPNTZ,
+            VERMOGEN_NOMINAAL   NUMBER,
+            RELATIVE_ABS_MAX    DOUBLE,
+            DATE_ABS_MAX        DATE
+        )
+        CLUSTER BY (BOXID)
+        COPY GRANTS;
+    """
+
+    with snowflake.connector.connect(**get_secrets("snowflake")) as con:
+        con.cursor().execute(query)
+
+
 def write_forecasts(df):
     df["processed_on"] = dt.datetime.now(tz=pytz.timezone("UTC"))
     df["is_valid"] = True
 
     con_config = format_connection("DALI_forecasts")
+
+    with create_engine(URL(**con_config)).connect() as con:
+        df.to_sql(
+            name=con_config["table"],
+            con=con,
+            schema=con_config["schema"],
+            if_exists="append",
+            index=False,
+        )
+
+
+def write_forecast_meta(df):
+
+    con_config = format_connection("DALI_forecast_meta")
 
     with create_engine(URL(**con_config)).connect() as con:
         df.to_sql(
@@ -387,3 +430,60 @@ def read_forecasts(boxid=None):
         df_query = pd.read_sql(sql=query, con=con)
 
     return df_query
+
+
+def read_forecast_meta():
+    con_config = format_connection("DALI_forecast_meta")
+
+    query = f"""
+        SELECT
+            t.*
+        FROM {con_config["database"]}.{con_config["schema"]}.{con_config["table"]} t
+        """
+
+    with create_engine(URL(**con_config)).connect() as con:
+        df_query = pd.read_sql(sql=query, con=con)
+
+    return df_query
+
+
+def get_forecasted_boxids():
+    con_config = format_connection("DALI_forecasts")
+
+    query = f"""
+    SELECT DISTINCT(BOXID)
+    FROM {con_config["database"]}.{con_config["schema"]}.{con_config["table"]}
+    """
+
+    with create_engine(URL(**con_config)).connect() as con:
+        df_query = pd.read_sql(sql=query, con=con)
+
+    return df_query
+
+
+def clear_forecasts():
+    con_config = format_connection("DALI_forecasts")
+
+    query = f"""
+    CREATE OR REPLACE TABLE {con_config["database"]}.{con_config["schema"]}.{con_config["table"]}
+        (
+            BOXID        VARCHAR(50),
+            DATE         TIMESTAMPNTZ,
+            L            VARCHAR(5),
+            PROCESSED_ON TIMESTAMPNTZ,
+            WEEK         NUMBER(2),
+            YEAR         NUMBER(4),
+            EXTREME      VARCHAR(3),
+            VALUE        DOUBLE,
+            PERIOD       VARCHAR(10),
+            MODEL_VAR    VARCHAR(10),
+            BAND         VARCHAR(10),
+            BOUNDARY     VARCHAR(10),
+            IS_VALID     BOOLEAN
+        )
+        CLUSTER BY (BOXID, L)
+        COPY GRANTS;
+    """
+
+    with snowflake.connector.connect(**get_secrets("snowflake")) as con:
+        con.cursor().execute(query)

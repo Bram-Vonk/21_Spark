@@ -52,7 +52,7 @@ def plot_estimate(df, legend=True):
         alt.Chart(df)
         .mark_area(line=True)
         .encode(
-            x=alt.X("date:T", title="data"),
+            x=alt.X("date:T", title="date"),
             y=alt.Y("lower:Q", stack=None, title="power [kW]"),
             y2=alt.Y2("upper:Q", title=""),
             color=alt.Color(
@@ -63,7 +63,7 @@ def plot_estimate(df, legend=True):
             ),
             detail="extreme:N",
         )
-        .properties(width=800)
+        # .properties(width=800)
         # .interactive()
     )
 
@@ -102,7 +102,7 @@ def plot_observed(df):
                 alt.Tooltip("week:Q"),
             ],
         )
-        .properties(width=800)
+        # .properties(width=800)
     ).interactive()
     return alt_history
 
@@ -131,7 +131,7 @@ def plot_limits(df):
                 color=alt.Color("transformer:N", scale=alt.Scale(range=["red"])),
                 detail=("limit:N"),
             )
-            .properties(width=800)
+            # .properties(width=800)
         )  # .interactive()
     else:
         return (
@@ -141,7 +141,7 @@ def plot_limits(df):
                 y=alt.Y("value:Q", title="power [kW]"),
                 color=alt.Color("transformer:N", scale=alt.Scale(range=["red"])),
             )
-            .properties(width=800)
+            # .properties(width=800)
         )  # .interactive()
 
 
@@ -210,7 +210,8 @@ def plot_decompose(df):
             df.query(f"model_var=='{var}'"), legend=None
         ).properties(
             title=var,
-            height=100,
+            height=80,
+            width=550,
         )
         plot_vars.append(plot_var)
     return alt.vconcat(*plot_vars)

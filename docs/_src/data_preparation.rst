@@ -114,3 +114,17 @@ An example of the loaded extreme data is shown below
     :align: center
 
 The format of the loaded extremes data.
+
+
+Data Updating Process
+----------
+
+The weekly extremes can be updated every week (or longer).
+
+By running :meth:`src.preprocess.update_extremes` the function :meth:`src.utils.snowflake.update_week_extremes` is called.
+This will will trigger the following steps which update the weekly extremes Snowflake table:
+
+.. image:: _static/img/preprocessing_details.png
+    :width: 400px
+    :align: center
+The detailed process to create and assess load forecasts.

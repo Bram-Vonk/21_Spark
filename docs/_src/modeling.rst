@@ -76,14 +76,14 @@ Generalized Additive Model
 The GAM model used is (:meth:`src.model.model.create_model`):
 
 .. math::
-   σ_ε \sim Uniform(lower=0, upper=1)
+   \sigma_\epsilon \sim Uniform(lower=0, \:upper=1)
 
 .. math::
-   Σ\:|\:drift, yearly, σ_ε = Normal(μ=drift + yearly, sd=σ_ε)
+   \Sigma\:|\:drift, yearly, \sigma_\epsilon = Normal(\mu=drift + yearly, \:sd=\sigma_\epsilon)
 
 The additive naming is explicit in this notation.
 
-The error component has a has a bandwidth of :math:`σ_ε`.
+The error component has a has a bandwidth of :math: `\sigma_\epsilon`.
 
 Drift Component
 ^^^^^^^^^^^^^^
@@ -98,10 +98,10 @@ The drift component model with a taylor series with the order of :math:`n` is de
    X_{drift}(t) = [t^0, ...,  t^n]
 
 .. math::
-   β_{drift} \sim Normal(μ=0, sd=0.5)
+   \beta_{drift} \sim Normal(\mu=0, \:sd=0.5)
 
 .. math::
-   drift\:|\:β_{drift} = X_{drift}(t)\:β_{drift}
+   drift\:|\:\beta_{drift} = X_{drift}(t)\:\beta_{drift}
 
 For modelling a drift that has the described growth, a polynomial with order :math:`n=2` is used.
 
@@ -119,10 +119,10 @@ The yearly seasonality model is described as:
    X_{yearly}(t) = [cos(\frac{2 \pi 1 t}{T}), ..., sin(\frac{2 \pi n t}{T})]
 
 .. math::
-   β_{yearly} \sim Normal(μ=0, sd=1)
+   \beta_{yearly} \sim Normal(\mu=0, \:sd=1)
 
 .. math::
-   drift\:|\:β_{yearly} = X_{yearly}(t)\:β_{yearly}
+   drift\:|\:\beta_{yearly} = X_{yearly}(t)\:\beta_{yearly}
 
 Here the :math:`T` is the period of the seasonality in unit of time of the data.
 The is unit of time in case is a week for the data and a year in weeks is :math:`T=52.1775`.
@@ -130,12 +130,12 @@ The order taken for the fourier series is :math:`n=5`.
 
 Enabling Forecasts
 ^^^^^^^^^^^^^^^^
-The model parameters (:math:`β`)'s can now be tuned to produce the model is most likely to produce the observed (measurement) data.
+The model parameters (:math:`\beta`)'s can now be tuned to produce the model is most likely to produce the observed (measurement) data.
 
 To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.
 The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon (:meth:`src.preprocess.preprocess.extrapolate_timestamps`).
 
-The matching observations (measurements) can be intentionally filled with NaN's. in the model PyMC3 will name them :math:`Σ_missing`.
+The matching observations (measurements) can be intentionally filled with NaN's. in the model PyMC3 will name them :math:`\Sigma_missing`.
 (This characteristic makes the model also robust against missing data).
 
 By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps (:meth:`src.forecast.forecast.determine_estimates`).
@@ -147,7 +147,7 @@ Total model Σ
     :align: center
 The total model visualized.
 
-Two separate GAM models :math:`Σ` (:meth:`src.model.model.create_model`) are used for the weekly minimum and maximum.
+Two separate GAM models :math:`\Sigma` (:meth:`src.model.model.create_model`) are used for the weekly minimum and maximum.
 
 The visual above shows the total GAM model with a polynomial drift order :math:`n=2` (the bias of order 0 explains :math:`N+1=3`) and a fourier order of :math:`n=5` (the sine and cosine parts explain :math:`N*2=10`).
 
