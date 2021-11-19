@@ -383,7 +383,7 @@ Measurements from the train and test set are plotted.</p>
 <h3>Improvement suggestions<a class="headerlink" href="#improvement-suggestions" title="Permalink to this headline">¶</a></h3>
 <p>The following ideas could result in a better model:</p>
 <ul class="simple">
-<li><p>A hybrid additive-multiplicative model for dealing with the growing seasonality.</p></li>
+<li><p>Implementing a hybrid additive-multiplicative model for dealing with the growing seasonality.</p></li>
 <li><dl class="simple">
 <dt>Adding a extra component to detect temporarily bypass switching of loads of other transformers.</dt><dd><ul>
 <li><p>This could be implemented by estimating parameters of a <a class="reference external" href="https://en.wikipedia.org/wiki/Rectangular_function">rectangular function</a>.</p></li>
@@ -398,8 +398,8 @@ Measurements from the train and test set are plotted.</p>
 </dd>
 </dl>
 </li>
-<li><p>Use the population seasonality as a <a class="reference external" href="https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/">prior</a> in case of a short history of observations.</p></li>
-<li><p>Use by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p></li>
+<li><p>Using the population seasonality as a <a class="reference external" href="https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/">prior</a> in case of a short history of observations.</p></li>
+<li><p>Using by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p></li>
 </ul>
 </section>
 </section>
