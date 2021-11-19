@@ -138,7 +138,7 @@
             <a href="#model-evaluation" class="nav-link">Model Evaluation</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#model-stability" class="nav-link">Model Stability</a>
+            <a href="#model-robustness" class="nav-link">Model Robustness</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
@@ -153,20 +153,32 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#results-evaluation" class="nav-link">Results Evaluation</a>
+            <a href="#results-evaluation" class="nav-link">Results Evaluation</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#results-prioritization" class="nav-link">Results Prioritization</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#assessment-implementation" class="nav-link">Assessment Implementation</a>
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#evaluation-implementation" class="nav-link">Evaluation Implementation</a>
+        </li>
+    
+            </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
             <a href="#presentation-of-results" class="nav-link">Presentation of Results</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#process-evaluation" class="nav-link">Process Evaluation</a>
+            <a href="#improvements-on-presentation" class="nav-link">Improvements on Presentation</a>
         </li>
     
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#learning-objectives-evaluation" class="nav-link">Learning Objectives Evaluation</a><ul class="nav section-nav flex-column">
+                
         <li class="nav-item toc-entry toc-h3">
             <a href="#next-steps" class="nav-link">Next Steps</a>
         </li>
@@ -189,21 +201,22 @@
                 
   <section id="evaluation">
 <h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h1>
+<p>This section discusses the evaluation of the implemented model, the assessments of results and a reflection on the learning objectives for the study course this project was part of.</p>
+<section id="model-evaluation">
+<h2>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h2>
 <p>The evaluation of results has not been done with a error criteria (e.g. MAE, MAPE), but only visual.
 This will be done in the near future, when additional model improvements are implemented and needed to be assessed.</p>
 <p>This section will discuss briefly the model</p>
-<section id="model-evaluation">
-<h2>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h2>
-<section id="model-stability">
-<h3>Model Stability<a class="headerlink" href="#model-stability" title="Permalink to this headline">¶</a></h3>
+<section id="model-robustness">
+<h3>Model Robustness<a class="headerlink" href="#model-robustness" title="Permalink to this headline">¶</a></h3>
 <p>The model as it is described before is stable for all transformer forecasts: It converges for all transformer timeseries that are used.</p>
 <p>A robust model for all 11k transformers is essential if models are trained and used without human supervision and results are automatically assessed.
 An experiment of an exponential function for the drift sub-model was implemented, but far from stable.</p>
-<dl>
-<dt>The model is also robust when data is missing. Even missing data for long periods will result is a reasonable forecast:</dt><dd><a class="reference internal image-reference" href="_images/missing_data_results.png"><img alt="_images/missing_data_results.png" class="align-center" src="_images/missing_data_results.png" style="width: 800px;" /></a>
-</dd>
-</dl>
-<p>The model results after accidentally data was removed from the source database.</p>
+<p>The model is also robust when data is missing. Even missing data for long periods will result is a reasonable forecast:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/missing_data_results.png"><img alt="_images/missing_data_results.png" class="align-center" src="_images/missing_data_results.png" style="width: 800px;" /></a>
+</div></blockquote>
+<p>The model results after data accidentally was removed from the source database.</p>
 </section>
 <section id="model-results">
 <h3>Model Results<a class="headerlink" href="#model-results" title="Permalink to this headline">¶</a></h3>
@@ -235,6 +248,9 @@ The most promising suggestions for model improvement are:</p>
 </section>
 <section id="results-evaluation">
 <h2>Results Evaluation<a class="headerlink" href="#results-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses the assessment and prioritization of the forecasts and the implementation within the process.</p>
+<section id="results-prioritization">
+<h3>Results Prioritization<a class="headerlink" href="#results-prioritization" title="Permalink to this headline">¶</a></h3>
 <p>The are potentially 11k models that all forecast six months ahead.</p>
 <p>These are numbers too high to be assessed by grid planners one by one.
 Therefore the forecast results are automatically assessed and ordered by urgency.</p>
@@ -255,34 +271,48 @@ The forecasts of these transformers are simply ordered by potential loading</p>
 <li><p>Find value and index (timestamp) of the maximum.</p></li>
 <li><p>Order the transformers by timestamp (first) and value (second).</p></li>
 </ul>
-<dl>
-<dt>The result of this prioritization is shown below.</dt><dd><a class="reference internal image-reference" href="_images/ordered_transformers.png"><img alt="_images/ordered_transformers.png" class="align-center" src="_images/ordered_transformers.png" style="width: 300px;" /></a>
-</dd>
-</dl>
+<p>The result of this prioritization is shown below.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/ordered_transformers.png"><img alt="_images/ordered_transformers.png" class="align-center" src="_images/ordered_transformers.png" style="width: 300px;" /></a>
+</div></blockquote>
 <p>Transformers ordered by potential (over)loading.</p>
 <p>The result is that grid planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.</p>
 </section>
-<section id="assessment-implementation">
-<h2>Assessment Implementation<a class="headerlink" href="#assessment-implementation" title="Permalink to this headline">¶</a></h2>
+<section id="evaluation-implementation">
+<h3>Evaluation Implementation<a class="headerlink" href="#evaluation-implementation" title="Permalink to this headline">¶</a></h3>
+<p>The assessments of the forecasts which results in the ordered list (<a class="reference internal" href="autoapi/src/forecast/assess/index.html#src.forecast.assess.asses_forecasts" title="src.forecast.assess.asses_forecasts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.assess.asses_forecasts()</span></code></a>) is done directly after forecasting.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/forecasts_assessment.png"><img alt="_images/forecasts_assessment.png" class="align-center" src="_images/forecasts_assessment.png" style="width: 800px;" /></a>
+</div></blockquote>
+<p>The process steps of the final product.</p>
+<p>The result is stored separately in a Snowflake database table (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.read_forecast_meta" title="src.utils.snowflake.read_forecast_meta"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.read_forecast_meta()</span></code></a>).
+This way the data can quickly be loaded by the dashboard application and presented to the grid planners.</p>
+</section>
 </section>
 <section id="presentation-of-results">
 <h2>Presentation of Results<a class="headerlink" href="#presentation-of-results" title="Permalink to this headline">¶</a></h2>
-<p>First glimp of the dashboard (interactive when running)</p>
+<p>A dashboard is made by using Panel and Altair libraries (<a class="reference internal" href="autoapi/src/plot/dashboard/index.html#module-src.plot.dashboard" title="src.plot.dashboard"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.plot.dashboard</span></code></a>).</p>
+<p>The dashboard presents the ordered list of all transformers and a figure of a forecast for an individual transformer.</p>
+<p>The list can be filtered by Enexis sub-service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
+Other ordering is possible if the grid planner desires.</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/dashboard.png"><img alt="_images/dashboard.png" class="align-center" src="_images/dashboard.png" style="width: 800px;" /></a>
 </div></blockquote>
 <p>The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.</p>
-<p>Further suggestions for model improvement are:
-* Improving tuning and forecasting time.
-* Implementing hybrid additive-multiplicative model for dealing with the growing seasonality.
-* Adding a extra component to detect temporarily bypass switching of loads of other transformers.
-* Making more recent observations more relevant for slowly changing loading patterns
-* Using the population seasonality as a <a class="reference external" href="https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/">prior</a> in case of a short history of observations.
-* Using by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p>
-<section id="process-evaluation">
-<h3>Process Evaluation<a class="headerlink" href="#process-evaluation" title="Permalink to this headline">¶</a></h3>
-<p>TO DO</p>
+<p>After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.
+One can zoom in and pan de plot and tooltips show up on historic measurement data.
+If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.</p>
+<section id="improvements-on-presentation">
+<h3>Improvements on Presentation<a class="headerlink" href="#improvements-on-presentation" title="Permalink to this headline">¶</a></h3>
+<p>Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between python and the Snowflake database.
+This issue has the highest priority, since grid planners do not want to wait for results.</p>
+<p>Secondly, The current dashboard needs to be deployed within the Enexis landscape.</p>
+<p>Additionally, some aesthetic improvements are welcome, since the presentation is quiet basic at this moment.</p>
 </section>
+</section>
+<section id="learning-objectives-evaluation">
+<h2>Learning Objectives Evaluation<a class="headerlink" href="#learning-objectives-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>TO DO</p>
 <section id="next-steps">
 <h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h3>
 <p>TO DO</p>
