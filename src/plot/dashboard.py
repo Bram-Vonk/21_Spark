@@ -8,8 +8,8 @@ from src.plot.altair import plot_all, plot_decompose
 
 
 
-alt.renderers.enable("default")
-pn.extension("vega")
+# alt.renderers.enable("default")
+# pn.extension("vega")
 pn.extension('tabulator')
 
 def create_dashboard():
@@ -31,13 +31,16 @@ def create_dashboard():
 
     # configure tabulator for prioritization list of transformers
     tabulator_formatters = {
-        "float": {"type": "progress", "max": 1},
-        "bool": {"type": "tickCross"},
+        "P_max": {
+            "type": "progress",
+            "max": 1,
+            "color": ["green"] * 80 + ["orange"] * 15 + ["red"] * 5,
+        },
     }
 
     table = pn.widgets.Tabulator(
         df_table.copy(),
-        #     formatters=tabulator_formatters,
+            formatters=tabulator_formatters,
         show_index=False,
         disabled=True,
         selectable=1,

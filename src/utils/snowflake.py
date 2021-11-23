@@ -423,13 +423,19 @@ def read_forecasts(boxid=None):
     SELECT
         t.*
     FROM {con_config["database"]}.{con_config["schema"]}.{con_config["table"]} t
-        WHERE IS_VALID  {box_selector}
+        WHERE IS_VALID  {box_selector};
     """
 
     with create_engine(URL(**con_config)).connect() as con:
         df_query = pd.read_sql(sql=query, con=con)
+    # with snowflake.connector.connect(**get_secrets("snowflake")) as con:
+    #     # con.autocommit(True)
+    #     cur = con.cursor()
+    #     cur.execute(query)
+    #     df_query = cur.fetch_pandas_all()
+    #     # con.commit()
 
-    return df_query
+    return df_query.rename(columns=str.lower)
 
 
 def read_forecast_meta():
@@ -444,7 +450,7 @@ def read_forecast_meta():
     with create_engine(URL(**con_config)).connect() as con:
         df_query = pd.read_sql(sql=query, con=con)
 
-    return df_query
+    return df_query.rename(columns=str.lower)
 
 
 def get_forecasted_boxids():

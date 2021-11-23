@@ -291,17 +291,21 @@ This way the data can quickly be loaded by the dashboard application and present
 </section>
 <section id="presentation-of-results">
 <h2>Presentation of Results<a class="headerlink" href="#presentation-of-results" title="Permalink to this headline">¶</a></h2>
-<p>A dashboard is made by using Panel and Altair libraries (<a class="reference internal" href="autoapi/src/plot/dashboard/index.html#module-src.plot.dashboard" title="src.plot.dashboard"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.plot.dashboard</span></code></a>).</p>
-<p>The dashboard presents the ordered list of all transformers and a figure of a forecast for an individual transformer.</p>
-<p>The list can be filtered by Enexis sub-service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
-Other ordering is possible if the grid planner desires.</p>
+<p>A dashboard is made by using Panel and Altair libraries (<a class="reference internal" href="autoapi/src/plot/dashboard/index.html#module-src.plot.dashboard" title="src.plot.dashboard"><code class="xref py py-mod docutils literal notranslate"><span class="pre">src.plot.dashboard</span></code></a>).
+The dashboard presents the ordered list of all transformers and a figure of a forecast for an individual transformer.</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/dashboard.png"><img alt="_images/dashboard.png" class="align-center" src="_images/dashboard.png" style="width: 800px;" /></a>
 </div></blockquote>
 <p>The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.</p>
+<p>The list can be filtered by Enexis sub-service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
+Other ordering is possible if the grid planner desires.</p>
 <p>After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.
 One can zoom in and pan de plot and tooltips show up on historic measurement data.
 If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/dashboard_min.png"><img alt="_images/dashboard_min.png" class="align-center" src="_images/dashboard_min.png" style="width: 800px;" /></a>
+</div></blockquote>
+<p>The dashboard with the sub-service area filtering and the minimum decomposition tab of the dashboard.</p>
 <section id="improvements-on-presentation">
 <h3>Improvements on Presentation<a class="headerlink" href="#improvements-on-presentation" title="Permalink to this headline">¶</a></h3>
 <p>Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between python and the Snowflake database.

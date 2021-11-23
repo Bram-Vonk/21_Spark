@@ -122,11 +122,7 @@ Presentation of Results
 -------------------------
 
 A dashboard is made by using Panel and Altair libraries (:mod:`src.plot.dashboard`).
-
 The dashboard presents the ordered list of all transformers and a figure of a forecast for an individual transformer.
-
-The list can be filtered by Enexis sub-service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
-Other ordering is possible if the grid planner desires.
 
  .. image:: _static/img/dashboard.png
     :width: 800px
@@ -135,10 +131,19 @@ Other ordering is possible if the grid planner desires.
 The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.
 
 
+The list can be filtered by Enexis sub-service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
+Other ordering is possible if the grid planner desires.
+
+
 After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.
 One can zoom in and pan de plot and tooltips show up on historic measurement data.
 If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.
 
+ .. image:: _static/img/dashboard_min.png
+    :width: 800px
+    :align: center
+
+The dashboard with the sub-service area filtering and the minimum decomposition tab of the dashboard.
 
 
 Improvements on Presentation
