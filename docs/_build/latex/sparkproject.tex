@@ -212,7 +212,7 @@
 
 
 \title{`Spark project`}
-\date{Nov 19, 2021}
+\date{Nov 26, 2021}
 \release{0.0.1}
 \author{Bram Vonk}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -694,7 +694,7 @@ Data is available in Snowflake. in a Jupyter Notebook pandas with a SQLAlchemy e
 Credentials are available via Vault in the Enexis domain.
 
 
-\subsection{Measurement data source}
+\subsection{Measurement Data Source}
 \label{\detokenize{data_understanding:measurement-data-source}}
 In a Snowflake database the following data is available:
 
@@ -1318,28 +1318,31 @@ Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/
 
 \chapter{Evaluation}
 \label{\detokenize{evaluation:evaluation}}\label{\detokenize{evaluation::doc}}
+This section discusses the evaluation of the implemented model, the assessments of results and a reflection on the learning objectives for the study course this project was part of.
+
+
+\section{Model Evaluation}
+\label{\detokenize{evaluation:model-evaluation}}
 The evaluation of results has not been done with a error criteria (e.g. MAE, MAPE), but only visual.
 This will be done in the near future, when additional model improvements are implemented and needed to be assessed.
 
 This section will discuss briefly the model
 
 
-\section{Model Evaluation}
-\label{\detokenize{evaluation:model-evaluation}}
-
-\subsection{Model Stability}
-\label{\detokenize{evaluation:model-stability}}
+\subsection{Model Robustness}
+\label{\detokenize{evaluation:model-robustness}}
 The model as it is described before is stable for all transformer forecasts: It converges for all transformer timeseries that are used.
 
 A robust model for all 11k transformers is essential if models are trained and used without human supervision and results are automatically assessed.
 An experiment of an exponential function for the drift sub\sphinxhyphen{}model was implemented, but far from stable.
-\begin{description}
-\item[{The model is also robust when data is missing. Even missing data for long periods will result is a reasonable forecast:}] \leavevmode
+
+The model is also robust when data is missing. Even missing data for long periods will result is a reasonable forecast:
+\begin{quote}
+
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{missing_data_results}.png}\hspace*{\fill}}
+\end{quote}
 
-\end{description}
-
-The model results after accidentally data was removed from the source database.
+The model results after data accidentally was removed from the source database.
 
 
 \subsection{Model Results}
@@ -1390,6 +1393,11 @@ Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/
 
 \section{Results Evaluation}
 \label{\detokenize{evaluation:results-evaluation}}
+This section discusses the assessment and prioritization of the forecasts and the implementation within the process.
+
+
+\subsection{Results Prioritization}
+\label{\detokenize{evaluation:results-prioritization}}
 The are potentially 11k models that all forecast six months ahead.
 
 These are numbers too high to be assessed by grid planners one by one.
@@ -1430,23 +1438,36 @@ Find value and index (timestamp) of the maximum.
 Order the transformers by timestamp (first) and value (second).
 
 \end{itemize}
-\begin{description}
-\item[{The result of this prioritization is shown below.}] \leavevmode
-\noindent{\hspace*{\fill}\sphinxincludegraphics[width=300\sphinxpxdimen]{{ordered_transformers}.png}\hspace*{\fill}}
 
-\end{description}
+The result of this prioritization is shown below.
+\begin{quote}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=300\sphinxpxdimen]{{ordered_transformers}.png}\hspace*{\fill}}
+\end{quote}
 
 Transformers ordered by potential (over)loading.
 
 The result is that grid planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.
 
 
-\section{Assessment Implementation}
-\label{\detokenize{evaluation:assessment-implementation}}
+\subsection{Evaluation Implementation}
+\label{\detokenize{evaluation:evaluation-implementation}}
+The assessments of the forecasts which results in the ordered list ({\hyperref[\detokenize{autoapi/src/forecast/assess/index:src.forecast.assess.asses_forecasts}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.forecast.assess.asses\_forecasts()}}}}}) is done directly after forecasting.
+\begin{quote}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{forecasts_assessment}.png}\hspace*{\fill}}
+\end{quote}
+
+The process steps of the final product.
+
+The result is stored separately in a Snowflake database table ({\hyperref[\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.read_forecast_meta}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.utils.snowflake.read\_forecast\_meta()}}}}}).
+This way the data can quickly be loaded by the dashboard application and presented to the grid planners.
+
 
 \section{Presentation of Results}
 \label{\detokenize{evaluation:presentation-of-results}}
-First glimp of the dashboard (interactive when running)
+A dashboard is made by using Panel and Altair libraries ({\hyperref[\detokenize{autoapi/src/plot/dashboard/index:module-src.plot.dashboard}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.plot.dashboard}}}}}).
+The dashboard presents the ordered list of all transformers and a figure of a forecast for an individual transformer.
 \begin{quote}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dashboard}.png}\hspace*{\fill}}
@@ -1454,22 +1475,218 @@ First glimp of the dashboard (interactive when running)
 
 The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.
 
-Further suggestions for model improvement are:
-* Improving tuning and forecasting time.
-* Implementing hybrid additive\sphinxhyphen{}multiplicative model for dealing with the growing seasonality.
-* Adding a extra component to detect temporarily bypass switching of loads of other transformers.
-* Making more recent observations more relevant for slowly changing loading patterns
-* Using the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
-* Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
+The list can be filtered by Enexis sub\sphinxhyphen{}service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
+Other ordering is possible if the grid planner desires.
+
+After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.
+One can zoom in and pan de plot and tooltips show up on historic measurement data.
+If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.
+\begin{quote}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dashboard_min}.png}\hspace*{\fill}}
+\end{quote}
+
+The dashboard with the sub\sphinxhyphen{}service area filtering and the minimum decomposition tab of the dashboard.
 
 
-\subsection{Process Evaluation}
-\label{\detokenize{evaluation:process-evaluation}}
+\subsection{Improvements on Presentation}
+\label{\detokenize{evaluation:improvements-on-presentation}}
+Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between python and the Snowflake database.
+This issue has the highest priority, since grid planners do not want to wait for results.
+
+Secondly, The current dashboard needs to be deployed within the Enexis landscape.
+
+Additionally, some aesthetic improvements are welcome, since the presentation is quiet basic at this moment.
+
+
+\section{Learning Objectives Evaluation}
+\label{\detokenize{evaluation:learning-objectives-evaluation}}
+This section covers my personal growth reflection on the Lead track of JADS.
+Firstly, I will cover the objectives and criteria set by JADS.
+Secondly, I will review my personal goals.
+
+
+\subsection{JADS \sphinxhyphen{} Professional Education \sphinxhyphen{} Lead Track}
+\label{\detokenize{evaluation:jads-professional-education-lead-track}}
+The general learning objectives for the Professional Education Lead track of JADS are:
+\begin{itemize}
+\item {} \begin{description}
+\item[{Acquiring the knowledge and skills covered in the courses (technical and non\sphinxhyphen{}technical).}] \leavevmode
+The most valuable courses were the non\sphinxhyphen{}technical ones.
+Partially, because there was maybe more to gain for me as a more technical character.
+But mainly, since they inspired me and enabled me to accept to embrace that skill set and also provided me with concrete tips to put it into practice.
+
+Some technical lectures (e.g. “from POCs to Production” and “A Primer in Data Engineering”) confirmed that the way of working and view on data science within my professional team is on the right track.
+Other technical courses (e.g. “Bayesian Nets”, “Recent Advances in A.I.”) inspired me and sparked an interest in new subjects.
+Those subjects are now on my personal bucket list for a technical deep dive in the near future.
+\begin{description}
+\item[{Concluding: I am convinced the courses in the Lead Track moved a good number of my skills towards the conscious incompetence and conscious competence levels.}] \leavevmode
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{competence}.png}\hspace*{\fill}}
+
+\end{description}
+
+The Conscious Competence Learning Model (source: \sphinxhref{http://www.pamelaslim.com}{pamelaslim.com}).
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Leading and implementing an impactful data science project by use of the CRISP\sphinxhyphen{}DM process.}] \leavevmode
+The described project of this documentation shows the result of that.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Forming individuals to enable them to make impact with data science.}] \leavevmode
+The coaching from the educators of JADS helped me reassess my future career.
+\begin{itemize}
+\item {} 
+The discussions with Jeroen about academic and engineering skills helped me appreciating my skills, my work and myself more.
+
+\item {} 
+The coaching of Kyril helped me to form a clearer view on my career goal and how to get there.
+
+\item {} 
+The highly effective presentation masterclass of Raoul helped me to reach goals more effective.
+
+\end{itemize}
+
+\end{description}
+
+\end{itemize}
+
+The evaluation criteria for the Professional Education Lead track of JADS and how I translated them are:
+\begin{itemize}
+\item {} 
+Business Value
+\begin{itemize}
+\item {} 
+Use case selection
+
+\item {} 
+Stakeholder analysis
+
+\item {} 
+Stakeholder and expectation management
+
+\item {} 
+Value flow down diagram
+
+\item {} 
+Regular business review moments
+
+\end{itemize}
+
+\item {} 
+Programming
+\begin{itemize}
+\item {} 
+Coding standards with Cookiecutter and linting (black, isort, flake8)
+
+\item {} 
+Using Sphinx for auto API documentation in GitHub
+
+\item {} 
+Interactive visualisations in Altair
+
+\item {} 
+Dashboard in Panel
+
+\end{itemize}
+
+\item {} 
+Data engineering
+\begin{itemize}
+\item {} 
+Snowflake database preprocessing usage (asynchronous queries, ETL)
+
+\item {} 
+Vault credential management
+
+\item {} 
+Docker (compose with entrypoint) for every process step
+
+\end{itemize}
+
+\item {} 
+Data analytics \& machine learning
+\begin{itemize}
+\item {} 
+Coding data management and model from scratch (since not using sklearn)
+
+\item {} 
+Probabilistic modelling in PyMC3
+
+\item {} 
+Using Fourier and Taylor series in generalized additive model for time series forecast
+
+\end{itemize}
+
+\item {} 
+Professional standard of reporting
+\begin{itemize}
+\item {} 
+Using Sphinx for this documentation
+
+\item {} 
+Status slide deck after sprint review with end users
+
+\item {} 
+Project status / pitch and management summary for JADS peers and training
+
+\end{itemize}
+
+\item {} 
+Academic / research skills
+\begin{itemize}
+\item {} 
+Using the engineering approach (instead of the scientific method or the axiomatic system) to iteratively create and validate model and outcome.
+
+\end{itemize}
+
+\end{itemize}
+
+
+\subsection{Personal Goals \sphinxhyphen{} Bram Vonk}
+\label{\detokenize{evaluation:personal-goals-bram-vonk}}
+Additionally, there were also my personal learning objectives:
+\begin{itemize}
+\item {} 
+Going through all the steps of CRISP\sphinxhyphen{}DM by myself (from Business Understanding to Deployment).
+
+\item {} 
+Better understanding of probabilistic modeling techniques (e.g. bayesian models, probabilistic tools).
+
+\item {} 
+Able to value my data skills and knowledge and creating traction / more confidence on flourishing as a data scientist.
+
+\end{itemize}
+
+One by one my personal learning objectives are fulfilled.
+
+However, my conscious incompetence skill set has grown dramatically.
+So my new learning objectives are already there. (I will just have to order that backlog.)
+
+
+\chapter{Deployment}
+\label{\detokenize{deployment:deployment}}\label{\detokenize{deployment::doc}}
+
+\section{Deployment Plan}
+\label{\detokenize{deployment:deployment-plan}}
 TO DO
 
 
-\subsection{Next Steps}
-\label{\detokenize{evaluation:next-steps}}
+\section{Monitoring and Maintenance Plan}
+\label{\detokenize{deployment:monitoring-and-maintenance-plan}}
+TO DO
+
+
+\section{Final Report}
+\label{\detokenize{deployment:final-report}}
+TO DO
+
+
+\section{Project review}
+\label{\detokenize{deployment:project-review}}
 TO DO
 
 
@@ -1508,6 +1725,25 @@ Created with \sphinxhref{https://github.com/readthedocs/sphinx-autoapi}{sphinx\s
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/forecast/assess/index:src.forecast.assess.asses_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.forecast.assess.}}\sphinxbfcode{\sphinxupquote{asses\_forecasts}}}{\emph{\DUrole{n}{df\_total}}, \emph{\DUrole{n}{df\_meta}}}{}
+Assesses if and when a transformer will overload based on the forecasts and metadata.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{description}
+\item[{\sphinxstylestrong{df\_total: pd.DataFrame}}] \leavevmode
+DataFrame with forecasts.
+
+\item[{\sphinxstylestrong{df\_meta: pd.DataFrame}}] \leavevmode
+DataFrame with metadata of the transformer.
+
+\end{description}
+
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxcode{\sphinxupquote{pd.DataFrame}}}] \leavevmode
+Result of the assessment.
+
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 
@@ -1648,7 +1884,7 @@ Clear the Snowflake table
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/model/format/index:src.model.format.make_quantile_bands}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.model.format.}}\sphinxbfcode{\sphinxupquote{make\_quantile\_bands}}}{\emph{\DUrole{n}{df\_base}}, \emph{\DUrole{n}{samples}}, \emph{\DUrole{n}{quantiles}\DUrole{o}{=}\DUrole{default_value}{5, 15, 50, 85, 95}}}{}
-Translate samples to bands with edges defined by the given quantiles and merge them to a base dataFrame
+Translate samples to bands with edges defined by the given quantiles and merge them to a base DataFrame.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{description}
 \item[{\sphinxstylestrong{df\_base}}] \leavevmode{[}\sphinxcode{\sphinxupquote{pd.DataFrame}}{]}
@@ -1958,6 +2194,25 @@ DataFrame with the limits to be plotted
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/plot/altair/index:src.plot.altair.lightness_scale}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.plot.altair.}}\sphinxbfcode{\sphinxupquote{lightness\_scale}}}{\emph{\DUrole{n}{factor}}, \emph{\DUrole{n}{limits}\DUrole{o}{=}\DUrole{default_value}{{[}'\#bedef4', '\#1f77b4'{]}}}}{}
+Create right color intensity for float values.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{description}
+\item[{\sphinxstylestrong{factor: float}}] \leavevmode
+Factor of full color intensity.
+
+\item[{\sphinxstylestrong{limits: list}}] \leavevmode
+Hex colour codes for start and end of scale.
+
+\end{description}
+
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxcode{\sphinxupquote{str}}}}] \leavevmode
+Hex code for the factor value.
+
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{plot\_base() (in module src.plot.altair)@\spxentry{plot\_base()}\spxextra{in module src.plot.altair}}
@@ -1991,13 +2246,13 @@ Plot decomposition of PYMC3 GAM model components by model variable.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{description}
 \item[{\sphinxstylestrong{df}}] \leavevmode{[}\sphinxcode{\sphinxupquote{pd.DataFrame}}{]}
-data of estimates in long format
+Data of estimates in long format.
 
 \end{description}
 
 \item[{Returns}] \leavevmode\begin{description}
 \item[{\sphinxcode{\sphinxupquote{alt.Chart}}}] \leavevmode
-Altair plot
+Altair plot.
 
 \end{description}
 
@@ -2009,7 +2264,7 @@ Altair plot
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/plot/altair/index:src.plot.altair.plot_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.plot.altair.}}\sphinxbfcode{\sphinxupquote{plot\_all}}}{\emph{\DUrole{n}{df\_data}}, \emph{\DUrole{n}{df\_meta}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
-Plot estimates, observed and limits
+Plot estimates, observed and limits.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{description}
 \item[{\sphinxstylestrong{df\_data}}] \leavevmode{[}\sphinxcode{\sphinxupquote{pd.DataFrame}}{]}
@@ -2022,6 +2277,26 @@ DataFrame with the metadata
 
 \item[{Returns}] \leavevmode\begin{description}
 \item[{\sphinxcode{\sphinxupquote{Altair}} \sphinxcode{\sphinxupquote{layer}} \sphinxcode{\sphinxupquote{chart}}}] \leavevmode
+\end{description}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\subparagraph{\sphinxstyleliteralintitle{\sphinxupquote{src.plot.dashboard}}}
+\label{\detokenize{autoapi/src/plot/dashboard/index:module-src.plot.dashboard}}\label{\detokenize{autoapi/src/plot/dashboard/index:src-plot-dashboard}}\label{\detokenize{autoapi/src/plot/dashboard/index::doc}}\index{module@\spxentry{module}!src.plot.dashboard@\spxentry{src.plot.dashboard}}\index{src.plot.dashboard@\spxentry{src.plot.dashboard}!module@\spxentry{module}}
+
+\subparagraph{Module Contents}
+\label{\detokenize{autoapi/src/plot/dashboard/index:module-contents}}\index{create\_dashboard() (in module src.plot.dashboard)@\spxentry{create\_dashboard()}\spxextra{in module src.plot.dashboard}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/plot/dashboard/index:src.plot.dashboard.create_dashboard}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.plot.dashboard.}}\sphinxbfcode{\sphinxupquote{create\_dashboard}}}{}{}
+Initialize dashboard.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{\sphinxcode{\sphinxupquote{None}}}}] \leavevmode
 \end{description}
 
 \end{description}\end{quote}
@@ -2242,6 +2517,22 @@ If checks are OK, return DataFrames with historic and meta preprocess.
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.format_data}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.}}\sphinxbfcode{\sphinxupquote{format\_data}}}{\emph{\DUrole{n}{df}}}{}
+Format the loaded weekly data in the correct form.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{description}
+\item[{\sphinxstylestrong{df: pd.DataFrame}}] \leavevmode
+Loaded weekly extremes.
+
+\end{description}
+
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxcode{\sphinxupquote{pd.DataFrame}}}] \leavevmode
+Formatted data.
+
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{split\_last() (in module src.preprocess.preprocess)@\spxentry{split\_last()}\spxextra{in module src.preprocess.preprocess}}
@@ -2586,7 +2877,8 @@ Read meta preprocess of DALI box.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{description}
 \item[{\sphinxstylestrong{boxid}}] \leavevmode{[}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{\sphinxcode{\sphinxupquote{list}}}{]}
-ID of DALI box to read. None results in all available preprocess of DALI boxes that have nominal power specified.
+ID of DALI box to read.
+None results in all available preprocess of DALI boxes that have nominal power specified.
 
 \end{description}
 
@@ -2728,48 +3020,124 @@ Week extremes.
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.clear_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{clear\_forecasts}}}{}{}
+Clear the table with forecasts.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{\sphinxcode{\sphinxupquote{None}}}}] \leavevmode
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{clear\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{clear\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.clear_forecast_meta}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{clear\_forecast\_meta}}}{}{}
+Clear the table with forecast metadata.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{\sphinxcode{\sphinxupquote{None}}}}] \leavevmode
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{write\_forecasts() (in module src.utils.snowflake)@\spxentry{write\_forecasts()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.write_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{write\_forecasts}}}{\emph{\DUrole{n}{df}}}{}
+Write results into the Snowflake database.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{description}
+\item[{\sphinxstylestrong{df: pd.DataFrame}}] \leavevmode
+Results to write.
+
+\end{description}
+
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{\sphinxcode{\sphinxupquote{None}}}}] \leavevmode
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{write\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{write\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.write_forecast_meta}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{write\_forecast\_meta}}}{\emph{\DUrole{n}{df}}}{}
+Write assessment of forecast on capacity to forecast metadata table in Snowflake.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{description}
+\item[{\sphinxstylestrong{df: pd.DataFrame}}] \leavevmode
+Assessment results.
+
+\end{description}
+
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{\sphinxcode{\sphinxupquote{None}}}}] \leavevmode
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{read\_forecasts() (in module src.utils.snowflake)@\spxentry{read\_forecasts()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.read_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{read\_forecasts}}}{\emph{\DUrole{n}{boxid}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+Read forecasts for Snowflake database.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{description}
+\item[{\sphinxstylestrong{boxid: str}}] \leavevmode
+Boxid of a DALI box. If not provided or None, all forecast are loaded.
+
+\end{description}
+
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxcode{\sphinxupquote{pd.DataFrame}}}] \leavevmode
+DataFrame with forecasts.
+
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{read\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{read\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.read_forecast_meta}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{read\_forecast\_meta}}}{}{}
+Read assessment of forecasts.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxcode{\sphinxupquote{pd.DataFrame}}}] \leavevmode
+Results of he assessment of all DALI box forecasts.
+
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{get\_forecasted\_boxids() (in module src.utils.snowflake)@\spxentry{get\_forecasted\_boxids()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.get_forecasted_boxids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{get\_forecasted\_boxids}}}{}{}
-\end{fulllineitems}
+Get the boxids for boxes that are already forecasted.
 
-\index{clear\_forecasts() (in module src.utils.snowflake)@\spxentry{clear\_forecasts()}\spxextra{in module src.utils.snowflake}}
+(Should be adapted when multiple forecasts (done on different dates) are present in database).
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode\begin{description}
+\item[{\sphinxcode{\sphinxupquote{pd.DataFrame}}}] \leavevmode
+Unique boxids.
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:id0}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{clear\_forecasts}}}{}{}
+\end{description}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 
@@ -2862,6 +3230,7 @@ Initialize logger.
 \item\relax\sphinxstyleindexentry{src.model.model}\sphinxstyleindexpageref{autoapi/src/model/model/index:\detokenize{module-src.model.model}}
 \item\relax\sphinxstyleindexentry{src.plot}\sphinxstyleindexpageref{autoapi/src/plot/index:\detokenize{module-src.plot}}
 \item\relax\sphinxstyleindexentry{src.plot.altair}\sphinxstyleindexpageref{autoapi/src/plot/altair/index:\detokenize{module-src.plot.altair}}
+\item\relax\sphinxstyleindexentry{src.plot.dashboard}\sphinxstyleindexpageref{autoapi/src/plot/dashboard/index:\detokenize{module-src.plot.dashboard}}
 \item\relax\sphinxstyleindexentry{src.plot.format}\sphinxstyleindexpageref{autoapi/src/plot/format/index:\detokenize{module-src.plot.format}}
 \item\relax\sphinxstyleindexentry{src.preprocess}\sphinxstyleindexpageref{autoapi/src/preprocess/index:\detokenize{module-src.preprocess}}
 \item\relax\sphinxstyleindexentry{src.preprocess.preprocess}\sphinxstyleindexpageref{autoapi/src/preprocess/preprocess/index:\detokenize{module-src.preprocess.preprocess}}
