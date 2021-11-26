@@ -1,8 +1,8 @@
 envyaml==1.6.201229
 hvac==0.10.14
 # PyAthena==2.0.0
-# snowflake-connector-python==2.4.4
-snowflake-sqlalchemy
+# nowflake-connector-python[pandas]==2.4.4
+snowflake-sqlalchemy==1.3.2
 pyarrow
 pandas==1.1.5
 seaborn==0.11.1

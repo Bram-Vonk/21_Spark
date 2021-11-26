@@ -4,7 +4,7 @@ import altair as alt
 import colour
 import numpy as np
 
-from src.plot.format import format_forecast, format_history, format_limits
+from src.plot.format import format_limits
 
 alt.data_transformers.disable_max_rows()
 
@@ -44,7 +44,7 @@ def plot_estimate(df, legend=True):
         ranges.remove("median")
         ranges.append("median")
     ranges = ranges[::-1]
-    parsed = [re.match("^Q(\d{1,2})-", s) for s in ranges]
+    parsed = [re.match(r"^Q(\d{1,2})-", s) for s in ranges]
     factors = [1 if res is None else (2 * int(res.groups()[0]) / 100) for res in parsed]
     colors = [lightness_scale(f) for f in factors]
 
@@ -146,6 +146,21 @@ def plot_limits(df):
 
 
 def lightness_scale(factor, limits=["#bedef4", "#1f77b4"]):
+    """
+    Create right color intensity for float values.
+
+    Parameters
+    ----------
+    factor: float
+        Factor of full color intensity.
+    limits: list
+        Hex colour codes for start and end of scale.
+
+    Returns
+    -------
+    str
+        Hex code for the factor value.
+    """
     h0 = colour.hex2hsl(limits[0])
     h1 = colour.hex2hsl(limits[1])
     color = [(1 - factor) * v0 + factor * v1 for v0, v1 in zip(h0, h1)]
@@ -170,9 +185,7 @@ def plot_base(df_data=None, df_meta=None):
     plots = []
 
     if df_data is not None:
-        df_estimates = df_data.query("model_var!='observed'").dropna(
-            subset=["model_var"]
-        )
+        df_estimates = df_data.query("model_var!='observed'").dropna(subset=["model_var"])
         if len(df_estimates):
             plots.append(plot_estimate(df_estimates))
 
@@ -197,18 +210,16 @@ def plot_decompose(df):
     Parameters
     ----------
     df : pd.DataFrame
-        data of estimates in long format
+        Data of estimates in long format.
 
     Returns
     -------
     alt.Chart
-        Altair plot
+        Altair plot.
     """
     plot_vars = []
     for var in ["Σ", "drift", "yearly"]:
-        plot_var = plot_estimate(
-            df.query(f"model_var=='{var}'"), legend=None
-        ).properties(
+        plot_var = plot_estimate(df.query(f"model_var=='{var}'"), legend=None).properties(
             title=var,
             height=80,
             width=550,
@@ -219,7 +230,7 @@ def plot_decompose(df):
 
 def plot_all(df_data, df_meta=None):
     """
-    Plot estimates, observed and limits
+    Plot estimates, observed and limits.
 
     Parameters
     ----------
@@ -233,8 +244,6 @@ def plot_all(df_data, df_meta=None):
         Altair layer chart
     """
     return plot_base(
-        df_data=df_data.query(
-            "model_var=='observed' | (model_var=='Σ' & period=='future')"
-        ),
+        df_data=df_data.query("model_var=='observed' | (model_var=='Σ' & period=='future')"),
         df_meta=df_meta,
     )

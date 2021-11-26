@@ -11,6 +11,7 @@ Submodules
    :maxdepth: 1
 
    altair/index.rst
+   dashboard/index.rst
    format/index.rst
 
 

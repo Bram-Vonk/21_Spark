@@ -200,10 +200,10 @@ Improvement suggestions
 
 The following ideas could result in a better model:
 
-* A hybrid additive-multiplicative model for dealing with the growing seasonality.
+* Implementing a hybrid additive-multiplicative model for dealing with the growing seasonality.
 * Adding a extra component to detect temporarily bypass switching of loads of other transformers.
     * This could be implemented by estimating parameters of a `rectangular function <https://en.wikipedia.org/wiki/Rectangular_function>`__.
 * Making more recent observations more relevant for slowly changing loading patterns
     * Possibilities are to mimic weights with `pm.Potential <https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689>`__ or `pm<distribution>(tau=weights) <https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11>`__.
-* Use the population seasonality as a `prior <https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/>`__ in case of a short history of observations.
-* Use by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.
+* Using the population seasonality as a `prior <https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/>`__ in case of a short history of observations.
+* Using by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.

@@ -19,12 +19,8 @@ def get_secrets(connection):
     -------
         requested secrets
     """
-    config = parse_config(
-        os.path.abspath(os.path.join(os.path.dirname(__file__), "../settings.yml"))
-    )
-    path = os.path.join(
-        config["vault"]["stack"], config["environment"], config["vault"][connection]
-    )
+    config = parse_config(os.path.abspath(os.path.join(os.path.dirname(__file__), "../settings.yml")))
+    path = os.path.join(config["vault"]["stack"], config["environment"], config["vault"][connection])
     return get_vault_secret(**config["vault"], path=path)
 
 

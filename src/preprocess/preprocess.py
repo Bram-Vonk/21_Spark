@@ -27,9 +27,7 @@ def too_short(df_data, threshold=52):
     """
     logger.info(f"checking number of preprocess points (<={threshold})")
     if len(df_data) <= threshold:
-        logger.info(
-            f"number of preprocess points ({len(df_data)}) under threshold ({threshold})"
-        )
+        logger.info(f"number of preprocess points ({len(df_data)}) under threshold ({threshold})")
         return True
     else:
         return False
@@ -55,9 +53,7 @@ def too_small(df_data, capacity, threshold=0.25):
     """
     logger.info(f"checking absolute values (<{threshold})")
     if df_data[["max", "min"]].abs().max().max() < capacity * threshold:
-        logger.info(
-            f"value of preprocess points are smaller than {threshold} times capacity ({capacity})"
-        )
+        logger.info(f"value of preprocess points are smaller than {threshold} times capacity ({capacity})")
         return True
     else:
         return False
@@ -136,6 +132,19 @@ def load_data(boxid):
 
 
 def format_data(df):
+    """
+    Format the loaded weekly data in the correct form.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        Loaded weekly extremes.
+
+    Returns
+    -------
+    pd.DataFrame
+        Formatted data.
+    """
     df = df.reset_index(drop=True)
     value_vars = ["max", "min"]
     df = df.melt(

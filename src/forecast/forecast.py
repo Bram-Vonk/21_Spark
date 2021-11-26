@@ -5,21 +5,16 @@ import os
 import pandas as pd
 import pymc3 as pm
 
+from src.forecast.assess import asses_forecasts
 from src.model.format import format_model_estimates
 from src.model.model import create_model
-from src.preprocess.preprocess import extrapolate_timestamps
+from src.preprocess.preprocess import extrapolate_timestamps, load_data
 from src.utils.parser import parse_config
 from src.utils.preprocess import MinMaxScaler
-from src.preprocess.preprocess import load_data
-from src.forecast.assess import asses_forecasts
 
 logger = logging.getLogger("SPARK")
 
-config = parse_config(
-    os.path.abspath(
-        os.path.join(os.path.join(os.path.dirname(__file__), "../settings.yml"))
-    )
-)
+config = parse_config(os.path.abspath(os.path.join(os.path.join(os.path.dirname(__file__), "../settings.yml"))))
 
 
 def determine_estimates(df_observed):
@@ -37,13 +32,11 @@ def determine_estimates(df_observed):
         estimates for extreme
     """
     # extend date
-    logger.info(f"add forecast horizon")
-    df_future = extrapolate_timestamps(
-        df_observed, horizon=dt.timedelta(weeks=config["model"]["fc_horizon"])
-    )
+    logger.info("add forecast horizon")
+    df_future = extrapolate_timestamps(df_observed, horizon=dt.timedelta(weeks=config["model"]["fc_horizon"]))
     df_full_range = pd.concat([df_observed, df_future])
 
-    logger.info(f"scale data")
+    logger.info("scale data")
     # scale t, y, p
     t_scaler = MinMaxScaler(lower=0)
     t = t_scaler.fit_transform(X=df_full_range["date"])
@@ -53,7 +46,7 @@ def determine_estimates(df_observed):
     p = t_scaler.transform(t_scaler.min + dt.timedelta(weeks=52.1775))
 
     # create model
-    logger.info(f"setup model")
+    logger.info("setup model")
     m = create_model(
         t=t,
         y=y_observed,
@@ -63,7 +56,7 @@ def determine_estimates(df_observed):
     )
 
     # display(pm.model_to_graphviz(m))
-    logger.info(f"tune and sample model")
+    logger.info("tune and sample model")
     # tune model
     trace = pm.sample(
         model=m,
@@ -79,19 +72,17 @@ def determine_estimates(df_observed):
         var_names=["drift", "yearly", "Σ"],
     )
 
-    logger.info(f"scale ouput data back")
+    logger.info("scale ouput data back")
     # inverse scale samples
     for k in pp.keys():
         pp[k] = y_scaler.inverse_transform(pp[k])
         if k == "yearly":
             pp[k] -= y_scaler.min
 
-    logger.info(f"format output data")
+    logger.info("format output data")
     # create base df and join it with posterior predictive quantiles
     df_base = df_full_range.drop(columns=["value", "processed_on", "model_var"]).copy()
-    df_estimates = format_model_estimates(
-        df_base, pp, quantiles=config["model"]["quantiles"]
-    )
+    df_estimates = format_model_estimates(df_base, pp, quantiles=config["model"]["quantiles"])
 
     return df_estimates
 

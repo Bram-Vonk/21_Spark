@@ -212,7 +212,7 @@
 
 
 \title{`Spark project`}
-\date{Nov 04, 2021}
+\date{Nov 19, 2021}
 \release{0.0.1}
 \author{Bram Vonk}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1287,7 +1287,7 @@ Measurements from the train and test set are plotted.
 The following ideas could result in a better model:
 \begin{itemize}
 \item {} 
-A hybrid additive\sphinxhyphen{}multiplicative model for dealing with the growing seasonality.
+Implementing a hybrid additive\sphinxhyphen{}multiplicative model for dealing with the growing seasonality.
 
 \item {} \begin{description}
 \item[{Adding a extra component to detect temporarily bypass switching of loads of other transformers.}] \leavevmode\begin{itemize}
@@ -1308,20 +1308,159 @@ Possibilities are to mimic weights with \sphinxhref{https://discourse.pymc.io/t/
 \end{description}
 
 \item {} 
-Use the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
+Using the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
 
 \item {} 
-Use by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
+Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
 
 \end{itemize}
 
 
 \chapter{Evaluation}
 \label{\detokenize{evaluation:evaluation}}\label{\detokenize{evaluation::doc}}
+The evaluation of results has not been done with a error criteria (e.g. MAE, MAPE), but only visual.
+This will be done in the near future, when additional model improvements are implemented and needed to be assessed.
+
+This section will discuss briefly the model
+
+
+\section{Model Evaluation}
+\label{\detokenize{evaluation:model-evaluation}}
+
+\subsection{Model Stability}
+\label{\detokenize{evaluation:model-stability}}
+The model as it is described before is stable for all transformer forecasts: It converges for all transformer timeseries that are used.
+
+A robust model for all 11k transformers is essential if models are trained and used without human supervision and results are automatically assessed.
+An experiment of an exponential function for the drift sub\sphinxhyphen{}model was implemented, but far from stable.
+\begin{description}
+\item[{The model is also robust when data is missing. Even missing data for long periods will result is a reasonable forecast:}] \leavevmode
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{missing_data_results}.png}\hspace*{\fill}}
+
+\end{description}
+
+The model results after accidentally data was removed from the source database.
+
+
+\subsection{Model Results}
+\label{\detokenize{evaluation:model-results}}
+The model forecasts neatly the median and quantile bands as intended.
+
+However, it will always be a model trained on historical, observed data, and forecasts will always be off.
+Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality opf the outside world.
+
+The grid planners were shown different off\sphinxhyphen{}results to make them aware of the limiting accuracy and reliability of the models and their forecasts.
+
+This was visually shown by the following actions:
+The results were assessed by splitting the observed data into a train and test set, using a model based on the train set and comparing the results with the test set.
+The performance of for the different transformers of course also differs, but an example can be seen in the following figure:
+\begin{quote}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{validation}.png}\hspace*{\fill}}
+\end{quote}
+
+Forecasts made by a model based on data before May 2021, validated with later observation.
+
+
+\subsection{Model Improvements}
+\label{\detokenize{evaluation:model-improvements}}
+Stepping through the CRISP\sphinxhyphen{}DM cycle resulted in several insights to for model improvement.
+The most promising suggestions for model improvement are:
+\begin{itemize}
+\item {} 
+Improving tuning and forecasting time.
+
+\item {} 
+Implementing hybrid additive\sphinxhyphen{}multiplicative model for dealing with the growing seasonality.
+
+\item {} 
+Adding a extra component to detect temporarily bypass switching of loads of other transformers.
+
+\item {} 
+Making more recent observations more relevant for slowly changing loading patterns
+
+\item {} 
+Using the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
+
+\item {} 
+Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
+
+\end{itemize}
+
 
 \section{Results Evaluation}
 \label{\detokenize{evaluation:results-evaluation}}
-TO DO
+The are potentially 11k models that all forecast six months ahead.
+
+These are numbers too high to be assessed by grid planners one by one.
+Therefore the forecast results are automatically assessed and ordered by urgency.
+
+The grid planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.
+
+Firstly, the definition of potential (over)loading was agreed on to be the following:
+\begin{itemize}
+\item {} 
+Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity
+
+\item {} 
+Potential overloading is the potential loading is greater than one.
+
+\end{itemize}
+
+Potential overloaded transformers can now be ordered by the point in time when they reach this limit.
+
+Then there are also transformers that will never potentially overload.
+The forecasts of these transformers are simply ordered by potential loading
+
+To summarize into steps:
+\begin{itemize}
+\item {} 
+Determine absolute value of the forecasted quantile bands.
+
+\item {} 
+Divide the found value by the transformer capacity.
+
+\item {} 
+Clip the results on the value of one.
+
+\item {} 
+Find value and index (timestamp) of the maximum.
+
+\item {} 
+Order the transformers by timestamp (first) and value (second).
+
+\end{itemize}
+\begin{description}
+\item[{The result of this prioritization is shown below.}] \leavevmode
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=300\sphinxpxdimen]{{ordered_transformers}.png}\hspace*{\fill}}
+
+\end{description}
+
+Transformers ordered by potential (over)loading.
+
+The result is that grid planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.
+
+
+\section{Assessment Implementation}
+\label{\detokenize{evaluation:assessment-implementation}}
+
+\section{Presentation of Results}
+\label{\detokenize{evaluation:presentation-of-results}}
+First glimp of the dashboard (interactive when running)
+\begin{quote}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dashboard}.png}\hspace*{\fill}}
+\end{quote}
+
+The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.
+
+Further suggestions for model improvement are:
+* Improving tuning and forecasting time.
+* Implementing hybrid additive\sphinxhyphen{}multiplicative model for dealing with the growing seasonality.
+* Adding a extra component to detect temporarily bypass switching of loads of other transformers.
+* Making more recent observations more relevant for slowly changing loading patterns
+* Using the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
+* Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
 
 
 \subsection{Process Evaluation}
@@ -1354,6 +1493,24 @@ Created with \sphinxhref{https://github.com/readthedocs/sphinx-autoapi}{sphinx\s
 
 \paragraph{Submodules}
 \label{\detokenize{autoapi/src/forecast/index:submodules}}
+
+\subparagraph{\sphinxstyleliteralintitle{\sphinxupquote{src.forecast.assess}}}
+\label{\detokenize{autoapi/src/forecast/assess/index:module-src.forecast.assess}}\label{\detokenize{autoapi/src/forecast/assess/index:src-forecast-assess}}\label{\detokenize{autoapi/src/forecast/assess/index::doc}}\index{module@\spxentry{module}!src.forecast.assess@\spxentry{src.forecast.assess}}\index{src.forecast.assess@\spxentry{src.forecast.assess}!module@\spxentry{module}}
+
+\subparagraph{Module Contents}
+\label{\detokenize{autoapi/src/forecast/assess/index:module-contents}}\index{logger (in module src.forecast.assess)@\spxentry{logger}\spxextra{in module src.forecast.assess}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/forecast/assess/index:src.forecast.assess.logger}}\pysigline{\sphinxcode{\sphinxupquote{src.forecast.assess.}}\sphinxbfcode{\sphinxupquote{logger}}}
+\end{fulllineitems}
+
+\index{asses\_forecasts() (in module src.forecast.assess)@\spxentry{asses\_forecasts()}\spxextra{in module src.forecast.assess}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/forecast/assess/index:src.forecast.assess.asses_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.forecast.assess.}}\sphinxbfcode{\sphinxupquote{asses\_forecasts}}}{\emph{\DUrole{n}{df\_total}}, \emph{\DUrole{n}{df\_meta}}}{}
+\end{fulllineitems}
+
+
 
 \subparagraph{\sphinxstyleliteralintitle{\sphinxupquote{src.forecast.forecast}}}
 \label{\detokenize{autoapi/src/forecast/forecast/index:module-src.forecast.forecast}}\label{\detokenize{autoapi/src/forecast/forecast/index:src-forecast-forecast}}\label{\detokenize{autoapi/src/forecast/forecast/index::doc}}\index{module@\spxentry{module}!src.forecast.forecast@\spxentry{src.forecast.forecast}}\index{src.forecast.forecast@\spxentry{src.forecast.forecast}!module@\spxentry{module}}
@@ -2573,16 +2730,46 @@ Week extremes.
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.clear_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{clear\_forecasts}}}{}{}
 \end{fulllineitems}
 
+\index{clear\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{clear\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.clear_forecast_meta}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{clear\_forecast\_meta}}}{}{}
+\end{fulllineitems}
+
 \index{write\_forecasts() (in module src.utils.snowflake)@\spxentry{write\_forecasts()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.write_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{write\_forecasts}}}{\emph{\DUrole{n}{df}}}{}
 \end{fulllineitems}
 
+\index{write\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{write\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.write_forecast_meta}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{write\_forecast\_meta}}}{\emph{\DUrole{n}{df}}}{}
+\end{fulllineitems}
+
 \index{read\_forecasts() (in module src.utils.snowflake)@\spxentry{read\_forecasts()}\spxextra{in module src.utils.snowflake}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.read_forecasts}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{read\_forecasts}}}{\emph{\DUrole{n}{boxid}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\end{fulllineitems}
+
+\index{read\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{read\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.read_forecast_meta}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{read\_forecast\_meta}}}{}{}
+\end{fulllineitems}
+
+\index{get\_forecasted\_boxids() (in module src.utils.snowflake)@\spxentry{get\_forecasted\_boxids()}\spxextra{in module src.utils.snowflake}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.get_forecasted_boxids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{get\_forecasted\_boxids}}}{}{}
+\end{fulllineitems}
+
+\index{clear\_forecasts() (in module src.utils.snowflake)@\spxentry{clear\_forecasts()}\spxextra{in module src.utils.snowflake}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/utils/snowflake/index:id0}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.utils.snowflake.}}\sphinxbfcode{\sphinxupquote{clear\_forecasts}}}{}{}
 \end{fulllineitems}
 
 
@@ -2667,6 +2854,7 @@ Initialize logger.
 \bigletter{s}
 \item\relax\sphinxstyleindexentry{src}\sphinxstyleindexpageref{autoapi/src/index:\detokenize{module-src}}
 \item\relax\sphinxstyleindexentry{src.forecast}\sphinxstyleindexpageref{autoapi/src/forecast/index:\detokenize{module-src.forecast}}
+\item\relax\sphinxstyleindexentry{src.forecast.assess}\sphinxstyleindexpageref{autoapi/src/forecast/assess/index:\detokenize{module-src.forecast.assess}}
 \item\relax\sphinxstyleindexentry{src.forecast.forecast}\sphinxstyleindexpageref{autoapi/src/forecast/forecast/index:\detokenize{module-src.forecast.forecast}}
 \item\relax\sphinxstyleindexentry{src.forecast.make\_forecasts}\sphinxstyleindexpageref{autoapi/src/forecast/make_forecasts/index:\detokenize{module-src.forecast.make_forecasts}}
 \item\relax\sphinxstyleindexentry{src.model}\sphinxstyleindexpageref{autoapi/src/model/index:\detokenize{module-src.model}}

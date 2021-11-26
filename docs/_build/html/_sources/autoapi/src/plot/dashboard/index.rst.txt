@@ -1,0 +1,12 @@
+:mod:`src.plot.dashboard`
+=========================
+
+.. py:module:: src.plot.dashboard
+
+
+Module Contents
+---------------
+
+.. function:: create_dashboard()
+
+
