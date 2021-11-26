@@ -9,4 +9,28 @@ Module Contents
 
 .. function:: create_dashboard()
 
+   Initialize dashboard.
+
+
+
+   :Returns:
+
+       :data:`python:None`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 

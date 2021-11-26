@@ -65,6 +65,10 @@
             <a class="nav-link" href="../../../../evaluation.html">Evaluation</a>
         </li>
         
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../../deployment.html">Deployment</a>
+        </li>
+        
         <li class="nav-item active">
             <a class="nav-link" href="../../../index.html">API Reference</a>
         </li>
@@ -101,6 +105,8 @@
   
 
   <ul class="nav bd-sidenav">
+      
+      
       
       
       
@@ -216,7 +222,8 @@ MAX DOUBLE, MIN DOUBLE)</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>boxid</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a></span></dt><dd><p>ID of DALI box to read. None results in all available preprocess of DALI boxes that have nominal power specified.</p>
+<dt><strong>boxid</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">list</span></code></a></span></dt><dd><p>ID of DALI box to read.
+None results in all available preprocess of DALI boxes that have nominal power specified.</p>
 </dd>
 </dl>
 </dd>
@@ -341,42 +348,115 @@ MAX DOUBLE, MIN DOUBLE)</p>
 <dl class="py function">
 <dt id="src.utils.snowflake.clear_forecasts">
 <code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">clear_forecasts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#clear_forecasts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.snowflake.clear_forecasts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Clear the table with forecasts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.utils.snowflake.clear_forecast_meta">
 <code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">clear_forecast_meta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#clear_forecast_meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.snowflake.clear_forecast_meta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Clear the table with forecast metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.utils.snowflake.write_forecasts">
 <code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">write_forecasts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#write_forecasts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.snowflake.write_forecasts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Write results into the Snowflake database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df: pd.DataFrame</strong></dt><dd><p>Results to write.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.utils.snowflake.write_forecast_meta">
 <code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">write_forecast_meta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#write_forecast_meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.snowflake.write_forecast_meta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Write assessment of forecast on capacity to forecast metadata table in Snowflake.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df: pd.DataFrame</strong></dt><dd><p>Assessment results.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.utils.snowflake.read_forecasts">
 <code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">read_forecasts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">boxid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#read_forecasts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.snowflake.read_forecasts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Read forecasts for Snowflake database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>boxid: str</strong></dt><dd><p>Boxid of a DALI box. If not provided or None, all forecast are loaded.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.DataFrame</span></code></dt><dd><p>DataFrame with forecasts.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.utils.snowflake.read_forecast_meta">
 <code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">read_forecast_meta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#read_forecast_meta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.snowflake.read_forecast_meta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Read assessment of forecasts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.DataFrame</span></code></dt><dd><p>Results of he assessment of all DALI box forecasts.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="src.utils.snowflake.get_forecasted_boxids">
 <code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">get_forecasted_boxids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#get_forecasted_boxids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.snowflake.get_forecasted_boxids" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="id0">
-<code class="sig-prename descclassname">src.utils.snowflake.</code><code class="sig-name descname">clear_forecasts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/utils/snowflake.html#clear_forecasts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the boxids for boxes that are already forecasted.</p>
+<p>(Should be adapted when multiple forecasts (done on different dates) are present in database).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.DataFrame</span></code></dt><dd><p>Unique boxids.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>

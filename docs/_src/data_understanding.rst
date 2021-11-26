@@ -16,7 +16,7 @@ Only historic data will be used (with metadata to extract de capacity of the tra
 Data is available in Snowflake. in a Jupyter Notebook pandas with a SQLAlchemy engine is used for the data collection from Snowflake.
 Credentials are available via Vault in the Enexis domain.
 
-Measurement data source
+Measurement Data Source
 ~~~~~~~~~~~~~
 
 In a Snowflake database the following data is available:

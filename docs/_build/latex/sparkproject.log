@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.0 (TeX Live 2021)  (format=lualatex 2021.11.4)  19 NOV 2021 12:09
+This is LuaHBTeX, Version 1.13.0 (TeX Live 2021)  (format=lualatex 2021.11.4)  26 NOV 2021 20:30
  restricted system commands enabled.
 **sparkproject.tex
 (./sparkproject.tex
@@ -957,7 +957,7 @@ LaTeX Info: Redefining \ttfamily on input line 1.
 
 \openout6 = sparkproject.toc
  [2]
-<spark_logo.png, id=222, 472.6458pt x 351.2322pt>
+<spark_logo.png, id=247, 472.6458pt x 351.2322pt>
 File: spark_logo.png Graphic file (type png)
 <use spark_logo.png>
 Package luatex.def Info: spark_logo.png  used on input line 231.
@@ -968,12 +968,12 @@ Package luatex.def Info: spark_logo.png  used on input line 231.
 
 ]
 Chapter 1.
-<jads_logo.png, id=233, 404.51125pt x 125.46875pt>
+<jads_logo.png, id=258, 404.51125pt x 125.46875pt>
 File: jads_logo.png Graphic file (type png)
 <use jads_logo.png>
 Package luatex.def Info: jads_logo.png  used on input line 247.
 (luatex.def)             Requested size: 301.12305pt x 93.40253pt.
-<enexis_logo.png, id=235, 284.06125pt x 142.5325pt>
+<enexis_logo.png, id=260, 284.06125pt x 142.5325pt>
 File: enexis_logo.png Graphic file (type png)
 <use enexis_logo.png>
 Package luatex.def Info: enexis_logo.png  used on input line 254.
@@ -986,12 +986,12 @@ port-ing elec-tric-ity
  []
 
 [3<./jads_logo.png><./enexis_logo.png>]
-<autumn_spring_load.png, id=243, 378.213pt x 327.186pt>
+<autumn_spring_load.png, id=268, 378.213pt x 327.186pt>
 File: autumn_spring_load.png Graphic file (type png)
 <use autumn_spring_load.png>
 Package luatex.def Info: autumn_spring_load.png  used on input line 271.
 (luatex.def)             Requested size: 301.12305pt x 260.51102pt.
-<crisp_dm.png, id=245, 721.605pt x 413.472pt>
+<crisp_dm.png, id=270, 721.605pt x 413.472pt>
 File: crisp_dm.png Graphic file (type png)
 <use crisp_dm.png>
 Package luatex.def Info: crisp_dm.png  used on input line 279.
@@ -1000,30 +1000,30 @@ Package luatex.def Info: crisp_dm.png  used on input line 279.
 
 ]
 Chapter 2.
-<pv_cbs.png, id=262, 1204.5pt x 903.375pt>
+<pv_cbs.png, id=287, 1204.5pt x 903.375pt>
 File: pv_cbs.png Graphic file (type png)
 <use pv_cbs.png>
 Package luatex.def Info: pv_cbs.png  used on input line 325.
 (luatex.def)             Requested size: 301.12305pt x 225.8432pt.
 [7]
-<ev_rvo.png, id=271, 679.53876pt x 473.77pt>
+<ev_rvo.png, id=296, 679.53876pt x 473.77pt>
 File: ev_rvo.png Graphic file (type png)
 <use ev_rvo.png>
 Package luatex.def Info: ev_rvo.png  used on input line 329.
 (luatex.def)             Requested size: 301.12305pt x 209.94142pt.
-<hp_cbs.png, id=273, 686.565pt x 411.5375pt>
+<hp_cbs.png, id=298, 686.565pt x 411.5375pt>
 File: hp_cbs.png Graphic file (type png)
 <use hp_cbs.png>
 Package luatex.def Info: hp_cbs.png  used on input line 333.
 (luatex.def)             Requested size: 301.12305pt x 180.49306pt.
  [8<./pv_cbs.png><./ev_rvo.png>] [9<./hp_cbs.png>]
-<value_flow_down.png, id=291, 763.653pt x 433.62pt>
+<value_flow_down.png, id=316, 763.653pt x 433.62pt>
 File: value_flow_down.png Graphic file (type png)
 <use value_flow_down.png>
 Package luatex.def Info: value_flow_down.png  used on input line 382.
 (luatex.def)             Requested size: 469.76616pt x 266.75742pt.
  [10<./value_flow_down.png>] [11]
-<stakeholders.png, id=306, 644.298pt x 234.768pt>
+<stakeholders.png, id=332, 644.298pt x 234.768pt>
 File: stakeholders.png Graphic file (type png)
 <use stakeholders.png>
 Package luatex.def Info: stakeholders.png  used on input line 476.
@@ -1055,7 +1055,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 560--560
 
  []
 
-<process_steps.png, id=315, 921.333pt x 234.768pt>
+<process_steps.png, id=340, 921.333pt x 234.768pt>
 File: process_steps.png Graphic file (type png)
 <use process_steps.png>
 Package luatex.def Info: process_steps.png  used on input line 611.
@@ -1070,13 +1070,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 752--754
 [15
 
 ]
-<dq_completeness.jpeg, id=340, 754.82pt x 466.74374pt>
+<dq_completeness.jpeg, id=365, 754.82pt x 466.74374pt>
 File: dq_completeness.jpeg Graphic file (type jpg)
 <use dq_completeness.jpeg>
 Package luatex.def Info: dq_completeness.jpeg  used on input line 851.
 (luatex.def)             Requested size: 469.7573pt x 290.48203pt.
  [16]
-<dq_outlier.png, id=348, 725.71124pt x 278.03876pt>
+<dq_outlier.png, id=373, 725.71124pt x 278.03876pt>
 File: dq_outlier.png Graphic file (type png)
 <use dq_outlier.png>
 Package luatex.def Info: dq_outlier.png  used on input line 862.
@@ -1085,13 +1085,13 @@ Package luatex.def Info: dq_outlier.png  used on input line 862.
 
 ]
 Chapter 4.
-<process_data_preparation.png, id=359, 326.091pt x 194.691pt>
+<process_data_preparation.png, id=384, 326.091pt x 194.691pt>
 File: process_data_preparation.png Graphic file (type png)
 <use process_data_preparation.png>
 Package luatex.def Info: process_data_preparation.png  used on input line 873.
 (luatex.def)             Requested size: 315.22318pt x 188.2019pt.
 [19<./process_data_preparation.png>] [20]
-<loaded_extremes.png, id=395, 655.44875pt x 303.1325pt>
+<loaded_extremes.png, id=420, 655.44875pt x 303.1325pt>
 File: loaded_extremes.png Graphic file (type png)
 <use loaded_extremes.png>
 Package luatex.def Info: loaded_extremes.png  used on input line 1038.
@@ -1103,7 +1103,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1047--1049
 )/m/it/10 src.utils.snowflake.
  []
 
-<preprocessing_details.png, id=398, 372.3pt x 466.689pt>
+<preprocessing_details.png, id=423, 372.3pt x 466.689pt>
 File: preprocessing_details.png Graphic file (type png)
 <use preprocessing_details.png>
 Package luatex.def Info: preprocessing_details.png  used on input line 1050.
@@ -1117,19 +1117,19 @@ Package luatex.def Info: autumn_spring_load.png  used on input line 1064.
 [23
 
 ]
-<process_modeling.png, id=422, 471.726pt x 235.863pt>
+<process_modeling.png, id=447, 471.726pt x 235.863pt>
 File: process_modeling.png Graphic file (type png)
 <use process_modeling.png>
 Package luatex.def Info: process_modeling.png  used on input line 1088.
 (luatex.def)             Requested size: 376.40237pt x 188.2019pt.
  [24<./process_modeling.png>]
-<train_test.png, id=441, 604.221pt x 165.564pt>
+<train_test.png, id=467, 604.221pt x 165.564pt>
 File: train_test.png Graphic file (type png)
 <use train_test.png>
 Package luatex.def Info: train_test.png  used on input line 1118.
 (luatex.def)             Requested size: 419.75258pt x 115.01736pt.
  [25<./train_test.png>]
-<graph_model.png, id=466, 530.98375pt x 384.43625pt>
+<graph_model.png, id=491, 530.98375pt x 384.43625pt>
 File: graph_model.png Graphic file (type png)
 <use graph_model.png>
 Package luatex.def Info: graph_model.png  used on input line 1195.
@@ -1140,13 +1140,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 1211--1213
  de-ter-mined (\TU/FreeMono(0)/m/n/10 src.forecast.format.
  []
 
-<data_stored.png, id=478, 733.74126pt x 298.11375pt>
+<data_stored.png, id=503, 733.74126pt x 298.11375pt>
 File: data_stored.png Graphic file (type png)
 <use data_stored.png>
 Package luatex.def Info: data_stored.png  used on input line 1218.
 (luatex.def)             Requested size: 419.75952pt x 170.55434pt.
 [27<./graph_model.png>]
-<additive_model.png, id=488, 750.805pt x 278.03876pt>
+<additive_model.png, id=513, 750.805pt x 278.03876pt>
 File: additive_model.png Graphic file (type png)
 <use additive_model.png>
 Package luatex.def Info: additive_model.png  used on input line 1278.
@@ -1156,90 +1156,131 @@ Package luatex.def Info: additive_model.png  used on input line 1278.
 
 ]
 Chapter 6.
-<missing_data_results.png, id=510, 584.1825pt x 361.35pt>
+<missing_data_results.png, id=535, 584.1825pt x 361.35pt>
 File: missing_data_results.png Graphic file (type png)
 <use missing_data_results.png>
-Package luatex.def Info: missing_data_results.png  used on input line 1338.
-(luatex.def)             Requested size: 444.76773pt x 275.13612pt.
+Package luatex.def Info: missing_data_results.png  used on input line 1342.
+(luatex.def)             Requested size: 419.76425pt x 259.67004pt.
+[31]
+<validation.png, id=541, 1180.41pt x 557.08125pt>
+File: validation.png Graphic file (type png)
+<use validation.png>
+Package luatex.def Info: validation.png  used on input line 1362.
+(luatex.def)             Requested size: 419.74193pt x 198.10098pt.
+ [32<./missing_data_results.png>] [33<./validation.png>]
+<ordered_transformers.png, id=558, 214.8025pt x 419.5675pt>
+File: ordered_transformers.png Graphic file (type png)
+<use ordered_transformers.png>
+Package luatex.def Info: ordered_transformers.png  used on input line 1445.
+(luatex.def)             Requested size: 225.84229pt x 441.14145pt.
+ [34<./ordered_transformers.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1455--1456
+\TU/FreeSerif(0)/m/n/10 The as-sess-ments of the fore-casts which re-sults in th
+e or-dered list ([][]\TU/FreeMono(0)/m/it/10 src.forecast.assess.
+ []
 
-Overfull \hbox (30.21814pt too wide) in paragraph at lines 1337--1339
+<forecasts_assessment.png, id=565, 917.391pt x 329.157pt>
+File: forecasts_assessment.png Graphic file (type png)
+<use forecasts_assessment.png>
+Package luatex.def Info: forecasts_assessment.png  used on input line 1458.
+(luatex.def)             Requested size: 419.75127pt x 150.61044pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1463--1465
+[]\TU/FreeSerif(0)/m/n/10 The re-sult is stored sep-a-rately in a Snowflake data
+base ta-ble ([][]\TU/FreeMono(0)/m/it/10 src.utils.snowflake.
+ []
+
+<dashboard.png, id=568, 935.495pt x 444.66125pt>
+File: dashboard.png Graphic file (type png)
+<use dashboard.png>
+Package luatex.def Info: dashboard.png  used on input line 1473.
+(luatex.def)             Requested size: 419.75552pt x 199.52577pt.
+[35<./forecasts_assessment.png><./dashboard.png>]
+<dashboard_min.png, id=582, 898.35625pt x 439.6425pt>
+File: dashboard_min.png Graphic file (type png)
+<use dashboard_min.png>
+Package luatex.def Info: dashboard_min.png  used on input line 1486.
+(luatex.def)             Requested size: 419.74638pt x 205.42448pt.
+ [36<./dashboard_min.png>]
+Underfull \hbox (badness 6825) in paragraph at lines 1514--1518
+[]\TU/FreeSerif(0)/m/n/10 The most valu-
+ []
+
+<competence.png, id=589, 240.9pt x 112.9821pt>
+File: competence.png Graphic file (type png)
+<use competence.png>
+Package luatex.def Info: competence.png  used on input line 1524.
+(luatex.def)             Requested size: 404.09535pt x 189.5414pt.
+
+Overfull \hbox (271.89807pt too wide) in paragraph at lines 1523--1525
 []
  []
 
-[31<./missing_data_results.png>]
-<validation.png, id=517, 757.83125pt x 281.05pt>
-File: validation.png Graphic file (type png)
-<use validation.png>
-Package luatex.def Info: validation.png  used on input line 1359.
-(luatex.def)             Requested size: 419.75719pt x 155.67152pt.
- [32<./validation.png>]
-<ordered_transformers.png, id=528, 212.795pt x 417.56pt>
-File: ordered_transformers.png Graphic file (type png)
-<use ordered_transformers.png>
-Package luatex.def Info: ordered_transformers.png  used on input line 1435.
-(luatex.def)             Requested size: 225.84229pt x 443.1849pt.
- [33]
-<dashboard.png, id=533, 808.01875pt x 415.5525pt>
-File: dashboard.png Graphic file (type png)
-<use dashboard.png>
-Package luatex.def Info: dashboard.png  used on input line 1452.
-(luatex.def)             Requested size: 419.75298pt x 215.87296pt.
- [34<./ordered_transformers.png>] [35<./dashboard.png>] [36
+
+Underfull \hbox (badness 10000) in paragraph at lines 1533--1535
+[]\TU/FreeSerif(0)/m/n/10 The
+ []
+
+[37<./competence.png>] [38]
+Chapter 7.
+[39
+
+] [40
 
 ]
-Chapter 7.
-[37]
-Overfull \hbox (4.28484pt too wide) in paragraph at lines 1654--1656
-[]\TU/FreeSerif(0)/m/n/10 [\TU/FreeMono(0)/m/n/10 pd.DataFrame\TU/FreeSerif(0)/
-m/n/10 ] base DataFrame with times-tamps/length in ac-cordcor-dance of the sam-p
-les
- []
-
-[38]
-Overfull \hbox (4.28484pt too wide) in paragraph at lines 1682--1684
+Chapter 8.
+[41] [42]
+Overfull \hbox (4.28484pt too wide) in paragraph at lines 1890--1892
 []\TU/FreeSerif(0)/m/n/10 [\TU/FreeMono(0)/m/n/10 pd.DataFrame\TU/FreeSerif(0)/
 m/n/10 ] base DataFrame with times-tamps/length in ac-cordcor-dance of the sam-p
 les
  []
 
 
-Overfull \hbox (24.36829pt too wide) in paragraph at lines 1721--1724
+Overfull \hbox (4.28484pt too wide) in paragraph at lines 1918--1920
+[]\TU/FreeSerif(0)/m/n/10 [\TU/FreeMono(0)/m/n/10 pd.DataFrame\TU/FreeSerif(0)/
+m/n/10 ] base DataFrame with times-tamps/length in ac-cordcor-dance of the sam-p
+les
+ []
+
+
+Overfull \hbox (24.36829pt too wide) in paragraph at lines 1957--1960
 \TU/FreeSerif(0)/m/n/10 blog/2018/10/09/$[][] … build-facebooks-prophet-in-pym
 c3-bayesian-time-series-analyis-with-generalized-additive-models/ 
  []
 
-
-Overfull \hbox (208.5883pt too wide) in paragraph at lines 1746--1748
+[43]
+Overfull \hbox (208.5883pt too wide) in paragraph at lines 1982--1984
 []\TU/FreeSerif(0)/m/n/10 Based on source: [][]$https://www.ritchievink.com/blog
 /2018/10/09/$[][] … build-facebooks-prophet-in-pymc3-bayesian-time-series-anal
 yis-with-generalized-additive-models/ 
  []
 
 
-Overfull \hbox (208.5883pt too wide) in paragraph at lines 1777--1779
+Overfull \hbox (208.5883pt too wide) in paragraph at lines 2013--2015
 []\TU/FreeSerif(0)/m/n/10 Based on source: [][]$https://www.ritchievink.com/blog
 /2018/10/09/$[][] … build-facebooks-prophet-in-pymc3-bayesian-time-series-anal
 yis-with-generalized-additive-models/ 
  []
 
-[39] [40] [41] [42] [43] [44]
-Underfull \hbox (badness 10000) in paragraph at lines 2381--2381
+[44] [45] [46] [47] [48]
+Underfull \hbox (badness 10000) in paragraph at lines 2672--2672
 []\TU/FreeSerif(0)/m/it/10 se-ries\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)/m/
 it/10 kind='cat-e-gor-i-cal'\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)/m/it/10 
 la-bels=None\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)/m/it/10 back-wards=False\TU/FreeSerif(0)/m/n/10 ,
  []
 
-[45]
-Underfull \hbox (badness 10000) in paragraph at lines 2604--2604
+[49] [50]
+Underfull \hbox (badness 10000) in paragraph at lines 2896--2896
 []\TU/FreeSerif(0)/m/it/10 boxid=None\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)
 /m/it/10 last_pro-cessed=dt.date-
  []
 
-[46] [47] [48] [49
+[51] [52] [53] [54] [55
 
 
 
-] (./sparkproject.ind [50
+] (./sparkproject.ind [56
 
 
 ]
@@ -1249,110 +1290,118 @@ eeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+[]\TU/FreeMono(0)/m/n/10 cre-ate_dash-board() \TU/FreeSerif(0)/m/n/10 (\TU/Free
+Serif(0)/m/it/10 in mod-ule src.plot.dash-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
 []\TU/FreeMono(0)/m/n/10 cre-ate_ta-ble_query() \TU/FreeSerif(0)/m/n/10 (\TU/Fr
 eeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--24
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
 []\TU/FreeMono(0)/m/n/10 cre-ate_week_ex-tremes() \TU/FreeSerif(0)/m/n/10 (\TU/
 FreeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
 []\TU/FreeMono(0)/m/n/10 de-ter-mine_es-ti-mates() \TU/FreeSerif(0)/m/n/10 (\TU
 /FreeSerif(0)/m/it/10 in mod-ule src.fore-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
 []\TU/FreeMono(0)/m/n/10 de-ter-mine_es-ti-mates_min-max() \TU/FreeSerif(0)/m/n
 /10 (\TU/FreeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 []\TU/FreeMono(0)/m/n/10 for-mat_con-nec-tion() \TU/FreeSerif(0)/m/n/10 (\TU/Fr
 eeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--52
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 []\TU/FreeMono(0)/m/n/10 for-mat_model_es-ti-mates() \TU/FreeSerif(0)/m/n/10 (\
 TU/FreeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
 []\TU/FreeMono(0)/m/n/10 get_fore-casted_box-ids() \TU/FreeSerif(0)/m/n/10 (\TU
 /FreeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
 []\TU/FreeMono(0)/m/n/10 get_last_pro-cessed_time() \TU/FreeSerif(0)/m/n/10 (\T
 U/FreeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 []\TU/FreeMono(0)/m/n/10 in-sert_ta-ble_query() \TU/FreeSerif(0)/m/n/10 (\TU/Fr
 eeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
 []\TU/FreeMono(0)/m/n/10 in-verse_trans-form() \TU/FreeSerif(0)/m/n/10 (\TU/Fre
 eSerif(0)/m/it/10 src.utils.pre-pro-cess.Min-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
 []\TU/FreeMono(0)/m/n/10 make_fore-casts() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSer
 if(0)/m/it/10 in mod-ule src.fore-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
 []\TU/FreeMono(0)/m/n/10 make_week_ex-tremes_query() \TU/FreeSerif(0)/m/n/10 (\
 TU/FreeSerif(0)/m/it/10 in mod-ule
  []
 
-[51
+[57
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 []\TU/FreeMono(0)/m/n/10 read_fore-cast_meta() \TU/FreeSerif(0)/m/n/10 (\TU/Fre
 eSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 []\TU/FreeMono(0)/m/n/10 read_week_ex-tremes() \TU/FreeSerif(0)/m/n/10 (\TU/Fre
 eSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 []\TU/FreeMono(0)/m/n/10 trans-form() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)
 /m/it/10 src.utils.pre-pro-cess.Min-MaxS-caler
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--192
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 []\TU/FreeMono(0)/m/n/10 up-date_week_ex-tremes() \TU/FreeSerif(0)/m/n/10 (\TU/
 FreeSerif(0)/m/it/10 in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--197
+Underfull \hbox (badness 10000) in paragraph at lines 200--201
 []\TU/FreeMono(0)/m/n/10 write_fore-cast_meta() \TU/FreeSerif(0)/m/n/10 (\TU/Fr
 eeSerif(0)/m/it/10 in mod-ule
  []
 
-[52])
+[58] [59
+
+])
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -1393,20 +1442,20 @@ LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
 Package rerunfilecheck Info: File `sparkproject.out' has not changed.
-(rerunfilecheck)             Checksum: 710A357B8AC91717C5DB40485CDAECD3;5155.
+(rerunfilecheck)             Checksum: 1A4BF261E02F48A4711342827ED600A8;5875.
 )
 
 Here is how much of LuaTeX's memory you used:
- 17543 strings out of 478531
+ 17617 strings out of 478531
  156310,953878 words of node,token memory allocated
- 684 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 24 attribute, 66 glue_spec
-, 24 attribute_list, 2 write, 8 pdf_action nodes
-   avail lists: 1:11,2:1115,3:531,4:333,5:2668,6:255,7:6526,8:129,9:751,10:34,11
-:395,12:3
- 36173 multiletter control sequences out of 65536+600000
+ 704 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 26 attribute, 66 glue_spec
+, 26 attribute_list, 2 write, 10 pdf_action nodes
+   avail lists: 1:13,2:1099,3:531,4:333,5:2729,6:267,7:6526,8:134,9:752,10:34,11
+:396,12:4
+ 36206 multiletter control sequences out of 65536+600000
  108 fonts using 72098455 bytes
- 83i,16n,85p,653b,641s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,16n,85p,653b,695s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/opentype/public/gnu-freefont/FreeMonoB
 old.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/gnu-freefont/F
 reeSerifItalic.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/gnu
@@ -1422,10 +1471,10 @@ ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loca
 l/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
 ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on sparkproject.pdf (56 pages, 4744658 bytes).
+Output written on sparkproject.pdf (63 pages, 5764179 bytes).
 
-PDF statistics: 998 PDF objects out of 1000 (max. 8388607)
- 844 compressed objects within 9 object streams
- 249 named destinations out of 1000 (max. 131072)
- 325 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1083 PDF objects out of 1200 (max. 8388607)
+ 916 compressed objects within 10 object streams
+ 266 named destinations out of 1000 (max. 131072)
+ 365 words of extra memory for PDF output out of 10000 (max. 100000000)
 

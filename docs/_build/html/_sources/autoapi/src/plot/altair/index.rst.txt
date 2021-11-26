@@ -102,6 +102,37 @@ Module Contents
 
 .. function:: lightness_scale(factor, limits=['#bedef4', '#1f77b4'])
 
+   Create right color intensity for float values.
+
+
+   :Parameters:
+
+       **factor: float**
+           Factor of full color intensity.
+
+       **limits: list**
+           Hex colour codes for start and end of scale.
+
+   :Returns:
+
+       :class:`python:str`
+           Hex code for the factor value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 
 .. function:: plot_base(df_data=None, df_meta=None)
 
@@ -145,12 +176,12 @@ Module Contents
    :Parameters:
 
        **df** : :obj:`pd.DataFrame`
-           data of estimates in long format
+           Data of estimates in long format.
 
    :Returns:
 
        :obj:`alt.Chart`
-           Altair plot
+           Altair plot.
 
 
 
@@ -170,7 +201,7 @@ Module Contents
 
 .. function:: plot_all(df_data, df_meta=None)
 
-   Plot estimates, observed and limits
+   Plot estimates, observed and limits.
 
 
    :Parameters:

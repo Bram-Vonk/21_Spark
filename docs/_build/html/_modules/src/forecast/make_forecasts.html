@@ -63,6 +63,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="../../../deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
         </li>
         
@@ -113,6 +117,8 @@
       
       
       
+      
+      
     </ul>
 
 </nav>
@@ -142,10 +148,17 @@
   <h1>Source code for src.forecast.make_forecasts</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">src.utils.snowflake</span> <span class="kn">import</span> <span class="n">read_meta</span><span class="p">,</span> <span class="n">clear_forecasts</span><span class="p">,</span> <span class="n">write_forecasts</span><span class="p">,</span> <span class="n">write_forecast_meta</span><span class="p">,</span> <span class="n">get_forecasted_boxids</span>
 <span class="kn">from</span> <span class="nn">src.forecast.forecast</span> <span class="kn">import</span> <span class="n">forecast</span>
+<span class="kn">from</span> <span class="nn">src.utils.snowflake</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">clear_forecasts</span><span class="p">,</span>
+    <span class="n">get_forecasted_boxids</span><span class="p">,</span>
+    <span class="n">read_meta</span><span class="p">,</span>
+    <span class="n">write_forecast_meta</span><span class="p">,</span>
+    <span class="n">write_forecasts</span><span class="p">,</span>
+<span class="p">)</span>
 
 <div class="viewcode-block" id="logger"><a class="viewcode-back" href="../../../autoapi/src/forecast/make_forecasts/index.html#src.forecast.make_forecasts.logger">[docs]</a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;SPARK&quot;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="make_forecasts"><a class="viewcode-back" href="../../../autoapi/src/forecast/make_forecasts/index.html#src.forecast.make_forecasts.make_forecasts">[docs]</a><span class="k">def</span> <span class="nf">make_forecasts</span><span class="p">(</span><span class="n">clear</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -159,9 +172,7 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    None</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="n">clear</span><span class="p">:</span>
         <span class="n">clear_forecasts</span><span class="p">()</span>
 

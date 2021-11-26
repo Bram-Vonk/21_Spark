@@ -14,7 +14,7 @@ Module Contents
 
 .. function:: make_quantile_bands(df_base, samples, quantiles=(5, 15, 50, 85, 95))
 
-   Translate samples to bands with edges defined by the given quantiles and merge them to a base dataFrame
+   Translate samples to bands with edges defined by the given quantiles and merge them to a base DataFrame.
 
 
    :Parameters:

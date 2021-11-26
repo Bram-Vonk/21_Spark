@@ -63,6 +63,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="../../../deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
         </li>
         
@@ -113,6 +117,8 @@
       
       
       
+      
+      
     </ul>
 
 </nav>
@@ -140,18 +146,34 @@
               <div>
                 
   <h1>Source code for src.forecast.assess</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <div class="viewcode-block" id="logger"><a class="viewcode-back" href="../../../autoapi/src/forecast/assess/index.html#src.forecast.assess.logger">[docs]</a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;SPARK&quot;</span><span class="p">)</span></div>
 
+
 <div class="viewcode-block" id="asses_forecasts"><a class="viewcode-back" href="../../../autoapi/src/forecast/assess/index.html#src.forecast.assess.asses_forecasts">[docs]</a><span class="k">def</span> <span class="nf">asses_forecasts</span><span class="p">(</span><span class="n">df_total</span><span class="p">,</span> <span class="n">df_meta</span><span class="p">):</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Assessing forecast&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assesses if and when a transformer will overload based on the forecasts and metadata.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_total: pd.DataFrame</span>
+<span class="sd">        DataFrame with forecasts.</span>
+<span class="sd">    df_meta: pd.DataFrame</span>
+<span class="sd">        DataFrame with metadata of the transformer.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Result of the assessment.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Assessing forecast&quot;</span><span class="p">)</span>
 
     <span class="c1"># get maximum of forecast</span>
     <span class="n">df_assess</span> <span class="o">=</span> <span class="n">df_total</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;period == &#39;future&#39; &amp; model_var == &#39;Σ&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">df_assess</span><span class="p">[</span><span class="s2">&quot;relative_abs_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_assess</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">/</span> <span class="n">df_meta</span><span class="p">[</span><span class="s2">&quot;vermogen_nominaal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df_assess</span><span class="p">[</span><span class="s2">&quot;relative_abs_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_assess</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">/</span> <span class="n">df_meta</span><span class="p">[</span><span class="s2">&quot;vermogen_nominaal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">df_assess</span><span class="p">[</span><span class="s2">&quot;date_abs_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_assess</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
     <span class="n">df_assess</span> <span class="o">=</span> <span class="n">df_assess</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;relative_abs_max&quot;</span><span class="p">,</span> <span class="s2">&quot;date_abs_max&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">]]</span>
 

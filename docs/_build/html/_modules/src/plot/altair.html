@@ -63,6 +63,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="../../../deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
         </li>
         
@@ -113,6 +117,8 @@
       
       
       
+      
+      
     </ul>
 
 </nav>
@@ -146,7 +152,7 @@
 <span class="kn">import</span> <span class="nn">colour</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">src.plot.format</span> <span class="kn">import</span> <span class="n">format_forecast</span><span class="p">,</span> <span class="n">format_history</span><span class="p">,</span> <span class="n">format_limits</span>
+<span class="kn">from</span> <span class="nn">src.plot.format</span> <span class="kn">import</span> <span class="n">format_limits</span>
 
 <span class="n">alt</span><span class="o">.</span><span class="n">data_transformers</span><span class="o">.</span><span class="n">disable_max_rows</span><span class="p">()</span>
 
@@ -186,7 +192,7 @@
         <span class="n">ranges</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
         <span class="n">ranges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
     <span class="n">ranges</span> <span class="o">=</span> <span class="n">ranges</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">parsed</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;^Q(\d{1,2})-&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ranges</span><span class="p">]</span>
+    <span class="n">parsed</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^Q(\d{1,2})-&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ranges</span><span class="p">]</span>
     <span class="n">factors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">parsed</span><span class="p">]</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">lightness_scale</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">]</span>
 
@@ -288,6 +294,21 @@
 
 
 <div class="viewcode-block" id="lightness_scale"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.lightness_scale">[docs]</a><span class="k">def</span> <span class="nf">lightness_scale</span><span class="p">(</span><span class="n">factor</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#bedef4&quot;</span><span class="p">,</span> <span class="s2">&quot;#1f77b4&quot;</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create right color intensity for float values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    factor: float</span>
+<span class="sd">        Factor of full color intensity.</span>
+<span class="sd">    limits: list</span>
+<span class="sd">        Hex colour codes for start and end of scale.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Hex code for the factor value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">h0</span> <span class="o">=</span> <span class="n">colour</span><span class="o">.</span><span class="n">hex2hsl</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">h1</span> <span class="o">=</span> <span class="n">colour</span><span class="o">.</span><span class="n">hex2hsl</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">color</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">v0</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">v1</span> <span class="k">for</span> <span class="n">v0</span><span class="p">,</span> <span class="n">v1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">h1</span><span class="p">)]</span>
@@ -312,9 +333,7 @@
     <span class="n">plots</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">if</span> <span class="n">df_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">df_estimates</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;model_var!=&#39;observed&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span>
-            <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;model_var&quot;</span><span class="p">]</span>
-        <span class="p">)</span>
+        <span class="n">df_estimates</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;model_var!=&#39;observed&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;model_var&quot;</span><span class="p">])</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_estimates</span><span class="p">):</span>
             <span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plot_estimate</span><span class="p">(</span><span class="n">df_estimates</span><span class="p">))</span>
 
@@ -339,18 +358,16 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    df : pd.DataFrame</span>
-<span class="sd">        data of estimates in long format</span>
+<span class="sd">        Data of estimates in long format.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    alt.Chart</span>
-<span class="sd">        Altair plot</span>
+<span class="sd">        Altair plot.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">plot_vars</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Σ&quot;</span><span class="p">,</span> <span class="s2">&quot;drift&quot;</span><span class="p">,</span> <span class="s2">&quot;yearly&quot;</span><span class="p">]:</span>
-        <span class="n">plot_var</span> <span class="o">=</span> <span class="n">plot_estimate</span><span class="p">(</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model_var==&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">None</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+        <span class="n">plot_var</span> <span class="o">=</span> <span class="n">plot_estimate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model_var==&#39;</span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
             <span class="n">title</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
             <span class="n">height</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">,</span>
@@ -361,7 +378,7 @@
 
 <div class="viewcode-block" id="plot_all"><a class="viewcode-back" href="../../../autoapi/src/plot/altair/index.html#src.plot.altair.plot_all">[docs]</a><span class="k">def</span> <span class="nf">plot_all</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plot estimates, observed and limits</span>
+<span class="sd">    Plot estimates, observed and limits.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -375,9 +392,7 @@
 <span class="sd">        Altair layer chart</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">plot_base</span><span class="p">(</span>
-        <span class="n">df_data</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-            <span class="s2">&quot;model_var==&#39;observed&#39; | (model_var==&#39;Σ&#39; &amp; period==&#39;future&#39;)&quot;</span>
-        <span class="p">),</span>
+        <span class="n">df_data</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;model_var==&#39;observed&#39; | (model_var==&#39;Σ&#39; &amp; period==&#39;future&#39;)&quot;</span><span class="p">),</span>
         <span class="n">df_meta</span><span class="o">=</span><span class="n">df_meta</span><span class="p">,</span></div>
     <span class="p">)</span>
 </pre></div>
