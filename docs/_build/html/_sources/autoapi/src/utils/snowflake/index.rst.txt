@@ -71,7 +71,8 @@ MAX DOUBLE, MIN DOUBLE)
    :Parameters:
 
        **boxid** : :class:`python:list`
-           ID of DALI box to read. None results in all available preprocess of DALI boxes that have nominal power specified.
+           ID of DALI box to read.
+           None results in all available preprocess of DALI boxes that have nominal power specified.
 
    :Returns:
 
@@ -299,25 +300,203 @@ MAX DOUBLE, MIN DOUBLE)
 
 .. function:: clear_forecasts()
 
+   Clear the table with forecasts.
+
+
+
+   :Returns:
+
+       :data:`python:None`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 
 .. function:: clear_forecast_meta()
+
+   Clear the table with forecast metadata.
+
+
+
+   :Returns:
+
+       :data:`python:None`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 .. function:: write_forecasts(df)
 
+   Write results into the Snowflake database.
+
+
+   :Parameters:
+
+       **df: pd.DataFrame**
+           Results to write.
+
+   :Returns:
+
+       :data:`python:None`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 
 .. function:: write_forecast_meta(df)
+
+   Write assessment of forecast on capacity to forecast metadata table in Snowflake.
+
+
+   :Parameters:
+
+       **df: pd.DataFrame**
+           Assessment results.
+
+   :Returns:
+
+       :data:`python:None`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 .. function:: read_forecasts(boxid=None)
 
+   Read forecasts for Snowflake database.
+
+
+   :Parameters:
+
+       **boxid: str**
+           Boxid of a DALI box. If not provided or None, all forecast are loaded.
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           DataFrame with forecasts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 
 .. function:: read_forecast_meta()
+
+   Read assessment of forecasts.
+
+
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           Results of he assessment of all DALI box forecasts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 
 .. function:: get_forecasted_boxids()
 
+   Get the boxids for boxes that are already forecasted.
 
-.. function:: clear_forecasts()
+   (Should be adapted when multiple forecasts (done on different dates) are present in database).
+
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           Unique boxids.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
 
 

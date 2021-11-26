@@ -63,6 +63,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="../../../deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="../../../autoapi/index.html">API Reference</a>
         </li>
         
@@ -113,6 +117,8 @@
       
       
       
+      
+      
     </ul>
 
 </nav>
@@ -140,46 +146,48 @@
               <div>
                 
   <h1>Source code for src.plot.dashboard</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
-<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
 
-<span class="kn">from</span> <span class="nn">src.utils.snowflake</span> <span class="kn">import</span> <span class="n">read_forecast_meta</span><span class="p">,</span> <span class="n">read_forecasts</span>
 <span class="kn">from</span> <span class="nn">src.plot.altair</span> <span class="kn">import</span> <span class="n">plot_all</span><span class="p">,</span> <span class="n">plot_decompose</span>
+<span class="kn">from</span> <span class="nn">src.utils.snowflake</span> <span class="kn">import</span> <span class="n">read_forecast_meta</span><span class="p">,</span> <span class="n">read_forecasts</span>
 
+<span class="c1"># alt.renderers.enable(&quot;default&quot;)</span>
+<span class="c1"># pn.extension(&quot;vega&quot;)</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;tabulator&quot;</span><span class="p">)</span>
 
-
-
-<span class="n">alt</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
-<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;vega&quot;</span><span class="p">)</span>
-<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s1">&#39;tabulator&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="create_dashboard"><a class="viewcode-back" href="../../../autoapi/src/plot/dashboard/index.html#src.plot.dashboard.create_dashboard">[docs]</a><span class="k">def</span> <span class="nf">create_dashboard</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize dashboard.</span>
 
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># read and format forecasts metadata / assessment</span>
     <span class="n">df_forecast_meta</span> <span class="o">=</span> <span class="n">read_forecast_meta</span><span class="p">()</span>
-    <span class="n">df_table</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">df_forecast_meta</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
-            <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
-                <span class="s2">&quot;vermogen_nominaal&quot;</span><span class="p">:</span> <span class="s2">&quot;P_nom&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;relative_abs_max&quot;</span><span class="p">:</span> <span class="s2">&quot;P_max&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;date_abs_max&quot;</span><span class="p">:</span> <span class="s2">&quot;t_max&quot;</span><span class="p">,</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-        <span class="p">[[</span><span class="s2">&quot;boxid&quot;</span><span class="p">,</span> <span class="s2">&quot;P_max&quot;</span><span class="p">,</span> <span class="s2">&quot;t_max&quot;</span><span class="p">,</span> <span class="s2">&quot;vestiging&quot;</span><span class="p">]]</span>
-        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;P_max&quot;</span><span class="p">,</span> <span class="s2">&quot;t_max&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
-    <span class="p">)</span>
+    <span class="n">df_table</span> <span class="o">=</span> <span class="n">df_forecast_meta</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;vermogen_nominaal&quot;</span><span class="p">:</span> <span class="s2">&quot;P_nom&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;relative_abs_max&quot;</span><span class="p">:</span> <span class="s2">&quot;P_max&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;date_abs_max&quot;</span><span class="p">:</span> <span class="s2">&quot;t_max&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)[[</span><span class="s2">&quot;boxid&quot;</span><span class="p">,</span> <span class="s2">&quot;P_max&quot;</span><span class="p">,</span> <span class="s2">&quot;t_max&quot;</span><span class="p">,</span> <span class="s2">&quot;vestiging&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;P_max&quot;</span><span class="p">,</span> <span class="s2">&quot;t_max&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
     <span class="n">df_table</span><span class="p">[</span><span class="s2">&quot;t_max&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_table</span><span class="p">[</span><span class="s2">&quot;t_max&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
 
     <span class="c1"># configure tabulator for prioritization list of transformers</span>
     <span class="n">tabulator_formatters</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;float&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;progress&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-        <span class="s2">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;tickCross&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;P_max&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;progress&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;green&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">80</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;orange&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">15</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="p">},</span>
     <span class="p">}</span>
 
     <span class="n">table</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Tabulator</span><span class="p">(</span>
         <span class="n">df_table</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
-        <span class="c1">#     formatters=tabulator_formatters,</span>
+        <span class="n">formatters</span><span class="o">=</span><span class="n">tabulator_formatters</span><span class="p">,</span>
         <span class="n">show_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">disabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">selectable</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -192,7 +200,7 @@
     <span class="c1"># enable filter on sub-service area</span>
     <span class="n">vestigingen</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_table</span><span class="p">[</span><span class="s2">&quot;vestiging&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
     <span class="n">choice_vestiging</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">CheckButtonGroup</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;regio&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;regio&quot;</span><span class="p">,</span>
         <span class="n">value</span><span class="o">=</span><span class="n">vestigingen</span><span class="p">,</span>
         <span class="n">options</span><span class="o">=</span><span class="n">vestigingen</span><span class="p">,</span>
         <span class="n">width</span><span class="o">=</span><span class="mi">1100</span><span class="p">,</span>
@@ -208,16 +216,20 @@
         <span class="n">df_total</span> <span class="o">=</span> <span class="n">read_forecasts</span><span class="p">(</span><span class="n">boxid</span><span class="o">=</span><span class="n">boxid</span><span class="p">)</span>
 
         <span class="n">plot_total</span> <span class="o">=</span> <span class="n">plot_all</span><span class="p">(</span>
-            <span class="n">df_data</span><span class="o">=</span><span class="n">df_total</span><span class="p">,</span> <span class="n">df_meta</span><span class="o">=</span><span class="n">df_forecast_meta</span><span class="p">[</span><span class="n">df_forecast_meta</span><span class="p">[</span><span class="s2">&quot;boxid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">boxid</span><span class="p">]</span>
+            <span class="n">df_data</span><span class="o">=</span><span class="n">df_total</span><span class="p">,</span>
+            <span class="n">df_meta</span><span class="o">=</span><span class="n">df_forecast_meta</span><span class="p">[</span><span class="n">df_forecast_meta</span><span class="p">[</span><span class="s2">&quot;boxid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">boxid</span><span class="p">],</span>
         <span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 
         <span class="n">plot_min</span> <span class="o">=</span> <span class="n">plot_decompose</span><span class="p">(</span><span class="n">df_total</span><span class="p">[</span><span class="n">df_total</span><span class="p">[</span><span class="s2">&quot;extreme&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">])</span>
 
         <span class="n">plot_max</span> <span class="o">=</span> <span class="n">plot_decompose</span><span class="p">(</span><span class="n">df_total</span><span class="p">[</span><span class="n">df_total</span><span class="p">[</span><span class="s2">&quot;extreme&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">])</span>
 
-        <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">((</span><span class="s2">&quot;general&quot;</span><span class="p">,</span> <span class="n">plot_total</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;breakdown min&quot;</span><span class="p">,</span> <span class="n">plot_min</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;breakdown max&quot;</span><span class="p">,</span> <span class="n">plot_max</span><span class="p">),</span>
-                       <span class="n">width_policy</span><span class="o">=</span><span class="s2">&quot;max&quot;</span><span class="p">)</span>
-
+        <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span>
+            <span class="p">(</span><span class="s2">&quot;general&quot;</span><span class="p">,</span> <span class="n">plot_total</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;breakdown min&quot;</span><span class="p">,</span> <span class="n">plot_min</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;breakdown max&quot;</span><span class="p">,</span> <span class="n">plot_max</span><span class="p">),</span>
+            <span class="n">width_policy</span><span class="o">=</span><span class="s2">&quot;max&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
 
     <span class="n">tabs</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">update_tabs</span><span class="p">,</span> <span class="n">selection</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">selection</span><span class="p">)</span>
 

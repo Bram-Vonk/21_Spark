@@ -153,6 +153,34 @@ Module Contents
 
 .. function:: format_data(df)
 
+   Format the loaded weekly data in the correct form.
+
+
+   :Parameters:
+
+       **df: pd.DataFrame**
+           Loaded weekly extremes.
+
+   :Returns:
+
+       :obj:`pd.DataFrame`
+           Formatted data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
 
 .. function:: split_last(df_data, period=dt.timedelta(weeks=26))
 

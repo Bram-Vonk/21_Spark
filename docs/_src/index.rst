@@ -21,5 +21,4 @@ Spark documentation
    modeling
    evaluation
    deployment
-   example_notebook.ipynb
    autoapi/index

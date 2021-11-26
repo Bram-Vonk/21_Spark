@@ -65,6 +65,10 @@
             <a class="nav-link" href="../../../../evaluation.html">Evaluation</a>
         </li>
         
+        <li class="nav-item ">
+            <a class="nav-link" href="../../../../deployment.html">Deployment</a>
+        </li>
+        
         <li class="nav-item active">
             <a class="nav-link" href="../../../index.html">API Reference</a>
         </li>
@@ -101,6 +105,8 @@
   
 
   <ul class="nav bd-sidenav">
+      
+      
       
       
       
@@ -175,7 +181,24 @@
 <dl class="py function">
 <dt id="src.forecast.assess.asses_forecasts">
 <code class="sig-prename descclassname">src.forecast.assess.</code><code class="sig-name descname">asses_forecasts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_total</span></em>, <em class="sig-param"><span class="n">df_meta</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/src/forecast/assess.html#asses_forecasts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.forecast.assess.asses_forecasts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Assesses if and when a transformer will overload based on the forecasts and metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_total: pd.DataFrame</strong></dt><dd><p>DataFrame with forecasts.</p>
+</dd>
+<dt><strong>df_meta: pd.DataFrame</strong></dt><dd><p>DataFrame with metadata of the transformer.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.DataFrame</span></code></dt><dd><p>Result of the assessment.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>
