@@ -1,32 +1,31 @@
-import panel as pn
-import altair as alt
 import pandas as pd
+import panel as pn
 
-from src.utils.snowflake import read_forecast_meta, read_forecasts
 from src.plot.altair import plot_all, plot_decompose
-
-
-
+from src.utils.snowflake import read_forecast_meta, read_forecasts
 
 # alt.renderers.enable("default")
 # pn.extension("vega")
-pn.extension('tabulator')
+pn.extension("tabulator")
+
 
 def create_dashboard():
+    """
+    Initialize dashboard.
 
+    Returns
+    -------
+    None
+    """
     # read and format forecasts metadata / assessment
     df_forecast_meta = read_forecast_meta()
-    df_table = (
-        df_forecast_meta.rename(
-            columns={
-                "vermogen_nominaal": "P_nom",
-                "relative_abs_max": "P_max",
-                "date_abs_max": "t_max",
-            }
-        )
-        [["boxid", "P_max", "t_max", "vestiging"]]
-        .sort_values(by=["P_max", "t_max"], ascending=[False, True])
-    )
+    df_table = df_forecast_meta.rename(
+        columns={
+            "vermogen_nominaal": "P_nom",
+            "relative_abs_max": "P_max",
+            "date_abs_max": "t_max",
+        }
+    )[["boxid", "P_max", "t_max", "vestiging"]].sort_values(by=["P_max", "t_max"], ascending=[False, True])
     df_table["t_max"] = pd.to_datetime(df_table["t_max"]).dt.date
 
     # configure tabulator for prioritization list of transformers
@@ -40,7 +39,7 @@ def create_dashboard():
 
     table = pn.widgets.Tabulator(
         df_table.copy(),
-            formatters=tabulator_formatters,
+        formatters=tabulator_formatters,
         show_index=False,
         disabled=True,
         selectable=1,
@@ -53,7 +52,7 @@ def create_dashboard():
     # enable filter on sub-service area
     vestigingen = list(df_table["vestiging"].unique())
     choice_vestiging = pn.widgets.CheckButtonGroup(
-        name='regio',
+        name="regio",
         value=vestigingen,
         options=vestigingen,
         width=1100,
@@ -69,16 +68,20 @@ def create_dashboard():
         df_total = read_forecasts(boxid=boxid)
 
         plot_total = plot_all(
-            df_data=df_total, df_meta=df_forecast_meta[df_forecast_meta["boxid"] == boxid]
+            df_data=df_total,
+            df_meta=df_forecast_meta[df_forecast_meta["boxid"] == boxid],
         ).properties(width=600, height=400)
 
         plot_min = plot_decompose(df_total[df_total["extreme"] == "min"])
 
         plot_max = plot_decompose(df_total[df_total["extreme"] == "max"])
 
-        return pn.Tabs(("general", plot_total), ("breakdown min", plot_min), ("breakdown max", plot_max),
-                       width_policy="max")
-
+        return pn.Tabs(
+            ("general", plot_total),
+            ("breakdown min", plot_min),
+            ("breakdown max", plot_max),
+            width_policy="max",
+        )
 
     tabs = pn.bind(update_tabs, selection=table.param.selection)
 

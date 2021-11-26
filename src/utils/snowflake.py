@@ -1,9 +1,9 @@
 import datetime as dt
 import logging
 import os
-import pytz
 
 import pandas as pd
+import pytz
 import snowflake.connector
 from snowflake.sqlalchemy import URL
 from sqlalchemy import create_engine
@@ -14,11 +14,7 @@ from src.utils.vault import get_secrets
 
 logger = logging.getLogger("SPARK")
 
-config = parse_config(
-    os.path.abspath(
-        os.path.join(os.path.join(os.path.dirname(__file__), "../settings.yml"))
-    )
-)
+config = parse_config(os.path.abspath(os.path.join(os.path.join(os.path.dirname(__file__), "../settings.yml"))))
 
 channel_like = "register://electricity/0/activepower/%?avg=15"
 column_details = """
@@ -53,7 +49,8 @@ def read_meta(boxid=None):
     Parameters
     ----------
     boxid : list
-        ID of DALI box to read. None results in all available preprocess of DALI boxes that have nominal power specified.
+        ID of DALI box to read.
+        None results in all available preprocess of DALI boxes that have nominal power specified.
 
     Returns
     -------
@@ -245,17 +242,12 @@ def update_week_extremes():
 
     last_processed = get_last_processed_time()
 
-    if (
-        last_processed.date().isocalendar()[:2]
-        == dt.datetime.now().date().isocalendar()[:2]
-    ):
+    if last_processed.date().isocalendar()[:2] == dt.datetime.now().date().isocalendar()[:2]:
         logger.info("extremes table is up to date")
         pass
     else:
         logger.info(f"updating from {last_processed}")
-        query = insert_table_query(
-            make_week_extremes_query(last_processed=last_processed)
-        )
+        query = insert_table_query(make_week_extremes_query(last_processed=last_processed))
 
         with snowflake.connector.connect(**get_secrets("snowflake")) as con:
             # con.cursor().execute_async(query)
@@ -314,17 +306,21 @@ def read_week_extremes(boxid=None, L=None):
     df_query = df_query.apply(downcast, try_numeric=True, category=False)
 
     if len(df_query):
-        df_query["date"] = df_query.apply(
-            lambda df: dt.datetime.fromisocalendar(df["year"], df["week"], 1), axis=1
-        )
+        df_query["date"] = df_query.apply(lambda df: dt.datetime.fromisocalendar(df["year"], df["week"], 1), axis=1)
     else:
         df_query = df_query.assign(date=None)
-
 
     return df_query
 
 
 def clear_forecasts():
+    """
+    Clear the table with forecasts.
+
+    Returns
+    -------
+    None
+    """
     con_config = format_connection("DALI_forecasts")
 
     query = f"""
@@ -353,6 +349,13 @@ def clear_forecasts():
 
 
 def clear_forecast_meta():
+    """
+    Clear the table with forecast metadata.
+
+    Returns
+    -------
+    None
+    """
     con_config = format_connection("DALI_forecast_meta")
 
     query = f"""
@@ -377,6 +380,18 @@ def clear_forecast_meta():
 
 
 def write_forecasts(df):
+    """
+    Write results into the Snowflake database.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        Results to write.
+
+    Returns
+    -------
+    None
+    """
     df["processed_on"] = dt.datetime.now(tz=pytz.timezone("UTC"))
     df["is_valid"] = True
 
@@ -393,7 +408,18 @@ def write_forecasts(df):
 
 
 def write_forecast_meta(df):
+    """
+    Write assessment of forecast on capacity to forecast metadata table in Snowflake.
 
+    Parameters
+    ----------
+    df: pd.DataFrame
+        Assessment results.
+
+    Returns
+    -------
+    None
+    """
     con_config = format_connection("DALI_forecast_meta")
 
     with create_engine(URL(**con_config)).connect() as con:
@@ -407,6 +433,19 @@ def write_forecast_meta(df):
 
 
 def read_forecasts(boxid=None):
+    """
+    Read forecasts for Snowflake database.
+
+    Parameters
+    ----------
+    boxid: str
+        Boxid of a DALI box. If not provided or None, all forecast are loaded.
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with forecasts.
+    """
     con_config = format_connection("DALI_forecasts")
 
     if boxid is None:
@@ -426,19 +465,27 @@ def read_forecasts(boxid=None):
         WHERE IS_VALID  {box_selector};
     """
 
-    with create_engine(URL(**con_config)).connect() as con:
-        df_query = pd.read_sql(sql=query, con=con)
-    # with snowflake.connector.connect(**get_secrets("snowflake")) as con:
-    #     # con.autocommit(True)
-    #     cur = con.cursor()
-    #     cur.execute(query)
-    #     df_query = cur.fetch_pandas_all()
-    #     # con.commit()
+    # with create_engine(URL(**con_config)).connect() as con:
+    #     df_query = pd.read_sql(sql=query, con=con)
+    with snowflake.connector.connect(**get_secrets("snowflake")) as con:
+        # con.autocommit(True)
+        cur = con.cursor()
+        cur.execute(query)
+        df_query = cur.fetch_pandas_all()
+        # con.commit()
 
     return df_query.rename(columns=str.lower)
 
 
 def read_forecast_meta():
+    """
+    Read assessment of forecasts.
+
+    Returns
+    -------
+    pd.DataFrame
+        Results of he assessment of all DALI box forecasts.
+    """
     con_config = format_connection("DALI_forecast_meta")
 
     query = f"""
@@ -454,6 +501,16 @@ def read_forecast_meta():
 
 
 def get_forecasted_boxids():
+    """
+    Get the boxids for boxes that are already forecasted.
+
+    (Should be adapted when multiple forecasts (done on different dates) are present in database).
+
+    Returns
+    -------
+    pd.DataFrame
+        Unique boxids.
+    """
     con_config = format_connection("DALI_forecasts")
 
     query = f"""
@@ -465,31 +522,3 @@ def get_forecasted_boxids():
         df_query = pd.read_sql(sql=query, con=con)
 
     return df_query
-
-
-def clear_forecasts():
-    con_config = format_connection("DALI_forecasts")
-
-    query = f"""
-    CREATE OR REPLACE TABLE {con_config["database"]}.{con_config["schema"]}.{con_config["table"]}
-        (
-            BOXID        VARCHAR(50),
-            DATE         TIMESTAMPNTZ,
-            L            VARCHAR(5),
-            PROCESSED_ON TIMESTAMPNTZ,
-            WEEK         NUMBER(2),
-            YEAR         NUMBER(4),
-            EXTREME      VARCHAR(3),
-            VALUE        DOUBLE,
-            PERIOD       VARCHAR(10),
-            MODEL_VAR    VARCHAR(10),
-            BAND         VARCHAR(10),
-            BOUNDARY     VARCHAR(10),
-            IS_VALID     BOOLEAN
-        )
-        CLUSTER BY (BOXID, L)
-        COPY GRANTS;
-    """
-
-    with snowflake.connector.connect(**get_secrets("snowflake")) as con:
-        con.cursor().execute(query)

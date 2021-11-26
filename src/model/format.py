@@ -9,7 +9,7 @@ logger = logging.getLogger("SPARK")
 
 def make_quantile_bands(df_base, samples, quantiles=(5, 15, 50, 85, 95)):
     """
-    Translate samples to bands with edges defined by the given quantiles and merge them to a base dataFrame
+    Translate samples to bands with edges defined by the given quantiles and merge them to a base DataFrame.
 
     Parameters
     ----------
@@ -25,7 +25,6 @@ def make_quantile_bands(df_base, samples, quantiles=(5, 15, 50, 85, 95)):
     pd.DataFrame
         long format version with the quantile bands of the samples
     """
-
     # get quantiles
     q_data = np.quantile(samples, [q / 100 for q in quantiles], axis=0)
     boundaries = ["upper", "lower"]
@@ -34,9 +33,7 @@ def make_quantile_bands(df_base, samples, quantiles=(5, 15, 50, 85, 95)):
     # create bands from two quantile boundaries (median: upper=lower)
     for ci in range(math.ceil(len(quantiles) / 2)):
         # name band
-        band_range = f"Q{quantiles[ci]}-Q{quantiles[-ci-1]}".replace(
-            "Q50-Q50", "median"
-        )
+        band_range = f"Q{quantiles[ci]}-Q{quantiles[-ci-1]}".replace("Q50-Q50", "median")
 
         df_band = df_base.copy()
         df_band[boundaries] = q_data[[-ci - 1, ci]].T
@@ -75,15 +72,12 @@ def format_model_estimates(df_base, pp, quantiles=(5, 15, 50, 85, 95)):
         long format version with the quantile bands of the samples for every model variable
 
     """
-
     logger.info(f"calculating bands for quantiles: {quantiles}")
     df_vars = pd.DataFrame()
     for var, samples in pp.items():
         # get per model variable the quantile bands
         logger.info(f"calculating bands for variable: {var}")
-        df_var = make_quantile_bands(
-            df_base, samples=samples, quantiles=(5, 15, 50, 85, 95)
-        ).assign(model_var=var)
+        df_var = make_quantile_bands(df_base, samples=samples, quantiles=(5, 15, 50, 85, 95)).assign(model_var=var)
         df_vars = pd.concat([df_vars, df_var], axis=0)
 
     return df_vars

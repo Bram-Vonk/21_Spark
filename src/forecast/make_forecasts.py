@@ -1,9 +1,16 @@
 import logging
 
-from src.utils.snowflake import read_meta, clear_forecasts, write_forecasts, write_forecast_meta, get_forecasted_boxids
 from src.forecast.forecast import forecast
+from src.utils.snowflake import (
+    clear_forecasts,
+    get_forecasted_boxids,
+    read_meta,
+    write_forecast_meta,
+    write_forecasts,
+)
 
 logger = logging.getLogger("SPARK")
+
 
 def make_forecasts(clear=False):
     """
@@ -17,9 +24,7 @@ def make_forecasts(clear=False):
     Returns
     -------
     None
-
     """
-
     if clear:
         clear_forecasts()
 

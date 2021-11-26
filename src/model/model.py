@@ -151,8 +151,7 @@ def create_model(t, y, p_fourier, n_fourier=5, n_polynomial=2):
     -------
     PYMC3 model context
     """
-
-    logger.info(f"creating PYMC3 model")
+    logger.info("creating PYMC3 model")
     logger.info(f"polynomial order = {n_polynomial} for drift/trend")
     logger.info(f"fourier order = {n_fourier} for seasonality")
     with pm.Model() as m:
@@ -160,7 +159,7 @@ def create_model(t, y, p_fourier, n_fourier=5, n_polynomial=2):
         yearly = seasonality_model(t, p=p_fourier, n=n_fourier)
 
         σ_ε = pm.Uniform("σ_ε", lower=0, upper=1)
-        Σ = pm.Normal("Σ", mu=drift + yearly, sd=σ_ε, observed=y)
+        _ = pm.Normal("Σ", mu=drift + yearly, sd=σ_ε, observed=y)
 
         # display(pm.model_to_graphviz(m))
         # display(m)
