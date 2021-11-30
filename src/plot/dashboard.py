@@ -1,3 +1,5 @@
+#  Copyright (c) 2021. Bram Vonk, Enexis
+
 import pandas as pd
 import panel as pn
 
@@ -9,7 +11,7 @@ from src.utils.snowflake import read_forecast_meta, read_forecasts
 pn.extension("tabulator")
 
 
-def create_dashboard():
+def build_dashboard_():
     """
     Initialize dashboard.
 
@@ -88,4 +90,20 @@ def create_dashboard():
     # define panel
     panel = pn.Column(choice_vestiging, pn.Row(table, tabs, min_height=500))
 
-    pn.serve(panel)
+    # pn.serve(panel)
+    # panel.servable()
+
+    return panel
+
+
+def build_dashboard():
+    return pn.pane.Markdown("Hello World")
+
+if __name__.startswith("bokeh"):
+    # start with panel serve script.py
+    dashboard = build_dashboard()
+    dashboard.servable()
+if __name__ == "__main__":
+    # start with python script.py
+    dashboard = build_dashboard()
+    dashboard.show(port=5007)

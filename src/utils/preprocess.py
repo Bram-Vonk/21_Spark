@@ -1,3 +1,5 @@
+#  Copyright (c) 2021. Bram Vonk, Enexis
+
 import numpy as np
 import pandas as pd
 

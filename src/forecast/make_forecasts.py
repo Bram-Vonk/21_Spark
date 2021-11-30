@@ -1,3 +1,5 @@
+#  Copyright (c) 2021. Bram Vonk, Enexis
+
 import logging
 
 from src.forecast.forecast import forecast
