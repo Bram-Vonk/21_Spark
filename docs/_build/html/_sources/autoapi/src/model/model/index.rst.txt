@@ -17,6 +17,7 @@ Module Contents
    Dot product for Theano.
 
    The theano dot product and NUTS sampler don't work with large matrices.
+   Copyright (c) 2021. Ritchie Vink
    source: https://www.ritchievink.com/blog/2018/10/09/ ...
    build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
 
@@ -53,6 +54,7 @@ Module Contents
 
    Calculate fourier representation of t for a period and order.
 
+   Copyright (c) 2021. Ritchie Vink
    Based on source: https://www.ritchievink.com/blog/2018/10/09/ ...
    build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
 
@@ -92,6 +94,7 @@ Module Contents
 
    Create seasonality model with fourier series.
 
+   Copyright (c) 2021. Ritchie Vink
    Based on source: https://www.ritchievink.com/blog/2018/10/09/ ...
    build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
 

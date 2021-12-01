@@ -66,6 +66,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="autoapi/index.html">API Reference</a>
         </li>
         
@@ -106,6 +110,8 @@
       
       
         
+      
+      
       
       
       
@@ -164,7 +170,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#general-description-based-on-an-example-case" class="nav-link">General description based on an example case</a>
+            <a href="#example-use-case" class="nav-link">Example Use Case</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
@@ -172,11 +178,11 @@
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#requirements-from-users" class="nav-link">Requirements from users</a>
+            <a href="#requirements-from-users" class="nav-link">Requirements from Users</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#success-criteria" class="nav-link">Success criteria</a>
+            <a href="#success-criteria" class="nav-link">Success Criteria</a>
         </li>
     
             </ul>
@@ -210,11 +216,11 @@
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#implementation-concept" class="nav-link">Implementation concept</a>
+            <a href="#implementation-concept" class="nav-link">Implementation Concept</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#planned-milestones" class="nav-link">Planned milestones</a>
+            <a href="#planned-milestones" class="nav-link">Planned Milestones</a>
         </li>
     
             </ul>
@@ -237,8 +243,8 @@
 <h1>Business Understanding<a class="headerlink" href="#business-understanding" title="Permalink to this headline">¶</a></h1>
 <section id="business-objectives">
 <h2>Business Objectives<a class="headerlink" href="#business-objectives" title="Permalink to this headline">¶</a></h2>
-<p>Enexis is a regulated DNO with a monopoly position regarding the distribution of electricity and gas.
-The company wants to keep the delivery of electricity and gas:</p>
+<p>Enexis is a regulated DNO with a monopoly position regarding the distribution of electricity and gas.</p>
+<p>The company wants to keep the delivery of electricity and gas:</p>
 <ul class="simple">
 <li><p>reliable</p></li>
 <li><p>affordable</p></li>
@@ -250,12 +256,11 @@ The company wants to keep the delivery of electricity and gas:</p>
 <h2>Situation Assessment<a class="headerlink" href="#situation-assessment" title="Permalink to this headline">¶</a></h2>
 <section id="a-changing-environment">
 <h3>A changing environment<a class="headerlink" href="#a-changing-environment" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">Power is delivered via grid components as cables and transformers (for electricity) to residential and industrial connections of our customers.</div>
-<div class="line">These grid components have to have the needed capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.</div>
-<div class="line">For decennia this monitoring was done by mainly looking to historical yearly extremes.</div>
-</div>
-<p>However, the increasing growth rate of power demand and supply driven by emerging technologies and electrification of transportation and heating, require a more frequent and pro-active electricity grid management.</p>
+<p>Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.</p>
+<p>These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.</p>
+<p>For decades this monitoring was done mainly by looking to historical yearly extremes.</p>
+<p>However, the increasing growth rate of power demand and supply driven by emerging technologies as electrical vehicles (EV) and photovoltaics (PV), requires shorter monitoring periods and nowadays even forecasts.
+Otherwise, there is no time for mitigating actions and customers will be out of power.</p>
 <a class="reference internal image-reference" href="_images/pv_cbs.png"><img alt="_images/pv_cbs.png" class="align-center" src="_images/pv_cbs.png" style="width: 400px;" /></a>
 <p>Solar power (PV) in The Netherlands (source: <a class="reference external" href="https://www.cbs.nl/nl-nl/nieuws/2020/10/productie-groene-elektriciteit-in-stroomversnelling">CBS</a>).</p>
 <a class="reference internal image-reference" href="_images/ev_rvo.png"><img alt="_images/ev_rvo.png" class="align-center" src="_images/ev_rvo.png" style="width: 400px;" /></a>
@@ -265,48 +270,43 @@ The company wants to keep the delivery of electricity and gas:</p>
 </section>
 <section id="impact-on-grid-management">
 <h3>Impact on grid management<a class="headerlink" href="#impact-on-grid-management" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">The more volatile and more rapidly increasing power flows require that Grid Planners more often monitor if the minimum and maximum power is still withing the transformer’s capacity. Otherwise, this will cause unsafe operating situations and it can lead to power outages.</div>
-<div class="line">Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years. This in a environment were they are expected to make sure that Enexis is an enabler of the energy transition.</div>
-</div>
+<p>The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still withing the transformer’s capacity.
+Otherwise, this will cause unsafe operating situations and it can lead to power outages.</p>
+<p>Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years.
+This in a time and environment were they are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.</p>
 </section>
 <section id="opportunity-for-data-science">
 <h3>Opportunity for data science<a class="headerlink" href="#opportunity-for-data-science" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">Since a few years Enexis started to deploy so called Distribution Automation Light Boxes. With these measurement apparatus it is possible to monitor our distribution transformers near real time.</div>
-<div class="line">At the moment of writing 11k distribution transformers (of the total population of 35k) are equipped with these apparatus which are measuring 15 minute average voltages, currents and powers of each transformer.</div>
-<div class="line">This data (together with transformer metadata) enables to automatically detect or even foresee earlier overloading of transformers. It gives grid planners the opportunity to timely mitigate upcoming issues.</div>
-</div>
+<p>Since a few years Enexis started to deploy so called Distribution Automation Light Boxes (DALI).</p>
+<p>With these measurement apparatus it is possible to monitor our distribution transformers near real time.</p>
+<p>At the moment of writing 11k distribution transformers (of the total population of 35k) are equipped with these apparatus which are measuring 15 minute average voltages, currents and powers of each transformer.</p>
+<p>This data (together with transformer metadata) enables us to automatically detect or even foresee earlier overloading of transformers.
+It gives grid planners the opportunity to timely mitigate upcoming issues.</p>
 </section>
 </section>
 <section id="data-mining-goals">
 <h2>Data Mining Goals<a class="headerlink" href="#data-mining-goals" title="Permalink to this headline">¶</a></h2>
 <section id="primary-objective">
 <h3>Primary objective<a class="headerlink" href="#primary-objective" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">More volatile power flows require a monitoring tool that forecasts transformer overloading.</div>
-<div class="line">The goal is to timely identify future overloading of transformers.</div>
-</div>
+<p>More volatile power flows require a monitoring tool that forecasts transformer overloading.</p>
+<p>The goal is to timely identify future overloading of transformers.</p>
 </section>
-<section id="general-description-based-on-an-example-case">
-<h3>General description based on an example case<a class="headerlink" href="#general-description-based-on-an-example-case" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">The project should result in a tool that is able to predict in autumn that a transformer will be overloaded in spring due to EV with a prediction interval.</div>
-<div class="line">The tool enables better planning of grid strengthening which prevents overloading of transformers (safety and reliability), foreseeing future work (costs) and enabling the energy transition better (sustainability).</div>
-</div>
+<section id="example-use-case">
+<h3>Example Use Case<a class="headerlink" href="#example-use-case" title="Permalink to this headline">¶</a></h3>
+<p>The project should result in a tool that is able to predict in autumn that a transformer will be overloaded in spring due to EV with a prediction interval.</p>
+<p>The tool enables better planning of grid strengthening which prevents overloading of transformers (safety and reliability), foreseeing and better plan future work (costs) and enabling the energy transition better (sustainability).</p>
 </section>
 <section id="business-value-diagram">
 <h3>Business Value Diagram<a class="headerlink" href="#business-value-diagram" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">Business value is created by the forecast model by enabling the preferred path for grid investments on the business value part (upper half) of the Business Flow Down Diagram below.</div>
-<div class="line">This path is possible by providing grid planners with a probability that a transformer will overload in the foreseeable future.</div>
-<div class="line">The model (lower half) will use historic DALI timeseries data to forecast transformer loading. By comparing this forecast with capacity of the transformer possible overloading can be foreseen.</div>
-</div>
+<p>Business value is created by the forecast model by enabling the preferred path for grid investments on the business value part (upper half) of the Business Flow Down Diagram below.</p>
+<p>This path is possible by providing grid planners with a probability that a transformer will overload in the foreseeable future.</p>
+<p>The model (lower half) will use historic DALI timeseries data to forecast transformer loading.
+By comparing this forecast with capacity of the transformer possible overloading can be foreseen.</p>
 <a class="reference internal image-reference" href="_images/value_flow_down.png"><img alt="_images/value_flow_down.png" class="align-center" src="_images/value_flow_down.png" style="width: 800px;" /></a>
 <p>Business Flow Down Diagram for the project.</p>
 </section>
 <section id="requirements-from-users">
-<h3>Requirements from users<a class="headerlink" href="#requirements-from-users" title="Permalink to this headline">¶</a></h3>
+<h3>Requirements from Users<a class="headerlink" href="#requirements-from-users" title="Permalink to this headline">¶</a></h3>
 <p>The developed product is only valuable if it is use dby the end users, who are the Grid Planners.
 Therefore the following additional requirements and wishes are important:</p>
 <ul class="simple">
@@ -323,7 +323,7 @@ Therefore the following additional requirements and wishes are important:</p>
 </ul>
 </section>
 <section id="success-criteria">
-<h3>Success criteria<a class="headerlink" href="#success-criteria" title="Permalink to this headline">¶</a></h3>
+<h3>Success Criteria<a class="headerlink" href="#success-criteria" title="Permalink to this headline">¶</a></h3>
 <p>The project is a success if there is a tool that is being used by the Grid Planners that accurately forecasts overloading of transformers.</p>
 <p>Usage of the tool can be measured by tracking users of the tool and by performing interview with the end users after deployment.
 Accuracy is assessed by comparing forecasts with measurements.</p>
@@ -368,7 +368,8 @@ Accuracy is assessed by comparing forecasts with measurements.</p>
 </li>
 <li><dl class="simple">
 <dt>Data</dt><dd><ul>
-<li><p>Data</p></li>
+<li><p>DALI 15-minute measurement data.</p></li>
+<li><p>Distribution transformer metadata (capacity).</p></li>
 </ul>
 </dd>
 </dl>
@@ -428,7 +429,7 @@ Accuracy is assessed by comparing forecasts with measurements.</p>
 </ul>
 </section>
 <section id="implementation-concept">
-<h3>Implementation concept<a class="headerlink" href="#implementation-concept" title="Permalink to this headline">¶</a></h3>
+<h3>Implementation Concept<a class="headerlink" href="#implementation-concept" title="Permalink to this headline">¶</a></h3>
 <p>The stool is split into three steps to tackle the amount of data available, but still make the results manageable:</p>
 <ul class="simple">
 <li><p>Preprocessing: To condense 15 minute load averages into weekly extremes (minimum and maximum).</p></li>
@@ -440,7 +441,7 @@ Accuracy is assessed by comparing forecasts with measurements.</p>
 <p>The proposed steps for implementation of the tool.</p>
 </section>
 <section id="planned-milestones">
-<h3>Planned milestones<a class="headerlink" href="#planned-milestones" title="Permalink to this headline">¶</a></h3>
+<h3>Planned Milestones<a class="headerlink" href="#planned-milestones" title="Permalink to this headline">¶</a></h3>
 <table class="colwidths-given table" id="id1">
 <caption><span class="caption-text">Scheduled project milestones for 2021.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>

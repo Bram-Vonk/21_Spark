@@ -141,6 +141,28 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#current-status" class="nav-link">Current Status</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#code-standards" class="nav-link">Code Standards</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#environment" class="nav-link">Environment</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#security" class="nav-link">Security</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#deployability" class="nav-link">Deployability</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
             <a href="#deployment-plan" class="nav-link">Deployment Plan</a>
         </li>
     
@@ -153,7 +175,33 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#project-review" class="nav-link">Project review</a>
+            <a href="#project-review" class="nav-link">Project review</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#jads-professional-education-lead-track" class="nav-link">JADS - Professional Education - Lead Track</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#learning-objectives" class="nav-link">Learning Objectives</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#evaluation-criteria" class="nav-link">Evaluation Criteria</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#personal-goals" class="nav-link">Personal Goals</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h5">
+            <a href="#to-the-persistent-reader" class="nav-link">To the persistent reader</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
         </li>
     
     </ul>
@@ -171,21 +219,207 @@
                 
   <section id="deployment">
 <h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
+<section id="current-status">
+<h2>Current Status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h2>
+<section id="code-standards">
+<h3>Code Standards<a class="headerlink" href="#code-standards" title="Permalink to this headline">¶</a></h3>
+<p>The python project is structured simulary as <a class="reference external" href="https://github.com/cookiecutter/cookiecutter">Cookiecutter</a>.</p>
+<p>The code has been validated with linting by <a class="reference external" href="https://github.com/psf/black">Black</a>, <a class="reference external" href="https://github.com/PyCQA/Isort">isort</a>, and <a class="reference external" href="https://github.com/PyCQA/flake8">Flake8</a>.</p>
+<p>Unit tests have not been written yet.</p>
+</section>
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h3>
+<p>The project currently uses data from the Production environment, since there is no DALI (meta)data available on the Test or Acceptance environments.</p>
+<p>Therefore, the further implementation of the CICD pipeline is postponed for now.
+(Also since within Enexis Gitlab is used, but for this study project a parallel Github repository is used.)</p>
+</section>
+<section id="security">
+<h3>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h3>
+<p>Within the Enexis domain one logs on to an environment (in this case Production).</p>
+<p>Credentials for accessing the Snowflake database are acquired via Vault to ensure to keep secrets secret.</p>
+</section>
+<section id="deployability">
+<h3>Deployability<a class="headerlink" href="#deployability" title="Permalink to this headline">¶</a></h3>
+<p>Docker files are written for following steps:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/process_triggered.png"><img alt="_images/process_triggered.png" class="align-center" src="_images/process_triggered.png" style="width: 800px;" /></a>
+</div></blockquote>
+<p>The steps are triggered via an entrypoint defined in the <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">run</span> <span class="pre">update_extremes</span></code></dt><dd><p>Aggregates the 15-minute data into weekly minimum and maximum values per DALI-box.
+Only updates new data since the last run.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">run</span> <span class="pre">make_forecasts</span></code></dt><dd><p>Creates a tuned model for a DALI box with (high) enough measurements and makes a forecast with it.
+Currently, the results are stored all with the <code class="docutils literal notranslate"><span class="pre">is_valid</span></code> column on <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+An extra run should be done to set this column to <code class="docutils literal notranslate"><span class="pre">False</span></code> for old forecast.
+Until then, one should empty the table on beforehand.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">run</span> <span class="pre">-p</span> <span class="pre">8000:8000</span> <span class="pre">dashboard</span></code></dt><dd><p>Will run the dashboard and expose it to port 8000.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
 <section id="deployment-plan">
 <h2>Deployment Plan<a class="headerlink" href="#deployment-plan" title="Permalink to this headline">¶</a></h2>
-<p>TO DO</p>
+<p>The following technical actions are required for full deployment:</p>
+<ul class="simple">
+<li><p>(Meta)data for a few DALI boxes is required on the Test and Acceptance environments.</p></li>
+<li><p>The project will need an app number for to trace the costs.</p></li>
+<li><p>The Gitlab CICD pipeline has to be configured.</p></li>
+<li><p>The project needs to land in the Artifactory repository manager of Enexis.</p></li>
+<li><p>Airflow DAGs have to be configured to trigger the jobs.</p></li>
+</ul>
+<p>The end-users will eventually have to accept the product to go into Production.
+For that several end-user/stakeholder meetings are required to get valuable feedback and fine tune the product.
+During these meetings the project will be assessed on the success criteria.</p>
+<p>Usage monitoring of the tool has not been implemented, is important after deployment for value evaluation and life cycle management.</p>
 </section>
 <section id="monitoring-and-maintenance-plan">
 <h2>Monitoring and Maintenance Plan<a class="headerlink" href="#monitoring-and-maintenance-plan" title="Permalink to this headline">¶</a></h2>
-<p>TO DO</p>
+<p>Monitoring of the triggered jobs will be done by connecting the Airflow job to a MS Team webhook.
+This automatically informs the Data Science Team if a scheduled job has failed.</p>
+<p>The issue of model drift is obsolete, since every forecast is based on a newly trained model.</p>
+<p>Monitoring of usage has to be implemented as mentioned above.</p>
 </section>
 <section id="final-report">
 <h2>Final Report<a class="headerlink" href="#final-report" title="Permalink to this headline">¶</a></h2>
-<p>TO DO</p>
+<p>One can create a pdf version of this documentation by the following steps:</p>
+<ul class="simple">
+<li><p>Clone the repository.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code></p></li>
+</ul>
 </section>
 <section id="project-review">
 <h2>Project review<a class="headerlink" href="#project-review" title="Permalink to this headline">¶</a></h2>
-<p>TO DO</p>
+<p>This section covers my personal growth reflection on the Lead track of JADS.</p>
+<p>Firstly, I will cover the objectives and criteria set by JADS.</p>
+<p>Secondly, I will review my personal goals.</p>
+<section id="jads-professional-education-lead-track">
+<h3>JADS - Professional Education - Lead Track<a class="headerlink" href="#jads-professional-education-lead-track" title="Permalink to this headline">¶</a></h3>
+<section id="learning-objectives">
+<h4>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h4>
+<p>The general learning objectives for the Professional Education Lead track of JADS are:</p>
+<ul>
+<li><dl>
+<dt>Acquiring the knowledge and skills covered in the courses (technical and non-technical).</dt><dd><p>The most valuable courses were the non-technical ones.
+Partially, because there was maybe more to gain for me as a more technical character.
+But mainly, since they inspired me and enabled me to accept to embrace that skill set and also provided me with concrete tips to put it into practice.</p>
+<p>Some technical lectures (e.g. “from POCs to Production” and “A Primer in Data Engineering”) confirmed that the way of working and view on data science within my professional team is on the right track.
+Other technical courses (e.g. “Bayesian Nets”, “Recent Advances in A.I.”) inspired me and sparked an interest in new subjects.
+Those subjects are now on my personal bucket list for a technical deep dive in the near future.</p>
+<dl>
+<dt>Concluding: I am convinced the courses in the Lead Track moved a good number of my skills towards the conscious incompetence and conscious competence levels.</dt><dd><a class="reference internal image-reference" href="_images/competence.png"><img alt="_images/competence.png" class="align-center" src="_images/competence.png" style="width: 800px;" /></a>
+</dd>
+</dl>
+<p>The Conscious Competence Learning Model (source: <a class="reference external" href="http://www.pamelaslim.com">pamelaslim.com</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Leading and implementing an impactful data science project by use of the CRISP-DM process.</dt><dd><p>The described project of this documentation shows the result of that.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Forming individuals to enable them to make impact with data science.</dt><dd><p>The coaching from the educators of JADS helped me reassess my future career.</p>
+<ul class="simple">
+<li><p>The discussions with Jeroen about academic and engineering skills helped me appreciating my skills, my work and myself more.</p></li>
+<li><p>The coaching of Kyril helped me to form a clearer view on my career goal and how to get there.</p></li>
+<li><p>The highly effective presentation masterclass of Raoul helped me to reach goals more effective.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="evaluation-criteria">
+<h4>Evaluation Criteria<a class="headerlink" href="#evaluation-criteria" title="Permalink to this headline">¶</a></h4>
+<p>The evaluation criteria for the Professional Education Lead track of JADS and how I translated them are:</p>
+<ul>
+<li><p>Business Value</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Use case selection</p></li>
+<li><p>Stakeholder analysis</p></li>
+<li><p>Stakeholder and expectation management</p></li>
+<li><p>Value flow down diagram</p></li>
+<li><p>Regular business review moments</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Programming</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Coding standards with Cookiecutter and linting (black, isort, flake8)</p></li>
+<li><p>Using Sphinx for auto API documentation in GitHub</p></li>
+<li><p>Interactive visualisations in Altair</p></li>
+<li><p>Dashboard in Panel</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Data engineering</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Snowflake database preprocessing usage (asynchronous queries, ETL)</p></li>
+<li><p>Vault credential management</p></li>
+<li><p>Docker (compose with entrypoint) for every process step</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Data analytics &amp; machine learning</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Coding data management and model from scratch (since not using sklearn)</p></li>
+<li><p>Probabilistic modelling in PyMC3</p></li>
+<li><p>Using Fourier and Taylor series in generalized additive model for time series forecast</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Professional standard of reporting</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Using Sphinx for this documentation</p></li>
+<li><p>Status slide deck after sprint review with end users</p></li>
+<li><p>Project status / pitch and management summary for JADS peers and training</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Academic / research skills</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Using the engineering approach (instead of the scientific method or the axiomatic system) to iteratively create and validate model and outcome.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="personal-goals">
+<h4>Personal Goals<a class="headerlink" href="#personal-goals" title="Permalink to this headline">¶</a></h4>
+<p>Additionally, there were also my personal learning objectives:</p>
+<ul class="simple">
+<li><p>Going through all the steps of CRISP-DM by myself (from Business Understanding to Deployment).</p></li>
+<li><p>Better understanding of probabilistic modeling techniques (e.g. bayesian models, probabilistic tools).</p></li>
+<li><p>Able to value my data skills and knowledge and creating traction / more confidence on flourishing as a data scientist.</p></li>
+</ul>
+<p>One by one my personal learning objectives are fulfilled.</p>
+<p>However, my conscious incompetence skill set has grown dramatically.
+So my new learning objectives are already there. (I will just have to order that backlog.)</p>
+<section id="to-the-persistent-reader">
+<h5>To the persistent reader<a class="headerlink" href="#to-the-persistent-reader" title="Permalink to this headline">¶</a></h5>
+<p>This project is named Spark within Enexis.</p>
+<p>But it has not just solely been named after the developer: <a class="reference external" href="https://en.wiktionary.org/wiki/sp%C3%A1">Spa</a></p>
+</section>
+</section>
+</section>
 </section>
 </section>
 

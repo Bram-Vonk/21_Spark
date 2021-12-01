@@ -66,6 +66,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="autoapi/index.html">API Reference</a>
         </li>
         
@@ -110,6 +114,8 @@
       
       
         
+      
+      
       
       
       
@@ -198,7 +204,7 @@
 </section>
 <section id="data-construction">
 <h2>Data Construction<a class="headerlink" href="#data-construction" title="Permalink to this headline">¶</a></h2>
-<p>From the raw 15 minute data the weekly minimum and maximum are determined. This is done per channel and boxid (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.make_week_extremes_query" title="src.utils.snowflake.make_week_extremes_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.make_week_extremes_query()</span></code></a>).
+<p>From the raw 15-minute data the weekly minimum and maximum are determined. This is done per channel and boxid (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.make_week_extremes_query" title="src.utils.snowflake.make_week_extremes_query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.make_week_extremes_query()</span></code></a>).
 The week definition used is the ISO-week since this is always a full week.</p>
 <p>A SQL query aggregates and writes the result asynchronously on the Snowflake database. This can be done in batch for all historic measurements (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.create_week_extremes" title="src.utils.snowflake.create_week_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.create_week_extremes()</span></code></a>), but the created table can also be updated per week (<a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.update_week_extremes" title="src.utils.snowflake.update_week_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.update_week_extremes()</span></code></a>).</p>
 <table class="colwidths-given table" id="id1">
@@ -283,7 +289,7 @@ This is in preparation for long formatting and concatenating forecast results in
 </section>
 <section id="data-updating-process">
 <h2>Data Updating Process<a class="headerlink" href="#data-updating-process" title="Permalink to this headline">¶</a></h2>
-<p>The weekly extremes can be updated every week (or longer).</p>
+<p>The weekly extremes can be updated on a weekly (or longer) basis.</p>
 <p>By running <a class="reference internal" href="autoapi/src/preprocess/update_extremes/index.html#module-src.preprocess.update_extremes" title="src.preprocess.update_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.update_extremes()</span></code></a> the function <a class="reference internal" href="autoapi/src/utils/snowflake/index.html#src.utils.snowflake.update_week_extremes" title="src.utils.snowflake.update_week_extremes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.utils.snowflake.update_week_extremes()</span></code></a> is called.
 This will will trigger the following steps which update the weekly extremes Snowflake table:</p>
 <a class="reference internal image-reference" href="_images/preprocessing_details.png"><img alt="_images/preprocessing_details.png" class="align-center" src="_images/preprocessing_details.png" style="width: 400px;" /></a>

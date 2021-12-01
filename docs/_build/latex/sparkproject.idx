@@ -1,114 +1,116 @@
-\indexentry{module@\spxentry{module}!src@\spxentry{src}}{41}
-\indexentry{src@\spxentry{src}!module@\spxentry{module}}{41}
-\indexentry{module@\spxentry{module}!src.forecast@\spxentry{src.forecast}}{41}
-\indexentry{src.forecast@\spxentry{src.forecast}!module@\spxentry{module}}{41}
-\indexentry{module@\spxentry{module}!src.forecast.assess@\spxentry{src.forecast.assess}}{41}
-\indexentry{src.forecast.assess@\spxentry{src.forecast.assess}!module@\spxentry{module}}{41}
-\indexentry{logger (in module src.forecast.assess)@\spxentry{logger}\spxextra{in module src.forecast.assess}}{41}
-\indexentry{asses\_forecasts() (in module src.forecast.assess)@\spxentry{asses\_forecasts()}\spxextra{in module src.forecast.assess}}{41}
-\indexentry{module@\spxentry{module}!src.forecast.forecast@\spxentry{src.forecast.forecast}}{42}
-\indexentry{src.forecast.forecast@\spxentry{src.forecast.forecast}!module@\spxentry{module}}{42}
-\indexentry{logger (in module src.forecast.forecast)@\spxentry{logger}\spxextra{in module src.forecast.forecast}}{42}
-\indexentry{config (in module src.forecast.forecast)@\spxentry{config}\spxextra{in module src.forecast.forecast}}{42}
-\indexentry{determine\_estimates() (in module src.forecast.forecast)@\spxentry{determine\_estimates()}\spxextra{in module src.forecast.forecast}}{42}
-\indexentry{determine\_estimates\_minmax() (in module src.forecast.forecast)@\spxentry{determine\_estimates\_minmax()}\spxextra{in module src.forecast.forecast}}{42}
-\indexentry{forecast() (in module src.forecast.forecast)@\spxentry{forecast()}\spxextra{in module src.forecast.forecast}}{42}
-\indexentry{module@\spxentry{module}!src.forecast.make\_forecasts@\spxentry{src.forecast.make\_forecasts}}{42}
-\indexentry{src.forecast.make\_forecasts@\spxentry{src.forecast.make\_forecasts}!module@\spxentry{module}}{42}
-\indexentry{logger (in module src.forecast.make\_forecasts)@\spxentry{logger}\spxextra{in module src.forecast.make\_forecasts}}{42}
-\indexentry{make\_forecasts() (in module src.forecast.make\_forecasts)@\spxentry{make\_forecasts()}\spxextra{in module src.forecast.make\_forecasts}}{42}
-\indexentry{module@\spxentry{module}!src.model@\spxentry{src.model}}{43}
-\indexentry{src.model@\spxentry{src.model}!module@\spxentry{module}}{43}
-\indexentry{module@\spxentry{module}!src.model.format@\spxentry{src.model.format}}{43}
-\indexentry{src.model.format@\spxentry{src.model.format}!module@\spxentry{module}}{43}
-\indexentry{logger (in module src.model.format)@\spxentry{logger}\spxextra{in module src.model.format}}{43}
-\indexentry{make\_quantile\_bands() (in module src.model.format)@\spxentry{make\_quantile\_bands()}\spxextra{in module src.model.format}}{43}
-\indexentry{format\_model\_estimates() (in module src.model.format)@\spxentry{format\_model\_estimates()}\spxextra{in module src.model.format}}{43}
-\indexentry{module@\spxentry{module}!src.model.model@\spxentry{src.model.model}}{43}
-\indexentry{src.model.model@\spxentry{src.model.model}!module@\spxentry{module}}{43}
-\indexentry{logger (in module src.model.model)@\spxentry{logger}\spxextra{in module src.model.model}}{43}
-\indexentry{det\_dot() (in module src.model.model)@\spxentry{det\_dot()}\spxextra{in module src.model.model}}{43}
-\indexentry{fourier\_series() (in module src.model.model)@\spxentry{fourier\_series()}\spxextra{in module src.model.model}}{44}
-\indexentry{seasonality\_model() (in module src.model.model)@\spxentry{seasonality\_model()}\spxextra{in module src.model.model}}{44}
-\indexentry{polynomial() (in module src.model.model)@\spxentry{polynomial()}\spxextra{in module src.model.model}}{44}
-\indexentry{drift\_model() (in module src.model.model)@\spxentry{drift\_model()}\spxextra{in module src.model.model}}{44}
-\indexentry{create\_model() (in module src.model.model)@\spxentry{create\_model()}\spxextra{in module src.model.model}}{44}
-\indexentry{module@\spxentry{module}!src.plot@\spxentry{src.plot}}{45}
-\indexentry{src.plot@\spxentry{src.plot}!module@\spxentry{module}}{45}
-\indexentry{module@\spxentry{module}!src.plot.altair@\spxentry{src.plot.altair}}{45}
-\indexentry{src.plot.altair@\spxentry{src.plot.altair}!module@\spxentry{module}}{45}
-\indexentry{plot\_estimate() (in module src.plot.altair)@\spxentry{plot\_estimate()}\spxextra{in module src.plot.altair}}{45}
-\indexentry{plot\_observed() (in module src.plot.altair)@\spxentry{plot\_observed()}\spxextra{in module src.plot.altair}}{45}
-\indexentry{plot\_limits() (in module src.plot.altair)@\spxentry{plot\_limits()}\spxextra{in module src.plot.altair}}{45}
-\indexentry{lightness\_scale() (in module src.plot.altair)@\spxentry{lightness\_scale()}\spxextra{in module src.plot.altair}}{45}
-\indexentry{plot\_base() (in module src.plot.altair)@\spxentry{plot\_base()}\spxextra{in module src.plot.altair}}{46}
-\indexentry{plot\_decompose() (in module src.plot.altair)@\spxentry{plot\_decompose()}\spxextra{in module src.plot.altair}}{46}
-\indexentry{plot\_all() (in module src.plot.altair)@\spxentry{plot\_all()}\spxextra{in module src.plot.altair}}{46}
-\indexentry{module@\spxentry{module}!src.plot.dashboard@\spxentry{src.plot.dashboard}}{46}
-\indexentry{src.plot.dashboard@\spxentry{src.plot.dashboard}!module@\spxentry{module}}{46}
-\indexentry{create\_dashboard() (in module src.plot.dashboard)@\spxentry{create\_dashboard()}\spxextra{in module src.plot.dashboard}}{46}
-\indexentry{module@\spxentry{module}!src.plot.format@\spxentry{src.plot.format}}{46}
-\indexentry{src.plot.format@\spxentry{src.plot.format}!module@\spxentry{module}}{46}
-\indexentry{format\_limits() (in module src.plot.format)@\spxentry{format\_limits()}\spxextra{in module src.plot.format}}{46}
-\indexentry{format\_history() (in module src.plot.format)@\spxentry{format\_history()}\spxextra{in module src.plot.format}}{47}
-\indexentry{format\_forecast() (in module src.plot.format)@\spxentry{format\_forecast()}\spxextra{in module src.plot.format}}{47}
-\indexentry{dummy\_forecast() (in module src.plot.format)@\spxentry{dummy\_forecast()}\spxextra{in module src.plot.format}}{47}
-\indexentry{module@\spxentry{module}!src.preprocess@\spxentry{src.preprocess}}{47}
-\indexentry{src.preprocess@\spxentry{src.preprocess}!module@\spxentry{module}}{47}
-\indexentry{module@\spxentry{module}!src.preprocess.preprocess@\spxentry{src.preprocess.preprocess}}{47}
-\indexentry{src.preprocess.preprocess@\spxentry{src.preprocess.preprocess}!module@\spxentry{module}}{47}
-\indexentry{logger (in module src.preprocess.preprocess)@\spxentry{logger}\spxextra{in module src.preprocess.preprocess}}{47}
-\indexentry{too\_short() (in module src.preprocess.preprocess)@\spxentry{too\_short()}\spxextra{in module src.preprocess.preprocess}}{47}
-\indexentry{too\_small() (in module src.preprocess.preprocess)@\spxentry{too\_small()}\spxextra{in module src.preprocess.preprocess}}{47}
-\indexentry{remove\_leading\_idling() (in module src.preprocess.preprocess)@\spxentry{remove\_leading\_idling()}\spxextra{in module src.preprocess.preprocess}}{48}
-\indexentry{load\_data() (in module src.preprocess.preprocess)@\spxentry{load\_data()}\spxextra{in module src.preprocess.preprocess}}{48}
-\indexentry{format\_data() (in module src.preprocess.preprocess)@\spxentry{format\_data()}\spxextra{in module src.preprocess.preprocess}}{48}
-\indexentry{split\_last() (in module src.preprocess.preprocess)@\spxentry{split\_last()}\spxextra{in module src.preprocess.preprocess}}{48}
-\indexentry{extrapolate\_timestamps() (in module src.preprocess.preprocess)@\spxentry{extrapolate\_timestamps()}\spxextra{in module src.preprocess.preprocess}}{48}
-\indexentry{module@\spxentry{module}!src.preprocess.update\_extremes@\spxentry{src.preprocess.update\_extremes}}{49}
-\indexentry{src.preprocess.update\_extremes@\spxentry{src.preprocess.update\_extremes}!module@\spxentry{module}}{49}
-\indexentry{module@\spxentry{module}!src.utils@\spxentry{src.utils}}{49}
-\indexentry{src.utils@\spxentry{src.utils}!module@\spxentry{module}}{49}
-\indexentry{module@\spxentry{module}!src.utils.logger@\spxentry{src.utils.logger}}{49}
-\indexentry{src.utils.logger@\spxentry{src.utils.logger}!module@\spxentry{module}}{49}
-\indexentry{init\_logging() (in module src.utils.logger)@\spxentry{init\_logging()}\spxextra{in module src.utils.logger}}{49}
-\indexentry{module@\spxentry{module}!src.utils.parser@\spxentry{src.utils.parser}}{49}
-\indexentry{src.utils.parser@\spxentry{src.utils.parser}!module@\spxentry{module}}{49}
-\indexentry{parse\_config() (in module src.utils.parser)@\spxentry{parse\_config()}\spxextra{in module src.utils.parser}}{49}
-\indexentry{parse\_args() (in module src.utils.parser)@\spxentry{parse\_args()}\spxextra{in module src.utils.parser}}{49}
-\indexentry{module@\spxentry{module}!src.utils.preprocess@\spxentry{src.utils.preprocess}}{49}
-\indexentry{src.utils.preprocess@\spxentry{src.utils.preprocess}!module@\spxentry{module}}{49}
-\indexentry{downcast() (in module src.utils.preprocess)@\spxentry{downcast()}\spxextra{in module src.utils.preprocess}}{49}
-\indexentry{map\_labels() (in module src.utils.preprocess)@\spxentry{map\_labels()}\spxextra{in module src.utils.preprocess}}{49}
-\indexentry{MinMaxScaler (class in src.utils.preprocess)@\spxentry{MinMaxScaler}\spxextra{class in src.utils.preprocess}}{50}
-\indexentry{fit() (src.utils.preprocess.MinMaxScaler method)@\spxentry{fit()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{50}
-\indexentry{transform() (src.utils.preprocess.MinMaxScaler method)@\spxentry{transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{50}
-\indexentry{fit\_transform() (src.utils.preprocess.MinMaxScaler method)@\spxentry{fit\_transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{50}
-\indexentry{inverse\_transform() (src.utils.preprocess.MinMaxScaler method)@\spxentry{inverse\_transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{50}
-\indexentry{module@\spxentry{module}!src.utils.snowflake@\spxentry{src.utils.snowflake}}{51}
-\indexentry{src.utils.snowflake@\spxentry{src.utils.snowflake}!module@\spxentry{module}}{51}
-\indexentry{logger (in module src.utils.snowflake)@\spxentry{logger}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{config (in module src.utils.snowflake)@\spxentry{config}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{channel\_like (in module src.utils.snowflake)@\spxentry{channel\_like}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{column\_details (in module src.utils.snowflake)@\spxentry{column\_details}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{format\_connection() (in module src.utils.snowflake)@\spxentry{format\_connection()}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{read\_meta() (in module src.utils.snowflake)@\spxentry{read\_meta()}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{make\_week\_extremes\_query() (in module src.utils.snowflake)@\spxentry{make\_week\_extremes\_query()}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{create\_table\_query() (in module src.utils.snowflake)@\spxentry{create\_table\_query()}\spxextra{in module src.utils.snowflake}}{51}
-\indexentry{insert\_table\_query() (in module src.utils.snowflake)@\spxentry{insert\_table\_query()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{create\_week\_extremes() (in module src.utils.snowflake)@\spxentry{create\_week\_extremes()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{get\_last\_processed\_time() (in module src.utils.snowflake)@\spxentry{get\_last\_processed\_time()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{update\_week\_extremes() (in module src.utils.snowflake)@\spxentry{update\_week\_extremes()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{read\_week\_extremes() (in module src.utils.snowflake)@\spxentry{read\_week\_extremes()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{clear\_forecasts() (in module src.utils.snowflake)@\spxentry{clear\_forecasts()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{clear\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{clear\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{write\_forecasts() (in module src.utils.snowflake)@\spxentry{write\_forecasts()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{write\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{write\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}{52}
-\indexentry{read\_forecasts() (in module src.utils.snowflake)@\spxentry{read\_forecasts()}\spxextra{in module src.utils.snowflake}}{53}
-\indexentry{read\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{read\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}{53}
-\indexentry{get\_forecasted\_boxids() (in module src.utils.snowflake)@\spxentry{get\_forecasted\_boxids()}\spxextra{in module src.utils.snowflake}}{53}
-\indexentry{module@\spxentry{module}!src.utils.vault@\spxentry{src.utils.vault}}{53}
-\indexentry{src.utils.vault@\spxentry{src.utils.vault}!module@\spxentry{module}}{53}
-\indexentry{get\_secrets() (in module src.utils.vault)@\spxentry{get\_secrets()}\spxextra{in module src.utils.vault}}{53}
-\indexentry{get\_vault\_secret() (in module src.utils.vault)@\spxentry{get\_vault\_secret()}\spxextra{in module src.utils.vault}}{53}
-\indexentry{init\_logging() (in module src)@\spxentry{init\_logging()}\spxextra{in module src}}{54}
+\indexentry{module@\spxentry{module}!src@\spxentry{src}}{43}
+\indexentry{src@\spxentry{src}!module@\spxentry{module}}{43}
+\indexentry{module@\spxentry{module}!src.forecast@\spxentry{src.forecast}}{43}
+\indexentry{src.forecast@\spxentry{src.forecast}!module@\spxentry{module}}{43}
+\indexentry{module@\spxentry{module}!src.forecast.assess@\spxentry{src.forecast.assess}}{43}
+\indexentry{src.forecast.assess@\spxentry{src.forecast.assess}!module@\spxentry{module}}{43}
+\indexentry{logger (in module src.forecast.assess)@\spxentry{logger}\spxextra{in module src.forecast.assess}}{43}
+\indexentry{asses\_forecasts() (in module src.forecast.assess)@\spxentry{asses\_forecasts()}\spxextra{in module src.forecast.assess}}{43}
+\indexentry{module@\spxentry{module}!src.forecast.forecast@\spxentry{src.forecast.forecast}}{44}
+\indexentry{src.forecast.forecast@\spxentry{src.forecast.forecast}!module@\spxentry{module}}{44}
+\indexentry{logger (in module src.forecast.forecast)@\spxentry{logger}\spxextra{in module src.forecast.forecast}}{44}
+\indexentry{config (in module src.forecast.forecast)@\spxentry{config}\spxextra{in module src.forecast.forecast}}{44}
+\indexentry{determine\_estimates() (in module src.forecast.forecast)@\spxentry{determine\_estimates()}\spxextra{in module src.forecast.forecast}}{44}
+\indexentry{determine\_estimates\_minmax() (in module src.forecast.forecast)@\spxentry{determine\_estimates\_minmax()}\spxextra{in module src.forecast.forecast}}{44}
+\indexentry{forecast() (in module src.forecast.forecast)@\spxentry{forecast()}\spxextra{in module src.forecast.forecast}}{44}
+\indexentry{module@\spxentry{module}!src.forecast.make\_forecasts@\spxentry{src.forecast.make\_forecasts}}{44}
+\indexentry{src.forecast.make\_forecasts@\spxentry{src.forecast.make\_forecasts}!module@\spxentry{module}}{44}
+\indexentry{logger (in module src.forecast.make\_forecasts)@\spxentry{logger}\spxextra{in module src.forecast.make\_forecasts}}{44}
+\indexentry{make\_forecasts() (in module src.forecast.make\_forecasts)@\spxentry{make\_forecasts()}\spxextra{in module src.forecast.make\_forecasts}}{44}
+\indexentry{module@\spxentry{module}!src.model@\spxentry{src.model}}{45}
+\indexentry{src.model@\spxentry{src.model}!module@\spxentry{module}}{45}
+\indexentry{module@\spxentry{module}!src.model.format@\spxentry{src.model.format}}{45}
+\indexentry{src.model.format@\spxentry{src.model.format}!module@\spxentry{module}}{45}
+\indexentry{logger (in module src.model.format)@\spxentry{logger}\spxextra{in module src.model.format}}{45}
+\indexentry{make\_quantile\_bands() (in module src.model.format)@\spxentry{make\_quantile\_bands()}\spxextra{in module src.model.format}}{45}
+\indexentry{format\_model\_estimates() (in module src.model.format)@\spxentry{format\_model\_estimates()}\spxextra{in module src.model.format}}{45}
+\indexentry{module@\spxentry{module}!src.model.model@\spxentry{src.model.model}}{45}
+\indexentry{src.model.model@\spxentry{src.model.model}!module@\spxentry{module}}{45}
+\indexentry{logger (in module src.model.model)@\spxentry{logger}\spxextra{in module src.model.model}}{45}
+\indexentry{det\_dot() (in module src.model.model)@\spxentry{det\_dot()}\spxextra{in module src.model.model}}{45}
+\indexentry{fourier\_series() (in module src.model.model)@\spxentry{fourier\_series()}\spxextra{in module src.model.model}}{46}
+\indexentry{seasonality\_model() (in module src.model.model)@\spxentry{seasonality\_model()}\spxextra{in module src.model.model}}{46}
+\indexentry{polynomial() (in module src.model.model)@\spxentry{polynomial()}\spxextra{in module src.model.model}}{46}
+\indexentry{drift\_model() (in module src.model.model)@\spxentry{drift\_model()}\spxextra{in module src.model.model}}{46}
+\indexentry{create\_model() (in module src.model.model)@\spxentry{create\_model()}\spxextra{in module src.model.model}}{46}
+\indexentry{module@\spxentry{module}!src.plot@\spxentry{src.plot}}{47}
+\indexentry{src.plot@\spxentry{src.plot}!module@\spxentry{module}}{47}
+\indexentry{module@\spxentry{module}!src.plot.altair@\spxentry{src.plot.altair}}{47}
+\indexentry{src.plot.altair@\spxentry{src.plot.altair}!module@\spxentry{module}}{47}
+\indexentry{plot\_estimate() (in module src.plot.altair)@\spxentry{plot\_estimate()}\spxextra{in module src.plot.altair}}{47}
+\indexentry{plot\_observed() (in module src.plot.altair)@\spxentry{plot\_observed()}\spxextra{in module src.plot.altair}}{47}
+\indexentry{plot\_limits() (in module src.plot.altair)@\spxentry{plot\_limits()}\spxextra{in module src.plot.altair}}{47}
+\indexentry{lightness\_scale() (in module src.plot.altair)@\spxentry{lightness\_scale()}\spxextra{in module src.plot.altair}}{47}
+\indexentry{plot\_base() (in module src.plot.altair)@\spxentry{plot\_base()}\spxextra{in module src.plot.altair}}{48}
+\indexentry{plot\_decompose() (in module src.plot.altair)@\spxentry{plot\_decompose()}\spxextra{in module src.plot.altair}}{48}
+\indexentry{plot\_all() (in module src.plot.altair)@\spxentry{plot\_all()}\spxextra{in module src.plot.altair}}{48}
+\indexentry{module@\spxentry{module}!src.plot.dashboard@\spxentry{src.plot.dashboard}}{48}
+\indexentry{src.plot.dashboard@\spxentry{src.plot.dashboard}!module@\spxentry{module}}{48}
+\indexentry{build\_dashboard() (in module src.plot.dashboard)@\spxentry{build\_dashboard()}\spxextra{in module src.plot.dashboard}}{48}
+\indexentry{dashboard (in module src.plot.dashboard)@\spxentry{dashboard}\spxextra{in module src.plot.dashboard}}{48}
+\indexentry{dashboard (in module src.plot.dashboard)@\spxentry{dashboard}\spxextra{in module src.plot.dashboard}}{48}
+\indexentry{module@\spxentry{module}!src.plot.format@\spxentry{src.plot.format}}{49}
+\indexentry{src.plot.format@\spxentry{src.plot.format}!module@\spxentry{module}}{49}
+\indexentry{format\_limits() (in module src.plot.format)@\spxentry{format\_limits()}\spxextra{in module src.plot.format}}{49}
+\indexentry{format\_history() (in module src.plot.format)@\spxentry{format\_history()}\spxextra{in module src.plot.format}}{49}
+\indexentry{format\_forecast() (in module src.plot.format)@\spxentry{format\_forecast()}\spxextra{in module src.plot.format}}{49}
+\indexentry{dummy\_forecast() (in module src.plot.format)@\spxentry{dummy\_forecast()}\spxextra{in module src.plot.format}}{49}
+\indexentry{module@\spxentry{module}!src.preprocess@\spxentry{src.preprocess}}{49}
+\indexentry{src.preprocess@\spxentry{src.preprocess}!module@\spxentry{module}}{49}
+\indexentry{module@\spxentry{module}!src.preprocess.preprocess@\spxentry{src.preprocess.preprocess}}{49}
+\indexentry{src.preprocess.preprocess@\spxentry{src.preprocess.preprocess}!module@\spxentry{module}}{49}
+\indexentry{logger (in module src.preprocess.preprocess)@\spxentry{logger}\spxextra{in module src.preprocess.preprocess}}{49}
+\indexentry{too\_short() (in module src.preprocess.preprocess)@\spxentry{too\_short()}\spxextra{in module src.preprocess.preprocess}}{49}
+\indexentry{too\_small() (in module src.preprocess.preprocess)@\spxentry{too\_small()}\spxextra{in module src.preprocess.preprocess}}{50}
+\indexentry{remove\_leading\_idling() (in module src.preprocess.preprocess)@\spxentry{remove\_leading\_idling()}\spxextra{in module src.preprocess.preprocess}}{50}
+\indexentry{load\_data() (in module src.preprocess.preprocess)@\spxentry{load\_data()}\spxextra{in module src.preprocess.preprocess}}{50}
+\indexentry{format\_data() (in module src.preprocess.preprocess)@\spxentry{format\_data()}\spxextra{in module src.preprocess.preprocess}}{50}
+\indexentry{split\_last() (in module src.preprocess.preprocess)@\spxentry{split\_last()}\spxextra{in module src.preprocess.preprocess}}{50}
+\indexentry{extrapolate\_timestamps() (in module src.preprocess.preprocess)@\spxentry{extrapolate\_timestamps()}\spxextra{in module src.preprocess.preprocess}}{51}
+\indexentry{module@\spxentry{module}!src.preprocess.update\_extremes@\spxentry{src.preprocess.update\_extremes}}{51}
+\indexentry{src.preprocess.update\_extremes@\spxentry{src.preprocess.update\_extremes}!module@\spxentry{module}}{51}
+\indexentry{module@\spxentry{module}!src.utils@\spxentry{src.utils}}{51}
+\indexentry{src.utils@\spxentry{src.utils}!module@\spxentry{module}}{51}
+\indexentry{module@\spxentry{module}!src.utils.logger@\spxentry{src.utils.logger}}{51}
+\indexentry{src.utils.logger@\spxentry{src.utils.logger}!module@\spxentry{module}}{51}
+\indexentry{init\_logging() (in module src.utils.logger)@\spxentry{init\_logging()}\spxextra{in module src.utils.logger}}{51}
+\indexentry{module@\spxentry{module}!src.utils.parser@\spxentry{src.utils.parser}}{51}
+\indexentry{src.utils.parser@\spxentry{src.utils.parser}!module@\spxentry{module}}{51}
+\indexentry{parse\_config() (in module src.utils.parser)@\spxentry{parse\_config()}\spxextra{in module src.utils.parser}}{51}
+\indexentry{parse\_args() (in module src.utils.parser)@\spxentry{parse\_args()}\spxextra{in module src.utils.parser}}{51}
+\indexentry{module@\spxentry{module}!src.utils.preprocess@\spxentry{src.utils.preprocess}}{52}
+\indexentry{src.utils.preprocess@\spxentry{src.utils.preprocess}!module@\spxentry{module}}{52}
+\indexentry{downcast() (in module src.utils.preprocess)@\spxentry{downcast()}\spxextra{in module src.utils.preprocess}}{52}
+\indexentry{map\_labels() (in module src.utils.preprocess)@\spxentry{map\_labels()}\spxextra{in module src.utils.preprocess}}{52}
+\indexentry{MinMaxScaler (class in src.utils.preprocess)@\spxentry{MinMaxScaler}\spxextra{class in src.utils.preprocess}}{52}
+\indexentry{fit() (src.utils.preprocess.MinMaxScaler method)@\spxentry{fit()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{52}
+\indexentry{transform() (src.utils.preprocess.MinMaxScaler method)@\spxentry{transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{52}
+\indexentry{fit\_transform() (src.utils.preprocess.MinMaxScaler method)@\spxentry{fit\_transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{53}
+\indexentry{inverse\_transform() (src.utils.preprocess.MinMaxScaler method)@\spxentry{inverse\_transform()}\spxextra{src.utils.preprocess.MinMaxScaler method}}{53}
+\indexentry{module@\spxentry{module}!src.utils.snowflake@\spxentry{src.utils.snowflake}}{53}
+\indexentry{src.utils.snowflake@\spxentry{src.utils.snowflake}!module@\spxentry{module}}{53}
+\indexentry{logger (in module src.utils.snowflake)@\spxentry{logger}\spxextra{in module src.utils.snowflake}}{53}
+\indexentry{config (in module src.utils.snowflake)@\spxentry{config}\spxextra{in module src.utils.snowflake}}{53}
+\indexentry{channel\_like (in module src.utils.snowflake)@\spxentry{channel\_like}\spxextra{in module src.utils.snowflake}}{53}
+\indexentry{column\_details (in module src.utils.snowflake)@\spxentry{column\_details}\spxextra{in module src.utils.snowflake}}{53}
+\indexentry{format\_connection() (in module src.utils.snowflake)@\spxentry{format\_connection()}\spxextra{in module src.utils.snowflake}}{53}
+\indexentry{read\_meta() (in module src.utils.snowflake)@\spxentry{read\_meta()}\spxextra{in module src.utils.snowflake}}{53}
+\indexentry{make\_week\_extremes\_query() (in module src.utils.snowflake)@\spxentry{make\_week\_extremes\_query()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{create\_table\_query() (in module src.utils.snowflake)@\spxentry{create\_table\_query()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{insert\_table\_query() (in module src.utils.snowflake)@\spxentry{insert\_table\_query()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{create\_week\_extremes() (in module src.utils.snowflake)@\spxentry{create\_week\_extremes()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{get\_last\_processed\_time() (in module src.utils.snowflake)@\spxentry{get\_last\_processed\_time()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{update\_week\_extremes() (in module src.utils.snowflake)@\spxentry{update\_week\_extremes()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{read\_week\_extremes() (in module src.utils.snowflake)@\spxentry{read\_week\_extremes()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{clear\_forecasts() (in module src.utils.snowflake)@\spxentry{clear\_forecasts()}\spxextra{in module src.utils.snowflake}}{54}
+\indexentry{clear\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{clear\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}{55}
+\indexentry{write\_forecasts() (in module src.utils.snowflake)@\spxentry{write\_forecasts()}\spxextra{in module src.utils.snowflake}}{55}
+\indexentry{write\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{write\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}{55}
+\indexentry{read\_forecasts() (in module src.utils.snowflake)@\spxentry{read\_forecasts()}\spxextra{in module src.utils.snowflake}}{55}
+\indexentry{read\_forecast\_meta() (in module src.utils.snowflake)@\spxentry{read\_forecast\_meta()}\spxextra{in module src.utils.snowflake}}{55}
+\indexentry{get\_forecasted\_boxids() (in module src.utils.snowflake)@\spxentry{get\_forecasted\_boxids()}\spxextra{in module src.utils.snowflake}}{55}
+\indexentry{module@\spxentry{module}!src.utils.vault@\spxentry{src.utils.vault}}{56}
+\indexentry{src.utils.vault@\spxentry{src.utils.vault}!module@\spxentry{module}}{56}
+\indexentry{get\_secrets() (in module src.utils.vault)@\spxentry{get\_secrets()}\spxextra{in module src.utils.vault}}{56}
+\indexentry{get\_vault\_secret() (in module src.utils.vault)@\spxentry{get\_vault\_secret()}\spxextra{in module src.utils.vault}}{56}
+\indexentry{init\_logging() (in module src)@\spxentry{init\_logging()}\spxextra{in module src}}{56}
