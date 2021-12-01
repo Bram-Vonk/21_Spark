@@ -7,7 +7,7 @@
 Module Contents
 ---------------
 
-.. function:: create_dashboard()
+.. function:: build_dashboard()
 
    Initialize dashboard.
 
@@ -33,4 +33,14 @@ Module Contents
    ..
        !! processed by numpydoc !!
 
+
+.. data:: dashboard
+   
+
+   
+
+.. data:: dashboard
+   
+
+   
 

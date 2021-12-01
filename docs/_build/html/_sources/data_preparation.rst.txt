@@ -1,5 +1,5 @@
 Data Preparation
-========
+================
 
 The data preparation step focuses on converting raw measurement data with a frequency of 15 minutes into weekly extremes and preparing these extremes to be usable input for the forecasting model.
 
@@ -11,8 +11,9 @@ Initially the whole history is aggregated and stored in a Snowflake database. Af
 
 The data preparation step resulting in weekly aggregated data.
 
+
 Data Selection
-----------
+--------------
 
 Columns described in :ref:`Data Understanding` are selected from the measurement () and metadata tables.
 
@@ -24,8 +25,9 @@ In this step the separate power phases are selected and processed as well as the
 
 Only the 15 minute average channels are selected for preprocessing.
 
+
 Data Cleaning
-----------
+-------------
 
 No data cleaning is performed on the raw data before aggregation, but data is checked and cleaned on the following after reading it in (:meth:`src.preprocess.preprocess.load_data`) and before being used by a model for forecasting:
 
@@ -37,10 +39,11 @@ Duplicate data (can only be created by updating the extreme table) is not an iss
 
 Missing data is neither a problem for the model and is also not imputed.
 
-Data Construction
-----------
 
-From the raw 15 minute data the weekly minimum and maximum are determined. This is done per channel and boxid (:meth:`src.utils.snowflake.make_week_extremes_query`).
+Data Construction
+-----------------
+
+From the raw 15-minute data the weekly minimum and maximum are determined. This is done per channel and boxid (:meth:`src.utils.snowflake.make_week_extremes_query`).
 The week definition used is the ISO-week since this is always a full week.
 
 A SQL query aggregates and writes the result asynchronously on the Snowflake database. This can be done in batch for all historic measurements (:meth:`src.utils.snowflake.create_week_extremes`), but the created table can also be updated per week (:meth:`src.utils.snowflake.update_week_extremes`).
@@ -91,12 +94,12 @@ The amount of rows is condensed from 89,052,020,404 to 3,457,856 records.
 
 
 Data Integration
-----------
+----------------
 
 Since no additional data sources are used, no joins or merges are required.
 
 Data Formatting
-----------
+---------------
 
 The model does not demand an order (e.g. by year and week) of the data.
 For the modelling stage the data is queried from the table in `Data Construction`_
@@ -117,9 +120,9 @@ The format of the loaded extremes data.
 
 
 Data Updating Process
-----------
+---------------------
 
-The weekly extremes can be updated every week (or longer).
+The weekly extremes can be updated on a weekly (or longer) basis.
 
 By running :meth:`src.preprocess.update_extremes` the function :meth:`src.utils.snowflake.update_week_extremes` is called.
 This will will trigger the following steps which update the weekly extremes Snowflake table:
@@ -127,4 +130,5 @@ This will will trigger the following steps which update the weekly extremes Snow
 .. image:: _static/img/preprocessing_details.png
     :width: 400px
     :align: center
+
 The detailed process to create and assess load forecasts.

@@ -66,6 +66,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="autoapi/index.html">API Reference</a>
         </li>
         
@@ -118,6 +122,8 @@
       
       
       
+      
+      
     </ul>
 
 </nav>
@@ -142,7 +148,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#meta-data-source" class="nav-link">Meta data source</a>
+            <a href="#metadata-data-source" class="nav-link">Metadata Data Source</a>
         </li>
     
             </ul>
@@ -152,11 +158,11 @@
             <a href="#data-description" class="nav-link">Data Description</a><ul class="nav section-nav flex-column">
                 
         <li class="nav-item toc-entry toc-h3">
-            <a href="#measurement-data-details" class="nav-link">Measurement data details</a>
+            <a href="#measurement-data-details" class="nav-link">Measurement Data Details</a>
         </li>
     
         <li class="nav-item toc-entry toc-h3">
-            <a href="#id1" class="nav-link">Measurement data details</a>
+            <a href="#metadata-details" class="nav-link">Metadata Details</a>
         </li>
     
             </ul>
@@ -187,18 +193,20 @@
 <h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Permalink to this headline">¶</a></h1>
 <section id="initial-data-collection">
 <h2>Initial Data Collection<a class="headerlink" href="#initial-data-collection" title="Permalink to this headline">¶</a></h2>
-<p>The goal is to forecast accurately maximum and minimum loading of transformers.
-There is 15 minute average data available of 11k transformers. The maximum and minimum loading is not needed on this detailed level.
+<p>The goal is to forecast accurately maximum and minimum loading of transformers.</p>
+<p>There is 15-minute average data available of 11k transformers.</p>
+<p>The maximum and minimum loading is not needed on this detailed level.
 According to the Grid Planners, weekly or monthly extreme details are more than enough.</p>
 <p>For this first model to forecast transfer loading no external variables will be used as input for the model.
 Only historic data will be used (with metadata to extract de capacity of the transformer).</p>
-<p>Data is available in Snowflake. in a Jupyter Notebook pandas with a SQLAlchemy engine is used for the data collection from Snowflake.
-Credentials are available via Vault in the Enexis domain.</p>
+<p>Data is available in Snowflake.
+A Jupyter Notebook pandas with a SQLAlchemy engine is used for the data collection from Snowflake.</p>
+<p>Credentials are available via Vault in the Enexis domain.</p>
 <section id="measurement-data-source">
 <h3>Measurement Data Source<a class="headerlink" href="#measurement-data-source" title="Permalink to this headline">¶</a></h3>
 <p>In a Snowflake database the following data is available:</p>
-<table class="colwidths-given table" id="id2">
-<caption><span class="caption-text">Snowflake data source details.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given table" id="id1">
+<caption><span class="caption-text">Snowflake data source details.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -216,11 +224,11 @@ Credentials are available via Vault in the Enexis domain.</p>
 </tbody>
 </table>
 </section>
-<section id="meta-data-source">
-<h3>Meta data source<a class="headerlink" href="#meta-data-source" title="Permalink to this headline">¶</a></h3>
+<section id="metadata-data-source">
+<h3>Metadata Data Source<a class="headerlink" href="#metadata-data-source" title="Permalink to this headline">¶</a></h3>
 <p>In a Snowflake database the following metadata is available:</p>
-<table class="colwidths-given table" id="id3">
-<caption><span class="caption-text">Snowflake data source details.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<table class="colwidths-given table" id="id2">
+<caption><span class="caption-text">Snowflake data source details.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -242,17 +250,15 @@ Credentials are available via Vault in the Enexis domain.</p>
 <section id="data-description">
 <h2>Data Description<a class="headerlink" href="#data-description" title="Permalink to this headline">¶</a></h2>
 <section id="measurement-data-details">
-<h3>Measurement data details<a class="headerlink" href="#measurement-data-details" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">The measurements are available since Q2 2018. Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured</div>
-<div class="line">Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.</div>
-</div>
-<div class="line-block">
-<div class="line">For this project we focus first on the active power on a transformer om the medium voltage connection side. The power is available for all three power phases as well as the sum of them.</div>
-<div class="line">Below are the fields of interest given that are queried from the aforementioned table.</div>
-</div>
-<table class="colwidths-given table" id="id4">
-<caption><span class="caption-text">DALI table fields of interest.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<h3>Measurement Data Details<a class="headerlink" href="#measurement-data-details" title="Permalink to this headline">¶</a></h3>
+<p>The measurements are available since Q2 2018.</p>
+<p>Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
+Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.</p>
+<p>For this project we focus first on the active power on a transformer om the medium voltage connection side.</p>
+<p>The power is available for all three power phases as well as the sum of them.</p>
+<p>Below are the fields of interest given that are queried from the aforementioned table.</p>
+<table class="colwidths-given table" id="id3">
+<caption><span class="caption-text">DALI table fields of interest.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 25%" />
@@ -284,22 +290,56 @@ Credentials are available via Vault in the Enexis domain.</p>
 </tbody>
 </table>
 </section>
-<section id="id1">
-<h3>Measurement data details<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">In the metadata table there are 15,058 records present.</div>
-<div class="line">Only 9,920 boxids are operational and have a nominal power correctly registered.</div>
-</div>
+<section id="metadata-details">
+<h3>Metadata Details<a class="headerlink" href="#metadata-details" title="Permalink to this headline">¶</a></h3>
+<p>In the metadata table there are 15,058 records present.</p>
+<p>Only 9,920 boxids are operational and have a nominal power correctly registered.</p>
+<table class="colwidths-given table" id="id4">
+<caption><span class="caption-text">Metadata table fields of interest.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field o.i.</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BOXID</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>ESD.000240-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>BOX_BEDRIJFSSTATUS</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>in bedrijf</p></td>
+</tr>
+<tr class="row-even"><td><p>IN_BEDRIJFSNAME_DATUMTIJD</p></td>
+<td><p>TIMESTAMPTZ</p></td>
+<td><p>2021-05-12 07:45:00.000000000</p></td>
+</tr>
+<tr class="row-odd"><td><p>VESTIGING</p></td>
+<td><p>VARCHAR</p></td>
+<td><p>Breda</p></td>
+</tr>
+<tr class="row-even"><td><p>VERMOGEN_NOMINAAL</p></td>
+<td><p>NUMBER</p></td>
+<td><p>400</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="data-exploration">
 <h2>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">¶</a></h2>
-<p>The measurement data is up-to-date, but has missing values in two moments in time (both in 2021). This issue was discovered and is addressed.
-For the project it won’t be a huge issue, since the data is aggregated to weekly extremes.
-This will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
-In both cases (outlier and missing data) the model can handle this.</p>
-<p>For timeseries modelling it is advised to have at least two periods (years in this case) of measurement data.
-As the figure below shows, this might be a problem eventually. One of the challenges is therefore to explore if prior knowledge of the population can overcome this issue.</p>
+<p>The measurement data is up-to-date, but has missing values in two moments in time (both in 2021). This issue was discovered and is addressed.</p>
+<p>For the project it won’t be a huge issue, since the data is aggregated to weekly extremes.
+It will will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.</p>
+<p>In both cases (outlier and missing data) the model can handle this.</p>
+<p>For timeseries modelling it is advised to have at least two periods (years in this case) of measurement data.</p>
+<p>As the figure below shows, this might be a problem eventually. One of the challenges is therefore to explore if prior knowledge of the population can overcome this issue.</p>
 <p>In the figure below the completeness of the data over time is given for the transformers in the area of Breda.
 On the vertical axis the transformers are shown ordered by the time they got operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.</p>
 <a class="reference internal image-reference" href="_images/dq_completeness.jpeg"><img alt="_images/dq_completeness.jpeg" class="align-center" src="_images/dq_completeness.jpeg" style="width: 800px;" /></a>
@@ -307,8 +347,9 @@ On the vertical axis the transformers are shown ordered by the time they got ope
 </section>
 <section id="data-quality">
 <h2>Data Quality<a class="headerlink" href="#data-quality" title="Permalink to this headline">¶</a></h2>
-<p>Beside the missing data described above, the data quality (of the 15 minute power averages) seems like expected.
-The reason is probably that the 15 minute averaging already smooths out the extreme (short circuit) values and measurement errors. Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
+<p>Beside the missing data described above, the data quality (of the 15-minute power averages) seems like expected.
+The reason is probably that the 15-minute averaging already smooths out the extreme (short circuit) values and measurement errors.</p>
+<p>Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
 Taking not only the extremes, but also the second highest/lowest value per week for robustness did not make a lot of difference (probably also due to the aforementioned smoothing).</p>
 <a class="reference internal image-reference" href="_images/dq_outlier.png"><img alt="_images/dq_outlier.png" class="align-center" src="_images/dq_outlier.png" style="width: 800px;" /></a>
 <p>Example of weekly extremes with an outlier for the maximum in July 2020.</p>

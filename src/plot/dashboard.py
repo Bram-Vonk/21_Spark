@@ -1,3 +1,5 @@
+#  Copyright (c) 2021. Bram Vonk, Enexis
+
 import pandas as pd
 import panel as pn
 
@@ -5,11 +7,11 @@ from src.plot.altair import plot_all, plot_decompose
 from src.utils.snowflake import read_forecast_meta, read_forecasts
 
 # alt.renderers.enable("default")
-# pn.extension("vega")
-pn.extension("tabulator")
+pn.extension("vega")
+# pn.extension("tabulator")
 
 
-def create_dashboard():
+def build_dashboard():
     """
     Initialize dashboard.
 
@@ -88,4 +90,17 @@ def create_dashboard():
     # define panel
     panel = pn.Column(choice_vestiging, pn.Row(table, tabs, min_height=500))
 
-    pn.serve(panel)
+    # pn.serve(panel, show=False)
+    # panel.servable()
+
+    return panel
+
+
+if __name__.startswith("bokeh"):
+    # start with panel serve script.py
+    dashboard = build_dashboard()
+    dashboard.servable()
+if __name__ == "__main__":
+    # start with python script.py
+    dashboard = build_dashboard()
+    dashboard.show(port=8000)

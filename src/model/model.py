@@ -1,3 +1,5 @@
+#  Copyright (c) 2021. Bram Vonk, Enexis
+
 import logging
 
 import numpy as np
@@ -11,6 +13,7 @@ def det_dot(a, b):
     Dot product for Theano.
 
     The theano dot product and NUTS sampler don't work with large matrices.
+    Copyright (c) 2021. Ritchie Vink
     source: https://www.ritchievink.com/blog/2018/10/09/ ...
     build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
 
@@ -32,6 +35,7 @@ def fourier_series(t, p=52.1775, n=5):
     """
     Calculate fourier representation of t for a period and order.
 
+    Copyright (c) 2021. Ritchie Vink
     Based on source: https://www.ritchievink.com/blog/2018/10/09/ ...
     build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
 
@@ -61,6 +65,7 @@ def seasonality_model(t, p=52.1775, n=5, seasonality_prior_scale=1):
     """
     Create seasonality model with fourier series.
 
+    Copyright (c) 2021. Ritchie Vink
     Based on source: https://www.ritchievink.com/blog/2018/10/09/ ...
     build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/
 

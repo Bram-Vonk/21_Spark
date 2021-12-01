@@ -66,6 +66,10 @@
         </li>
         
         <li class="nav-item ">
+            <a class="nav-link" href="deployment.html">Deployment</a>
+        </li>
+        
+        <li class="nav-item ">
             <a class="nav-link" href="autoapi/index.html">API Reference</a>
         </li>
         
@@ -112,6 +116,8 @@
       
       
         
+      
+      
       
       
       
@@ -245,27 +251,27 @@ And seasonality can also be captured from the observed data itself for different
 <section id="model-environment">
 <h3>Model Environment<a class="headerlink" href="#model-environment" title="Permalink to this headline">¶</a></h3>
 <p>A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.</p>
-<p>From the main probabilistic toolboxes (STAN, EDWARD2, Pyro, TensorFlow2 Probability) <a class="reference external" href="https://docs.pymc.io/en/stable/">PyMC3</a> was used for it’s extensive documentation.
-A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.</p>
+<p>From the main probabilistic toolboxes (STAN, EDWARD2, Pyro, TensorFlow2 Probability) <a class="reference external" href="https://docs.pymc.io/en/stable/">PyMC3</a> was used for it’s extensive documentation.</p>
+<p>A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.</p>
 </section>
 <section id="generalized-additive-model-concept">
 <h3>Generalized Additive Model Concept<a class="headerlink" href="#generalized-additive-model-concept" title="Permalink to this headline">¶</a></h3>
-<p>To address the explainability of the model, a similar approach as <a class="reference external" href="https://facebook.github.io/prophet/">Facebook Prophet</a> is used.
-The model is a Generalized Additive Model <a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_additive_model">(GAM)</a> that consists of a trend / drift and seasonality component (and an error component).
-The translation to PyMC3 of <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/">Richie Vink</a> was used as a basis.</p>
+<p>To address the explainability of the model, a similar approach as <a class="reference external" href="https://facebook.github.io/prophet/">Facebook Prophet</a> is used.</p>
+<p>The model is a Generalized Additive Model <a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_additive_model">(GAM)</a> that consists of a trend / drift and seasonality component (and an error component).</p>
+<p>The translation to PyMC3 of <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/">Richie Vink</a> was used as a basis.</p>
 <p>The GAM approach makes it easy to decompose the different components of the timeseries and show the Grid Planners the effect of the drift and seasons separately.</p>
 </section>
 </section>
 <section id="test-design">
 <h2>Test Design<a class="headerlink" href="#test-design" title="Permalink to this headline">¶</a></h2>
-<p>To evaluate the model the observed data is split into a train and test set based in the forecast horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.split_last" title="src.preprocess.preprocess.split_last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.split_last()</span></code></a>).
-After splitting the train set is tested again for not being too short (at least two years: <a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.too_short" title="src.preprocess.preprocess.too_short"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.too_short()</span></code></a>).</p>
+<p>To evaluate the model the observed data is split into a train and test set based in the forecast horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.split_last" title="src.preprocess.preprocess.split_last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.split_last()</span></code></a>).</p>
+<p>After splitting the train set is tested again for not being too short (at least two years: <a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.too_short" title="src.preprocess.preprocess.too_short"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.too_short()</span></code></a>).</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/train_test.png"><img alt="_images/train_test.png" class="align-center" src="_images/train_test.png" style="width: 600px;" /></a>
 </div></blockquote>
 <p>The split of measurement data into train and test data.</p>
-<p>The test set is only used to validate forecasting results.
-The train set is used to train / fit / tune the model.</p>
+<p>The test set is only used to validate forecasting results.</p>
+<p>The train set is used to train / fit / tune the model.</p>
 </section>
 <section id="model">
 <h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
@@ -277,12 +283,12 @@ The train set is used to train / fit / tune the model.</p>
 <div class="math notranslate nohighlight">
 \[\Sigma\:|\:drift, yearly, \sigma_\epsilon = Normal(\mu=drift + yearly, \:sd=\sigma_\epsilon)\]</div>
 <p>The additive naming is explicit in this notation.</p>
-<p>The error component has a has a bandwidth of :math: <cite>sigma_epsilon</cite>.</p>
+<p>The error component has a has a bandwidth of <span class="math notranslate nohighlight">\(\sigma_\epsilon\)</span>.</p>
 <section id="drift-component">
 <h4>Drift Component<a class="headerlink" href="#drift-component" title="Permalink to this headline">¶</a></h4>
-<p>According to the Grid Planners a increasing growth is more and more common due to the energy transition.
-Therefore, a stable drift model (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.drift_model" title="src.model.model.drift_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.drift_model()</span></code></a>) is used that can mimic that.
-An exponential function resulted in divergence during the model tuning, but a second order taylor series makes the model convergent and stable.</p>
+<p>According to the Grid Planners a increasing growth is more and more common due to the energy transition.</p>
+<p>Therefore, a stable drift model (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.drift_model" title="src.model.model.drift_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.drift_model()</span></code></a>) is used that can mimic that.</p>
+<p>An exponential function resulted in divergence during the model tuning, but a second order taylor series makes the model convergent and stable.</p>
 <p>The drift component model with a taylor series with the order of <span class="math notranslate nohighlight">\(n\)</span> is described as:</p>
 <div class="math notranslate nohighlight">
 \[X_{drift}(t) = [t^0, ...,  t^n]\]</div>
@@ -294,9 +300,9 @@ An exponential function resulted in divergence during the model tuning, but a se
 </section>
 <section id="yearly-component">
 <h4>Yearly Component<a class="headerlink" href="#yearly-component" title="Permalink to this headline">¶</a></h4>
-<p>Since the data has been aggregated into weekly extremes, the only seasonality to model is the yearly pattern.
-The yearly seasonality is modeled with <span class="math notranslate nohighlight">\(n\)</span> order fourier series (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.seasonality_model" title="src.model.model.seasonality_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.seasonality_model()</span></code></a>).
-This based on the work of <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/">Richie Vink</a>.</p>
+<p>Since the data has been aggregated into weekly extremes, the only seasonality to model is the yearly pattern.</p>
+<p>The yearly seasonality is modeled with <span class="math notranslate nohighlight">\(n\)</span> order fourier series (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.seasonality_model" title="src.model.model.seasonality_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.seasonality_model()</span></code></a>).</p>
+<p>This is based on the work of <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/">Richie Vink</a>.</p>
 <p>The yearly seasonality model is described as:</p>
 <div class="math notranslate nohighlight">
 \[X_{yearly}(t) = [cos(\frac{2 \pi 1 t}{T}), ..., sin(\frac{2 \pi n t}{T})]\]</div>
@@ -304,16 +310,17 @@ This based on the work of <a class="reference external" href="https://www.ritchi
 \[\beta_{yearly} \sim Normal(\mu=0, \:sd=1)\]</div>
 <div class="math notranslate nohighlight">
 \[drift\:|\:\beta_{yearly} = X_{yearly}(t)\:\beta_{yearly}\]</div>
-<p>Here the <span class="math notranslate nohighlight">\(T\)</span> is the period of the seasonality in unit of time of the data.
-The is unit of time in case is a week for the data and a year in weeks is <span class="math notranslate nohighlight">\(T=52.1775\)</span>.
-The order taken for the fourier series is <span class="math notranslate nohighlight">\(n=5\)</span>.</p>
+<p>Here the <span class="math notranslate nohighlight">\(T\)</span> is the period of the seasonality in unit of time of the data.</p>
+<p>The unit of time in this case is a week for the data and a year in weeks is <span class="math notranslate nohighlight">\(T=52.1775\)</span>.</p>
+<p>The order taken for the fourier series is <span class="math notranslate nohighlight">\(n=5\)</span>.</p>
 </section>
 <section id="enabling-forecasts">
 <h4>Enabling Forecasts<a class="headerlink" href="#enabling-forecasts" title="Permalink to this headline">¶</a></h4>
 <p>The model parameters (<span class="math notranslate nohighlight">\(\beta\)</span>)’s can now be tuned to produce the model is most likely to produce the observed (measurement) data.</p>
-<p>To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.
-The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.extrapolate_timestamps" title="src.preprocess.preprocess.extrapolate_timestamps"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.extrapolate_timestamps()</span></code></a>).</p>
-<p>The matching observations (measurements) can be intentionally filled with NaN’s. in the model PyMC3 will name them <span class="math notranslate nohighlight">\(\Sigma_missing\)</span>.
+<p>To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.</p>
+<p>The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.extrapolate_timestamps" title="src.preprocess.preprocess.extrapolate_timestamps"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.extrapolate_timestamps()</span></code></a>).</p>
+<p>The matching observations (measurements) can be intentionally filled with NaN’s.</p>
+<p>In the model PyMC3 will name them <span class="math notranslate nohighlight">\(\Sigma_{missing}\)</span>.
 (This characteristic makes the model also robust against missing data).</p>
 <p>By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.determine_estimates" title="src.forecast.forecast.determine_estimates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.determine_estimates()</span></code></a>).</p>
 </section>
@@ -332,8 +339,9 @@ The PyMC3 model can cope with this by feeding it with timestamps that are extrap
 <p>From the model posterior predictive samples are drawn for all timestamps (also measurement timestamps, 1000 samples per timestamp).</p>
 <p>From the posterior samples, the quantile bands are determined (<code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.format.make_quantile_bands()</span></code>).
 This reduces the data storage.</p>
-<p>The upper and lower limits of the quantile bands are then stored in the same format as the input (<code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.format.format_model_estimates()</span></code>).
-The input of the model and the output are then concatenated together. This eases the visualization later.</p>
+<p>The upper and lower limits of the quantile bands are then stored in the same format as the input (<code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.format.format_model_estimates()</span></code>).</p>
+<p>The input of the model and the output are then concatenated together.
+This eases the visualization later.</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/data_stored.png"><img alt="_images/data_stored.png" class="align-center" src="_images/data_stored.png" style="width: 800px;" /></a>
 </div></blockquote>

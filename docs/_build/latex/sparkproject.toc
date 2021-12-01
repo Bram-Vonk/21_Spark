@@ -3,8 +3,8 @@
 \contentsline {section}{\numberline {1.1}About JADS}{3}{section.1.1}%
 \contentsline {section}{\numberline {1.2}About Enexis}{3}{section.1.2}%
 \contentsline {section}{\numberline {1.3}About the current situation}{4}{section.1.3}%
-\contentsline {section}{\numberline {1.4}About this projects aim}{4}{section.1.4}%
-\contentsline {section}{\numberline {1.5}About the structure of this project}{4}{section.1.5}%
+\contentsline {section}{\numberline {1.4}About this project’s aim}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}About the structure of this project}{5}{section.1.5}%
 \contentsline {section}{\numberline {1.6}Acknowledgements}{5}{section.1.6}%
 \contentsline {chapter}{\numberline {2}Business Understanding}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Business Objectives}{7}{section.2.1}%
@@ -14,26 +14,26 @@
 \contentsline {subsection}{\numberline {2.2.3}Opportunity for data science}{9}{subsection.2.2.3}%
 \contentsline {section}{\numberline {2.3}Data Mining Goals}{9}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Primary objective}{9}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}General description based on an example case}{10}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.2}Example Use Case}{10}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Business Value Diagram}{10}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Requirements from users}{11}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Success criteria}{11}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.4}Requirements from Users}{10}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Success Criteria}{11}{subsection.2.3.5}%
 \contentsline {section}{\numberline {2.4}Project Plan}{11}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Organisation}{11}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}Resources}{12}{subsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.4.3}Requirements}{12}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Assumptions}{13}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.4}Assumptions}{12}{subsection.2.4.4}%
 \contentsline {subsection}{\numberline {2.4.5}Risks and Contingencies}{13}{subsection.2.4.5}%
 \contentsline {subsection}{\numberline {2.4.6}Costs and Benefits}{13}{subsection.2.4.6}%
-\contentsline {subsection}{\numberline {2.4.7}Implementation concept}{13}{subsection.2.4.7}%
-\contentsline {subsection}{\numberline {2.4.8}Planned milestones}{14}{subsection.2.4.8}%
+\contentsline {subsection}{\numberline {2.4.7}Implementation Concept}{13}{subsection.2.4.7}%
+\contentsline {subsection}{\numberline {2.4.8}Planned Milestones}{14}{subsection.2.4.8}%
 \contentsline {chapter}{\numberline {3}Data Understanding}{15}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Initial Data Collection}{15}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Measurement Data Source}{15}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Meta data source}{15}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.2}Metadata Data Source}{15}{subsection.3.1.2}%
 \contentsline {section}{\numberline {3.2}Data Description}{16}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Measurement data details}{16}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Measurement data details}{16}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.1}Measurement Data Details}{16}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Metadata Details}{16}{subsection.3.2.2}%
 \contentsline {section}{\numberline {3.3}Data Exploration}{16}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Data Quality}{17}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Data Preparation}{19}{chapter.4}%
@@ -69,56 +69,63 @@
 \contentsline {subsection}{\numberline {6.2.2}Evaluation Implementation}{35}{subsection.6.2.2}%
 \contentsline {section}{\numberline {6.3}Presentation of Results}{35}{section.6.3}%
 \contentsline {subsection}{\numberline {6.3.1}Improvements on Presentation}{36}{subsection.6.3.1}%
-\contentsline {section}{\numberline {6.4}Learning Objectives Evaluation}{37}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}JADS \sphinxhyphen {} Professional Education \sphinxhyphen {} Lead Track}{37}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Personal Goals \sphinxhyphen {} Bram Vonk}{38}{subsection.6.4.2}%
-\contentsline {chapter}{\numberline {7}Deployment}{39}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Deployment Plan}{39}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Monitoring and Maintenance Plan}{39}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Final Report}{39}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Project review}{39}{section.7.4}%
-\contentsline {chapter}{\numberline {8}API Reference}{41}{chapter.8}%
-\contentsline {section}{\numberline {8.1}\sphinxstyleliteralintitle {\sphinxupquote {src}}}{41}{section.8.1}%
-\contentsline {subsection}{\numberline {8.1.1}Subpackages}{41}{subsection.8.1.1}%
-\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast}}}{41}{subsubsection*.8}%
-\contentsline {paragraph}{Submodules}{41}{paragraph*.9}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast.assess}}}{41}{subparagraph*.10}%
-\contentsline {subparagraph}{Module Contents}{41}{subparagraph*.11}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast.forecast}}}{42}{subparagraph*.14}%
-\contentsline {subparagraph}{Module Contents}{42}{subparagraph*.15}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast.make\_forecasts}}}{42}{subparagraph*.21}%
-\contentsline {subparagraph}{Module Contents}{42}{subparagraph*.22}%
-\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.model}}}{43}{subsubsection*.25}%
-\contentsline {paragraph}{Submodules}{43}{paragraph*.26}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.model.format}}}{43}{subparagraph*.27}%
-\contentsline {subparagraph}{Module Contents}{43}{subparagraph*.28}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.model.model}}}{43}{subparagraph*.32}%
-\contentsline {subparagraph}{Module Contents}{43}{subparagraph*.33}%
-\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot}}}{45}{subsubsection*.41}%
-\contentsline {paragraph}{Submodules}{45}{paragraph*.42}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot.altair}}}{45}{subparagraph*.43}%
-\contentsline {subparagraph}{Module Contents}{45}{subparagraph*.44}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot.dashboard}}}{46}{subparagraph*.52}%
-\contentsline {subparagraph}{Module Contents}{46}{subparagraph*.53}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot.format}}}{46}{subparagraph*.55}%
-\contentsline {subparagraph}{Module Contents}{46}{subparagraph*.56}%
-\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.preprocess}}}{47}{subsubsection*.61}%
-\contentsline {paragraph}{Submodules}{47}{paragraph*.62}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.preprocess.preprocess}}}{47}{subparagraph*.63}%
-\contentsline {subparagraph}{Module Contents}{47}{subparagraph*.64}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.preprocess.update\_extremes}}}{49}{subparagraph*.73}%
-\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils}}}{49}{subsubsection*.74}%
-\contentsline {paragraph}{Submodules}{49}{paragraph*.75}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.logger}}}{49}{subparagraph*.76}%
-\contentsline {subparagraph}{Module Contents}{49}{subparagraph*.77}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.parser}}}{49}{subparagraph*.79}%
-\contentsline {subparagraph}{Module Contents}{49}{subparagraph*.80}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.preprocess}}}{49}{subparagraph*.83}%
-\contentsline {subparagraph}{Module Contents}{49}{subparagraph*.84}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.snowflake}}}{51}{subparagraph*.92}%
-\contentsline {subparagraph}{Module Contents}{51}{subparagraph*.93}%
-\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.vault}}}{53}{subparagraph*.114}%
-\contentsline {subparagraph}{Module Contents}{53}{subparagraph*.115}%
-\contentsline {subsection}{\numberline {8.1.2}Package Contents}{54}{subsection.8.1.2}%
-\contentsline {chapter}{Python Module Index}{55}{section*.119}%
-\contentsline {chapter}{Index}{57}{section*.120}%
+\contentsline {chapter}{\numberline {7}Deployment}{37}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Current Status}{37}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Code Standards}{37}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Environment}{37}{subsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.1.3}Security}{37}{subsection.7.1.3}%
+\contentsline {subsection}{\numberline {7.1.4}Deployability}{37}{subsection.7.1.4}%
+\contentsline {section}{\numberline {7.2}Deployment Plan}{38}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Monitoring and Maintenance Plan}{38}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Final Report}{39}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Project review}{39}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}JADS \sphinxhyphen {} Professional Education \sphinxhyphen {} Lead Track}{39}{subsection.7.5.1}%
+\contentsline {subsubsection}{Learning Objectives}{39}{subsubsection*.8}%
+\contentsline {subsubsection}{Evaluation Criteria}{40}{subsubsection*.9}%
+\contentsline {subsubsection}{Personal Goals}{41}{subsubsection*.10}%
+\contentsline {paragraph}{To the persistent reader}{41}{paragraph*.11}%
+\contentsline {chapter}{\numberline {8}API Reference}{43}{chapter.8}%
+\contentsline {section}{\numberline {8.1}\sphinxstyleliteralintitle {\sphinxupquote {src}}}{43}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Subpackages}{43}{subsection.8.1.1}%
+\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast}}}{43}{subsubsection*.12}%
+\contentsline {paragraph}{Submodules}{43}{paragraph*.13}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast.assess}}}{43}{subparagraph*.14}%
+\contentsline {subparagraph}{Module Contents}{43}{subparagraph*.15}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast.forecast}}}{44}{subparagraph*.18}%
+\contentsline {subparagraph}{Module Contents}{44}{subparagraph*.19}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.forecast.make\_forecasts}}}{44}{subparagraph*.25}%
+\contentsline {subparagraph}{Module Contents}{44}{subparagraph*.26}%
+\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.model}}}{45}{subsubsection*.29}%
+\contentsline {paragraph}{Submodules}{45}{paragraph*.30}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.model.format}}}{45}{subparagraph*.31}%
+\contentsline {subparagraph}{Module Contents}{45}{subparagraph*.32}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.model.model}}}{45}{subparagraph*.36}%
+\contentsline {subparagraph}{Module Contents}{45}{subparagraph*.37}%
+\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot}}}{47}{subsubsection*.45}%
+\contentsline {paragraph}{Submodules}{47}{paragraph*.46}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot.altair}}}{47}{subparagraph*.47}%
+\contentsline {subparagraph}{Module Contents}{47}{subparagraph*.48}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot.dashboard}}}{48}{subparagraph*.56}%
+\contentsline {subparagraph}{Module Contents}{48}{subparagraph*.57}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.plot.format}}}{49}{subparagraph*.61}%
+\contentsline {subparagraph}{Module Contents}{49}{subparagraph*.62}%
+\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.preprocess}}}{49}{subsubsection*.67}%
+\contentsline {paragraph}{Submodules}{49}{paragraph*.68}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.preprocess.preprocess}}}{49}{subparagraph*.69}%
+\contentsline {subparagraph}{Module Contents}{49}{subparagraph*.70}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.preprocess.update\_extremes}}}{51}{subparagraph*.79}%
+\contentsline {subsubsection}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils}}}{51}{subsubsection*.80}%
+\contentsline {paragraph}{Submodules}{51}{paragraph*.81}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.logger}}}{51}{subparagraph*.82}%
+\contentsline {subparagraph}{Module Contents}{51}{subparagraph*.83}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.parser}}}{51}{subparagraph*.85}%
+\contentsline {subparagraph}{Module Contents}{51}{subparagraph*.86}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.preprocess}}}{52}{subparagraph*.89}%
+\contentsline {subparagraph}{Module Contents}{52}{subparagraph*.90}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.snowflake}}}{53}{subparagraph*.98}%
+\contentsline {subparagraph}{Module Contents}{53}{subparagraph*.99}%
+\contentsline {subparagraph}{\sphinxstyleliteralintitle {\sphinxupquote {src.utils.vault}}}{56}{subparagraph*.120}%
+\contentsline {subparagraph}{Module Contents}{56}{subparagraph*.121}%
+\contentsline {subsection}{\numberline {8.1.2}Package Contents}{56}{subsection.8.1.2}%
+\contentsline {chapter}{Python Module Index}{57}{section*.125}%
+\contentsline {chapter}{Index}{59}{section*.126}%

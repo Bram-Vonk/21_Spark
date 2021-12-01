@@ -212,7 +212,7 @@
 
 
 \title{`Spark project`}
-\date{Nov 26, 2021}
+\date{Dec 01, 2021}
 \release{0.0.1}
 \author{Bram Vonk}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -246,26 +246,36 @@
 \label{\detokenize{general:about-jads}}
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=400\sphinxpxdimen]{{jads_logo}.png}\hspace*{\fill}}
 
-This project is done in the context of the Professional Education Lead Program of the Jheronimus Academy of Data Science \sphinxhref{http://www.jads.nl}{{[}JADS{]}} as graduation project.
+This project is done in the context of the Professional Education Lead Program of the Jheronimus Academy of Data Science \sphinxhref{http://www.jads.nl}{{[}JADS{]}} as a graduation project.
 
 
 \section{About Enexis}
 \label{\detokenize{general:about-enexis}}
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=400\sphinxpxdimen]{{enexis_logo}.png}\hspace*{\fill}}
 
-\sphinxhref{http://www.enexis.nl}{Enexis} is regulated regional distribution network operator (DNO) in the Netherlands, responsible for transporting electricity and gas to 2.6 million customers.
+\sphinxhref{http://www.enexis.nl}{Enexis} is a regulated regional distribution network operator (DNO) in the Netherlands, responsible for transporting electricity and gas to 2.6 million customers.
+
 Enexis aims to keep the delivery af gas and electricity reliable, affordable and sustainable for all its customers.
 
 
 \section{About the current situation}
 \label{\detokenize{general:about-the-current-situation}}
-Power is delivered via grid components as cables and transformers (for electricity) to residential and industrial connections of our customers. These grid components have to have the needed capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
-For decennia this monitoring was done by mainly looking to historical yearly extremes. However, the increasing growth rate of power demand and supply driven by emerging technologies as electrical vehicles (EV) and photovoltaics (PV), requires shorter monitoring periods and nowadays even forecasts. Otherwise, there is no time for mitigating actions and customers will be out of power.
+Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.
+
+These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
+
+For decades this monitoring was done mainly by looking to historical yearly extremes.
+
+However, the increasing growth rate of power demand and supply driven by emerging technologies as electrical vehicles (EV) and photovoltaics (PV), requires shorter monitoring periods and nowadays even forecasts.
+Otherwise, there is no time for mitigating actions and customers will be out of power.
 
 
-\section{About this projects aim}
-\label{\detokenize{general:about-this-projects-aim}}
-Enexis started a few years ago with the measurement of its distribution transformer population (in the project “distribution automation light” (DALI)). Power measurements are available that enable monitoring ad hoc by the grid planners.
+\section{About this project’s aim}
+\label{\detokenize{general:about-this-project-s-aim}}
+Enexis started a few years ago with the measurement of its distribution transformer population (in the project “distribution automation light” (DALI)).
+
+Power measurements are since then available which enable monitoring ad hoc by the grid planners.
+
 This project takes the next step by forecasting on that data in autumn if a transformer overloads in spring.
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=400\sphinxpxdimen]{{autumn_spring_load}.png}\hspace*{\fill}}
@@ -274,6 +284,7 @@ This project takes the next step by forecasting on that data in autumn if a tran
 \section{About the structure of this project}
 \label{\detokenize{general:about-the-structure-of-this-project}}
 This project and its documentation are set up around the CRoss Industry Standard Process for Data Mining \sphinxhref{https://www.datascience-pm.com/crisp-dm-2/}{{[}CRISP\sphinxhyphen{}DM{]}}.
+
 It is an iterative process and this documentation focuses on the end result without ignoring the lessons learned along the way. The latter is generally noted at the end of every chapter.
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{crisp_dm}.png}\hspace*{\fill}}
@@ -281,10 +292,9 @@ It is an iterative process and this documentation focuses on the end result with
 
 \section{Acknowledgements}
 \label{\detokenize{general:acknowledgements}}
-\begin{DUlineblock}{0em}
-\item[] I would like to thank Jeroen the Mast for the valuable feedback and supervision.
-\item[] Special thanks also goes out to PDEng candidate Akshaya Ravi for her technical support. Together with my buddy David Rijlaarsdam she provided me with helpful insights and discussions on the project.
-\end{DUlineblock}
+I would like to thank Jeroen the Mast for the valuable feedback and supervision.
+
+Special thanks also goes out to PDEng candidate Akshaya Ravi for her technical support. Together with my buddy David Rijlaarsdam she provided me with helpful insights and discussions on the project.
 
 
 \chapter{Business Understanding}
@@ -293,6 +303,7 @@ It is an iterative process and this documentation focuses on the end result with
 \section{Business Objectives}
 \label{\detokenize{business_understanding:business-objectives}}
 Enexis is a regulated DNO with a monopoly position regarding the distribution of electricity and gas.
+
 The company wants to keep the delivery of electricity and gas:
 \begin{itemize}
 \item {} 
@@ -314,13 +325,14 @@ This is realised by doing effective and efficient grid investments according to 
 
 \subsection{A changing environment}
 \label{\detokenize{business_understanding:a-changing-environment}}
-\begin{DUlineblock}{0em}
-\item[] Power is delivered via grid components as cables and transformers (for electricity) to residential and industrial connections of our customers.
-\item[] These grid components have to have the needed capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
-\item[] For decennia this monitoring was done by mainly looking to historical yearly extremes.
-\end{DUlineblock}
+Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.
 
-However, the increasing growth rate of power demand and supply driven by emerging technologies and electrification of transportation and heating, require a more frequent and pro\sphinxhyphen{}active electricity grid management.
+These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
+
+For decades this monitoring was done mainly by looking to historical yearly extremes.
+
+However, the increasing growth rate of power demand and supply driven by emerging technologies as electrical vehicles (EV) and photovoltaics (PV), requires shorter monitoring periods and nowadays even forecasts.
+Otherwise, there is no time for mitigating actions and customers will be out of power.
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=400\sphinxpxdimen]{{pv_cbs}.png}\hspace*{\fill}}
 
@@ -337,19 +349,23 @@ Installed power of heat pumps (HP) in The Netherlands (source: \sphinxhref{https
 
 \subsection{Impact on grid management}
 \label{\detokenize{business_understanding:impact-on-grid-management}}
-\begin{DUlineblock}{0em}
-\item[] The more volatile and more rapidly increasing power flows require that Grid Planners more often monitor if the minimum and maximum power is still withing the transformer’s capacity. Otherwise, this will cause unsafe operating situations and it can lead to power outages.
-\item[] Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years. This in a environment were they are expected to make sure that Enexis is an enabler of the energy transition.
-\end{DUlineblock}
+The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still withing the transformer’s capacity.
+Otherwise, this will cause unsafe operating situations and it can lead to power outages.
+
+Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years.
+This in a time and environment were they are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.
 
 
 \subsection{Opportunity for data science}
 \label{\detokenize{business_understanding:opportunity-for-data-science}}
-\begin{DUlineblock}{0em}
-\item[] Since a few years Enexis started to deploy so called Distribution Automation Light Boxes. With these measurement apparatus it is possible to monitor our distribution transformers near real time.
-\item[] At the moment of writing 11k distribution transformers (of the total population of 35k) are equipped with these apparatus which are measuring 15 minute average voltages, currents and powers of each transformer.
-\item[] This data (together with transformer metadata) enables to automatically detect or even foresee earlier overloading of transformers. It gives grid planners the opportunity to timely mitigate upcoming issues.
-\end{DUlineblock}
+Since a few years Enexis started to deploy so called Distribution Automation Light Boxes (DALI).
+
+With these measurement apparatus it is possible to monitor our distribution transformers near real time.
+
+At the moment of writing 11k distribution transformers (of the total population of 35k) are equipped with these apparatus which are measuring 15 minute average voltages, currents and powers of each transformer.
+
+This data (together with transformer metadata) enables us to automatically detect or even foresee earlier overloading of transformers.
+It gives grid planners the opportunity to timely mitigate upcoming issues.
 
 
 \section{Data Mining Goals}
@@ -357,34 +373,33 @@ Installed power of heat pumps (HP) in The Netherlands (source: \sphinxhref{https
 
 \subsection{Primary objective}
 \label{\detokenize{business_understanding:primary-objective}}
-\begin{DUlineblock}{0em}
-\item[] More volatile power flows require a monitoring tool that forecasts transformer overloading.
-\item[] The goal is to timely identify future overloading of transformers.
-\end{DUlineblock}
+More volatile power flows require a monitoring tool that forecasts transformer overloading.
+
+The goal is to timely identify future overloading of transformers.
 
 
-\subsection{General description based on an example case}
-\label{\detokenize{business_understanding:general-description-based-on-an-example-case}}
-\begin{DUlineblock}{0em}
-\item[] The project should result in a tool that is able to predict in autumn that a transformer will be overloaded in spring due to EV with a prediction interval.
-\item[] The tool enables better planning of grid strengthening which prevents overloading of transformers (safety and reliability), foreseeing future work (costs) and enabling the energy transition better (sustainability).
-\end{DUlineblock}
+\subsection{Example Use Case}
+\label{\detokenize{business_understanding:example-use-case}}
+The project should result in a tool that is able to predict in autumn that a transformer will be overloaded in spring due to EV with a prediction interval.
+
+The tool enables better planning of grid strengthening which prevents overloading of transformers (safety and reliability), foreseeing and better plan future work (costs) and enabling the energy transition better (sustainability).
 
 
 \subsection{Business Value Diagram}
 \label{\detokenize{business_understanding:business-value-diagram}}
-\begin{DUlineblock}{0em}
-\item[] Business value is created by the forecast model by enabling the preferred path for grid investments on the business value part (upper half) of the Business Flow Down Diagram below.
-\item[] This path is possible by providing grid planners with a probability that a transformer will overload in the foreseeable future.
-\item[] The model (lower half) will use historic DALI timeseries data to forecast transformer loading. By comparing this forecast with capacity of the transformer possible overloading can be foreseen.
-\end{DUlineblock}
+Business value is created by the forecast model by enabling the preferred path for grid investments on the business value part (upper half) of the Business Flow Down Diagram below.
+
+This path is possible by providing grid planners with a probability that a transformer will overload in the foreseeable future.
+
+The model (lower half) will use historic DALI timeseries data to forecast transformer loading.
+By comparing this forecast with capacity of the transformer possible overloading can be foreseen.
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{value_flow_down}.png}\hspace*{\fill}}
 
 Business Flow Down Diagram for the project.
 
 
-\subsection{Requirements from users}
+\subsection{Requirements from Users}
 \label{\detokenize{business_understanding:requirements-from-users}}
 The developed product is only valuable if it is use dby the end users, who are the Grid Planners.
 Therefore the following additional requirements and wishes are important:
@@ -422,7 +437,7 @@ Forecast horizon should be six months.
 \end{itemize}
 
 
-\subsection{Success criteria}
+\subsection{Success Criteria}
 \label{\detokenize{business_understanding:success-criteria}}
 The project is a success if there is a tool that is being used by the Grid Planners that accurately forecasts overloading of transformers.
 
@@ -503,7 +518,10 @@ Supervision / support: Both available for a few hours every 3 weeks.
 \item {} \begin{description}
 \item[{Data}] \leavevmode\begin{itemize}
 \item {} 
-Data
+DALI 15\sphinxhyphen{}minute measurement data.
+
+\item {} 
+Distribution transformer metadata (capacity).
 
 \end{itemize}
 
@@ -591,7 +609,7 @@ Implementation: Open source software is used besides already licensed applicatio
 \end{itemize}
 
 
-\subsection{Implementation concept}
+\subsection{Implementation Concept}
 \label{\detokenize{business_understanding:implementation-concept}}
 The stool is split into three steps to tackle the amount of data available, but still make the results manageable:
 \begin{itemize}
@@ -613,7 +631,7 @@ In between steps results are stored in a Snowflake database.
 The proposed steps for implementation of the tool.
 
 
-\subsection{Planned milestones}
+\subsection{Planned Milestones}
 \label{\detokenize{business_understanding:planned-milestones}}
 
 \begin{savenotes}\sphinxattablestart
@@ -684,13 +702,18 @@ Deployment
 \section{Initial Data Collection}
 \label{\detokenize{data_understanding:initial-data-collection}}
 The goal is to forecast accurately maximum and minimum loading of transformers.
-There is 15 minute average data available of 11k transformers. The maximum and minimum loading is not needed on this detailed level.
+
+There is 15\sphinxhyphen{}minute average data available of 11k transformers.
+
+The maximum and minimum loading is not needed on this detailed level.
 According to the Grid Planners, weekly or monthly extreme details are more than enough.
 
 For this first model to forecast transfer loading no external variables will be used as input for the model.
 Only historic data will be used (with metadata to extract de capacity of the transformer).
 
-Data is available in Snowflake. in a Jupyter Notebook pandas with a SQLAlchemy engine is used for the data collection from Snowflake.
+Data is available in Snowflake.
+A Jupyter Notebook pandas with a SQLAlchemy engine is used for the data collection from Snowflake.
+
 Credentials are available via Vault in the Enexis domain.
 
 
@@ -703,7 +726,7 @@ In a Snowflake database the following data is available:
 \centering
 \sphinxcapstartof{table}
 \sphinxthecaptionisattop
-\sphinxcaption{Snowflake data source details.}\label{\detokenize{data_understanding:id2}}
+\sphinxcaption{Snowflake data source details.}\label{\detokenize{data_understanding:id1}}
 \sphinxaftertopcaption
 \begin{tabular}[t]{|\X{25}{50}|\X{25}{50}|}
 \hline
@@ -728,8 +751,8 @@ BDM\_DALI\_METINGEN
 \sphinxattableend\end{savenotes}
 
 
-\subsection{Meta data source}
-\label{\detokenize{data_understanding:meta-data-source}}
+\subsection{Metadata Data Source}
+\label{\detokenize{data_understanding:metadata-data-source}}
 In a Snowflake database the following metadata is available:
 
 
@@ -737,7 +760,7 @@ In a Snowflake database the following metadata is available:
 \centering
 \sphinxcapstartof{table}
 \sphinxthecaptionisattop
-\sphinxcaption{Snowflake data source details.}\label{\detokenize{data_understanding:id3}}
+\sphinxcaption{Snowflake data source details.}\label{\detokenize{data_understanding:id2}}
 \sphinxaftertopcaption
 \begin{tabular}[t]{|\X{25}{50}|\X{25}{50}|}
 \hline
@@ -765,24 +788,25 @@ DIM\_DALI\_BOX\_VW
 \section{Data Description}
 \label{\detokenize{data_understanding:data-description}}
 
-\subsection{Measurement data details}
+\subsection{Measurement Data Details}
 \label{\detokenize{data_understanding:measurement-data-details}}
-\begin{DUlineblock}{0em}
-\item[] The measurements are available since Q2 2018. Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured
-\item[] Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.
-\end{DUlineblock}
+The measurements are available since Q2 2018.
 
-\begin{DUlineblock}{0em}
-\item[] For this project we focus first on the active power on a transformer om the medium voltage connection side. The power is available for all three power phases as well as the sum of them.
-\item[] Below are the fields of interest given that are queried from the aforementioned table.
-\end{DUlineblock}
+Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
+Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.
+
+For this project we focus first on the active power on a transformer om the medium voltage connection side.
+
+The power is available for all three power phases as well as the sum of them.
+
+Below are the fields of interest given that are queried from the aforementioned table.
 
 
 \begin{savenotes}\sphinxattablestart
 \centering
 \sphinxcapstartof{table}
 \sphinxthecaptionisattop
-\sphinxcaption{DALI table fields of interest.}\label{\detokenize{data_understanding:id4}}
+\sphinxcaption{DALI table fields of interest.}\label{\detokenize{data_understanding:id3}}
 \sphinxaftertopcaption
 \begin{tabular}[t]{|\X{25}{100}|\X{25}{100}|\X{50}{100}|}
 \hline
@@ -827,22 +851,80 @@ TIMESTAMPTZ
 \sphinxattableend\end{savenotes}
 
 
-\subsection{Measurement data details}
-\label{\detokenize{data_understanding:id1}}
-\begin{DUlineblock}{0em}
-\item[] In the metadata table there are 15,058 records present.
-\item[] Only 9,920 boxids are operational and have a nominal power correctly registered.
-\end{DUlineblock}
+\subsection{Metadata Details}
+\label{\detokenize{data_understanding:metadata-details}}
+In the metadata table there are 15,058 records present.
+
+Only 9,920 boxids are operational and have a nominal power correctly registered.
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\sphinxcapstartof{table}
+\sphinxthecaptionisattop
+\sphinxcaption{Metadata table fields of interest.}\label{\detokenize{data_understanding:id4}}
+\sphinxaftertopcaption
+\begin{tabular}[t]{|\X{25}{100}|\X{25}{100}|\X{50}{100}|}
+\hline
+\sphinxstyletheadfamily 
+Field o.i.
+&\sphinxstyletheadfamily 
+Type
+&\sphinxstyletheadfamily 
+Example
+\\
+\hline
+BOXID
+&
+VARCHAR
+&
+ESD.000240\sphinxhyphen{}2
+\\
+\hline
+BOX\_BEDRIJFSSTATUS
+&
+VARCHAR
+&
+in bedrijf
+\\
+\hline
+IN\_BEDRIJFSNAME\_DATUMTIJD
+&
+TIMESTAMPTZ
+&
+2021\sphinxhyphen{}05\sphinxhyphen{}12 07:45:00.000000000
+\\
+\hline
+VESTIGING
+&
+VARCHAR
+&
+Breda
+\\
+\hline
+VERMOGEN\_NOMINAAL
+&
+NUMBER
+&
+400
+\\
+\hline
+\end{tabular}
+\par
+\sphinxattableend\end{savenotes}
 
 
 \section{Data Exploration}
 \label{\detokenize{data_understanding:data-exploration}}
 The measurement data is up\sphinxhyphen{}to\sphinxhyphen{}date, but has missing values in two moments in time (both in 2021). This issue was discovered and is addressed.
+
 For the project it won’t be a huge issue, since the data is aggregated to weekly extremes.
-This will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
+It will will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
+
 In both cases (outlier and missing data) the model can handle this.
 
 For timeseries modelling it is advised to have at least two periods (years in this case) of measurement data.
+
 As the figure below shows, this might be a problem eventually. One of the challenges is therefore to explore if prior knowledge of the population can overcome this issue.
 
 In the figure below the completeness of the data over time is given for the transformers in the area of Breda.
@@ -855,8 +937,10 @@ Completeness for DALI data in the service area of Breda.
 
 \section{Data Quality}
 \label{\detokenize{data_understanding:data-quality}}
-Beside the missing data described above, the data quality (of the 15 minute power averages) seems like expected.
-The reason is probably that the 15 minute averaging already smooths out the extreme (short circuit) values and measurement errors. Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
+Beside the missing data described above, the data quality (of the 15\sphinxhyphen{}minute power averages) seems like expected.
+The reason is probably that the 15\sphinxhyphen{}minute averaging already smooths out the extreme (short circuit) values and measurement errors.
+
+Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
 Taking not only the extremes, but also the second highest/lowest value per week for robustness did not make a lot of difference (probably also due to the aforementioned smoothing).
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dq_outlier}.png}\hspace*{\fill}}
@@ -910,7 +994,7 @@ Missing data is neither a problem for the model and is also not imputed.
 
 \section{Data Construction}
 \label{\detokenize{data_preparation:data-construction}}
-From the raw 15 minute data the weekly minimum and maximum are determined. This is done per channel and boxid ({\hyperref[\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.make_week_extremes_query}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.utils.snowflake.make\_week\_extremes\_query()}}}}}).
+From the raw 15\sphinxhyphen{}minute data the weekly minimum and maximum are determined. This is done per channel and boxid ({\hyperref[\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.make_week_extremes_query}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.utils.snowflake.make\_week\_extremes\_query()}}}}}).
 The week definition used is the ISO\sphinxhyphen{}week since this is always a full week.
 
 A SQL query aggregates and writes the result asynchronously on the Snowflake database. This can be done in batch for all historic measurements ({\hyperref[\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.create_week_extremes}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.utils.snowflake.create\_week\_extremes()}}}}}), but the created table can also be updated per week ({\hyperref[\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.update_week_extremes}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.utils.snowflake.update\_week\_extremes()}}}}}).
@@ -1042,7 +1126,7 @@ The format of the loaded extremes data.
 
 \section{Data Updating Process}
 \label{\detokenize{data_preparation:data-updating-process}}
-The weekly extremes can be updated every week (or longer).
+The weekly extremes can be updated on a weekly (or longer) basis.
 
 By running {\hyperref[\detokenize{autoapi/src/preprocess/update_extremes/index:module-src.preprocess.update_extremes}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.update\_extremes()}}}}} the function {\hyperref[\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.update_week_extremes}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.utils.snowflake.update\_week\_extremes()}}}}} is called.
 This will will trigger the following steps which update the weekly extremes Snowflake table:
@@ -1097,13 +1181,16 @@ The next time a forecast is required, new data is available and a new model will
 A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.
 
 From the main probabilistic toolboxes (STAN, EDWARD2, Pyro, TensorFlow2 Probability) \sphinxhref{https://docs.pymc.io/en/stable/}{PyMC3} was used for it’s extensive documentation.
+
 A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.
 
 
 \subsection{Generalized Additive Model Concept}
 \label{\detokenize{modeling:generalized-additive-model-concept}}
 To address the explainability of the model, a similar approach as \sphinxhref{https://facebook.github.io/prophet/}{Facebook Prophet} is used.
+
 The model is a Generalized Additive Model \sphinxhref{https://en.wikipedia.org/wiki/Generalized\_additive\_model}{(GAM)} that consists of a trend / drift and seasonality component (and an error component).
+
 The translation to PyMC3 of \sphinxhref{https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/}{Richie Vink} was used as a basis.
 
 The GAM approach makes it easy to decompose the different components of the timeseries and show the Grid Planners the effect of the drift and seasons separately.
@@ -1112,6 +1199,7 @@ The GAM approach makes it easy to decompose the different components of the time
 \section{Test Design}
 \label{\detokenize{modeling:test-design}}
 To evaluate the model the observed data is split into a train and test set based in the forecast horizon ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.split_last}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.split\_last()}}}}}).
+
 After splitting the train set is tested again for not being too short (at least two years: {\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.too_short}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.too\_short()}}}}}).
 \begin{quote}
 
@@ -1121,6 +1209,7 @@ After splitting the train set is tested again for not being too short (at least 
 The split of measurement data into train and test data.
 
 The test set is only used to validate forecasting results.
+
 The train set is used to train / fit / tune the model.
 
 
@@ -1137,13 +1226,15 @@ The GAM model used is ({\hyperref[\detokenize{autoapi/src/model/model/index:src.
 \end{equation*}
 The additive naming is explicit in this notation.
 
-The error component has a has a bandwidth of :math: \sphinxtitleref{sigma\_epsilon}.
+The error component has a has a bandwidth of \(\sigma_\epsilon\).
 
 
 \subsubsection{Drift Component}
 \label{\detokenize{modeling:drift-component}}
 According to the Grid Planners a increasing growth is more and more common due to the energy transition.
+
 Therefore, a stable drift model ({\hyperref[\detokenize{autoapi/src/model/model/index:src.model.model.drift_model}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.model.model.drift\_model()}}}}}) is used that can mimic that.
+
 An exponential function resulted in divergence during the model tuning, but a second order taylor series makes the model convergent and stable.
 
 The drift component model with a taylor series with the order of \(n\) is described as:
@@ -1160,8 +1251,10 @@ For modelling a drift that has the described growth, a polynomial with order \(n
 \subsubsection{Yearly Component}
 \label{\detokenize{modeling:yearly-component}}
 Since the data has been aggregated into weekly extremes, the only seasonality to model is the yearly pattern.
+
 The yearly seasonality is modeled with \(n\) order fourier series ({\hyperref[\detokenize{autoapi/src/model/model/index:src.model.model.seasonality_model}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.model.model.seasonality\_model()}}}}}).
-This based on the work of \sphinxhref{https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/}{Richie Vink}.
+
+This is based on the work of \sphinxhref{https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/}{Richie Vink}.
 
 The yearly seasonality model is described as:
 \begin{equation*}
@@ -1172,7 +1265,9 @@ The yearly seasonality model is described as:
 \begin{split}drift\:|\:\beta_{yearly} = X_{yearly}(t)\:\beta_{yearly}\end{split}
 \end{equation*}
 Here the \(T\) is the period of the seasonality in unit of time of the data.
-The is unit of time in case is a week for the data and a year in weeks is \(T=52.1775\).
+
+The unit of time in this case is a week for the data and a year in weeks is \(T=52.1775\).
+
 The order taken for the fourier series is \(n=5\).
 
 
@@ -1181,9 +1276,12 @@ The order taken for the fourier series is \(n=5\).
 The model parameters (\(\beta\))’s can now be tuned to produce the model is most likely to produce the observed (measurement) data.
 
 To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.
+
 The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.extrapolate_timestamps}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.extrapolate\_timestamps()}}}}}).
 
-The matching observations (measurements) can be intentionally filled with NaN’s. in the model PyMC3 will name them \(\Sigma_missing\).
+The matching observations (measurements) can be intentionally filled with NaN’s.
+
+In the model PyMC3 will name them \(\Sigma_{missing}\).
 (This characteristic makes the model also robust against missing data).
 
 By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps ({\hyperref[\detokenize{autoapi/src/forecast/forecast/index:src.forecast.forecast.determine_estimates}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.forecast.forecast.determine\_estimates()}}}}}).
@@ -1212,7 +1310,9 @@ From the posterior samples, the quantile bands are determined (\sphinxcode{\sphi
 This reduces the data storage.
 
 The upper and lower limits of the quantile bands are then stored in the same format as the input (\sphinxcode{\sphinxupquote{src.forecast.format.format\_model\_estimates()}}).
-The input of the model and the output are then concatenated together. This eases the visualization later.
+
+The input of the model and the output are then concatenated together.
+This eases the visualization later.
 \begin{quote}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{data_stored}.png}\hspace*{\fill}}
@@ -1467,6 +1567,7 @@ This way the data can quickly be loaded by the dashboard application and present
 \section{Presentation of Results}
 \label{\detokenize{evaluation:presentation-of-results}}
 A dashboard is made by using Panel and Altair libraries ({\hyperref[\detokenize{autoapi/src/plot/dashboard/index:module-src.plot.dashboard}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.plot.dashboard}}}}}).
+
 The dashboard presents the ordered list of all transformers and a figure of a forecast for an individual transformer.
 \begin{quote}
 
@@ -1479,7 +1580,9 @@ The list can be filtered by Enexis sub\sphinxhyphen{}service area, since grid pl
 Other ordering is possible if the grid planner desires.
 
 After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.
+
 One can zoom in and pan de plot and tooltips show up on historic measurement data.
+
 If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.
 \begin{quote}
 
@@ -1499,15 +1602,136 @@ Secondly, The current dashboard needs to be deployed within the Enexis landscape
 Additionally, some aesthetic improvements are welcome, since the presentation is quiet basic at this moment.
 
 
-\section{Learning Objectives Evaluation}
-\label{\detokenize{evaluation:learning-objectives-evaluation}}
+\chapter{Deployment}
+\label{\detokenize{deployment:deployment}}\label{\detokenize{deployment::doc}}
+
+\section{Current Status}
+\label{\detokenize{deployment:current-status}}
+
+\subsection{Code Standards}
+\label{\detokenize{deployment:code-standards}}
+The python project is structured simulary as \sphinxhref{https://github.com/cookiecutter/cookiecutter}{Cookiecutter}.
+
+The code has been validated with linting by \sphinxhref{https://github.com/psf/black}{Black}, \sphinxhref{https://github.com/PyCQA/Isort}{isort}, and \sphinxhref{https://github.com/PyCQA/flake8}{Flake8}.
+
+Unit tests have not been written yet.
+
+
+\subsection{Environment}
+\label{\detokenize{deployment:environment}}
+The project currently uses data from the Production environment, since there is no DALI (meta)data available on the Test or Acceptance environments.
+
+Therefore, the further implementation of the CICD pipeline is postponed for now.
+(Also since within Enexis Gitlab is used, but for this study project a parallel Github repository is used.)
+
+
+\subsection{Security}
+\label{\detokenize{deployment:security}}
+Within the Enexis domain one logs on to an environment (in this case Production).
+
+Credentials for accessing the Snowflake database are acquired via Vault to ensure to keep secrets secret.
+
+
+\subsection{Deployability}
+\label{\detokenize{deployment:deployability}}
+Docker files are written for following steps:
+\begin{quote}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{process_triggered}.png}\hspace*{\fill}}
+\end{quote}
+
+The steps are triggered via an entrypoint defined in the \sphinxcode{\sphinxupquote{docker\sphinxhyphen{}compose.yml}}:
+\begin{itemize}
+\item {} \begin{description}
+\item[{\sphinxcode{\sphinxupquote{docker\sphinxhyphen{}compose run update\_extremes}}}] \leavevmode
+Aggregates the 15\sphinxhyphen{}minute data into weekly minimum and maximum values per DALI\sphinxhyphen{}box.
+Only updates new data since the last run.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{\sphinxcode{\sphinxupquote{docker\sphinxhyphen{}compose run make\_forecasts}}}] \leavevmode
+Creates a tuned model for a DALI box with (high) enough measurements and makes a forecast with it.
+Currently, the results are stored all with the \sphinxcode{\sphinxupquote{is\_valid}} column on \sphinxcode{\sphinxupquote{True}}.
+An extra run should be done to set this column to \sphinxcode{\sphinxupquote{False}} for old forecast.
+Until then, one should empty the table on beforehand.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{\sphinxcode{\sphinxupquote{docker\sphinxhyphen{}compose run \sphinxhyphen{}p 8000:8000 dashboard}}}] \leavevmode
+Will run the dashboard and expose it to port 8000.
+
+\end{description}
+
+\end{itemize}
+
+
+\section{Deployment Plan}
+\label{\detokenize{deployment:deployment-plan}}
+The following technical actions are required for full deployment:
+\begin{itemize}
+\item {} 
+(Meta)data for a few DALI boxes is required on the Test and Acceptance environments.
+
+\item {} 
+The project will need an app number for to trace the costs.
+
+\item {} 
+The Gitlab CICD pipeline has to be configured.
+
+\item {} 
+The project needs to land in the Artifactory repository manager of Enexis.
+
+\item {} 
+Airflow DAGs have to be configured to trigger the jobs.
+
+\end{itemize}
+
+The end\sphinxhyphen{}users will eventually have to accept the product to go into Production.
+For that several end\sphinxhyphen{}user/stakeholder meetings are required to get valuable feedback and fine tune the product.
+During these meetings the project will be assessed on the success criteria.
+
+Usage monitoring of the tool has not been implemented, is important after deployment for value evaluation and life cycle management.
+
+
+\section{Monitoring and Maintenance Plan}
+\label{\detokenize{deployment:monitoring-and-maintenance-plan}}
+Monitoring of the triggered jobs will be done by connecting the Airflow job to a MS Team webhook.
+This automatically informs the Data Science Team if a scheduled job has failed.
+
+The issue of model drift is obsolete, since every forecast is based on a newly trained model.
+
+Monitoring of usage has to be implemented as mentioned above.
+
+
+\section{Final Report}
+\label{\detokenize{deployment:final-report}}
+One can create a pdf version of this documentation by the following steps:
+\begin{itemize}
+\item {} 
+Clone the repository.
+
+\item {} 
+Run \sphinxcode{\sphinxupquote{make latexpdf}}
+
+\end{itemize}
+
+
+\section{Project review}
+\label{\detokenize{deployment:project-review}}
 This section covers my personal growth reflection on the Lead track of JADS.
+
 Firstly, I will cover the objectives and criteria set by JADS.
+
 Secondly, I will review my personal goals.
 
 
 \subsection{JADS \sphinxhyphen{} Professional Education \sphinxhyphen{} Lead Track}
-\label{\detokenize{evaluation:jads-professional-education-lead-track}}
+\label{\detokenize{deployment:jads-professional-education-lead-track}}
+
+\subsubsection{Learning Objectives}
+\label{\detokenize{deployment:learning-objectives}}
 The general learning objectives for the Professional Education Lead track of JADS are:
 \begin{itemize}
 \item {} \begin{description}
@@ -1554,6 +1778,9 @@ The highly effective presentation masterclass of Raoul helped me to reach goals 
 
 \end{itemize}
 
+
+\subsubsection{Evaluation Criteria}
+\label{\detokenize{deployment:evaluation-criteria}}
 The evaluation criteria for the Professional Education Lead track of JADS and how I translated them are:
 \begin{itemize}
 \item {} 
@@ -1646,8 +1873,8 @@ Using the engineering approach (instead of the scientific method or the axiomati
 \end{itemize}
 
 
-\subsection{Personal Goals \sphinxhyphen{} Bram Vonk}
-\label{\detokenize{evaluation:personal-goals-bram-vonk}}
+\subsubsection{Personal Goals}
+\label{\detokenize{deployment:personal-goals}}
 Additionally, there were also my personal learning objectives:
 \begin{itemize}
 \item {} 
@@ -1667,27 +1894,11 @@ However, my conscious incompetence skill set has grown dramatically.
 So my new learning objectives are already there. (I will just have to order that backlog.)
 
 
-\chapter{Deployment}
-\label{\detokenize{deployment:deployment}}\label{\detokenize{deployment::doc}}
+\paragraph{To the persistent reader}
+\label{\detokenize{deployment:to-the-persistent-reader}}
+This project is named Spark within Enexis.
 
-\section{Deployment Plan}
-\label{\detokenize{deployment:deployment-plan}}
-TO DO
-
-
-\section{Monitoring and Maintenance Plan}
-\label{\detokenize{deployment:monitoring-and-maintenance-plan}}
-TO DO
-
-
-\section{Final Report}
-\label{\detokenize{deployment:final-report}}
-TO DO
-
-
-\section{Project review}
-\label{\detokenize{deployment:project-review}}
-TO DO
+But it has not just solely been named after the developer: \sphinxhref{https://en.wiktionary.org/wiki/sp\%C3\%A1}{Spa}
 
 
 \chapter{API Reference}
@@ -1955,6 +2166,7 @@ long format version with the quantile bands of the samples for every model varia
 Dot product for Theano.
 
 The theano dot product and NUTS sampler don’t work with large matrices.
+Copyright (c) 2021. Ritchie Vink
 source: \sphinxurl{https://www.ritchievink.com/blog/2018/10/09/} …
 build\sphinxhyphen{}facebooks\sphinxhyphen{}prophet\sphinxhyphen{}in\sphinxhyphen{}pymc3\sphinxhyphen{}bayesian\sphinxhyphen{}time\sphinxhyphen{}series\sphinxhyphen{}analyis\sphinxhyphen{}with\sphinxhyphen{}generalized\sphinxhyphen{}additive\sphinxhyphen{}models/
 \begin{quote}\begin{description}
@@ -1979,6 +2191,7 @@ dot product of the two.
 \phantomsection\label{\detokenize{autoapi/src/model/model/index:src.model.model.fourier_series}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.model.model.}}\sphinxbfcode{\sphinxupquote{fourier\_series}}}{\emph{\DUrole{n}{t}}, \emph{\DUrole{n}{p}\DUrole{o}{=}\DUrole{default_value}{52.1775}}, \emph{\DUrole{n}{n}\DUrole{o}{=}\DUrole{default_value}{5}}}{}
 Calculate fourier representation of t for a period and order.
 
+Copyright (c) 2021. Ritchie Vink
 Based on source: \sphinxurl{https://www.ritchievink.com/blog/2018/10/09/} …
 build\sphinxhyphen{}facebooks\sphinxhyphen{}prophet\sphinxhyphen{}in\sphinxhyphen{}pymc3\sphinxhyphen{}bayesian\sphinxhyphen{}time\sphinxhyphen{}series\sphinxhyphen{}analyis\sphinxhyphen{}with\sphinxhyphen{}generalized\sphinxhyphen{}additive\sphinxhyphen{}models/
 \begin{quote}\begin{description}
@@ -2010,6 +2223,7 @@ matrix fourier representation of t
 \phantomsection\label{\detokenize{autoapi/src/model/model/index:src.model.model.seasonality_model}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.model.model.}}\sphinxbfcode{\sphinxupquote{seasonality\_model}}}{\emph{\DUrole{n}{t}}, \emph{\DUrole{n}{p}\DUrole{o}{=}\DUrole{default_value}{52.1775}}, \emph{\DUrole{n}{n}\DUrole{o}{=}\DUrole{default_value}{5}}, \emph{\DUrole{n}{seasonality\_prior\_scale}\DUrole{o}{=}\DUrole{default_value}{1}}}{}
 Create seasonality model with fourier series.
 
+Copyright (c) 2021. Ritchie Vink
 Based on source: \sphinxurl{https://www.ritchievink.com/blog/2018/10/09/} …
 build\sphinxhyphen{}facebooks\sphinxhyphen{}prophet\sphinxhyphen{}in\sphinxhyphen{}pymc3\sphinxhyphen{}bayesian\sphinxhyphen{}time\sphinxhyphen{}series\sphinxhyphen{}analyis\sphinxhyphen{}with\sphinxhyphen{}generalized\sphinxhyphen{}additive\sphinxhyphen{}models/
 \begin{quote}\begin{description}
@@ -2289,10 +2503,10 @@ DataFrame with the metadata
 \label{\detokenize{autoapi/src/plot/dashboard/index:module-src.plot.dashboard}}\label{\detokenize{autoapi/src/plot/dashboard/index:src-plot-dashboard}}\label{\detokenize{autoapi/src/plot/dashboard/index::doc}}\index{module@\spxentry{module}!src.plot.dashboard@\spxentry{src.plot.dashboard}}\index{src.plot.dashboard@\spxentry{src.plot.dashboard}!module@\spxentry{module}}
 
 \subparagraph{Module Contents}
-\label{\detokenize{autoapi/src/plot/dashboard/index:module-contents}}\index{create\_dashboard() (in module src.plot.dashboard)@\spxentry{create\_dashboard()}\spxextra{in module src.plot.dashboard}}
+\label{\detokenize{autoapi/src/plot/dashboard/index:module-contents}}\index{build\_dashboard() (in module src.plot.dashboard)@\spxentry{build\_dashboard()}\spxextra{in module src.plot.dashboard}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/src/plot/dashboard/index:src.plot.dashboard.create_dashboard}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.plot.dashboard.}}\sphinxbfcode{\sphinxupquote{create\_dashboard}}}{}{}
+\phantomsection\label{\detokenize{autoapi/src/plot/dashboard/index:src.plot.dashboard.build_dashboard}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.plot.dashboard.}}\sphinxbfcode{\sphinxupquote{build\_dashboard}}}{}{}
 Initialize dashboard.
 \begin{quote}\begin{description}
 \item[{Returns}] \leavevmode\begin{description}
@@ -2301,6 +2515,18 @@ Initialize dashboard.
 
 \end{description}\end{quote}
 
+\end{fulllineitems}
+
+\index{dashboard (in module src.plot.dashboard)@\spxentry{dashboard}\spxextra{in module src.plot.dashboard}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/plot/dashboard/index:src.plot.dashboard.dashboard}}\pysigline{\sphinxcode{\sphinxupquote{src.plot.dashboard.}}\sphinxbfcode{\sphinxupquote{dashboard}}}
+\end{fulllineitems}
+
+\index{dashboard (in module src.plot.dashboard)@\spxentry{dashboard}\spxextra{in module src.plot.dashboard}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/src/plot/dashboard/index:id0}}\pysigline{\sphinxcode{\sphinxupquote{src.plot.dashboard.}}\sphinxbfcode{\sphinxupquote{dashboard}}}
 \end{fulllineitems}
 
 
