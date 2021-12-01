@@ -1,15 +1,13 @@
 FROM continuumio/miniconda3
 
+# Copy the relevant folder into the container
+WORKDIR /home
+ADD src /home/src
+ADD dashboard.py /home/dashboard.py
+
 RUN conda install -c pyviz holoviz
 ADD requirements_dashboard.txt /home
 RUN pip install -r requirements_dashboard.txt
 
-# Copy the relevant folder into the container
-WORKDIR /home
-ADD src /home/src
-
 # Run panel serve to start the app
-CMD panel serve --address="0.0.0.0" --port=$PORT main.py --allow-websocket-origin=worldbank-climate-dashboard.herokuapp.com
-
-
-
+CMD panel serve --address="0.0.0.0" --port=$PORT dashboard.py

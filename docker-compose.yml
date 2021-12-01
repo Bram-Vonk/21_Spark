@@ -21,3 +21,13 @@ services:
     volumes:
       - "./src:/home/src"
     entrypoint: python -m src.forecast.make_forecasts
+
+  dashboard:
+    build:
+      dockerfile: Dockerfile.dashboard
+      context: .
+    env_file:
+      - ./.env
+    volumes:
+      - "./src:/home/src"
+    entrypoint: python -m dashboard

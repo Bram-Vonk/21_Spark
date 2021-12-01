@@ -4,3 +4,4 @@ hvac==0.10.14
 snowflake-connector-python[pandas]==2.4.4
 snowflake-sqlalchemy==1.3.2
 altair==4.1.0
+colour==0.1.5
