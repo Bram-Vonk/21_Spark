@@ -151,11 +151,16 @@ Organisation
 
 The involved stakeholders are:
 
-* Grid Planners: The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.
-* Data Engineers:  To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.
-* Management: The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.
-* Academic supervision: Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one-on-one meeting to discuss progress and issues.
-* Academic support: PDEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
+* Grid Planners
+    * The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.
+* Data Engineers
+    * To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.
+* Management
+    * The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.
+* Academic supervision:
+    * Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one-on-one meeting to discuss progress and issues.
+* Academic support:
+    * PDEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
 
 .. image:: _static/img/stakeholders.png
     :width: 600px
@@ -174,6 +179,7 @@ The project will take place in June, July, September, October and November 2021.
     * Grid Planners: Available 2 hours per week.
     * Data engineers: Available 2 hours per week in October - November.
     * Supervision / support: Both available for a few hours every 3 weeks.
+
 * Data
     * DALI 15-minute measurement data.
     * Distribution transformer metadata (capacity).
@@ -202,19 +208,27 @@ Risks and Contingencies
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * Lead / developer has just become a father (is technically up to September on parental leave) and bought a house that has to be renovated. This could result in lower availability for this project.
+
     * Mitigation: None.
+
 * Grid Planners are immensely preoccupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.
+
     * Mitigation: Be clear and direct regarding expectations and communications and limit the effort and time for this project for Grid Planners without giving in on quality/input.
+
 * Data Engineers are also loaded with work and might not have time/resources available.
+
     * Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half.
+
 * There is no use of sensitive data in this project regarding privacy (GDPR) or security. DALI data is allowed to be used. Credentials are not embedded in code and access to data sources is restricted by design.
 
 
 Costs and Benefits
 ~~~~~~~~~~~~~~~~~~
 
-* Data collection: Data is available in an existing database. Only querying is needed, no active additional data collection.
-* Implementation: Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.
+* Data collection
+    * Data is available in an existing database. Only querying is needed, no active additional data collection.
+* Implementation
+    * Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.
 
 
 Implementation Concept
@@ -222,9 +236,12 @@ Implementation Concept
 
 The tool is split into three steps to tackle the amount of data available, but still make the results manageable:
 
-* Preprocessing: To condense 15 minute load averages into weekly extremes (minimum and maximum).
-* Forecasting: To fit a model on the aggregated data and create forecasts.
-* Dashboarding: To display (forecast) results to the end user.
+* Preprocessing
+    * To condense 15 minute load averages into weekly extremes (minimum and maximum).
+* Forecasting
+    * To fit a model on the aggregated data and create forecasts.
+* Dashboarding
+    * To display (forecast) results to the end user.
 
 In between steps results are stored in a Snowflake database.
 

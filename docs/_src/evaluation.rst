@@ -7,16 +7,16 @@ This section discusses the evaluation of the implemented model, the assessments 
 Model Evaluation
 ----------------
 
-The evaluation of results has not been done with a error criteria (e.g. MAE, MAPE), but only visual.
+The evaluation of results has not been done with an error criteria (e.g. MAE, MAPE), but only visually.
 This will be done in the near future, when additional model improvements are implemented and needed to be assessed.
 
-This section will discuss briefly the model
+This section will briefly discuss the model.
 
 
 Model Robustness
 ~~~~~~~~~~~~~~~~
 
-The model as it is described before is stable for all transformer forecasts: It converges for all transformer timeseries that are used.
+The model as it is described before is stable for all transformer forecasts: It converges for all transformer time series that are used.
 
 A robust model for all 11k transformers is essential if models are trained and used without human supervision and results are automatically assessed.
 An experiment of an exponential function for the drift sub-model was implemented, but far from stable.
@@ -35,12 +35,12 @@ Model Results
 
 The model forecasts neatly the median and quantile bands as intended.
 
-However, it will always be a model trained on historical, observed data, and forecasts will always be off.
+However, it will always be a model trained on historical, observed data. Forecasts are often far from perfect.
 Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality of the outside world.
 
-The grid planners were shown different forecast that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.
+The grid planners were shown different forecasts that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.
 
-This was visually shown by the following actions:
+This was shown visually by the following actions:
 The results were assessed by splitting the observed data into a train and test set, using a model based on the train set and comparing the results with the test set.
 The performance for the different transformers of course also differs, but an example can be seen in the following figure:
 
@@ -62,7 +62,7 @@ The most promising suggestions for model improvement are:
 * Adding a extra component to detect temporarily bypass switching of loads of other transformers.
 * Making more recent observations more relevant for slowly changing loading patterns.
 * Using the population seasonality as a `prior <https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/>`__ in case of a short history of observations.
-* Using by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.
+* Using a by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.
 
 
 Results Evaluation
@@ -76,10 +76,10 @@ Results Prioritization
 
 The are potentially 11k models that all forecast six months ahead.
 
-These are numbers too high to be assessed by grid planners one by one.
+These are numbers too high to be assessed by Grid Planners one by one.
 Therefore the forecast results are automatically assessed and ordered by urgency.
 
-The grid planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.
+The Grid Planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.
 
 Firstly, the definition of potential (over)loading was agreed on to be the following:
 
@@ -107,7 +107,7 @@ The result of this prioritization is shown below.
 
 Transformers ordered by potential (over)loading.
 
-The result is that grid planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.
+The result is that Grid Planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.
 
 
 Evaluation Implementation
@@ -136,18 +136,17 @@ The dashboard presents the ordered list of all transformers and a figure of a fo
     :width: 800px
     :align: center
 
-The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.
+The dashboard with the ordered transformer son the left and the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum on the right.
 
 
-The list can be filtered by Enexis sub-service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
+The list can be filtered by Enexis sub-service area, since Grid Planners are generally responsible for an area within these areas and not interested in the whole service area.
 Other ordering is possible if the grid planner desires.
-
 
 After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.
 
-One can zoom in and pan de plot and tooltips show up on historic measurement data.
+One can zoom in and pan the plot and tooltips show up on historic measurement data.
 
-If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.
+If the Grid Planner is interested, he/she can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.
 
  .. image:: _static/img/dashboard_min.png
     :width: 800px
@@ -159,7 +158,7 @@ The dashboard with the sub-service area filtering and the minimum decomposition 
 Improvements on Presentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between python and the Snowflake database.
+Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between Python and the Snowflake database.
 This issue has the highest priority, since grid planners do not want to wait for results.
 
 Secondly, The current dashboard needs to be deployed within the Enexis landscape.

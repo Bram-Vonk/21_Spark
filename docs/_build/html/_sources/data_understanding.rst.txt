@@ -13,7 +13,7 @@ There is 15-minute average data available of 11k transformers.
 The maximum and minimum loading is not needed on this detailed level.
 According to the Grid Planners, weekly or monthly extreme details are more than enough.
 
-For this first model to forecast transfer loading no external variables will be used as input for the model.
+For this first model to forecast transformer loading no external variables will be used as input for the model.
 Only historic data will be used (with metadata to extract de capacity of the transformer).
 
 Data is available in Snowflake.
@@ -65,7 +65,7 @@ Measurement Data Details
 
 The measurements are available since Q2 2018.
 
-Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
+Since then increasingly more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
 Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.
 
 For this project we focus first on the active power on a transformer om the medium voltage connection side.
@@ -132,17 +132,17 @@ Data Exploration
 
 The measurement data is up-to-date, but has missing values in two moments in time (both in 2021). This issue was discovered and is addressed.
 
-For the project it won't be a huge issue, since the data is aggregated to weekly extremes.
-It will will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
+For the project it will not be a huge issue, since the data is aggregated to weekly minimum and maximum values.
+It will will cause these extremes to be less severe if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
 
 In both cases (outlier and missing data) the model can handle this.
 
-For timeseries modelling it is advised to have at least two periods (years in this case) of measurement data.
+For time series modelling it is advised to have at least two periods (years in this case) of measurement data.
 
 As the figure below shows, this might be a problem eventually. One of the challenges is therefore to explore if prior knowledge of the population can overcome this issue.
 
-In the figure below the completeness of the data over time is given for the transformers in the area of Breda.
-On the vertical axis the transformers are shown ordered by the time they got operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.
+In the figure below the completeness of the data over time is given for the transformers in the service area of Breda.
+On the vertical axis the transformers are shown ordered by the time they became operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.
 
 
 .. image:: _static/img/dq_completeness.jpeg
@@ -155,10 +155,10 @@ Completeness for DALI data in the service area of Breda.
 Data Quality
 ------------
 
-Beside the missing data described above, the data quality (of the 15-minute power averages) seems like expected.
-The reason is probably that the 15-minute averaging already smooths out the extreme (short circuit) values and measurement errors.
+Beside the missing data described above, the data quality (of the 15-minute power averages) is as like expected.
+The reason is likely the 15-minute averaging already smooths out the extreme (short circuit) values and measurement errors.
 
-Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
+Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown in the figure below).
 Taking not only the extremes, but also the second highest/lowest value per week for robustness did not make a lot of difference (probably also due to the aforementioned smoothing).
 
 .. image:: _static/img/dq_outlier.png

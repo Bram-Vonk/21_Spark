@@ -257,7 +257,7 @@
 <section id="a-changing-environment">
 <h3>A changing environment<a class="headerlink" href="#a-changing-environment" title="Permalink to this headline">¶</a></h3>
 <p>Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.</p>
-<p>These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.</p>
+<p>The capacity of these grid components should always be sufficient for the power flows in the grid. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.</p>
 <p>For decades this monitoring was done mainly by looking to historical yearly extremes.</p>
 <p>However, the increasing growth rate of power demand and supply driven by emerging technologies as electrical vehicles (EV) and photovoltaics (PV), requires shorter monitoring periods and nowadays even forecasts.
 Otherwise, there is no time for mitigating actions and customers will be out of power.</p>
@@ -270,10 +270,10 @@ Otherwise, there is no time for mitigating actions and customers will be out of 
 </section>
 <section id="impact-on-grid-management">
 <h3>Impact on grid management<a class="headerlink" href="#impact-on-grid-management" title="Permalink to this headline">¶</a></h3>
-<p>The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still withing the transformer’s capacity.
+<p>The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still within the transformer’s capacity.
 Otherwise, this will cause unsafe operating situations and it can lead to power outages.</p>
 <p>Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years.
-This in a time and environment were they are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.</p>
+This in a time and environment where Grid Planners are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.</p>
 </section>
 <section id="opportunity-for-data-science">
 <h3>Opportunity for data science<a class="headerlink" href="#opportunity-for-data-science" title="Permalink to this headline">¶</a></h3>
@@ -307,7 +307,7 @@ By comparing this forecast with capacity of the transformer possible overloading
 </section>
 <section id="requirements-from-users">
 <h3>Requirements from Users<a class="headerlink" href="#requirements-from-users" title="Permalink to this headline">¶</a></h3>
-<p>The developed product is only valuable if it is use dby the end users, who are the Grid Planners.
+<p>The developed product is only valuable if it is used by the end users, who are the Grid Planners.
 Therefore the following additional requirements and wishes are important:</p>
 <ul class="simple">
 <li><p>Grid Planners don’t want another tool to log into/install..</p></li>
@@ -325,9 +325,9 @@ Therefore the following additional requirements and wishes are important:</p>
 <section id="success-criteria">
 <h3>Success Criteria<a class="headerlink" href="#success-criteria" title="Permalink to this headline">¶</a></h3>
 <p>The project is a success if there is a tool that is being used by the Grid Planners that accurately forecasts overloading of transformers.</p>
-<p>Usage of the tool can be measured by tracking users of the tool and by performing interview with the end users after deployment.
+<p>Usage of the tool can be measured by tracking users of the tool and by performing interviews with the end users after deployment.
 Accuracy is assessed by comparing forecasts with measurements.</p>
-<p>On more detail the project is a success if:</p>
+<p>In more detail the project is a success if:</p>
 <ul class="simple">
 <li><p>The model forecasts prediction intervals.</p></li>
 <li><p>The working of the model can be explained clearly.</p></li>
@@ -343,11 +343,41 @@ Accuracy is assessed by comparing forecasts with measurements.</p>
 <h3>Organisation<a class="headerlink" href="#organisation" title="Permalink to this headline">¶</a></h3>
 <p>The involved stakeholders are:</p>
 <ul class="simple">
-<li><p>Grid Planners: The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.</p></li>
-<li><p>Data Engineers:  To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.</p></li>
-<li><p>Management: The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.</p></li>
-<li><p>Academic supervision: Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one-on-one meeting to discuss progress and issues.</p></li>
-<li><p>Academic support: PdEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.</p></li>
+<li><dl class="simple">
+<dt>Grid Planners</dt><dd><ul>
+<li><p>The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Data Engineers</dt><dd><ul>
+<li><p>To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Management</dt><dd><ul>
+<li><p>The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Academic supervision:</dt><dd><ul>
+<li><p>Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one-on-one meeting to discuss progress and issues.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Academic support:</dt><dd><ul>
+<li><p>PDEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <a class="reference internal image-reference" href="_images/stakeholders.png"><img alt="_images/stakeholders.png" class="align-center" src="_images/stakeholders.png" style="width: 600px;" /></a>
 <p>The Stakeholders with meeting frequencies (heartbeat / ad hoc).</p>
@@ -388,35 +418,35 @@ Accuracy is assessed by comparing forecasts with measurements.</p>
 <section id="assumptions">
 <h3>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>DALI data is available without huge quality issues during the project</p></li>
+<li><p>DALI data is available without huge quality issues during the project.</p></li>
 <li><p>Weekly extremes on transformer data is an acceptable aggregation level for capacity planning.</p></li>
 <li><p>Data Engineering has capacity for several hours a week for support between September and December.</p></li>
-<li><p>The computational burden for probabilistic models is no problem regarding the computational power available.</p></li>
+<li><p>The computational burden for probabilistic models is feasible regarding the computational power available.</p></li>
 </ul>
 </section>
 <section id="risks-and-contingencies">
 <h3>Risks and Contingencies<a class="headerlink" href="#risks-and-contingencies" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Lead / developer has just become a father (is technically up to September on parental leave) and bought a house that has to be renovated. This could result in lower availability for this project.</dt><dd><ul>
+<ul>
+<li><p>Lead / developer has just become a father (is technically up to September on parental leave) and bought a house that has to be renovated. This could result in lower availability for this project.</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Mitigation: None.</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Grid Planners are immensely occupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.</dt><dd><ul>
+<li><p>Grid Planners are immensely preoccupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Mitigation: Be clear and direct regarding expectations and communications and limit the effort and time for this project for Grid Planners without giving in on quality/input.</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Data Engineers are also loaded with work and might not have time/resources available.</dt><dd><ul>
-<li><p>Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half</p></li>
+<li><p>Data Engineers are also loaded with work and might not have time/resources available.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half.</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 <li><p>There is no use of sensitive data in this project regarding privacy (GDPR) or security. DALI data is allowed to be used. Credentials are not embedded in code and access to data sources is restricted by design.</p></li>
 </ul>
@@ -424,17 +454,47 @@ Accuracy is assessed by comparing forecasts with measurements.</p>
 <section id="costs-and-benefits">
 <h3>Costs and Benefits<a class="headerlink" href="#costs-and-benefits" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Data collection: Data is available in an existing database. Only querying is needed, no active additional data collection.</p></li>
-<li><p>Implementation: Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.</p></li>
+<li><dl class="simple">
+<dt>Data collection</dt><dd><ul>
+<li><p>Data is available in an existing database. Only querying is needed, no active additional data collection.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Implementation</dt><dd><ul>
+<li><p>Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </section>
 <section id="implementation-concept">
 <h3>Implementation Concept<a class="headerlink" href="#implementation-concept" title="Permalink to this headline">¶</a></h3>
-<p>The stool is split into three steps to tackle the amount of data available, but still make the results manageable:</p>
+<p>The tool is split into three steps to tackle the amount of data available, but still make the results manageable:</p>
 <ul class="simple">
-<li><p>Preprocessing: To condense 15 minute load averages into weekly extremes (minimum and maximum).</p></li>
-<li><p>Forecasting: To fit a model on the aggregated data and create forecasts.</p></li>
-<li><p>Dashboarding: To display (forecast) results to the end user.</p></li>
+<li><dl class="simple">
+<dt>Preprocessing</dt><dd><ul>
+<li><p>To condense 15 minute load averages into weekly extremes (minimum and maximum).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Forecasting</dt><dd><ul>
+<li><p>To fit a model on the aggregated data and create forecasts.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Dashboarding</dt><dd><ul>
+<li><p>To display (forecast) results to the end user.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <p>In between steps results are stored in a Snowflake database.</p>
 <a class="reference internal image-reference" href="_images/process_steps.png"><img alt="_images/process_steps.png" class="align-center" src="_images/process_steps.png" style="width: 800px;" /></a>

@@ -3,7 +3,7 @@ Data Preparation
 
 The data preparation step focuses on converting raw measurement data with a frequency of 15 minutes into weekly extremes and preparing these extremes to be usable input for the forecasting model.
 
-Initially the whole history is aggregated and stored in a Snowflake database. After that updates are done every month / week.
+Initially the entire history is aggregated and stored in a Snowflake database. Consecutively, updates are done every week.
 
 .. image:: _static/img/process_data_preparation.png
     :height: 250px
@@ -15,7 +15,7 @@ The data preparation step resulting in weekly aggregated data.
 Data Selection
 --------------
 
-Columns described in :ref:`Data Understanding` are selected from the measurement () and metadata tables.
+Columns described in :ref:`Data Understanding` are selected from the measurement data and metadata tables.
 
 From the measurement data only data is selected from DALI boxes that have nominal power registered in the metadata table and that are in operation (:meth:`src.utils.snowflake.read_meta`). Both data and metadata are needed to indicate future overloading and add value to Grid Planners.
 
@@ -29,7 +29,7 @@ Only the 15 minute average channels are selected for preprocessing.
 Data Cleaning
 -------------
 
-No data cleaning is performed on the raw data before aggregation, but data is checked and cleaned on the following after reading it in (:meth:`src.preprocess.preprocess.load_data`) and before being used by a model for forecasting:
+No data cleaning is performed on the raw data before aggregation, but data is checked and cleaned on the following after loading (:meth:`src.preprocess.preprocess.load_data`) and before being used by a model for forecasting:
 
 * Data of extremes (minimum or maximum) having the value of zero in the beginning of the series are removed (:meth:`src.preprocess.preprocess.remove_leading_idling`). This is for example the case if a DALI box is in operation, but its transformer is not.
 * Only data is used that has a history of more than two years (:meth:`src.preprocess.preprocess.too_short`). This will ensure in this stage that the seasonality (sub)model has enough data to tune on.
@@ -60,7 +60,7 @@ A SQL query aggregates and writes the result asynchronously on the Snowflake dat
      - DS_SPARK_DALI_WEEK_EXTREMES
 
 
-The fields of the table are listed below. The table is clustered by BOXID and L.
+The fields of the table are listed below. The table is clustered by BOXID and L (phase).
 The amount of rows is condensed from 89,052,020,404 to 3,457,856 records.
 
 .. list-table:: Extremes table fields.
@@ -109,8 +109,7 @@ Consecutively, a date column is constructed from the ISO year and week format wi
 The extra columns period and model_var are assigned and filled with the values "history", "observed" respectively for measurement data.
 This is in preparation for long formatting and concatenating forecast results in a later stage (:meth:`src.preprocess.preprocess.format_data`).
 
-An example of the loaded extreme data is shown below
-
+An example of the loaded extreme data is shown below:
 
 .. image:: _static/img/loaded_extremes.png
     :width: 800px

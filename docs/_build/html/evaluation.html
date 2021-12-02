@@ -200,12 +200,12 @@
 <p>This section discusses the evaluation of the implemented model, the assessments of results and a reflection on the learning objectives for the study course this project was part of.</p>
 <section id="model-evaluation">
 <h2>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h2>
-<p>The evaluation of results has not been done with a error criteria (e.g. MAE, MAPE), but only visual.
+<p>The evaluation of results has not been done with an error criteria (e.g. MAE, MAPE), but only visually.
 This will be done in the near future, when additional model improvements are implemented and needed to be assessed.</p>
-<p>This section will discuss briefly the model</p>
+<p>This section will briefly discuss the model.</p>
 <section id="model-robustness">
 <h3>Model Robustness<a class="headerlink" href="#model-robustness" title="Permalink to this headline">¶</a></h3>
-<p>The model as it is described before is stable for all transformer forecasts: It converges for all transformer timeseries that are used.</p>
+<p>The model as it is described before is stable for all transformer forecasts: It converges for all transformer time series that are used.</p>
 <p>A robust model for all 11k transformers is essential if models are trained and used without human supervision and results are automatically assessed.
 An experiment of an exponential function for the drift sub-model was implemented, but far from stable.</p>
 <p>The model is also robust when data is missing. Even missing data for long periods will result is a reasonable forecast:</p>
@@ -217,12 +217,12 @@ An experiment of an exponential function for the drift sub-model was implemented
 <section id="model-results">
 <h3>Model Results<a class="headerlink" href="#model-results" title="Permalink to this headline">¶</a></h3>
 <p>The model forecasts neatly the median and quantile bands as intended.</p>
-<p>However, it will always be a model trained on historical, observed data, and forecasts will always be off.
-Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality opf the outside world.</p>
-<p>The grid planners were shown different off-results to make them aware of the limiting accuracy and reliability of the models and their forecasts.</p>
-<p>This was visually shown by the following actions:
+<p>However, it will always be a model trained on historical, observed data. Forecasts are often far from perfect.
+Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality of the outside world.</p>
+<p>The grid planners were shown different forecasts that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.</p>
+<p>This was shown visually by the following actions:
 The results were assessed by splitting the observed data into a train and test set, using a model based on the train set and comparing the results with the test set.
-The performance of for the different transformers of course also differs, but an example can be seen in the following figure:</p>
+The performance for the different transformers of course also differs, but an example can be seen in the following figure:</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/validation.png"><img alt="_images/validation.png" class="align-center" src="_images/validation.png" style="width: 800px;" /></a>
 </div></blockquote>
@@ -236,9 +236,9 @@ The most promising suggestions for model improvement are:</p>
 <li><p>Improving tuning and forecasting time.</p></li>
 <li><p>Implementing hybrid additive-multiplicative model for dealing with the growing seasonality.</p></li>
 <li><p>Adding a extra component to detect temporarily bypass switching of loads of other transformers.</p></li>
-<li><p>Making more recent observations more relevant for slowly changing loading patterns</p></li>
+<li><p>Making more recent observations more relevant for slowly changing loading patterns.</p></li>
 <li><p>Using the population seasonality as a <a class="reference external" href="https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/">prior</a> in case of a short history of observations.</p></li>
-<li><p>Using by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p></li>
+<li><p>Using a by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p></li>
 </ul>
 </section>
 </section>
@@ -248,17 +248,17 @@ The most promising suggestions for model improvement are:</p>
 <section id="results-prioritization">
 <h3>Results Prioritization<a class="headerlink" href="#results-prioritization" title="Permalink to this headline">¶</a></h3>
 <p>The are potentially 11k models that all forecast six months ahead.</p>
-<p>These are numbers too high to be assessed by grid planners one by one.
+<p>These are numbers too high to be assessed by Grid Planners one by one.
 Therefore the forecast results are automatically assessed and ordered by urgency.</p>
-<p>The grid planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.</p>
+<p>The Grid Planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.</p>
 <p>Firstly, the definition of potential (over)loading was agreed on to be the following:</p>
 <ul class="simple">
-<li><p>Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity</p></li>
+<li><p>Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity.</p></li>
 <li><p>Potential overloading is the potential loading is greater than one.</p></li>
 </ul>
 <p>Potential overloaded transformers can now be ordered by the point in time when they reach this limit.</p>
 <p>Then there are also transformers that will never potentially overload.
-The forecasts of these transformers are simply ordered by potential loading</p>
+The forecasts of these transformers are simply ordered by potential loading.</p>
 <p>To summarize into steps:</p>
 <ul class="simple">
 <li><p>Determine absolute value of the forecasted quantile bands.</p></li>
@@ -272,7 +272,7 @@ The forecasts of these transformers are simply ordered by potential loading</p>
 <div><a class="reference internal image-reference" href="_images/ordered_transformers.png"><img alt="_images/ordered_transformers.png" class="align-center" src="_images/ordered_transformers.png" style="width: 300px;" /></a>
 </div></blockquote>
 <p>Transformers ordered by potential (over)loading.</p>
-<p>The result is that grid planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.</p>
+<p>The result is that Grid Planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.</p>
 </section>
 <section id="evaluation-implementation">
 <h3>Evaluation Implementation<a class="headerlink" href="#evaluation-implementation" title="Permalink to this headline">¶</a></h3>
@@ -292,22 +292,22 @@ This way the data can quickly be loaded by the dashboard application and present
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/dashboard.png"><img alt="_images/dashboard.png" class="align-center" src="_images/dashboard.png" style="width: 800px;" /></a>
 </div></blockquote>
-<p>The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.</p>
-<p>The list can be filtered by Enexis sub-service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
+<p>The dashboard with the ordered transformer son the left and the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum on the right.</p>
+<p>The list can be filtered by Enexis sub-service area, since Grid Planners are generally responsible for an area within these areas and not interested in the whole service area.
 Other ordering is possible if the grid planner desires.</p>
 <p>After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.</p>
-<p>One can zoom in and pan de plot and tooltips show up on historic measurement data.</p>
-<p>If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.</p>
+<p>One can zoom in and pan the plot and tooltips show up on historic measurement data.</p>
+<p>If the Grid Planner is interested, he/she can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/dashboard_min.png"><img alt="_images/dashboard_min.png" class="align-center" src="_images/dashboard_min.png" style="width: 800px;" /></a>
 </div></blockquote>
 <p>The dashboard with the sub-service area filtering and the minimum decomposition tab of the dashboard.</p>
 <section id="improvements-on-presentation">
 <h3>Improvements on Presentation<a class="headerlink" href="#improvements-on-presentation" title="Permalink to this headline">¶</a></h3>
-<p>Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between python and the Snowflake database.
+<p>Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between Python and the Snowflake database.
 This issue has the highest priority, since grid planners do not want to wait for results.</p>
 <p>Secondly, The current dashboard needs to be deployed within the Enexis landscape.</p>
-<p>Additionally, some aesthetic improvements are welcome, since the presentation is quiet basic at this moment.</p>
+<p>Additionally, some aesthetic improvements are welcome, since the presentation is quite basic at this moment.</p>
 </section>
 </section>
 </section>

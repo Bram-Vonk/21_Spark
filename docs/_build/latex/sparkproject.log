@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.0 (TeX Live 2021)  (format=lualatex 2021.11.4)  1 DEC 2021 22:25
+This is LuaHBTeX, Version 1.13.0 (TeX Live 2021)  (format=lualatex 2021.11.4)  2 DEC 2021 23:08
  restricted system commands enabled.
 **sparkproject.tex
 (./sparkproject.tex
@@ -1023,65 +1023,46 @@ File: value_flow_down.png Graphic file (type png)
 <use value_flow_down.png>
 Package luatex.def Info: value_flow_down.png  used on input line 397.
 (luatex.def)             Requested size: 469.76616pt x 266.75742pt.
- [10<./value_flow_down.png>]
-<stakeholders.png, id=326, 644.298pt x 234.768pt>
+ [10<./value_flow_down.png>] [11]
+<stakeholders.png, id=332, 644.298pt x 234.768pt>
 File: stakeholders.png Graphic file (type png)
 <use stakeholders.png>
-Package luatex.def Info: stakeholders.png  used on input line 491.
+Package luatex.def Info: stakeholders.png  used on input line 521.
 (luatex.def)             Requested size: 451.68457pt x 164.58722pt.
- [11]
-Overfull \hbox (15.99164pt too wide) in paragraph at lines 544--545
+
+Overfull \hbox (15.99164pt too wide) in paragraph at lines 574--575
 []\TU/FreeSerif(0)/m/n/10 De-ployableploy-able: The tool has to be able to go in
  pro-duc-tion ac-cord-ing to the Enexis stan-dards (Test-Acceptance-Production).
  
  []
 
 [12<./stakeholders.png>]
-Overfull \hbox (364.49812pt too wide) in paragraph at lines 569--569
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 569--569
-
- []
-
-
-Overfull \hbox (347.5183pt too wide) in paragraph at lines 578--578
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 578--578
-
- []
-
-<process_steps.png, id=341, 921.333pt x 234.768pt>
+<process_steps.png, id=340, 921.333pt x 234.768pt>
 File: process_steps.png Graphic file (type png)
 <use process_steps.png>
-Package luatex.def Info: process_steps.png  used on input line 629.
+Package luatex.def Info: process_steps.png  used on input line 686.
 (luatex.def)             Requested size: 469.76114pt x 119.69785pt.
-[13<./process_steps.png>] [14]
+ [13] [14<./process_steps.png>]
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 775--777
+Underfull \hbox (badness 10000) in paragraph at lines 832--834
 []|\TU/FreeSerif(0)/m/n/10 CDWH_5_INF_MEET-DATA_E View:
  []
 
 [15
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 884--885
+Underfull \hbox (badness 10000) in paragraph at lines 941--942
 []|\TU/FreeSerif(0)/m/n/10 BOX_BEDRI-JF-SSTA-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 891--892
+Underfull \hbox (badness 10000) in paragraph at lines 948--949
 []|\TU/FreeSerif(0)/m/n/10 IN_BEDRI-JF-S-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 905--906
+Underfull \hbox (badness 10000) in paragraph at lines 962--963
 []|\TU/FreeSerif(0)/m/n/10 VER-MO-GEN_NOM-I-
  []
 
@@ -1089,19 +1070,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 905--906
 <dq_completeness.jpeg, id=373, 754.82pt x 466.74374pt>
 File: dq_completeness.jpeg Graphic file (type jpg)
 <use dq_completeness.jpeg>
-Package luatex.def Info: dq_completeness.jpeg  used on input line 933.
+Package luatex.def Info: dq_completeness.jpeg  used on input line 990.
 (luatex.def)             Requested size: 469.7573pt x 290.48203pt.
 <dq_outlier.png, id=374, 725.71124pt x 278.03876pt>
 File: dq_outlier.png Graphic file (type png)
 <use dq_outlier.png>
-Package luatex.def Info: dq_outlier.png  used on input line 946.
+Package luatex.def Info: dq_outlier.png  used on input line 1003.
 (luatex.def)             Requested size: 469.76886pt x 179.9806pt.
  [17<./dq_completeness.jpeg>] [18<./dq_outlier.png>]
 Chapter 4.
 <process_data_preparation.png, id=385, 326.091pt x 194.691pt>
 File: process_data_preparation.png Graphic file (type png)
 <use process_data_preparation.png>
-Package luatex.def Info: process_data_preparation.png  used on input line 957.
+Package luatex.def Info: process_data_preparation.png  used on input line 1014.
+
 (luatex.def)             Requested size: 315.22318pt x 188.2019pt.
 [19
 
@@ -1109,10 +1091,10 @@ Package luatex.def Info: process_data_preparation.png  used on input line 957.
 <loaded_extremes.png, id=421, 655.44875pt x 303.1325pt>
 File: loaded_extremes.png Graphic file (type png)
 <use loaded_extremes.png>
-Package luatex.def Info: loaded_extremes.png  used on input line 1122.
+Package luatex.def Info: loaded_extremes.png  used on input line 1179.
 (luatex.def)             Requested size: 469.75244pt x 217.25613pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1131--1133
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1190
 []\TU/FreeSerif(0)/m/n/10 By run-ning [][]\TU/FreeMono(0)/m/it/10 src.preprocess
 .update_extremes()[][] \TU/FreeSerif(0)/m/n/10 the func-tion [][]\TU/FreeMono(0
 )/m/it/10 src.utils.snowflake.
@@ -1121,13 +1103,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 1131--1133
 <preprocessing_details.png, id=424, 372.3pt x 466.689pt>
 File: preprocessing_details.png Graphic file (type png)
 <use preprocessing_details.png>
-Package luatex.def Info: preprocessing_details.png  used on input line 1134.
+Package luatex.def Info: preprocessing_details.png  used on input line 1191.
 (luatex.def)             Requested size: 301.12305pt x 377.48193pt.
 [21<./loaded_extremes.png>] [22<./preprocessing_details.png>]
 Chapter 5.
 File: autumn_spring_load.png Graphic file (type png)
 <use autumn_spring_load.png>
-Package luatex.def Info: autumn_spring_load.png  used on input line 1148.
+Package luatex.def Info: autumn_spring_load.png  used on input line 1205.
 (luatex.def)             Requested size: 301.12305pt x 260.51102pt.
 [23
 
@@ -1135,22 +1117,22 @@ Package luatex.def Info: autumn_spring_load.png  used on input line 1148.
 <process_modeling.png, id=448, 471.726pt x 235.863pt>
 File: process_modeling.png Graphic file (type png)
 <use process_modeling.png>
-Package luatex.def Info: process_modeling.png  used on input line 1172.
+Package luatex.def Info: process_modeling.png  used on input line 1229.
 (luatex.def)             Requested size: 376.40237pt x 188.2019pt.
  [24<./process_modeling.png>]
 <train_test.png, id=468, 604.221pt x 165.564pt>
 File: train_test.png Graphic file (type png)
 <use train_test.png>
-Package luatex.def Info: train_test.png  used on input line 1206.
+Package luatex.def Info: train_test.png  used on input line 1263.
 (luatex.def)             Requested size: 419.75258pt x 115.01736pt.
  [25<./train_test.png>]
 <graph_model.png, id=493, 530.98375pt x 384.43625pt>
 File: graph_model.png Graphic file (type png)
 <use graph_model.png>
-Package luatex.def Info: graph_model.png  used on input line 1293.
+Package luatex.def Info: graph_model.png  used on input line 1349.
 (luatex.def)             Requested size: 419.76424pt x 303.93007pt.
  [26]
-Underfull \hbox (badness 10000) in paragraph at lines 1309--1311
+Underfull \hbox (badness 10000) in paragraph at lines 1365--1367
 []\TU/FreeSerif(0)/m/n/10 From the pos-te-rior sam-ples, the quan-tile bands are
  de-ter-mined (\TU/FreeMono(0)/m/n/10 src.forecast.format.
  []
@@ -1158,13 +1140,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 1309--1311
 <data_stored.png, id=504, 733.74126pt x 298.11375pt>
 File: data_stored.png Graphic file (type png)
 <use data_stored.png>
-Package luatex.def Info: data_stored.png  used on input line 1318.
+Package luatex.def Info: data_stored.png  used on input line 1374.
 (luatex.def)             Requested size: 419.75952pt x 170.55434pt.
 [27<./graph_model.png>]
 <additive_model.png, id=514, 750.805pt x 278.03876pt>
 File: additive_model.png Graphic file (type png)
 <use additive_model.png>
-Package luatex.def Info: additive_model.png  used on input line 1378.
+Package luatex.def Info: additive_model.png  used on input line 1431.
 (luatex.def)             Requested size: 419.76054pt x 155.45456pt.
  [28<./data_stored.png>] [29<./additive_model.png>]
 [30
@@ -1174,22 +1156,22 @@ Chapter 6.
 <missing_data_results.png, id=536, 584.1825pt x 361.35pt>
 File: missing_data_results.png Graphic file (type png)
 <use missing_data_results.png>
-Package luatex.def Info: missing_data_results.png  used on input line 1442.
+Package luatex.def Info: missing_data_results.png  used on input line 1491.
 (luatex.def)             Requested size: 419.76425pt x 259.67004pt.
 [31]
 <validation.png, id=542, 1180.41pt x 557.08125pt>
 File: validation.png Graphic file (type png)
 <use validation.png>
-Package luatex.def Info: validation.png  used on input line 1462.
+Package luatex.def Info: validation.png  used on input line 1511.
 (luatex.def)             Requested size: 419.74193pt x 198.10098pt.
  [32<./missing_data_results.png>] [33<./validation.png>]
 <ordered_transformers.png, id=559, 214.8025pt x 419.5675pt>
 File: ordered_transformers.png Graphic file (type png)
 <use ordered_transformers.png>
-Package luatex.def Info: ordered_transformers.png  used on input line 1545.
+Package luatex.def Info: ordered_transformers.png  used on input line 1594.
 (luatex.def)             Requested size: 225.84229pt x 441.14145pt.
  [34<./ordered_transformers.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1555--1556
+Underfull \hbox (badness 10000) in paragraph at lines 1604--1605
 \TU/FreeSerif(0)/m/n/10 The as-sess-ments of the fore-casts which re-sults in th
 e or-dered list ([][]\TU/FreeMono(0)/m/it/10 src.forecast.assess.
  []
@@ -1197,10 +1179,10 @@ e or-dered list ([][]\TU/FreeMono(0)/m/it/10 src.forecast.assess.
 <forecasts_assessment.png, id=566, 917.391pt x 329.157pt>
 File: forecasts_assessment.png Graphic file (type png)
 <use forecasts_assessment.png>
-Package luatex.def Info: forecasts_assessment.png  used on input line 1558.
+Package luatex.def Info: forecasts_assessment.png  used on input line 1607.
 (luatex.def)             Requested size: 419.75127pt x 150.61044pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1563--1565
+Underfull \hbox (badness 10000) in paragraph at lines 1612--1614
 []\TU/FreeSerif(0)/m/n/10 The re-sult is stored sep-a-rately in a Snowflake data
 base ta-ble ([][]\TU/FreeMono(0)/m/it/10 src.utils.snowflake.
  []
@@ -1208,82 +1190,68 @@ base ta-ble ([][]\TU/FreeMono(0)/m/it/10 src.utils.snowflake.
 <dashboard.png, id=569, 935.495pt x 444.66125pt>
 File: dashboard.png Graphic file (type png)
 <use dashboard.png>
-Package luatex.def Info: dashboard.png  used on input line 1574.
+Package luatex.def Info: dashboard.png  used on input line 1623.
 (luatex.def)             Requested size: 419.75552pt x 199.52577pt.
 [35<./forecasts_assessment.png><./dashboard.png>]
 <dashboard_min.png, id=583, 898.35625pt x 439.6425pt>
 File: dashboard_min.png Graphic file (type png)
 <use dashboard_min.png>
-Package luatex.def Info: dashboard_min.png  used on input line 1589.
+Package luatex.def Info: dashboard_min.png  used on input line 1638.
 (luatex.def)             Requested size: 419.74638pt x 205.42448pt.
  [36<./dashboard_min.png>]
 Chapter 7.
 <process_triggered.png, id=594, 917.391pt x 323.025pt>
 File: process_triggered.png Graphic file (type png)
 <use process_triggered.png>
-Package luatex.def Info: process_triggered.png  used on input line 1640.
+Package luatex.def Info: process_triggered.png  used on input line 1689.
 (luatex.def)             Requested size: 419.75127pt x 147.80466pt.
 [37
 
 ] [38<./process_triggered.png>]
-Underfull \hbox (badness 6825) in paragraph at lines 1738--1742
-[]\TU/FreeSerif(0)/m/n/10 The most valu-
- []
-
 <competence.png, id=612, 240.9pt x 112.9821pt>
 File: competence.png Graphic file (type png)
 <use competence.png>
-Package luatex.def Info: competence.png  used on input line 1748.
-(luatex.def)             Requested size: 404.09535pt x 189.5414pt.
-
-Overfull \hbox (271.89807pt too wide) in paragraph at lines 1747--1749
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1757--1759
-[]\TU/FreeSerif(0)/m/n/10 The
- []
-
-[39<./competence.png>] [40] [41] [42
+Package luatex.def Info: competence.png  used on input line 1802.
+(luatex.def)             Requested size: 363.38918pt x 170.44847pt.
+ [39<./competence.png>] [40] [41] [42
 
 ]
 Chapter 8.
 [43] [44]
-Overfull \hbox (4.28484pt too wide) in paragraph at lines 2101--2103
+Overfull \hbox (4.28484pt too wide) in paragraph at lines 2155--2157
 []\TU/FreeSerif(0)/m/n/10 [\TU/FreeMono(0)/m/n/10 pd.DataFrame\TU/FreeSerif(0)/
 m/n/10 ] base DataFrame with times-tamps/length in ac-cordcor-dance of the sam-p
 les
  []
 
 
-Overfull \hbox (4.28484pt too wide) in paragraph at lines 2129--2131
+Overfull \hbox (4.28484pt too wide) in paragraph at lines 2183--2185
 []\TU/FreeSerif(0)/m/n/10 [\TU/FreeMono(0)/m/n/10 pd.DataFrame\TU/FreeSerif(0)/
 m/n/10 ] base DataFrame with times-tamps/length in ac-cordcor-dance of the sam-p
 les
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2168--2172
+Underfull \hbox (badness 10000) in paragraph at lines 2222--2226
 []\TU/FreeSerif(0)/m/n/10 The theano dot prod-uct and NUTS sam-pler don’t work
  with large ma-tri-ces. Copy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2168--2172
+Underfull \hbox (badness 10000) in paragraph at lines 2222--2226
 \TU/FreeSerif(0)/m/n/10 right (c) 2021. Ritchie Vink source: [][]$https://www.ri
 tchievink.com/blog/2018/10/09/$[][] …
  []
 
 [45] [46] [47] [48] [49] [50] [51]
-Underfull \hbox (badness 10000) in paragraph at lines 2898--2898
+Underfull \hbox (badness 10000) in paragraph at lines 2952--2952
 []\TU/FreeSerif(0)/m/it/10 se-ries\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)/m/
 it/10 kind='cat-e-gor-i-cal'\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)/m/it/10 
 la-bels=None\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)/m/it/10 back-wards=False\TU/FreeSerif(0)/m/n/10 ,
  []
 
 [52] [53]
-Underfull \hbox (badness 10000) in paragraph at lines 3122--3122
+Underfull \hbox (badness 10000) in paragraph at lines 3176--3176
 []\TU/FreeSerif(0)/m/it/10 boxid=None\TU/FreeSerif(0)/m/n/10 , \TU/FreeSerif(0)
 /m/it/10 last_pro-cessed=dt.date-
  []
@@ -1453,12 +1421,12 @@ Package rerunfilecheck Info: File `sparkproject.out' has not changed.
 
 Here is how much of LuaTeX's memory you used:
  17652 strings out of 478531
- 195432,953878 words of node,token memory allocated
+ 195429,953878 words of node,token memory allocated
  694 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 25 attribute, 66 glue_spec
 , 25 attribute_list, 2 write, 9 pdf_action nodes
-   avail lists: 1:18,2:1060,3:513,4:336,5:2628,6:267,7:6206,8:136,9:804,10:31,11
-:352,12:4
+   avail lists: 1:16,2:1058,3:509,4:337,5:2668,6:267,7:6622,8:136,9:805,10:30,11
+:400,12:4
  36221 multiletter control sequences out of 65536+600000
  108 fonts using 72098455 bytes
  83i,16n,85p,653b,705s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1477,7 +1445,7 @@ ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loca
 l/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
 ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on sparkproject.pdf (65 pages, 6325717 bytes).
+Output written on sparkproject.pdf (65 pages, 6325007 bytes).
 
 PDF statistics: 1110 PDF objects out of 1200 (max. 8388607)
  939 compressed objects within 10 object streams

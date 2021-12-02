@@ -3,7 +3,7 @@ Data Preparation
 
 The data preparation step focuses on converting raw measurement data with a frequency of 15 minutes into weekly extremes and preparing these extremes to be usable input for the forecasting model.
 
-Initially the whole history is aggregated and stored in a Snowflake database. Consecutively, updates are done every month / week.
+Initially the entire history is aggregated and stored in a Snowflake database. Consecutively, updates are done every week.
 
 .. image:: _static/img/process_data_preparation.png
     :height: 250px

@@ -23,7 +23,7 @@ A changing environment
 
 Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.
 
-These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
+The capacity of these grid components should always be sufficient for the power flows in the grid. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
 
 For decades this monitoring was done mainly by looking to historical yearly extremes.
 
@@ -52,11 +52,11 @@ Installed power of heat pumps (HP) in The Netherlands (source: `CBS <https://ope
 Impact on grid management
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still withing the transformer’s capacity.
+The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still within the transformer’s capacity.
 Otherwise, this will cause unsafe operating situations and it can lead to power outages.
 
 Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years.
-This in a time and environment were they are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.
+This in a time and environment where Grid Planners are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.
 
 
 Opportunity for data science
@@ -111,7 +111,7 @@ Business Flow Down Diagram for the project.
 Requirements from Users
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The developed product is only valuable if it is use dby the end users, who are the Grid Planners.
+The developed product is only valuable if it is used by the end users, who are the Grid Planners.
 Therefore the following additional requirements and wishes are important:
 
 * Grid Planners don’t want another tool to log into/install..
@@ -131,10 +131,10 @@ Success Criteria
 
 The project is a success if there is a tool that is being used by the Grid Planners that accurately forecasts overloading of transformers.
 
-Usage of the tool can be measured by tracking users of the tool and by performing interview with the end users after deployment.
+Usage of the tool can be measured by tracking users of the tool and by performing interviews with the end users after deployment.
 Accuracy is assessed by comparing forecasts with measurements.
 
-On more detail the project is a success if:
+In more detail the project is a success if:
 
 * The model forecasts prediction intervals.
 * The working of the model can be explained clearly.
@@ -151,11 +151,16 @@ Organisation
 
 The involved stakeholders are:
 
-* Grid Planners: The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.
-* Data Engineers:  To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.
-* Management: The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.
-* Academic supervision: Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one-on-one meeting to discuss progress and issues.
-* Academic support: PdEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
+* Grid Planners
+    * The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.
+* Data Engineers
+    * To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.
+* Management
+    * The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.
+* Academic supervision:
+    * Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one-on-one meeting to discuss progress and issues.
+* Academic support:
+    * PDEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
 
 .. image:: _static/img/stakeholders.png
     :width: 600px
@@ -174,6 +179,7 @@ The project will take place in June, July, September, October and November 2021.
     * Grid Planners: Available 2 hours per week.
     * Data engineers: Available 2 hours per week in October - November.
     * Supervision / support: Both available for a few hours every 3 weeks.
+
 * Data
     * DALI 15-minute measurement data.
     * Distribution transformer metadata (capacity).
@@ -192,39 +198,50 @@ The tool should be implemented in such way that it is:
 Assumptions
 ~~~~~~~~~~~
 
-* DALI data is available without huge quality issues during the project
+* DALI data is available without huge quality issues during the project.
 * Weekly extremes on transformer data is an acceptable aggregation level for capacity planning.
 * Data Engineering has capacity for several hours a week for support between September and December.
-* The computational burden for probabilistic models is no problem regarding the computational power available.
+* The computational burden for probabilistic models is feasible regarding the computational power available.
 
 
 Risks and Contingencies
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * Lead / developer has just become a father (is technically up to September on parental leave) and bought a house that has to be renovated. This could result in lower availability for this project.
+
     * Mitigation: None.
-* Grid Planners are immensely occupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.
+
+* Grid Planners are immensely preoccupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.
+
     * Mitigation: Be clear and direct regarding expectations and communications and limit the effort and time for this project for Grid Planners without giving in on quality/input.
+
 * Data Engineers are also loaded with work and might not have time/resources available.
-    * Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half
+
+    * Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half.
+
 * There is no use of sensitive data in this project regarding privacy (GDPR) or security. DALI data is allowed to be used. Credentials are not embedded in code and access to data sources is restricted by design.
 
 
 Costs and Benefits
 ~~~~~~~~~~~~~~~~~~
 
-* Data collection: Data is available in an existing database. Only querying is needed, no active additional data collection.
-* Implementation: Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.
+* Data collection
+    * Data is available in an existing database. Only querying is needed, no active additional data collection.
+* Implementation
+    * Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.
 
 
 Implementation Concept
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The stool is split into three steps to tackle the amount of data available, but still make the results manageable:
+The tool is split into three steps to tackle the amount of data available, but still make the results manageable:
 
-* Preprocessing: To condense 15 minute load averages into weekly extremes (minimum and maximum).
-* Forecasting: To fit a model on the aggregated data and create forecasts.
-* Dashboarding: To display (forecast) results to the end user.
+* Preprocessing
+    * To condense 15 minute load averages into weekly extremes (minimum and maximum).
+* Forecasting
+    * To fit a model on the aggregated data and create forecasts.
+* Dashboarding
+    * To display (forecast) results to the end user.
 
 In between steps results are stored in a Snowflake database.
 
