@@ -8,7 +8,7 @@ Current Status
 Code Standards
 ~~~~~~~~~~~~~~
 
-The python project is structured simulary as `Cookiecutter <https://github.com/cookiecutter/cookiecutter>`__.
+The Python project is structured simulary as `Cookiecutter <https://github.com/cookiecutter/cookiecutter>`__.
 
 
 The code has been validated with linting by `Black <https://github.com/psf/black>`__, `isort <https://github.com/PyCQA/Isort>`__, and `Flake8 <https://github.com/PyCQA/flake8>`__.
@@ -29,7 +29,7 @@ Security
 
 Within the Enexis domain one logs on to an environment (in this case Production).
 
-Credentials for accessing the Snowflake database are acquired via Vault to ensure to keep secrets secret.
+Credentials for accessing the Snowflake database are acquired via Vault to keep secrets secure.
 
 Deployability
 ~~~~~~~~~~~~~
@@ -50,7 +50,7 @@ The steps are triggered via an entrypoint defined in the :file:`docker-compose.y
     Creates a tuned model for a DALI box with (high) enough measurements and makes a forecast with it.
     Currently, the results are stored all with the ``is_valid`` column on ``True``.
     An extra run should be done to set this column to ``False`` for old forecast.
-    Until then, one should empty the table on beforehand.
+    Until then, one should empty the table beforehand.
 * ``docker-compose run -p 8000:8000 dashboard``
     Will run the dashboard and expose it to port 8000.
 
@@ -68,9 +68,10 @@ The following technical actions are required for full deployment:
 
 The end-users will eventually have to accept the product to go into Production.
 For that several end-user/stakeholder meetings are required to get valuable feedback and fine tune the product.
-During these meetings the project will be assessed on the success criteria.
+During these meetings the project will be assessed against the success criteria.
 
-Usage monitoring of the tool has not been implemented, is important after deployment for value evaluation and life cycle management.
+Usage monitoring of the tool has not been implemented.
+However, it is important after deployment for value evaluation and life cycle management.
 
 
 Monitoring and Maintenance Plan
@@ -87,10 +88,10 @@ Monitoring of usage has to be implemented as mentioned above.
 Final Report
 ------------
 
-One can create a pdf version of this documentation by the following steps:
+One can create a pdf version of this documentation via the following steps:
 
 * Clone the repository.
-* Run ``make latexpdf``
+* Run ``make latexpdf``.
 
 
 Project review
@@ -132,8 +133,8 @@ The general learning objectives for the Professional Education Lead track of JAD
     The coaching from the educators of JADS helped me reassess my future career.
 
     * The discussions with Jeroen about academic and engineering skills helped me appreciating my skills, my work and myself more.
-    * The coaching of Kyril helped me to form a clearer view on my career goal and how to get there.
-    * The highly effective presentation masterclass of Raoul helped me to reach goals more effective.
+    * The coaching of Kyril helped me to form a clearer view on my career goals and how to get there.
+    * The highly effective presentation masterclass of Raoul helped me to reach goals more effectively.
 
 
 Evaluation Criteria
@@ -151,7 +152,7 @@ The evaluation criteria for the Professional Education Lead track of JADS and ho
 
 * Programming.
 
-    * Coding standards with Cookiecutter and linting (black, isort, flake8).
+    * Coding standards with Cookiecutter and linting (Black, Isort, Flake8).
     * Using Sphinx for auto API documentation in GitHub.
     * Interactive visualisations in Altair.
     * Dashboard in Panel.
@@ -167,6 +168,7 @@ The evaluation criteria for the Professional Education Lead track of JADS and ho
     * Coding data management and model from scratch (since not using sklearn).
     * Probabilistic modelling in PyMC3.
     * Using Fourier and Taylor series in generalized additive model for time series forecast.
+
 * Professional standard of reporting.
 
     * Using Sphinx for this documentation.
