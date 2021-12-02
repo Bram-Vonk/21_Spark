@@ -211,14 +211,19 @@ Model Assessment
 The following model findings are most salient:
 
 * The model converges during tuning and gives feasible results.
+
     * Exponential drift function tuning will not converge.
+
 * The computational burden on a CPU to tune and forecast both extremes is 1:24.
+
     * CPU: 2 GHz Quad-Core Intel Core i5
     * RAM: 16 GB
+
 * The model is fairly insensitive to outliers and missing data.
 * The splitting of observations into train and test set works.
 * The extrapolation with the forecasting horizon works.
 * An pure additive model may not be sufficient.
+
     * Growth also increases the yearly component (see visualization below).
     * A pure multiplicative diverges.
     * A hybrid model (addition of a small fraction of a multiplicative model) might be an option.
@@ -240,8 +245,12 @@ The following ideas could result in a better model:
 
 * Implementing a hybrid additive-multiplicative model for dealing with the growing seasonality.
 * Adding an extra component to detect temporary bypass switching of loads of other transformers.
-    * This could be implemented by estimating parameters of a `rectangular function <https://en.wikipedia.org/wiki/Rectangular_function>`__.
+
+    This could be implemented by estimating parameters of a `rectangular function <https://en.wikipedia.org/wiki/Rectangular_function>`__.
+
 * Making more recent observations more relevant for slowly changing loading patterns.
-    * Possibilities are to mimic weights with `pm.Potential <https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689>`__ or `pm<distribution>(tau=weights) <https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11>`__.
+
+    Possibilities are to mimic weights with `pm.Potential <https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689>`__ or `pm<distribution>(tau=weights) <https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11>`__.
+
 * Using the population seasonality as a `prior <https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/>`__ in case of a short history of observations.
 * Using a by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.

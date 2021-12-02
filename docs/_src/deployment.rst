@@ -113,6 +113,7 @@ Learning Objectives
 The general learning objectives for the Professional Education Lead track of JADS are:
 
 * Acquiring the knowledge and skills covered in the courses (technical and non-technical).
+
     The most valuable courses were the non-technical ones.
     Partially, because there was maybe more to gain for me as a more technical character.
     But mainly, since they inspired me and enabled me to accept to embrace that skill set and also provided me with concrete tips to put it into practice.
@@ -122,14 +123,19 @@ The general learning objectives for the Professional Education Lead track of JAD
     Those subjects are now on my personal bucket list for a technical deep dive in the near future.
 
     Concluding: I am convinced the courses in the Lead Track moved a good number of my skills towards the conscious incompetence and conscious competence levels.
+
      .. image:: _static/img/competence.png
         :width: 800px
         :align: center
 
     The Conscious Competence Learning Model (source: `pamelaslim.com <http://www.pamelaslim.com>`__).
+
 * Leading and implementing an impactful data science project by use of the CRISP-DM process.
+
     The described project of this documentation shows the result of that.
+
 * Forming individuals to enable them to make impact with data science.
+
     The coaching from the educators of JADS helped me reassess my future career.
 
     * The discussions with Jeroen about academic and engineering skills helped me appreciating my skills, my work and myself more.

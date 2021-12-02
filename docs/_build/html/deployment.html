@@ -223,7 +223,7 @@
 <h2>Current Status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h2>
 <section id="code-standards">
 <h3>Code Standards<a class="headerlink" href="#code-standards" title="Permalink to this headline">¶</a></h3>
-<p>The python project is structured simulary as <a class="reference external" href="https://github.com/cookiecutter/cookiecutter">Cookiecutter</a>.</p>
+<p>The Python project is structured simulary as <a class="reference external" href="https://github.com/cookiecutter/cookiecutter">Cookiecutter</a>.</p>
 <p>The code has been validated with linting by <a class="reference external" href="https://github.com/psf/black">Black</a>, <a class="reference external" href="https://github.com/PyCQA/Isort">isort</a>, and <a class="reference external" href="https://github.com/PyCQA/flake8">Flake8</a>.</p>
 <p>Unit tests have not been written yet.</p>
 </section>
@@ -236,7 +236,7 @@ Also since within Enexis Gitlab is used, but for this study project a parallel G
 <section id="security">
 <h3>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h3>
 <p>Within the Enexis domain one logs on to an environment (in this case Production).</p>
-<p>Credentials for accessing the Snowflake database are acquired via Vault to ensure to keep secrets secret.</p>
+<p>Credentials for accessing the Snowflake database are acquired via Vault to keep secrets secure.</p>
 </section>
 <section id="deployability">
 <h3>Deployability<a class="headerlink" href="#deployability" title="Permalink to this headline">¶</a></h3>
@@ -256,7 +256,7 @@ Only updates new data since the last run.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">run</span> <span class="pre">make_forecasts</span></code></dt><dd><p>Creates a tuned model for a DALI box with (high) enough measurements and makes a forecast with it.
 Currently, the results are stored all with the <code class="docutils literal notranslate"><span class="pre">is_valid</span></code> column on <code class="docutils literal notranslate"><span class="pre">True</span></code>.
 An extra run should be done to set this column to <code class="docutils literal notranslate"><span class="pre">False</span></code> for old forecast.
-Until then, one should empty the table on beforehand.</p>
+Until then, one should empty the table beforehand.</p>
 </dd>
 </dl>
 </li>
@@ -280,8 +280,9 @@ Until then, one should empty the table on beforehand.</p>
 </ul>
 <p>The end-users will eventually have to accept the product to go into Production.
 For that several end-user/stakeholder meetings are required to get valuable feedback and fine tune the product.
-During these meetings the project will be assessed on the success criteria.</p>
-<p>Usage monitoring of the tool has not been implemented, is important after deployment for value evaluation and life cycle management.</p>
+During these meetings the project will be assessed against the success criteria.</p>
+<p>Usage monitoring of the tool has not been implemented.
+However, it is important after deployment for value evaluation and life cycle management.</p>
 </section>
 <section id="monitoring-and-maintenance-plan">
 <h2>Monitoring and Maintenance Plan<a class="headerlink" href="#monitoring-and-maintenance-plan" title="Permalink to this headline">¶</a></h2>
@@ -292,10 +293,10 @@ This automatically informs the Data Science Team if a scheduled job has failed.<
 </section>
 <section id="final-report">
 <h2>Final Report<a class="headerlink" href="#final-report" title="Permalink to this headline">¶</a></h2>
-<p>One can create a pdf version of this documentation by the following steps:</p>
+<p>One can create a pdf version of this documentation via the following steps:</p>
 <ul class="simple">
 <li><p>Clone the repository.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code>.</p></li>
 </ul>
 </section>
 <section id="project-review">
@@ -309,35 +310,35 @@ This automatically informs the Data Science Team if a scheduled job has failed.<
 <h4>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h4>
 <p>The general learning objectives for the Professional Education Lead track of JADS are:</p>
 <ul>
-<li><dl>
-<dt>Acquiring the knowledge and skills covered in the courses (technical and non-technical).</dt><dd><p>The most valuable courses were the non-technical ones.
+<li><p>Acquiring the knowledge and skills covered in the courses (technical and non-technical).</p>
+<blockquote>
+<div><p>The most valuable courses were the non-technical ones.
 Partially, because there was maybe more to gain for me as a more technical character.
 But mainly, since they inspired me and enabled me to accept to embrace that skill set and also provided me with concrete tips to put it into practice.</p>
 <p>Some technical lectures (e.g. “from POCs to Production” and “A Primer in Data Engineering”) confirmed that the way of working and view on data science within my professional team is on the right track.
 Other technical courses (e.g. “Bayesian Nets”, “Recent Advances in A.I.”) inspired me and sparked an interest in new subjects.
 Those subjects are now on my personal bucket list for a technical deep dive in the near future.</p>
-<dl>
-<dt>Concluding: I am convinced the courses in the Lead Track moved a good number of my skills towards the conscious incompetence and conscious competence levels.</dt><dd><a class="reference internal image-reference" href="_images/competence.png"><img alt="_images/competence.png" class="align-center" src="_images/competence.png" style="width: 800px;" /></a>
-</dd>
-</dl>
+<p>Concluding: I am convinced the courses in the Lead Track moved a good number of my skills towards the conscious incompetence and conscious competence levels.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/competence.png"><img alt="_images/competence.png" class="align-center" src="_images/competence.png" style="width: 800px;" /></a>
+</div></blockquote>
 <p>The Conscious Competence Learning Model (source: <a class="reference external" href="http://www.pamelaslim.com">pamelaslim.com</a>).</p>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Leading and implementing an impactful data science project by use of the CRISP-DM process.</dt><dd><p>The described project of this documentation shows the result of that.</p>
-</dd>
-</dl>
+<li><p>Leading and implementing an impactful data science project by use of the CRISP-DM process.</p>
+<blockquote>
+<div><p>The described project of this documentation shows the result of that.</p>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Forming individuals to enable them to make impact with data science.</dt><dd><p>The coaching from the educators of JADS helped me reassess my future career.</p>
+<li><p>Forming individuals to enable them to make impact with data science.</p>
+<blockquote>
+<div><p>The coaching from the educators of JADS helped me reassess my future career.</p>
 <ul class="simple">
 <li><p>The discussions with Jeroen about academic and engineering skills helped me appreciating my skills, my work and myself more.</p></li>
-<li><p>The coaching of Kyril helped me to form a clearer view on my career goal and how to get there.</p></li>
-<li><p>The highly effective presentation masterclass of Raoul helped me to reach goals more effective.</p></li>
+<li><p>The coaching of Kyril helped me to form a clearer view on my career goals and how to get there.</p></li>
+<li><p>The highly effective presentation masterclass of Raoul helped me to reach goals more effectively.</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </section>
@@ -359,7 +360,7 @@ Those subjects are now on my personal bucket list for a technical deep dive in t
 <li><p>Programming.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Coding standards with Cookiecutter and linting (black, isort, flake8).</p></li>
+<li><p>Coding standards with Cookiecutter and linting (Black, Isort, Flake8).</p></li>
 <li><p>Using Sphinx for auto API documentation in GitHub.</p></li>
 <li><p>Interactive visualisations in Altair.</p></li>
 <li><p>Dashboard in Panel.</p></li>

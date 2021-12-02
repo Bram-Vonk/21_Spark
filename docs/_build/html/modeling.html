@@ -225,33 +225,33 @@
 <h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h1>
 <section id="modeling-technique">
 <h2>Modeling Technique<a class="headerlink" href="#modeling-technique" title="Permalink to this headline">¶</a></h2>
-<p>The Grid Planners are looking for a data driven forecast with a uncertainty indication as mentioned before.
-This is visualized as a concept in the figure below.</p>
+<p>The Grid Planners are looking for a data driven forecast with an uncertainty indication as mentioned before.
+This is conceptualised in the figure below.</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/autumn_spring_load.png"><img alt="_images/autumn_spring_load.png" class="align-center" src="_images/autumn_spring_load.png" style="width: 400px;" /></a>
 </div></blockquote>
 <p>A possible output of the model visualized.</p>
 <section id="input-features">
 <h3>Input Features<a class="headerlink" href="#input-features" title="Permalink to this headline">¶</a></h3>
-<p>The Grid Planners want to have a result dat is based on real observed data.
-Or, to make it more explicit: Data that has been measured and not data from possible scenarios with a wide range of uncertainty.</p>
+<p>The Grid Planners want to have a result that is based on real observed data.
+Or to make it more explicit; data that has been measured and not data from possible scenarios with a wide range of uncertainty.</p>
 <p>Another suggestion was made to use (historic) weather data as an exogenous feature / input for the model.
 However, this is not data we have available with a reasonable confidence for the forecast horizon (in the future).
-And seasonality can also be captured from the observed data itself for different timeseries models.</p>
+And seasonality can also be captured from the observed data itself for different time series models.</p>
 <p>Therefore, the model only uses historic DALI measurement data.</p>
 </section>
 <section id="fit-predict-process">
 <h3>Fit-Predict Process<a class="headerlink" href="#fit-predict-process" title="Permalink to this headline">¶</a></h3>
-<p>A model will be fitted / tuned for every DALI measurement extremes since every transformer has it’s own unique signal (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.determine_estimates" title="src.forecast.forecast.determine_estimates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.determine_estimates()</span></code></a>).</p>
+<p>A model will be fitted / tuned for each DALI measurement extreme since every transformer has its own unique signal (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.determine_estimates" title="src.forecast.forecast.determine_estimates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.determine_estimates()</span></code></a>).</p>
 <p>A model is trained on observed data, a forecast is made and stored and finally the trained model is discarded (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.forecast" title="src.forecast.forecast.forecast"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.forecast()</span></code></a>).</p>
 <a class="reference internal image-reference" href="_images/process_modeling.png"><img alt="_images/process_modeling.png" class="align-center" src="_images/process_modeling.png" style="height: 250px;" /></a>
-<p>The weekly extremes are loaded for tuning the model. The model forecasts are afterwards stored in a Snowflake database.</p>
+<p>The weekly extremes are loaded for tuning the model. The model forecasts are stored in a Snowflake database afterwards.</p>
 <p>The next time a forecast is required, new data is available and a new model will be fitted and used for forecasting.</p>
 </section>
 <section id="model-environment">
 <h3>Model Environment<a class="headerlink" href="#model-environment" title="Permalink to this headline">¶</a></h3>
 <p>A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.</p>
-<p>From the main probabilistic toolboxes (PyMC3, STAN, EDWARD2, Pyro, TensorFlow2 Probability) <a class="reference external" href="https://docs.pymc.io/en/stable/">PyMC3</a> was used for it’s extensive documentation.</p>
+<p>From the main probabilistic toolboxes (PyMC3, STAN, EDWARD2, Pyro, TensorFlow2 Probability) <a class="reference external" href="https://docs.pymc.io/en/stable/">PyMC3</a> was used for its extensive documentation.</p>
 <p>A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.</p>
 </section>
 <section id="generalized-additive-model-concept">
@@ -259,7 +259,7 @@ And seasonality can also be captured from the observed data itself for different
 <p>To address the explainability of the model, a similar approach as <a class="reference external" href="https://facebook.github.io/prophet/">Facebook Prophet</a> is used.</p>
 <p>The model is a Generalized Additive Model <a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_additive_model">(GAM)</a> that consists of a trend / drift and seasonality component (and an error component).</p>
 <p>The translation to PyMC3 of <a class="reference external" href="https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/">Richie Vink</a> was used as a basis.</p>
-<p>The GAM approach makes it easy to decompose the different components of the timeseries and show the Grid Planners the effect of the drift and seasons separately.</p>
+<p>The GAM approach makes it easy to decompose the different components of the time series and show the Grid Planners the effect of the drift and seasons separately.</p>
 </section>
 </section>
 <section id="test-design">
@@ -283,10 +283,10 @@ And seasonality can also be captured from the observed data itself for different
 <div class="math notranslate nohighlight">
 \[\Sigma\:|\:drift, yearly, \sigma_\epsilon = Normal(\mu=drift + yearly, \:sd=\sigma_\epsilon)\]</div>
 <p>The additive naming is explicit in this notation.</p>
-<p>The error component has a has a bandwidth of <span class="math notranslate nohighlight">\(\sigma_\epsilon\)</span>.</p>
+<p>The error component has a bandwidth of <span class="math notranslate nohighlight">\(\sigma_\epsilon\)</span>.</p>
 <section id="drift-component">
 <h4>Drift Component<a class="headerlink" href="#drift-component" title="Permalink to this headline">¶</a></h4>
-<p>According to the Grid Planners a increasing growth is more and more common due to the energy transition.</p>
+<p>According to the Grid Planners an increasing growth is more and more common due to the energy transition.</p>
 <p>Therefore, a stable drift model (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.drift_model" title="src.model.model.drift_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.drift_model()</span></code></a>) is used that can mimic that.</p>
 <p>An exponential function resulted in divergence during the model tuning, but a second order taylor series makes the model convergent and stable.</p>
 <p>The drift component model with a taylor series with the order of <span class="math notranslate nohighlight">\(n\)</span> is described as:</p>
@@ -316,12 +316,12 @@ And seasonality can also be captured from the observed data itself for different
 </section>
 <section id="enabling-forecasts">
 <h4>Enabling Forecasts<a class="headerlink" href="#enabling-forecasts" title="Permalink to this headline">¶</a></h4>
-<p>The model parameters (<span class="math notranslate nohighlight">\(\beta\)</span>)’s can now be tuned to produce the most model to produce the observed (measurement) data.</p>
+<p>The model parameters (<span class="math notranslate nohighlight">\(\beta\)</span>)’s can now be tuned to produce the most likely model that produces the observed (measurement) data.</p>
 <p>To forecast, the model also needs to produce samples beyond the timestamps it has been tuned on.</p>
 <p>The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.extrapolate_timestamps" title="src.preprocess.preprocess.extrapolate_timestamps"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.extrapolate_timestamps()</span></code></a>).</p>
-<p>The matching observations (measurements) can be intentionally filled with NaN’s.</p>
-<p>In the model PyMC3 will name them <span class="math notranslate nohighlight">\(\Sigma_{missing}\)</span>.
-This characteristic makes the model also robust against missing data.</p>
+<p>The matching observations (measurements) can be intentionally filled with NaN’s.
+In the model PyMC3 will name them <span class="math notranslate nohighlight">\(\Sigma_{missing}\)</span>.
+This characteristic also makes the model robust against missing data.</p>
 <p>By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.determine_estimates" title="src.forecast.forecast.determine_estimates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.determine_estimates()</span></code></a>).</p>
 </section>
 <section id="total-model">
@@ -352,33 +352,33 @@ This eases the visualization later.</p>
 <section id="model-assessment">
 <h2>Model Assessment<a class="headerlink" href="#model-assessment" title="Permalink to this headline">¶</a></h2>
 <p>The following model findings are most salient:</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>The model converges during tuning and gives feasible results.</dt><dd><ul>
+<ul>
+<li><p>The model converges during tuning and gives feasible results.</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Exponential drift function tuning will not converge.</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>The computational burden on a CPU to tune and forecast both extremes is 1:24.</dt><dd><ul>
+<li><p>The computational burden on a CPU to tune and forecast both extremes is 1:24.</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>CPU: 2 GHz Quad-Core Intel Core i5</p></li>
 <li><p>RAM: 16 GB</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 <li><p>The model is fairly insensitive to outliers and missing data.</p></li>
 <li><p>The splitting of observations into train and test set works.</p></li>
 <li><p>The extrapolation with the forecasting horizon works.</p></li>
-<li><dl class="simple">
-<dt>An pure additive model may not be sufficient.</dt><dd><ul>
+<li><p>An pure additive model may not be sufficient.</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Growth also increases the yearly component (see visualization below).</p></li>
 <li><p>A pure multiplicative diverges.</p></li>
 <li><p>A hybrid model (addition of a small fraction of a multiplicative model) might be an option.</p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 <p>A visualization of the results is shown in the figure below which shows most of the aforementioned points:</p>
@@ -390,24 +390,20 @@ Measurements from the train and test set are plotted.</p>
 <section id="improvement-suggestions">
 <h3>Improvement suggestions<a class="headerlink" href="#improvement-suggestions" title="Permalink to this headline">¶</a></h3>
 <p>The following ideas could result in a better model:</p>
-<ul class="simple">
+<ul>
 <li><p>Implementing a hybrid additive-multiplicative model for dealing with the growing seasonality.</p></li>
-<li><dl class="simple">
-<dt>Adding a extra component to detect temporarily bypass switching of loads of other transformers.</dt><dd><ul>
-<li><p>This could be implemented by estimating parameters of a <a class="reference external" href="https://en.wikipedia.org/wiki/Rectangular_function">rectangular function</a>.</p></li>
-</ul>
-</dd>
-</dl>
+<li><p>Adding an extra component to detect temporary bypass switching of loads of other transformers.</p>
+<blockquote>
+<div><p>This could be implemented by estimating parameters of a <a class="reference external" href="https://en.wikipedia.org/wiki/Rectangular_function">rectangular function</a>.</p>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Making more recent observations more relevant for slowly changing loading patterns.</dt><dd><ul>
-<li><p>Possibilities are to mimic weights with <a class="reference external" href="https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689">pm.Potential</a> or <a class="reference external" href="https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11">pm&lt;distribution&gt;(tau=weights)</a>.</p></li>
-</ul>
-</dd>
-</dl>
+<li><p>Making more recent observations more relevant for slowly changing loading patterns.</p>
+<blockquote>
+<div><p>Possibilities are to mimic weights with <a class="reference external" href="https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689">pm.Potential</a> or <a class="reference external" href="https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11">pm&lt;distribution&gt;(tau=weights)</a>.</p>
+</div></blockquote>
 </li>
 <li><p>Using the population seasonality as a <a class="reference external" href="https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/">prior</a> in case of a short history of observations.</p></li>
-<li><p>Using by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p></li>
+<li><p>Using a by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p></li>
 </ul>
 </section>
 </section>

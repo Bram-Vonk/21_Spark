@@ -471,20 +471,50 @@ The computational burden is acceptable.
 \label{\detokenize{business_understanding:organisation}}
 The involved stakeholders are:
 \begin{itemize}
+\item {} \begin{description}
+\item[{Grid Planners}] \leavevmode\begin{itemize}
 \item {} 
-Grid Planners: The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.
+The end users of the tool. Ad hoc, they will be updated/asked for input/their expertise on the field of grid planning and their needs. They assess if the project is a success.
 
-\item {} 
-Data Engineers:  To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.
+\end{itemize}
 
-\item {} 
-Management: The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.
+\end{description}
 
+\item {} \begin{description}
+\item[{Data Engineers}] \leavevmode\begin{itemize}
 \item {} 
-Academic supervision: Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one\sphinxhyphen{}on\sphinxhyphen{}one meeting to discuss progress and issues.
+To get the tool into production the ICT guidelines and processes within Enexis have to be respected. Expertise of the Data engineers is crucial in the second half of the project to get things into production/deployment.
 
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Management}] \leavevmode\begin{itemize}
 \item {} 
-Academic support: PDEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
+The direct manager enables Developer/Lead Bram to work two days a week on this project. Together with all other Enexis stakeholders they will be updated at the end of every sprint in the sprint review session.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Academic supervision:}] \leavevmode\begin{itemize}
+\item {} 
+Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one\sphinxhyphen{}on\sphinxhyphen{}one meeting to discuss progress and issues.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Academic support:}] \leavevmode\begin{itemize}
+\item {} 
+PDEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
+
+\end{itemize}
+
+\end{description}
 
 \end{itemize}
 
@@ -565,32 +595,29 @@ The computational burden for probabilistic models is feasible regarding the comp
 
 \subsection{Risks and Contingencies}
 \label{\detokenize{business_understanding:risks-and-contingencies}}\begin{itemize}
-\item {} \begin{description}
-\item[{Lead / developer has just become a father (is technically up to September on parental leave) and bought a house that has to be renovated. This could result in lower availability for this project.}] \leavevmode\begin{itemize}
+\item {} 
+Lead / developer has just become a father (is technically up to September on parental leave) and bought a house that has to be renovated. This could result in lower availability for this project.
+\begin{itemize}
 \item {} 
 Mitigation: None.
 
 \end{itemize}
 
-\end{description}
-
-\item {} \begin{description}
-\item[{Grid Planners are immensely preoccupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.}] \leavevmode\begin{itemize}
+\item {} 
+Grid Planners are immensely preoccupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.
+\begin{itemize}
 \item {} 
 Mitigation: Be clear and direct regarding expectations and communications and limit the effort and time for this project for Grid Planners without giving in on quality/input.
 
 \end{itemize}
 
-\end{description}
-
-\item {} \begin{description}
-\item[{Data Engineers are also loaded with work and might not have time/resources available.}] \leavevmode\begin{itemize}
+\item {} 
+Data Engineers are also loaded with work and might not have time/resources available.
+\begin{itemize}
 \item {} 
 Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half.
 
 \end{itemize}
-
-\end{description}
 
 \item {} 
 There is no use of sensitive data in this project regarding privacy (GDPR) or security. DALI data is allowed to be used. Credentials are not embedded in code and access to data sources is restricted by design.
@@ -600,11 +627,23 @@ There is no use of sensitive data in this project regarding privacy (GDPR) or se
 
 \subsection{Costs and Benefits}
 \label{\detokenize{business_understanding:costs-and-benefits}}\begin{itemize}
+\item {} \begin{description}
+\item[{Data collection}] \leavevmode\begin{itemize}
 \item {} 
-Data collection: Data is available in an existing database. Only querying is needed, no active additional data collection.
+Data is available in an existing database. Only querying is needed, no active additional data collection.
 
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Implementation}] \leavevmode\begin{itemize}
 \item {} 
-Implementation: Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.
+Open source software is used besides already licensed applications. Only computation power will cost additionally. More details will be available after a first proof of concept.
+
+\end{itemize}
+
+\end{description}
 
 \end{itemize}
 
@@ -613,14 +652,32 @@ Implementation: Open source software is used besides already licensed applicatio
 \label{\detokenize{business_understanding:implementation-concept}}
 The tool is split into three steps to tackle the amount of data available, but still make the results manageable:
 \begin{itemize}
+\item {} \begin{description}
+\item[{Preprocessing}] \leavevmode\begin{itemize}
 \item {} 
-Preprocessing: To condense 15 minute load averages into weekly extremes (minimum and maximum).
+To condense 15 minute load averages into weekly extremes (minimum and maximum).
 
-\item {} 
-Forecasting: To fit a model on the aggregated data and create forecasts.
+\end{itemize}
 
+\end{description}
+
+\item {} \begin{description}
+\item[{Forecasting}] \leavevmode\begin{itemize}
 \item {} 
-Dashboarding: To display (forecast) results to the end user.
+To fit a model on the aggregated data and create forecasts.
+
+\end{itemize}
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Dashboarding}] \leavevmode\begin{itemize}
+\item {} 
+To display (forecast) results to the end user.
+
+\end{itemize}
+
+\end{description}
 
 \end{itemize}
 
@@ -1141,8 +1198,8 @@ The detailed process to create and assess load forecasts.
 
 \section{Modeling Technique}
 \label{\detokenize{modeling:modeling-technique}}
-The Grid Planners are looking for a data driven forecast with a uncertainty indication as mentioned before.
-This is visualized as a concept in the figure below.
+The Grid Planners are looking for a data driven forecast with an uncertainty indication as mentioned before.
+This is conceptualised in the figure below.
 \begin{quote}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=400\sphinxpxdimen]{{autumn_spring_load}.png}\hspace*{\fill}}
@@ -1153,25 +1210,25 @@ A possible output of the model visualized.
 
 \subsection{Input Features}
 \label{\detokenize{modeling:input-features}}
-The Grid Planners want to have a result dat is based on real observed data.
-Or, to make it more explicit: Data that has been measured and not data from possible scenarios with a wide range of uncertainty.
+The Grid Planners want to have a result that is based on real observed data.
+Or to make it more explicit; data that has been measured and not data from possible scenarios with a wide range of uncertainty.
 
 Another suggestion was made to use (historic) weather data as an exogenous feature / input for the model.
 However, this is not data we have available with a reasonable confidence for the forecast horizon (in the future).
-And seasonality can also be captured from the observed data itself for different timeseries models.
+And seasonality can also be captured from the observed data itself for different time series models.
 
 Therefore, the model only uses historic DALI measurement data.
 
 
 \subsection{Fit\sphinxhyphen{}Predict Process}
 \label{\detokenize{modeling:fit-predict-process}}
-A model will be fitted / tuned for every DALI measurement extremes since every transformer has it’s own unique signal ({\hyperref[\detokenize{autoapi/src/forecast/forecast/index:src.forecast.forecast.determine_estimates}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.forecast.forecast.determine\_estimates()}}}}}).
+A model will be fitted / tuned for each DALI measurement extreme since every transformer has its own unique signal ({\hyperref[\detokenize{autoapi/src/forecast/forecast/index:src.forecast.forecast.determine_estimates}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.forecast.forecast.determine\_estimates()}}}}}).
 
 A model is trained on observed data, a forecast is made and stored and finally the trained model is discarded ({\hyperref[\detokenize{autoapi/src/forecast/forecast/index:src.forecast.forecast.forecast}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.forecast.forecast.forecast()}}}}}).
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[height=250\sphinxpxdimen]{{process_modeling}.png}\hspace*{\fill}}
 
-The weekly extremes are loaded for tuning the model. The model forecasts are afterwards stored in a Snowflake database.
+The weekly extremes are loaded for tuning the model. The model forecasts are stored in a Snowflake database afterwards.
 
 The next time a forecast is required, new data is available and a new model will be fitted and used for forecasting.
 
@@ -1180,7 +1237,7 @@ The next time a forecast is required, new data is available and a new model will
 \label{\detokenize{modeling:model-environment}}
 A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.
 
-From the main probabilistic toolboxes (PyMC3, STAN, EDWARD2, Pyro, TensorFlow2 Probability) \sphinxhref{https://docs.pymc.io/en/stable/}{PyMC3} was used for it’s extensive documentation.
+From the main probabilistic toolboxes (PyMC3, STAN, EDWARD2, Pyro, TensorFlow2 Probability) \sphinxhref{https://docs.pymc.io/en/stable/}{PyMC3} was used for its extensive documentation.
 
 A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.
 
@@ -1193,7 +1250,7 @@ The model is a Generalized Additive Model \sphinxhref{https://en.wikipedia.org/w
 
 The translation to PyMC3 of \sphinxhref{https://www.ritchievink.com/blog/2018/10/09/build-facebooks-prophet-in-pymc3-bayesian-time-series-analyis-with-generalized-additive-models/}{Richie Vink} was used as a basis.
 
-The GAM approach makes it easy to decompose the different components of the timeseries and show the Grid Planners the effect of the drift and seasons separately.
+The GAM approach makes it easy to decompose the different components of the time series and show the Grid Planners the effect of the drift and seasons separately.
 
 
 \section{Test Design}
@@ -1226,12 +1283,12 @@ The GAM model used is ({\hyperref[\detokenize{autoapi/src/model/model/index:src.
 \end{equation*}
 The additive naming is explicit in this notation.
 
-The error component has a has a bandwidth of \(\sigma_\epsilon\).
+The error component has a bandwidth of \(\sigma_\epsilon\).
 
 
 \subsubsection{Drift Component}
 \label{\detokenize{modeling:drift-component}}
-According to the Grid Planners a increasing growth is more and more common due to the energy transition.
+According to the Grid Planners an increasing growth is more and more common due to the energy transition.
 
 Therefore, a stable drift model ({\hyperref[\detokenize{autoapi/src/model/model/index:src.model.model.drift_model}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.model.model.drift\_model()}}}}}) is used that can mimic that.
 
@@ -1273,16 +1330,15 @@ The order taken for the fourier series is \(n=5\).
 
 \subsubsection{Enabling Forecasts}
 \label{\detokenize{modeling:enabling-forecasts}}
-The model parameters (\(\beta\))’s can now be tuned to produce the most model to produce the observed (measurement) data.
+The model parameters (\(\beta\))’s can now be tuned to produce the most likely model that produces the observed (measurement) data.
 
 To forecast, the model also needs to produce samples beyond the timestamps it has been tuned on.
 
 The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.extrapolate_timestamps}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.extrapolate\_timestamps()}}}}}).
 
 The matching observations (measurements) can be intentionally filled with NaN’s.
-
 In the model PyMC3 will name them \(\Sigma_{missing}\).
-This characteristic makes the model also robust against missing data.
+This characteristic also makes the model robust against missing data.
 
 By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps ({\hyperref[\detokenize{autoapi/src/forecast/forecast/index:src.forecast.forecast.determine_estimates}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.forecast.forecast.determine\_estimates()}}}}}).
 
@@ -1325,17 +1381,17 @@ The concatenated input and result.
 \label{\detokenize{modeling:model-assessment}}
 The following model findings are most salient:
 \begin{itemize}
-\item {} \begin{description}
-\item[{The model converges during tuning and gives feasible results.}] \leavevmode\begin{itemize}
+\item {} 
+The model converges during tuning and gives feasible results.
+\begin{itemize}
 \item {} 
 Exponential drift function tuning will not converge.
 
 \end{itemize}
 
-\end{description}
-
-\item {} \begin{description}
-\item[{The computational burden on a CPU to tune and forecast both extremes is 1:24.}] \leavevmode\begin{itemize}
+\item {} 
+The computational burden on a CPU to tune and forecast both extremes is 1:24.
+\begin{itemize}
 \item {} 
 CPU: 2 GHz Quad\sphinxhyphen{}Core Intel Core i5
 
@@ -1343,8 +1399,6 @@ CPU: 2 GHz Quad\sphinxhyphen{}Core Intel Core i5
 RAM: 16 GB
 
 \end{itemize}
-
-\end{description}
 
 \item {} 
 The model is fairly insensitive to outliers and missing data.
@@ -1355,8 +1409,9 @@ The splitting of observations into train and test set works.
 \item {} 
 The extrapolation with the forecasting horizon works.
 
-\item {} \begin{description}
-\item[{An pure additive model may not be sufficient.}] \leavevmode\begin{itemize}
+\item {} 
+An pure additive model may not be sufficient.
+\begin{itemize}
 \item {} 
 Growth also increases the yearly component (see visualization below).
 
@@ -1367,8 +1422,6 @@ A pure multiplicative diverges.
 A hybrid model (addition of a small fraction of a multiplicative model) might be an option.
 
 \end{itemize}
-
-\end{description}
 
 \end{itemize}
 
@@ -1389,29 +1442,25 @@ The following ideas could result in a better model:
 \item {} 
 Implementing a hybrid additive\sphinxhyphen{}multiplicative model for dealing with the growing seasonality.
 
-\item {} \begin{description}
-\item[{Adding a extra component to detect temporarily bypass switching of loads of other transformers.}] \leavevmode\begin{itemize}
 \item {} 
+Adding an extra component to detect temporary bypass switching of loads of other transformers.
+\begin{quote}
+
 This could be implemented by estimating parameters of a \sphinxhref{https://en.wikipedia.org/wiki/Rectangular\_function}{rectangular function}.
+\end{quote}
 
-\end{itemize}
-
-\end{description}
-
-\item {} \begin{description}
-\item[{Making more recent observations more relevant for slowly changing loading patterns.}] \leavevmode\begin{itemize}
 \item {} 
+Making more recent observations more relevant for slowly changing loading patterns.
+\begin{quote}
+
 Possibilities are to mimic weights with \sphinxhref{https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689}{pm.Potential} or \sphinxhref{https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11}{pm<distribution>(tau=weights)}.
-
-\end{itemize}
-
-\end{description}
+\end{quote}
 
 \item {} 
 Using the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
 
 \item {} 
-Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
+Using a by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
 
 \end{itemize}
 
@@ -1423,15 +1472,15 @@ This section discusses the evaluation of the implemented model, the assessments 
 
 \section{Model Evaluation}
 \label{\detokenize{evaluation:model-evaluation}}
-The evaluation of results has not been done with a error criteria (e.g. MAE, MAPE), but only visual.
+The evaluation of results has not been done with an error criteria (e.g. MAE, MAPE), but only visually.
 This will be done in the near future, when additional model improvements are implemented and needed to be assessed.
 
-This section will discuss briefly the model
+This section will briefly discuss the model.
 
 
 \subsection{Model Robustness}
 \label{\detokenize{evaluation:model-robustness}}
-The model as it is described before is stable for all transformer forecasts: It converges for all transformer timeseries that are used.
+The model as it is described before is stable for all transformer forecasts: It converges for all transformer time series that are used.
 
 A robust model for all 11k transformers is essential if models are trained and used without human supervision and results are automatically assessed.
 An experiment of an exponential function for the drift sub\sphinxhyphen{}model was implemented, but far from stable.
@@ -1449,12 +1498,12 @@ The model results after data accidentally was removed from the source database.
 \label{\detokenize{evaluation:model-results}}
 The model forecasts neatly the median and quantile bands as intended.
 
-However, it will always be a model trained on historical, observed data, and forecasts will always be off.
+However, it will always be a model trained on historical, observed data. Forecasts are often far from perfect.
 Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality of the outside world.
 
-The grid planners were shown different forecast that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.
+The grid planners were shown different forecasts that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.
 
-This was visually shown by the following actions:
+This was shown visually by the following actions:
 The results were assessed by splitting the observed data into a train and test set, using a model based on the train set and comparing the results with the test set.
 The performance for the different transformers of course also differs, but an example can be seen in the following figure:
 \begin{quote}
@@ -1486,7 +1535,7 @@ Making more recent observations more relevant for slowly changing loading patter
 Using the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
 
 \item {} 
-Using by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
+Using a by\sphinxhyphen{}pass dummy model for \sphinxhref{https://docs.pymc.io/en/stable/pymc-examples/examples/generalized\_linear\_models/GLM-robust-with-outlier-detection.html}{outlier robustness}.
 
 \end{itemize}
 
@@ -1500,10 +1549,10 @@ This section discusses the assessment and prioritization of the forecasts and th
 \label{\detokenize{evaluation:results-prioritization}}
 The are potentially 11k models that all forecast six months ahead.
 
-These are numbers too high to be assessed by grid planners one by one.
+These are numbers too high to be assessed by Grid Planners one by one.
 Therefore the forecast results are automatically assessed and ordered by urgency.
 
-The grid planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.
+The Grid Planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.
 
 Firstly, the definition of potential (over)loading was agreed on to be the following:
 \begin{itemize}
@@ -1547,7 +1596,7 @@ The result of this prioritization is shown below.
 
 Transformers ordered by potential (over)loading.
 
-The result is that grid planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.
+The result is that Grid Planners have an prioritized list of transformers, with on top the transformers that are probably overloading soon.
 
 
 \subsection{Evaluation Implementation}
@@ -1574,16 +1623,16 @@ The dashboard presents the ordered list of all transformers and a figure of a fo
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dashboard}.png}\hspace*{\fill}}
 \end{quote}
 
-The dashboard with on the left the ordered transformers and on the right the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum.
+The dashboard with the ordered transformer son the left and the tabs with forecast and decomposed trend and yearly pattern for minimum and maximum on the right.
 
-The list can be filtered by Enexis sub\sphinxhyphen{}service area, since grid planners are generally responsible for an area within these areas and not interested in the whole service area.
+The list can be filtered by Enexis sub\sphinxhyphen{}service area, since Grid Planners are generally responsible for an area within these areas and not interested in the whole service area.
 Other ordering is possible if the grid planner desires.
 
 After selection of a transformer, the measured weekly extremes, the forecast six months ahead, and the transformer capacity are displayed in the first tab.
 
-One can zoom in and pan de plot and tooltips show up on historic measurement data.
+One can zoom in and pan the plot and tooltips show up on historic measurement data.
 
-If the grid planner is interested, he can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.
+If the Grid Planner is interested, he/she can view in the other tabs the decompositions (drift / trend and yearly pattern) for the weekly minimum and maximum.
 \begin{quote}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dashboard_min}.png}\hspace*{\fill}}
@@ -1594,7 +1643,7 @@ The dashboard with the sub\sphinxhyphen{}service area filtering and the minimum 
 
 \subsection{Improvements on Presentation}
 \label{\detokenize{evaluation:improvements-on-presentation}}
-Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between python and the Snowflake database.
+Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between Python and the Snowflake database.
 This issue has the highest priority, since grid planners do not want to wait for results.
 
 Secondly, The current dashboard needs to be deployed within the Enexis landscape.
@@ -1610,7 +1659,7 @@ Additionally, some aesthetic improvements are welcome, since the presentation is
 
 \subsection{Code Standards}
 \label{\detokenize{deployment:code-standards}}
-The python project is structured simulary as \sphinxhref{https://github.com/cookiecutter/cookiecutter}{Cookiecutter}.
+The Python project is structured simulary as \sphinxhref{https://github.com/cookiecutter/cookiecutter}{Cookiecutter}.
 
 The code has been validated with linting by \sphinxhref{https://github.com/psf/black}{Black}, \sphinxhref{https://github.com/PyCQA/Isort}{isort}, and \sphinxhref{https://github.com/PyCQA/flake8}{Flake8}.
 
@@ -1629,7 +1678,7 @@ Also since within Enexis Gitlab is used, but for this study project a parallel G
 \label{\detokenize{deployment:security}}
 Within the Enexis domain one logs on to an environment (in this case Production).
 
-Credentials for accessing the Snowflake database are acquired via Vault to ensure to keep secrets secret.
+Credentials for accessing the Snowflake database are acquired via Vault to keep secrets secure.
 
 
 \subsection{Deployability}
@@ -1654,7 +1703,7 @@ Only updates new data since the last run.
 Creates a tuned model for a DALI box with (high) enough measurements and makes a forecast with it.
 Currently, the results are stored all with the \sphinxcode{\sphinxupquote{is\_valid}} column on \sphinxcode{\sphinxupquote{True}}.
 An extra run should be done to set this column to \sphinxcode{\sphinxupquote{False}} for old forecast.
-Until then, one should empty the table on beforehand.
+Until then, one should empty the table beforehand.
 
 \end{description}
 
@@ -1690,9 +1739,10 @@ Airflow DAGs have to be configured to trigger the jobs.
 
 The end\sphinxhyphen{}users will eventually have to accept the product to go into Production.
 For that several end\sphinxhyphen{}user/stakeholder meetings are required to get valuable feedback and fine tune the product.
-During these meetings the project will be assessed on the success criteria.
+During these meetings the project will be assessed against the success criteria.
 
-Usage monitoring of the tool has not been implemented, is important after deployment for value evaluation and life cycle management.
+Usage monitoring of the tool has not been implemented.
+However, it is important after deployment for value evaluation and life cycle management.
 
 
 \section{Monitoring and Maintenance Plan}
@@ -1707,13 +1757,13 @@ Monitoring of usage has to be implemented as mentioned above.
 
 \section{Final Report}
 \label{\detokenize{deployment:final-report}}
-One can create a pdf version of this documentation by the following steps:
+One can create a pdf version of this documentation via the following steps:
 \begin{itemize}
 \item {} 
 Clone the repository.
 
 \item {} 
-Run \sphinxcode{\sphinxupquote{make latexpdf}}
+Run \sphinxcode{\sphinxupquote{make latexpdf}}.
 
 \end{itemize}
 
@@ -1734,8 +1784,10 @@ Secondly, I will review my personal goals.
 \label{\detokenize{deployment:learning-objectives}}
 The general learning objectives for the Professional Education Lead track of JADS are:
 \begin{itemize}
-\item {} \begin{description}
-\item[{Acquiring the knowledge and skills covered in the courses (technical and non\sphinxhyphen{}technical).}] \leavevmode
+\item {} 
+Acquiring the knowledge and skills covered in the courses (technical and non\sphinxhyphen{}technical).
+\begin{quote}
+
 The most valuable courses were the non\sphinxhyphen{}technical ones.
 Partially, because there was maybe more to gain for me as a more technical character.
 But mainly, since they inspired me and enabled me to accept to embrace that skill set and also provided me with concrete tips to put it into practice.
@@ -1743,38 +1795,40 @@ But mainly, since they inspired me and enabled me to accept to embrace that skil
 Some technical lectures (e.g. “from POCs to Production” and “A Primer in Data Engineering”) confirmed that the way of working and view on data science within my professional team is on the right track.
 Other technical courses (e.g. “Bayesian Nets”, “Recent Advances in A.I.”) inspired me and sparked an interest in new subjects.
 Those subjects are now on my personal bucket list for a technical deep dive in the near future.
-\begin{description}
-\item[{Concluding: I am convinced the courses in the Lead Track moved a good number of my skills towards the conscious incompetence and conscious competence levels.}] \leavevmode
-\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{competence}.png}\hspace*{\fill}}
 
-\end{description}
+Concluding: I am convinced the courses in the Lead Track moved a good number of my skills towards the conscious incompetence and conscious competence levels.
+\begin{quote}
+
+\noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{competence}.png}\hspace*{\fill}}
+\end{quote}
 
 The Conscious Competence Learning Model (source: \sphinxhref{http://www.pamelaslim.com}{pamelaslim.com}).
+\end{quote}
 
-\end{description}
+\item {} 
+Leading and implementing an impactful data science project by use of the CRISP\sphinxhyphen{}DM process.
+\begin{quote}
 
-\item {} \begin{description}
-\item[{Leading and implementing an impactful data science project by use of the CRISP\sphinxhyphen{}DM process.}] \leavevmode
 The described project of this documentation shows the result of that.
+\end{quote}
 
-\end{description}
+\item {} 
+Forming individuals to enable them to make impact with data science.
+\begin{quote}
 
-\item {} \begin{description}
-\item[{Forming individuals to enable them to make impact with data science.}] \leavevmode
 The coaching from the educators of JADS helped me reassess my future career.
 \begin{itemize}
 \item {} 
 The discussions with Jeroen about academic and engineering skills helped me appreciating my skills, my work and myself more.
 
 \item {} 
-The coaching of Kyril helped me to form a clearer view on my career goal and how to get there.
+The coaching of Kyril helped me to form a clearer view on my career goals and how to get there.
 
 \item {} 
-The highly effective presentation masterclass of Raoul helped me to reach goals more effective.
+The highly effective presentation masterclass of Raoul helped me to reach goals more effectively.
 
 \end{itemize}
-
-\end{description}
+\end{quote}
 
 \end{itemize}
 
@@ -1807,7 +1861,7 @@ Regular business review moments.
 Programming.
 \begin{itemize}
 \item {} 
-Coding standards with Cookiecutter and linting (black, isort, flake8).
+Coding standards with Cookiecutter and linting (Black, Isort, Flake8).
 
 \item {} 
 Using Sphinx for auto API documentation in GitHub.
