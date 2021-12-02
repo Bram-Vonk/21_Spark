@@ -5,7 +5,7 @@ Modeling
 Modeling Technique
 ------------------
 
-The Grid Planners are looking to data driven forecast with a uncertainty indication as mentioned before.
+The Grid Planners are looking for a data driven forecast with a uncertainty indication as mentioned before.
 This is visualized as a concept in the figure below.
 
  .. image:: _static/img/autumn_spring_load.png
@@ -49,7 +49,7 @@ Model Environment
 
 A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.
 
-From the main probabilistic toolboxes (STAN, EDWARD2, Pyro, TensorFlow2 Probability) `PyMC3 <https://docs.pymc.io/en/stable/>`__ was used for it's extensive documentation.
+From the main probabilistic toolboxes (PyMC3, STAN, EDWARD2, Pyro, TensorFlow2 Probability) `PyMC3 <https://docs.pymc.io/en/stable/>`__ was used for it's extensive documentation.
 
 A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.
 
@@ -156,16 +156,16 @@ The order taken for the fourier series is :math:`n=5`.
 Enabling Forecasts
 ^^^^^^^^^^^^^^^^^^
 
-The model parameters (:math:`\beta`)'s can now be tuned to produce the model is most likely to produce the observed (measurement) data.
+The model parameters (:math:`\beta`)'s can now be tuned to produce the most model to produce the observed (measurement) data.
 
-To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.
+To forecast, the model also needs to produce samples beyond the timestamps it has been tuned on.
 
 The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon (:meth:`src.preprocess.preprocess.extrapolate_timestamps`).
 
 The matching observations (measurements) can be intentionally filled with NaN's.
 
 In the model PyMC3 will name them :math:`\Sigma_{missing}`.
-(This characteristic makes the model also robust against missing data).
+This characteristic makes the model also robust against missing data.
 
 By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps (:meth:`src.forecast.forecast.determine_estimates`).
 
@@ -181,7 +181,7 @@ The total model visualized.
 
 Two separate GAM models :math:`\Sigma` (:meth:`src.model.model.create_model`) are used for the weekly minimum and maximum.
 
-The visual above shows the total GAM model with a polynomial drift order :math:`n=2` (the bias of order 0 explains :math:`N+1=3`) and a fourier order of :math:`n=5` (the sine and cosine parts explain :math:`N*2=10`).
+The visual above shows the total GAM model with a polynomial drift order :math:`n=2` (the bias of order 0 explains :math:`n+1=3`) and a fourier order of :math:`n=5` (the sine and cosine parts explain :math:`n*2=10`).
 
 The number of observations (weeks of measurements for this case) is 121 and the forecasting horizon is just more than six months (27 weeks).
 
@@ -242,7 +242,7 @@ The following ideas could result in a better model:
 * Implementing a hybrid additive-multiplicative model for dealing with the growing seasonality.
 * Adding a extra component to detect temporarily bypass switching of loads of other transformers.
     * This could be implemented by estimating parameters of a `rectangular function <https://en.wikipedia.org/wiki/Rectangular_function>`__.
-* Making more recent observations more relevant for slowly changing loading patterns
+* Making more recent observations more relevant for slowly changing loading patterns.
     * Possibilities are to mimic weights with `pm.Potential <https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689>`__ or `pm<distribution>(tau=weights) <https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11>`__.
 * Using the population seasonality as a `prior <https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/>`__ in case of a short history of observations.
 * Using by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.

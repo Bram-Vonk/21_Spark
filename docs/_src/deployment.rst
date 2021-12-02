@@ -22,7 +22,7 @@ Environment
 The project currently uses data from the Production environment, since there is no DALI (meta)data available on the Test or Acceptance environments.
 
 Therefore, the further implementation of the CICD pipeline is postponed for now.
-(Also since within Enexis Gitlab is used, but for this study project a parallel Github repository is used.)
+Also since within Enexis Gitlab is used, but for this study project a parallel Github repository is used.
 
 Security
 ~~~~~~~~
@@ -141,40 +141,39 @@ Evaluation Criteria
 
 The evaluation criteria for the Professional Education Lead track of JADS and how I translated them are:
 
-* Business Value
+* Business Value.
 
-    * Use case selection
-    * Stakeholder analysis
-    * Stakeholder and expectation management
-    * Value flow down diagram
-    * Regular business review moments
+    * Use case selection.
+    * Stakeholder analysis.
+    * Stakeholder and expectation management.
+    * Value flow down diagram.
+    * Regular business review moments.
 
-* Programming
+* Programming.
 
-    * Coding standards with Cookiecutter and linting (black, isort, flake8)
-    * Using Sphinx for auto API documentation in GitHub
-    * Interactive visualisations in Altair
-    * Dashboard in Panel
+    * Coding standards with Cookiecutter and linting (black, isort, flake8).
+    * Using Sphinx for auto API documentation in GitHub.
+    * Interactive visualisations in Altair.
+    * Dashboard in Panel.
 
-* Data engineering
+* Data engineering.
 
-    * Snowflake database preprocessing usage (asynchronous queries, ETL)
-    * Vault credential management
-    * Docker (compose with entrypoint) for every process step
+    * Snowflake database preprocessing usage (asynchronous queries, ETL).
+    * Vault credential management.
+    * Docker (compose with entrypoint) for every process step.
 
-* Data analytics & machine learning
+* Data analytics & machine learning.
 
-    * Coding data management and model from scratch (since not using sklearn)
-    * Probabilistic modelling in PyMC3
-    * Using Fourier and Taylor series in generalized additive model for time series forecast
+    * Coding data management and model from scratch (since not using sklearn).
+    * Probabilistic modelling in PyMC3.
+    * Using Fourier and Taylor series in generalized additive model for time series forecast.
+* Professional standard of reporting.
 
-* Professional standard of reporting
+    * Using Sphinx for this documentation.
+    * Status slide deck after sprint review with end users.
+    * Project status / pitch and management summary for JADS peers and training.
 
-    * Using Sphinx for this documentation
-    * Status slide deck after sprint review with end users
-    * Project status / pitch and management summary for JADS peers and training
-
-* Academic / research skills
+* Academic / research skills.
 
     * Using the engineering approach (instead of the scientific method or the axiomatic system) to iteratively create and validate model and outcome.
 

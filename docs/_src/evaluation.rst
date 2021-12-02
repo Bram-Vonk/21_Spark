@@ -36,13 +36,13 @@ Model Results
 The model forecasts neatly the median and quantile bands as intended.
 
 However, it will always be a model trained on historical, observed data, and forecasts will always be off.
-Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality opf the outside world.
+Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality of the outside world.
 
-The grid planners were shown different off-results to make them aware of the limiting accuracy and reliability of the models and their forecasts.
+The grid planners were shown different forecast that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.
 
 This was visually shown by the following actions:
 The results were assessed by splitting the observed data into a train and test set, using a model based on the train set and comparing the results with the test set.
-The performance of for the different transformers of course also differs, but an example can be seen in the following figure:
+The performance for the different transformers of course also differs, but an example can be seen in the following figure:
 
  .. image:: _static/img/validation.png
     :width: 800px
@@ -60,7 +60,7 @@ The most promising suggestions for model improvement are:
 * Improving tuning and forecasting time.
 * Implementing hybrid additive-multiplicative model for dealing with the growing seasonality.
 * Adding a extra component to detect temporarily bypass switching of loads of other transformers.
-* Making more recent observations more relevant for slowly changing loading patterns
+* Making more recent observations more relevant for slowly changing loading patterns.
 * Using the population seasonality as a `prior <https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/>`__ in case of a short history of observations.
 * Using by-pass dummy model for `outlier robustness <https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html>`__.
 
@@ -83,13 +83,13 @@ The grid planners gave as input that they wanted overloaded transformers ordered
 
 Firstly, the definition of potential (over)loading was agreed on to be the following:
 
-* Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity
+* Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity.
 * Potential overloading is the potential loading is greater than one.
 
 Potential overloaded transformers can now be ordered by the point in time when they reach this limit.
 
 Then there are also transformers that will never potentially overload.
-The forecasts of these transformers are simply ordered by potential loading
+The forecasts of these transformers are simply ordered by potential loading.
 
 To summarize into steps:
 
@@ -164,4 +164,4 @@ This issue has the highest priority, since grid planners do not want to wait for
 
 Secondly, The current dashboard needs to be deployed within the Enexis landscape.
 
-Additionally, some aesthetic improvements are welcome, since the presentation is quiet basic at this moment.
+Additionally, some aesthetic improvements are welcome, since the presentation is quite basic at this moment.
