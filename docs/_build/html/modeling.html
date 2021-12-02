@@ -225,7 +225,7 @@
 <h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h1>
 <section id="modeling-technique">
 <h2>Modeling Technique<a class="headerlink" href="#modeling-technique" title="Permalink to this headline">¶</a></h2>
-<p>The Grid Planners are looking to data driven forecast with a uncertainty indication as mentioned before.
+<p>The Grid Planners are looking for a data driven forecast with a uncertainty indication as mentioned before.
 This is visualized as a concept in the figure below.</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/autumn_spring_load.png"><img alt="_images/autumn_spring_load.png" class="align-center" src="_images/autumn_spring_load.png" style="width: 400px;" /></a>
@@ -251,7 +251,7 @@ And seasonality can also be captured from the observed data itself for different
 <section id="model-environment">
 <h3>Model Environment<a class="headerlink" href="#model-environment" title="Permalink to this headline">¶</a></h3>
 <p>A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.</p>
-<p>From the main probabilistic toolboxes (STAN, EDWARD2, Pyro, TensorFlow2 Probability) <a class="reference external" href="https://docs.pymc.io/en/stable/">PyMC3</a> was used for it’s extensive documentation.</p>
+<p>From the main probabilistic toolboxes (PyMC3, STAN, EDWARD2, Pyro, TensorFlow2 Probability) <a class="reference external" href="https://docs.pymc.io/en/stable/">PyMC3</a> was used for it’s extensive documentation.</p>
 <p>A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.</p>
 </section>
 <section id="generalized-additive-model-concept">
@@ -316,12 +316,12 @@ And seasonality can also be captured from the observed data itself for different
 </section>
 <section id="enabling-forecasts">
 <h4>Enabling Forecasts<a class="headerlink" href="#enabling-forecasts" title="Permalink to this headline">¶</a></h4>
-<p>The model parameters (<span class="math notranslate nohighlight">\(\beta\)</span>)’s can now be tuned to produce the model is most likely to produce the observed (measurement) data.</p>
-<p>To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.</p>
+<p>The model parameters (<span class="math notranslate nohighlight">\(\beta\)</span>)’s can now be tuned to produce the most model to produce the observed (measurement) data.</p>
+<p>To forecast, the model also needs to produce samples beyond the timestamps it has been tuned on.</p>
 <p>The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon (<a class="reference internal" href="autoapi/src/preprocess/preprocess/index.html#src.preprocess.preprocess.extrapolate_timestamps" title="src.preprocess.preprocess.extrapolate_timestamps"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.preprocess.preprocess.extrapolate_timestamps()</span></code></a>).</p>
 <p>The matching observations (measurements) can be intentionally filled with NaN’s.</p>
 <p>In the model PyMC3 will name them <span class="math notranslate nohighlight">\(\Sigma_{missing}\)</span>.
-(This characteristic makes the model also robust against missing data).</p>
+This characteristic makes the model also robust against missing data.</p>
 <p>By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps (<a class="reference internal" href="autoapi/src/forecast/forecast/index.html#src.forecast.forecast.determine_estimates" title="src.forecast.forecast.determine_estimates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.forecast.forecast.determine_estimates()</span></code></a>).</p>
 </section>
 <section id="total-model">
@@ -331,7 +331,7 @@ And seasonality can also be captured from the observed data itself for different
 </div></blockquote>
 <p>The total model visualized.</p>
 <p>Two separate GAM models <span class="math notranslate nohighlight">\(\Sigma\)</span> (<a class="reference internal" href="autoapi/src/model/model/index.html#src.model.model.create_model" title="src.model.model.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">src.model.model.create_model()</span></code></a>) are used for the weekly minimum and maximum.</p>
-<p>The visual above shows the total GAM model with a polynomial drift order <span class="math notranslate nohighlight">\(n=2\)</span> (the bias of order 0 explains <span class="math notranslate nohighlight">\(N+1=3\)</span>) and a fourier order of <span class="math notranslate nohighlight">\(n=5\)</span> (the sine and cosine parts explain <span class="math notranslate nohighlight">\(N*2=10\)</span>).</p>
+<p>The visual above shows the total GAM model with a polynomial drift order <span class="math notranslate nohighlight">\(n=2\)</span> (the bias of order 0 explains <span class="math notranslate nohighlight">\(n+1=3\)</span>) and a fourier order of <span class="math notranslate nohighlight">\(n=5\)</span> (the sine and cosine parts explain <span class="math notranslate nohighlight">\(n*2=10\)</span>).</p>
 <p>The number of observations (weeks of measurements for this case) is 121 and the forecasting horizon is just more than six months (27 weeks).</p>
 </section>
 <section id="formatting-results">
@@ -400,7 +400,7 @@ Measurements from the train and test set are plotted.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Making more recent observations more relevant for slowly changing loading patterns</dt><dd><ul>
+<dt>Making more recent observations more relevant for slowly changing loading patterns.</dt><dd><ul>
 <li><p>Possibilities are to mimic weights with <a class="reference external" href="https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689">pm.Potential</a> or <a class="reference external" href="https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11">pm&lt;distribution&gt;(tau=weights)</a>.</p></li>
 </ul>
 </dd>

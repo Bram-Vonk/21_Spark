@@ -132,17 +132,17 @@ Data Exploration
 
 The measurement data is up-to-date, but has missing values in two moments in time (both in 2021). This issue was discovered and is addressed.
 
-For the project it won't be a huge issue, since the data is aggregated to weekly extremes.
-It will will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
+For the project it will not be a huge issue, since the data is aggregated to weekly minimum and maximum values.
+It will will cause these extremes to be less severe if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
 
 In both cases (outlier and missing data) the model can handle this.
 
-For timeseries modelling it is advised to have at least two periods (years in this case) of measurement data.
+For time series modelling it is advised to have at least two periods (years in this case) of measurement data.
 
 As the figure below shows, this might be a problem eventually. One of the challenges is therefore to explore if prior knowledge of the population can overcome this issue.
 
-In the figure below the completeness of the data over time is given for the transformers in the area of Breda.
-On the vertical axis the transformers are shown ordered by the time they got operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.
+In the figure below the completeness of the data over time is given for the transformers in the service area of Breda.
+On the vertical axis the transformers are shown ordered by the time they became operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.
 
 
 .. image:: _static/img/dq_completeness.jpeg
@@ -155,10 +155,10 @@ Completeness for DALI data in the service area of Breda.
 Data Quality
 ------------
 
-Beside the missing data described above, the data quality (of the 15-minute power averages) seems like expected.
-The reason is probably that the 15-minute averaging already smooths out the extreme (short circuit) values and measurement errors.
+Beside the missing data described above, the data quality (of the 15-minute power averages) is as like expected.
+The reason is likely the 15-minute averaging already smooths out the extreme (short circuit) values and measurement errors.
 
-Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
+Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown in the figure below).
 Taking not only the extremes, but also the second highest/lowest value per week for robustness did not make a lot of difference (probably also due to the aforementioned smoothing).
 
 .. image:: _static/img/dq_outlier.png

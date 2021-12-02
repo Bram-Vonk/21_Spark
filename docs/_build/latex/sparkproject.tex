@@ -212,7 +212,7 @@
 
 
 \title{`Spark project`}
-\date{Dec 01, 2021}
+\date{Dec 02, 2021}
 \release{0.0.1}
 \author{Bram Vonk}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -255,14 +255,14 @@ This project is done in the context of the Professional Education Lead Program o
 
 \sphinxhref{http://www.enexis.nl}{Enexis} is a regulated regional distribution network operator (DNO) in the Netherlands, responsible for transporting electricity and gas to 2.6 million customers.
 
-Enexis aims to keep the delivery af gas and electricity reliable, affordable and sustainable for all its customers.
+Enexis aims to keep the delivery of gas and electricity reliable, affordable and sustainable for all its customers.
 
 
 \section{About the current situation}
 \label{\detokenize{general:about-the-current-situation}}
 Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.
 
-These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
+The capacity of these grid components should always be sufficient for the power flows in the grid. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
 
 For decades this monitoring was done mainly by looking to historical yearly extremes.
 
@@ -327,7 +327,7 @@ This is realised by doing effective and efficient grid investments according to 
 \label{\detokenize{business_understanding:a-changing-environment}}
 Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.
 
-These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
+The capacity of these grid components should always be sufficient for the power flows in the grid. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
 
 For decades this monitoring was done mainly by looking to historical yearly extremes.
 
@@ -349,11 +349,11 @@ Installed power of heat pumps (HP) in The Netherlands (source: \sphinxhref{https
 
 \subsection{Impact on grid management}
 \label{\detokenize{business_understanding:impact-on-grid-management}}
-The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still withing the transformer’s capacity.
+The more volatile and more rapidly increasing power flows, require Grid Planners more often to monitor if the minimum and maximum power is still within the transformer’s capacity.
 Otherwise, this will cause unsafe operating situations and it can lead to power outages.
 
 Grid Planners expect a big increase of the number of transformers that reach their operating capacity in the upcoming years.
-This in a time and environment were they are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.
+This in a time and environment where Grid Planners are expected to make sure that Enexis is an enabler of the energy transition and not a show stopper.
 
 
 \subsection{Opportunity for data science}
@@ -401,7 +401,7 @@ Business Flow Down Diagram for the project.
 
 \subsection{Requirements from Users}
 \label{\detokenize{business_understanding:requirements-from-users}}
-The developed product is only valuable if it is use dby the end users, who are the Grid Planners.
+The developed product is only valuable if it is used by the end users, who are the Grid Planners.
 Therefore the following additional requirements and wishes are important:
 \begin{itemize}
 \item {} 
@@ -441,10 +441,10 @@ Forecast horizon should be six months.
 \label{\detokenize{business_understanding:success-criteria}}
 The project is a success if there is a tool that is being used by the Grid Planners that accurately forecasts overloading of transformers.
 
-Usage of the tool can be measured by tracking users of the tool and by performing interview with the end users after deployment.
+Usage of the tool can be measured by tracking users of the tool and by performing interviews with the end users after deployment.
 Accuracy is assessed by comparing forecasts with measurements.
 
-On more detail the project is a success if:
+In more detail the project is a success if:
 \begin{itemize}
 \item {} 
 The model forecasts prediction intervals.
@@ -484,7 +484,7 @@ Management: The direct manager enables Developer/Lead Bram to work two days a we
 Academic supervision: Jeroen de Mast will be the academic director that monitors progress and the academic level. Every three weeks there will be an one\sphinxhyphen{}on\sphinxhyphen{}one meeting to discuss progress and issues.
 
 \item {} 
-Academic support: PdEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
+Academic support: PDEng candidate Akshaya Ravi of JADS is available for support on technical and academic issues. Together with a buddy from the Lead Track periodic meetings (every four weeks) will be planned, but also ad hoc issues will be discussed directly.
 
 \end{itemize}
 
@@ -549,7 +549,7 @@ Deployable: The tool has to be able to go in production according to the Enexis 
 \subsection{Assumptions}
 \label{\detokenize{business_understanding:assumptions}}\begin{itemize}
 \item {} 
-DALI data is available without huge quality issues during the project
+DALI data is available without huge quality issues during the project.
 
 \item {} 
 Weekly extremes on transformer data is an acceptable aggregation level for capacity planning.
@@ -558,7 +558,7 @@ Weekly extremes on transformer data is an acceptable aggregation level for capac
 Data Engineering has capacity for several hours a week for support between September and December.
 
 \item {} 
-The computational burden for probabilistic models is no problem regarding the computational power available.
+The computational burden for probabilistic models is feasible regarding the computational power available.
 
 \end{itemize}
 
@@ -575,7 +575,7 @@ Mitigation: None.
 \end{description}
 
 \item {} \begin{description}
-\item[{Grid Planners are immensely occupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.}] \leavevmode\begin{itemize}
+\item[{Grid Planners are immensely preoccupied with the current challenges in the grid. Although not a lot of time is required, it might be that other activities have higher priority than this project.}] \leavevmode\begin{itemize}
 \item {} 
 Mitigation: Be clear and direct regarding expectations and communications and limit the effort and time for this project for Grid Planners without giving in on quality/input.
 
@@ -586,7 +586,7 @@ Mitigation: Be clear and direct regarding expectations and communications and li
 \item {} \begin{description}
 \item[{Data Engineers are also loaded with work and might not have time/resources available.}] \leavevmode\begin{itemize}
 \item {} 
-Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half
+Mitigation: It is essential to request capacity in the beginning of the project, although they will be involved only in the second half.
 
 \end{itemize}
 
@@ -611,7 +611,7 @@ Implementation: Open source software is used besides already licensed applicatio
 
 \subsection{Implementation Concept}
 \label{\detokenize{business_understanding:implementation-concept}}
-The stool is split into three steps to tackle the amount of data available, but still make the results manageable:
+The tool is split into three steps to tackle the amount of data available, but still make the results manageable:
 \begin{itemize}
 \item {} 
 Preprocessing: To condense 15 minute load averages into weekly extremes (minimum and maximum).
@@ -708,7 +708,7 @@ There is 15\sphinxhyphen{}minute average data available of 11k transformers.
 The maximum and minimum loading is not needed on this detailed level.
 According to the Grid Planners, weekly or monthly extreme details are more than enough.
 
-For this first model to forecast transfer loading no external variables will be used as input for the model.
+For this first model to forecast transformer loading no external variables will be used as input for the model.
 Only historic data will be used (with metadata to extract de capacity of the transformer).
 
 Data is available in Snowflake.
@@ -792,7 +792,7 @@ DIM\_DALI\_BOX\_VW
 \label{\detokenize{data_understanding:measurement-data-details}}
 The measurements are available since Q2 2018.
 
-Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
+Since then increasingly more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
 Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.
 
 For this project we focus first on the active power on a transformer om the medium voltage connection side.
@@ -918,17 +918,17 @@ NUMBER
 \label{\detokenize{data_understanding:data-exploration}}
 The measurement data is up\sphinxhyphen{}to\sphinxhyphen{}date, but has missing values in two moments in time (both in 2021). This issue was discovered and is addressed.
 
-For the project it won’t be a huge issue, since the data is aggregated to weekly extremes.
-It will will cause extremes to be less extreme if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
+For the project it will not be a huge issue, since the data is aggregated to weekly minimum and maximum values.
+It will will cause these extremes to be less severe if (a lot of) data is missing. Only if data is missing for a whole week, there will also be missing data in the aggregated set.
 
 In both cases (outlier and missing data) the model can handle this.
 
-For timeseries modelling it is advised to have at least two periods (years in this case) of measurement data.
+For time series modelling it is advised to have at least two periods (years in this case) of measurement data.
 
 As the figure below shows, this might be a problem eventually. One of the challenges is therefore to explore if prior knowledge of the population can overcome this issue.
 
-In the figure below the completeness of the data over time is given for the transformers in the area of Breda.
-On the vertical axis the transformers are shown ordered by the time they got operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.
+In the figure below the completeness of the data over time is given for the transformers in the service area of Breda.
+On the vertical axis the transformers are shown ordered by the time they became operational. On the horizontal axis the time is given. In color the completeness is given per week: Darkblue (value 1) means that all data was present, towards white (value 0) means no data at all.
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dq_completeness}.jpeg}\hspace*{\fill}}
 
@@ -937,10 +937,10 @@ Completeness for DALI data in the service area of Breda.
 
 \section{Data Quality}
 \label{\detokenize{data_understanding:data-quality}}
-Beside the missing data described above, the data quality (of the 15\sphinxhyphen{}minute power averages) seems like expected.
-The reason is probably that the 15\sphinxhyphen{}minute averaging already smooths out the extreme (short circuit) values and measurement errors.
+Beside the missing data described above, the data quality (of the 15\sphinxhyphen{}minute power averages) is as like expected.
+The reason is likely the 15\sphinxhyphen{}minute averaging already smooths out the extreme (short circuit) values and measurement errors.
 
-Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown on the figure below).
+Although sometimes outliers can still be seen in the data (which can propagate into the weekly extremes as shown in the figure below).
 Taking not only the extremes, but also the second highest/lowest value per week for robustness did not make a lot of difference (probably also due to the aforementioned smoothing).
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{dq_outlier}.png}\hspace*{\fill}}
@@ -952,7 +952,7 @@ Example of weekly extremes with an outlier for the maximum in July 2020.
 \label{\detokenize{data_preparation:data-preparation}}\label{\detokenize{data_preparation::doc}}
 The data preparation step focuses on converting raw measurement data with a frequency of 15 minutes into weekly extremes and preparing these extremes to be usable input for the forecasting model.
 
-Initially the whole history is aggregated and stored in a Snowflake database. After that updates are done every month / week.
+Initially the entire history is aggregated and stored in a Snowflake database. Consecutively, updates are done every week.
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[height=250\sphinxpxdimen]{{process_data_preparation}.png}\hspace*{\fill}}
 
@@ -961,7 +961,7 @@ The data preparation step resulting in weekly aggregated data.
 
 \section{Data Selection}
 \label{\detokenize{data_preparation:data-selection}}
-Columns described in \DUrole{xref,std,std-ref}{Data Understanding} are selected from the measurement () and metadata tables.
+Columns described in \DUrole{xref,std,std-ref}{Data Understanding} are selected from the measurement data and metadata tables.
 
 From the measurement data only data is selected from DALI boxes that have nominal power registered in the metadata table and that are in operation ({\hyperref[\detokenize{autoapi/src/utils/snowflake/index:src.utils.snowflake.read_meta}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.utils.snowflake.read\_meta()}}}}}). Both data and metadata are needed to indicate future overloading and add value to Grid Planners.
 
@@ -974,7 +974,7 @@ Only the 15 minute average channels are selected for preprocessing.
 
 \section{Data Cleaning}
 \label{\detokenize{data_preparation:data-cleaning}}
-No data cleaning is performed on the raw data before aggregation, but data is checked and cleaned on the following after reading it in ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.load_data}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.load\_data()}}}}}) and before being used by a model for forecasting:
+No data cleaning is performed on the raw data before aggregation, but data is checked and cleaned on the following after loading ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.load_data}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.load\_data()}}}}}) and before being used by a model for forecasting:
 \begin{itemize}
 \item {} 
 Data of extremes (minimum or maximum) having the value of zero in the beginning of the series are removed ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.remove_leading_idling}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.remove\_leading\_idling()}}}}}). This is for example the case if a DALI box is in operation, but its transformer is not.
@@ -1028,7 +1028,7 @@ DS\_SPARK\_DALI\_WEEK\_EXTREMES
 \par
 \sphinxattableend\end{savenotes}
 
-The fields of the table are listed below. The table is clustered by BOXID and L.
+The fields of the table are listed below. The table is clustered by BOXID and L (phase).
 The amount of rows is condensed from 89,052,020,404 to 3,457,856 records.
 
 
@@ -1117,7 +1117,7 @@ Consecutively, a date column is constructed from the ISO year and week format wi
 The extra columns period and model\_var are assigned and filled with the values “history”, “observed” respectively for measurement data.
 This is in preparation for long formatting and concatenating forecast results in a later stage ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.format_data}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.format\_data()}}}}}).
 
-An example of the loaded extreme data is shown below
+An example of the loaded extreme data is shown below:
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{loaded_extremes}.png}\hspace*{\fill}}
 
@@ -1141,7 +1141,7 @@ The detailed process to create and assess load forecasts.
 
 \section{Modeling Technique}
 \label{\detokenize{modeling:modeling-technique}}
-The Grid Planners are looking to data driven forecast with a uncertainty indication as mentioned before.
+The Grid Planners are looking for a data driven forecast with a uncertainty indication as mentioned before.
 This is visualized as a concept in the figure below.
 \begin{quote}
 
@@ -1180,7 +1180,7 @@ The next time a forecast is required, new data is available and a new model will
 \label{\detokenize{modeling:model-environment}}
 A probabilistic approach has been implemented to fulfill the wish to forecast and display uncertainty rather than a point estimate.
 
-From the main probabilistic toolboxes (STAN, EDWARD2, Pyro, TensorFlow2 Probability) \sphinxhref{https://docs.pymc.io/en/stable/}{PyMC3} was used for it’s extensive documentation.
+From the main probabilistic toolboxes (PyMC3, STAN, EDWARD2, Pyro, TensorFlow2 Probability) \sphinxhref{https://docs.pymc.io/en/stable/}{PyMC3} was used for it’s extensive documentation.
 
 A future step could be to transfer the model into TensorFlow2 Probability since PyMC3 is not the most recent toolbox anymore.
 
@@ -1273,16 +1273,16 @@ The order taken for the fourier series is \(n=5\).
 
 \subsubsection{Enabling Forecasts}
 \label{\detokenize{modeling:enabling-forecasts}}
-The model parameters (\(\beta\))’s can now be tuned to produce the model is most likely to produce the observed (measurement) data.
+The model parameters (\(\beta\))’s can now be tuned to produce the most model to produce the observed (measurement) data.
 
-To forecasting, the model also needs to produce beyond the timestamps it has been tuned on.
+To forecast, the model also needs to produce samples beyond the timestamps it has been tuned on.
 
 The PyMC3 model can cope with this by feeding it with timestamps that are extrapolated for the forecasting horizon ({\hyperref[\detokenize{autoapi/src/preprocess/preprocess/index:src.preprocess.preprocess.extrapolate_timestamps}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.preprocess.preprocess.extrapolate\_timestamps()}}}}}).
 
 The matching observations (measurements) can be intentionally filled with NaN’s.
 
 In the model PyMC3 will name them \(\Sigma_{missing}\).
-(This characteristic makes the model also robust against missing data).
+This characteristic makes the model also robust against missing data.
 
 By sampling the posterior predictive after tuning, also samples are generated for the extrapolated forecast timestamps ({\hyperref[\detokenize{autoapi/src/forecast/forecast/index:src.forecast.forecast.determine_estimates}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.forecast.forecast.determine\_estimates()}}}}}).
 
@@ -1297,7 +1297,7 @@ The total model visualized.
 
 Two separate GAM models \(\Sigma\) ({\hyperref[\detokenize{autoapi/src/model/model/index:src.model.model.create_model}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{src.model.model.create\_model()}}}}}) are used for the weekly minimum and maximum.
 
-The visual above shows the total GAM model with a polynomial drift order \(n=2\) (the bias of order 0 explains \(N+1=3\)) and a fourier order of \(n=5\) (the sine and cosine parts explain \(N*2=10\)).
+The visual above shows the total GAM model with a polynomial drift order \(n=2\) (the bias of order 0 explains \(n+1=3\)) and a fourier order of \(n=5\) (the sine and cosine parts explain \(n*2=10\)).
 
 The number of observations (weeks of measurements for this case) is 121 and the forecasting horizon is just more than six months (27 weeks).
 
@@ -1399,7 +1399,7 @@ This could be implemented by estimating parameters of a \sphinxhref{https://en.w
 \end{description}
 
 \item {} \begin{description}
-\item[{Making more recent observations more relevant for slowly changing loading patterns}] \leavevmode\begin{itemize}
+\item[{Making more recent observations more relevant for slowly changing loading patterns.}] \leavevmode\begin{itemize}
 \item {} 
 Possibilities are to mimic weights with \sphinxhref{https://discourse.pymc.io/t/how-to-run-logistic-regression-with-weighted-samples/5689}{pm.Potential} or \sphinxhref{https://discourse.pymc.io/t/pm-sample-posterior-predictive-not-working-with-weights/5698/11}{pm<distribution>(tau=weights)}.
 
@@ -1450,13 +1450,13 @@ The model results after data accidentally was removed from the source database.
 The model forecasts neatly the median and quantile bands as intended.
 
 However, it will always be a model trained on historical, observed data, and forecasts will always be off.
-Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality opf the outside world.
+Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality of the outside world.
 
-The grid planners were shown different off\sphinxhyphen{}results to make them aware of the limiting accuracy and reliability of the models and their forecasts.
+The grid planners were shown different forecast that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.
 
 This was visually shown by the following actions:
 The results were assessed by splitting the observed data into a train and test set, using a model based on the train set and comparing the results with the test set.
-The performance of for the different transformers of course also differs, but an example can be seen in the following figure:
+The performance for the different transformers of course also differs, but an example can be seen in the following figure:
 \begin{quote}
 
 \noindent{\hspace*{\fill}\sphinxincludegraphics[width=800\sphinxpxdimen]{{validation}.png}\hspace*{\fill}}
@@ -1480,7 +1480,7 @@ Implementing hybrid additive\sphinxhyphen{}multiplicative model for dealing with
 Adding a extra component to detect temporarily bypass switching of loads of other transformers.
 
 \item {} 
-Making more recent observations more relevant for slowly changing loading patterns
+Making more recent observations more relevant for slowly changing loading patterns.
 
 \item {} 
 Using the population seasonality as a \sphinxhref{https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/}{prior} in case of a short history of observations.
@@ -1508,7 +1508,7 @@ The grid planners gave as input that they wanted overloaded transformers ordered
 Firstly, the definition of potential (over)loading was agreed on to be the following:
 \begin{itemize}
 \item {} 
-Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity
+Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity.
 
 \item {} 
 Potential overloading is the potential loading is greater than one.
@@ -1518,7 +1518,7 @@ Potential overloading is the potential loading is greater than one.
 Potential overloaded transformers can now be ordered by the point in time when they reach this limit.
 
 Then there are also transformers that will never potentially overload.
-The forecasts of these transformers are simply ordered by potential loading
+The forecasts of these transformers are simply ordered by potential loading.
 
 To summarize into steps:
 \begin{itemize}
@@ -1599,7 +1599,7 @@ This issue has the highest priority, since grid planners do not want to wait for
 
 Secondly, The current dashboard needs to be deployed within the Enexis landscape.
 
-Additionally, some aesthetic improvements are welcome, since the presentation is quiet basic at this moment.
+Additionally, some aesthetic improvements are welcome, since the presentation is quite basic at this moment.
 
 
 \chapter{Deployment}
@@ -1622,7 +1622,7 @@ Unit tests have not been written yet.
 The project currently uses data from the Production environment, since there is no DALI (meta)data available on the Test or Acceptance environments.
 
 Therefore, the further implementation of the CICD pipeline is postponed for now.
-(Also since within Enexis Gitlab is used, but for this study project a parallel Github repository is used.)
+Also since within Enexis Gitlab is used, but for this study project a parallel Github repository is used.
 
 
 \subsection{Security}
@@ -1784,86 +1784,86 @@ The highly effective presentation masterclass of Raoul helped me to reach goals 
 The evaluation criteria for the Professional Education Lead track of JADS and how I translated them are:
 \begin{itemize}
 \item {} 
-Business Value
+Business Value.
 \begin{itemize}
 \item {} 
-Use case selection
+Use case selection.
 
 \item {} 
-Stakeholder analysis
+Stakeholder analysis.
 
 \item {} 
-Stakeholder and expectation management
+Stakeholder and expectation management.
 
 \item {} 
-Value flow down diagram
+Value flow down diagram.
 
 \item {} 
-Regular business review moments
+Regular business review moments.
 
 \end{itemize}
 
 \item {} 
-Programming
+Programming.
 \begin{itemize}
 \item {} 
-Coding standards with Cookiecutter and linting (black, isort, flake8)
+Coding standards with Cookiecutter and linting (black, isort, flake8).
 
 \item {} 
-Using Sphinx for auto API documentation in GitHub
+Using Sphinx for auto API documentation in GitHub.
 
 \item {} 
-Interactive visualisations in Altair
+Interactive visualisations in Altair.
 
 \item {} 
-Dashboard in Panel
+Dashboard in Panel.
 
 \end{itemize}
 
 \item {} 
-Data engineering
+Data engineering.
 \begin{itemize}
 \item {} 
-Snowflake database preprocessing usage (asynchronous queries, ETL)
+Snowflake database preprocessing usage (asynchronous queries, ETL).
 
 \item {} 
-Vault credential management
+Vault credential management.
 
 \item {} 
-Docker (compose with entrypoint) for every process step
+Docker (compose with entrypoint) for every process step.
 
 \end{itemize}
 
 \item {} 
-Data analytics \& machine learning
+Data analytics \& machine learning.
 \begin{itemize}
 \item {} 
-Coding data management and model from scratch (since not using sklearn)
+Coding data management and model from scratch (since not using sklearn).
 
 \item {} 
-Probabilistic modelling in PyMC3
+Probabilistic modelling in PyMC3.
 
 \item {} 
-Using Fourier and Taylor series in generalized additive model for time series forecast
+Using Fourier and Taylor series in generalized additive model for time series forecast.
 
 \end{itemize}
 
 \item {} 
-Professional standard of reporting
+Professional standard of reporting.
 \begin{itemize}
 \item {} 
-Using Sphinx for this documentation
+Using Sphinx for this documentation.
 
 \item {} 
-Status slide deck after sprint review with end users
+Status slide deck after sprint review with end users.
 
 \item {} 
-Project status / pitch and management summary for JADS peers and training
+Project status / pitch and management summary for JADS peers and training.
 
 \end{itemize}
 
 \item {} 
-Academic / research skills
+Academic / research skills.
 \begin{itemize}
 \item {} 
 Using the engineering approach (instead of the scientific method or the axiomatic system) to iteratively create and validate model and outcome.

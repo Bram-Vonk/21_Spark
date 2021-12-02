@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.0 (TeX Live 2021)  (format=lualatex 2021.11.4)  1 DEC 2021 22:25
+This is LuaHBTeX, Version 1.13.0 (TeX Live 2021)  (format=lualatex 2021.11.4)  2 DEC 2021 21:23
  restricted system commands enabled.
 **sparkproject.tex
 (./sparkproject.tex
@@ -1047,7 +1047,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 569--569
  []
 
 
-Overfull \hbox (347.5183pt too wide) in paragraph at lines 578--578
+Overfull \hbox (361.47829pt too wide) in paragraph at lines 578--578
 []
  []
 
@@ -1453,11 +1453,11 @@ Package rerunfilecheck Info: File `sparkproject.out' has not changed.
 
 Here is how much of LuaTeX's memory you used:
  17652 strings out of 478531
- 195432,953878 words of node,token memory allocated
+ 156333,953878 words of node,token memory allocated
  694 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 25 attribute, 66 glue_spec
 , 25 attribute_list, 2 write, 9 pdf_action nodes
-   avail lists: 1:18,2:1060,3:513,4:336,5:2628,6:267,7:6206,8:136,9:804,10:31,11
+   avail lists: 1:17,2:1058,3:510,4:337,5:2629,6:267,7:6209,8:136,9:805,10:31,11
 :352,12:4
  36221 multiletter control sequences out of 65536+600000
  108 fonts using 72098455 bytes
@@ -1477,7 +1477,7 @@ ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loca
 l/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
 ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on sparkproject.pdf (65 pages, 6325717 bytes).
+Output written on sparkproject.pdf (65 pages, 6325731 bytes).
 
 PDF statistics: 1110 PDF objects out of 1200 (max. 8388607)
  939 compressed objects within 10 object streams

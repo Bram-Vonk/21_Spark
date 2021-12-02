@@ -218,11 +218,11 @@ An experiment of an exponential function for the drift sub-model was implemented
 <h3>Model Results<a class="headerlink" href="#model-results" title="Permalink to this headline">¶</a></h3>
 <p>The model forecasts neatly the median and quantile bands as intended.</p>
 <p>However, it will always be a model trained on historical, observed data, and forecasts will always be off.
-Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality opf the outside world.</p>
-<p>The grid planners were shown different off-results to make them aware of the limiting accuracy and reliability of the models and their forecasts.</p>
+Partially, this can be due to model imperfections, for which improvements are suggested earlier, partially this is due to the reality of the outside world.</p>
+<p>The grid planners were shown different forecast that deviated from realisations to make them aware of the limiting accuracy and reliability of the models and their forecasts.</p>
 <p>This was visually shown by the following actions:
 The results were assessed by splitting the observed data into a train and test set, using a model based on the train set and comparing the results with the test set.
-The performance of for the different transformers of course also differs, but an example can be seen in the following figure:</p>
+The performance for the different transformers of course also differs, but an example can be seen in the following figure:</p>
 <blockquote>
 <div><a class="reference internal image-reference" href="_images/validation.png"><img alt="_images/validation.png" class="align-center" src="_images/validation.png" style="width: 800px;" /></a>
 </div></blockquote>
@@ -236,7 +236,7 @@ The most promising suggestions for model improvement are:</p>
 <li><p>Improving tuning and forecasting time.</p></li>
 <li><p>Implementing hybrid additive-multiplicative model for dealing with the growing seasonality.</p></li>
 <li><p>Adding a extra component to detect temporarily bypass switching of loads of other transformers.</p></li>
-<li><p>Making more recent observations more relevant for slowly changing loading patterns</p></li>
+<li><p>Making more recent observations more relevant for slowly changing loading patterns.</p></li>
 <li><p>Using the population seasonality as a <a class="reference external" href="https://minimizeregret.com/post/2019/04/16/modeling-short-time-series-with-prior-knowledge/">prior</a> in case of a short history of observations.</p></li>
 <li><p>Using by-pass dummy model for <a class="reference external" href="https://docs.pymc.io/en/stable/pymc-examples/examples/generalized_linear_models/GLM-robust-with-outlier-detection.html">outlier robustness</a>.</p></li>
 </ul>
@@ -253,12 +253,12 @@ Therefore the forecast results are automatically assessed and ordered by urgency
 <p>The grid planners gave as input that they wanted overloaded transformers ordered by the time the potential overloading was expected.</p>
 <p>Firstly, the definition of potential (over)loading was agreed on to be the following:</p>
 <ul class="simple">
-<li><p>Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity</p></li>
+<li><p>Potential loading is the maximum absolute of the forecast quantile bands divided by the transformer capacity.</p></li>
 <li><p>Potential overloading is the potential loading is greater than one.</p></li>
 </ul>
 <p>Potential overloaded transformers can now be ordered by the point in time when they reach this limit.</p>
 <p>Then there are also transformers that will never potentially overload.
-The forecasts of these transformers are simply ordered by potential loading</p>
+The forecasts of these transformers are simply ordered by potential loading.</p>
 <p>To summarize into steps:</p>
 <ul class="simple">
 <li><p>Determine absolute value of the forecasted quantile bands.</p></li>
@@ -307,7 +307,7 @@ Other ordering is possible if the grid planner desires.</p>
 <p>Firstly, the loading of individual forecasts requires some improvement. At this moment the data loading is slow due to an interface issue between python and the Snowflake database.
 This issue has the highest priority, since grid planners do not want to wait for results.</p>
 <p>Secondly, The current dashboard needs to be deployed within the Enexis landscape.</p>
-<p>Additionally, some aesthetic improvements are welcome, since the presentation is quiet basic at this moment.</p>
+<p>Additionally, some aesthetic improvements are welcome, since the presentation is quite basic at this moment.</p>
 </section>
 </section>
 </section>
