@@ -20,7 +20,7 @@ About Enexis
 
 `Enexis <http://www.enexis.nl>`__ is a regulated regional distribution network operator (DNO) in the Netherlands, responsible for transporting electricity and gas to 2.6 million customers.
 
-Enexis aims to keep the delivery af gas and electricity reliable, affordable and sustainable for all its customers.
+Enexis aims to keep the delivery of gas and electricity reliable, affordable and sustainable for all its customers.
 
 
 About the current situation
@@ -28,7 +28,7 @@ About the current situation
 
 Power is delivered via grid components such as cables and transformers (for electricity) to residential and industrial connections of our customers.
 
-These grid components have to have a certain capacity. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
+The capacity of these grid components should always be sufficient for the power flows in the grid. This is monitored by Grid Planners and if needed transformers are swapped for heavier ones, or cable connections are strengthened.
 
 For decades this monitoring was done mainly by looking to historical yearly extremes.
 

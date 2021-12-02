@@ -13,7 +13,7 @@ There is 15-minute average data available of 11k transformers.
 The maximum and minimum loading is not needed on this detailed level.
 According to the Grid Planners, weekly or monthly extreme details are more than enough.
 
-For this first model to forecast transfer loading no external variables will be used as input for the model.
+For this first model to forecast transformer loading no external variables will be used as input for the model.
 Only historic data will be used (with metadata to extract de capacity of the transformer).
 
 Data is available in Snowflake.
@@ -65,7 +65,7 @@ Measurement Data Details
 
 The measurements are available since Q2 2018.
 
-Since then more and more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
+Since then increasingly more transformers were equiped with DALI boxes and at the moment of writing (Q3 2021) a total number of 10,992 boxes are measured.
 Measurements on open doors (from safety perspective important) and currents, voltages and powers accumulated up to 89,052,020,404 records in the Snowflake table.
 
 For this project we focus first on the active power on a transformer om the medium voltage connection side.
